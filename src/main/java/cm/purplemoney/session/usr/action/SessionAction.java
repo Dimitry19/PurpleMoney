@@ -64,7 +64,7 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 		//addActionMessage("Thank you for Registration!");
 		//addActionError("A sample Action Error Message!");
 		//addActionMessage("A sample Action Message.");
-		//addFieldError("error", "A sample Field Error!");
+		addFieldError("error", "A sample Field Error!");
 		return SUCCESS;
 	}
 	public String addAmount() throws Exception{
