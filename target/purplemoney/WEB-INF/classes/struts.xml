@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	
+	<!-- Utilizza il template SIMPLE -->
+	<constant name="struts.ui.theme" value="simple" />
+	
+	<!-- le action struts usando *.do -->
+ 	<constant name="struts.action.extension" value="do" />
+ 	<!-- disable dynametic method invocation -->
+ 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+ 	
+ 	<!-- use spring as object factory -->
+ 	<constant name="struts.objectFactory" value="spring" />
+
+    <!--<constant name="struts.locale" value="fr_FR" />-->
+    
+  <!-- Imposto includeParams a none. I paramteri dovranno sempre essere impostati direttamente -->
+  <constant name="struts.url.includeParams" value="none"/>
+          
+  <!-- Encoding di default -->
+  <constant name="struts.i18n.encoding" value="UTF-8" />
+
+  <constant name="struts.multipart.maxSize" value="60480000" />
+  <constant name="struts.action.excludePattern" value=".*connector.java"/>
+
+    <!-- devMode is helpful when you want some extra logs for debugging -->
+  <constant name="struts.devMode" value="true" />
+    <!-- Global message resource;
+    	 Otherwise you will have seperate message resource for each Action
+    -->
+
+    <constant name="struts.convention.result.path" value="/"></constant>
+
+    <!-- constant to define global resource bundle -->
+    <constant name="struts.custom.i18n.resources" value="global"></constant>
+  <constant name="struts.enable.SlashesInActionNames" value="true"/>
+  <include file="cm/purplemoney/common/usr/cfg/struts-actions.xml"></include>
+
+
+</struts>

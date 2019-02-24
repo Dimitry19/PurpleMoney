@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+	<package name="role" namespace="/" extends="common">
+		<action name="addgroleAction" 	class="roleAction" method="addRole" >
+		    <result name="success">/amount/pages/amounts.jsp</result>
+		</action>
+		<action name="rolesAction" class="roleAction" method="loadAllRoles" >
+		    <result name="success">/amount/pages/includes/amounts-list.jsp</result>
+		</action>
+	</package>
+</struts>

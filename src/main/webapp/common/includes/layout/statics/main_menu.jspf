@@ -1,0 +1,25 @@
+<%@ include file="/common/includes/utils/taglibs_nocache.jspf" %>
+
+<section id="menu-wrapper">
+
+<a class="go-to-nav" href="#main-menu"  data-action="{action: 'toggle-menu'}">Menu Principale</a>
+
+<nav id="main-menu">
+	
+	<ul class="menu">
+		<%-- <li>
+			<h4><a>Public</a></h4>
+			<ul class="sub-menu">
+				<a:authorize condition="READER || WRITER || ADMIN">
+				
+				<li><a data-action="{action: 'open-page', containerId: 'page',url: '<s:url action="orderSearchWelcome"/>', onend: function(){gs.menuManager.closeMenu();}}">Ricerca Ordini</a></li>
+				</a:authorize>
+			</ul> 
+		</li> --%>
+		
+	</ul>
+	
+</nav>
+
+</section>
+<!-- FINE MENU LEFT -->

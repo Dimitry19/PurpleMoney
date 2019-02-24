@@ -1,0 +1,168 @@
+package cm.purplemoney.members.ent.bo;
+
+
+import cm.purplemoney.association.ent.bo.AssociationBO;
+import cm.purplemoney.association.ent.vo.AssociationVO;
+import cm.purplemoney.session.ent.vo.SessionVO;
+import cm.purplemoney.config.HibernateConfig;
+import cm.purplemoney.members.ent.enums.SexEnum;
+import cm.purplemoney.members.ent.vo.MemberVO;
+import cm.purplemoney.role.ent.bo.RoleBO;
+import cm.purplemoney.role.ent.vo.RoleVO;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Component("memberBO")
+public class MemberBOImpl implements MemberBO {
+	private static final Logger log = LoggerFactory.getLogger(MemberBOImpl.class);
+
+	@Resource(name = "hibernateConfig")
+	HibernateConfig hibernateConfig;
+
+	@Resource(name = "roleBO")
+	RoleBO roleBO;
+	@Resource(name = "associationBO")
+	AssociationBO associationBO;
+
+	Session session;
+
+
+	
+
+	public MemberVO findMember(String username,String assId) {
+
+		session= hibernateConfig.getSession();
+		Query query=session.createQuery("from MemberVO where id.name =:uName and association=:ass and active=:act");
+
+		query.setParameter("uName", username);
+		query.setParameter("ass", assId.toUpperCase());
+		query.setParameter("act", true);
+		List<MemberVO> users=decoder(query.list());
+		if(users!=null && users.size()>0) {
+
+			return users.get(0);
+
+		}
+		return null;
+
+	}
+
+
+	public MemberVO findMember(SessionVO sess) {
+
+		session= hibernateConfig.getSession();
+		Query query=session.createQuery("from MemberVO where id.name =:uName");
+
+		//query.setParameter("uName", username.toUpperCase());
+		List<MemberVO> users=decoder(query.list());
+		if(users!=null && users.size()>0) {
+			return users.get(0);
+		}
+		return null;
+
+	}
+
+	@Override
+	public List<MemberVO> loadAllMembers() {
+		session=hibernateConfig.getSession();
+		Query query=session.createQuery("from MemberVO ");
+
+		List<MemberVO> members= null;
+		try {
+			members = decoder(query.list());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return members;
+	}
+
+	@Override
+	public void addMember(MemberVO member) {
+		if(member!=null){
+			session=hibernateConfig.getSession();
+
+			Transaction tx=session.beginTransaction();
+			session.save(MemberVO.class.getName(),member);
+			tx.commit();
+		}
+	}
+
+	@Override
+	public void saveEditMember(MemberVO member) {
+
+		if(member!=null){
+			try {
+				MemberVO memberTmp=encode(member);
+				session=hibernateConfig.getSession();
+
+				Transaction tx=session.beginTransaction();
+				session.update(MemberVO.class.getName(),memberTmp);
+				tx.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+	private List<MemberVO>  decoder(List<MemberVO> mbrs) {
+
+		List<MemberVO> members=new ArrayList<MemberVO>();
+
+		try {
+				for (MemberVO mb : mbrs) {
+					decode(mb);
+					members.add(mb);
+			}
+		}catch (Exception e){
+			log.error("Decoder error");
+			e.printStackTrace();
+		}
+		return members;
+	}
+
+	protected void decode(MemberVO member) throws Exception{
+		if(session.isOpen()){
+			session.close();
+		}
+		RoleVO role=roleBO.retrieveRoleFromMember(member);
+		AssociationVO association=associationBO.associationInfoFromMember(member);
+		member.setAssociationDesc(association.getDescription());
+		member.setRoleDesc(role.getDescription());
+		if(member.getSex() == SexEnum.F){
+			member.setSexDesc("Femme");
+		}else{
+			member.setSexDesc("Homme");
+		}
+	}
+
+	protected MemberVO encode( MemberVO member) throws Exception{
+
+		if( session.isOpen()){
+			session.close();
+		}
+		RoleVO role=roleBO.retrieveRoleFromMember(member);
+		AssociationVO association=associationBO.associationInfoFromMember(member);
+		member.setRole(role.getId().getRole());
+		member.setAssociation(association.getId().getName());
+
+		if(StringUtils.equals("Femme",member.getSexDesc())){
+			member.setSex(SexEnum.F);
+		}else{
+			member.setSex(SexEnum.M);
+		}
+		return member;
+	}
+
+
+}

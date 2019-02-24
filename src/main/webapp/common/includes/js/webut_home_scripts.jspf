@@ -1,0 +1,4 @@
+<%@ include file="/common/includes/utils/taglibs_nocache.jspf" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<script src="<s:url value="/theme/ra/scripts/login"/>,/theme/assets/global/plugins/jquery-validation/js/jquery.validate.min,/theme/assets/global/plugins/backstretch/jquery.backstretch.min,login.js" type="text/javascript"></script>

@@ -1,0 +1,29 @@
+/*.menu{
+	width:200px;
+	height:100%;
+	position:absolute;
+	left:-200px;
+	background:rgba(0,0,0,0.8);    
+}*/
+
+.select-width{
+	width: 3px;
+}
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+}
+.custom-padding {
+	padding-top: 22px;
+
+}
+.custom-margin{
+	margin-left: 5px;
+}
+
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}

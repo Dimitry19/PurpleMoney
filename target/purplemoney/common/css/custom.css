@@ -1,0 +1,149 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 25px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control-login .btn-login {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  width: 50% !important;
+  padding: 20px !important;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="username"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/*-------- BOOTSTRAP SELECT PLUGIN CUSTOM---------*/
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+  width: 100% !important;
+  height: 24px!important;
+}
+.bootstrap-select .dropdown-toggle .filter-option {
+  text-align: -webkit-center!important;;
+}
+
+/*-------- END BOOTSTRAP SELECT PLUGIN CUSTOM---------*/
+.select-width{
+  width: 3px;
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+}
+.custom-padding {
+  padding-top: 22px;
+
+}
+.custom-margin{
+  margin-left: 5px;
+}
+
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+
+.intl-tel-input {
+     display: table-cell;
+   }
+.intl-tel-input .selected-flag {
+  z-index: 4;
+}
+.intl-tel-input .country-list {
+  z-index: 5;
+}
+.input-group .intl-tel-input .form-control-tel {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+}
+
+.img-circle{
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+.mini-logo{
+   margin-right: 0%;
+   margin-top: 1%;
+ }
+.menu-mini-logo{
+  margin-right: 0%;
+  margin-top: 1%;
+}
+.bd-text-purple-bright{
+  color: #800080;
+}
+.bg-purple{
+  background: #800080!important;
+}
+
+.input-group-custom {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: 100%;
+}
+
+
+.center-div {
+  margin: 0 auto;
+  width: auto;
+}
+
+input{
+  text-align: center!important;
+}
+.card-perso{
+  margin-top: 2% !important;
+}
+.input-width{
+  width: auto!important;
+}
+dropdown-menu show{
+  max-height: 327.281px;
+  overflow: hidden;
+  min-height: 162px;
+  min-width: 1077px!important;
+  position: absolute;
+  transform: translate3d(-5px, 22px, 0px);
+  top: 0px;
+  left: 0px;
+  will-change: transform;
+}
+#montant{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.montant-symbol{
+  margin-left: -4%;
+  margin-top: 1%;
+}

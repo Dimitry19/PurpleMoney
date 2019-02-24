@@ -1,0 +1,156 @@
+/*@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');*/
+
+
+#code {
+    margin-top: 6%;
+    margin-left: -13%; 
+}
+
+#codeBy tspan {
+   color:red;
+   text-decoration: underline;
+}
+
+@font-face {
+    font-family: 'ASPU';
+    src: url('Awesome_Season_Personal_Use.ttf');
+}
+.powered {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin-right: -54%;
+}
+.powered svg {
+  max-width: 45rem;
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: white;
+  stroke-width: 4;
+}
+.powered svg tspan > tspan {
+  stroke-dasharray: 1500;
+  stroke-dashoffset: -1500;
+}
+.powered svg tspan > tspan:nth-of-type(1) {
+  -webkit-animation: draw 300ms 150ms forwards;
+          animation: draw 300ms 150ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(2) {
+  -webkit-animation: draw 300ms 300ms forwards;
+          animation: draw 300ms 300ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(3) {
+  -webkit-animation: draw 300ms 450ms forwards;
+          animation: draw 300ms 450ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(4) {
+  -webkit-animation: draw 300ms 600ms forwards;
+          animation: draw 300ms 600ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(5) {
+  -webkit-animation: draw 300ms 750ms forwards;
+          animation: draw 300ms 750ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(6) {
+  -webkit-animation: draw 300ms 900ms forwards;
+          animation: draw 300ms 900ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(7) {
+  -webkit-animation: draw 300ms 1050ms forwards;
+          animation: draw 300ms 1050ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(8) {
+  -webkit-animation: draw 300ms 1200ms forwards;
+          animation: draw 300ms 1200ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(9) {
+  -webkit-animation: draw 300ms 1350ms forwards;
+          animation: draw 300ms 1350ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(10) {
+  -webkit-animation: draw 300ms 1500ms forwards;
+          animation: draw 300ms 1500ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(11) {
+  -webkit-animation: draw 300ms 1650ms forwards;
+          animation: draw 300ms 1650ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(12) {
+  -webkit-animation: draw 300ms 1800ms forwards;
+          animation: draw 300ms 1800ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(13) {
+  -webkit-animation: draw 300ms 1950ms forwards;
+          animation: draw 300ms 1950ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(14) {
+  -webkit-animation: draw 300ms 2100ms forwards;
+          animation: draw 300ms 2100ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(15) {
+  -webkit-animation: draw 300ms 2250ms forwards;
+          animation: draw 300ms 2250ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(16) {
+    -webkit-animation: draw 300ms 2250ms forwards;
+    animation: draw 300ms 2250ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(17) {
+    -webkit-animation: draw 300ms 2250ms forwards;
+    animation: draw 300ms 2250ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(18) {
+    -webkit-animation: draw 300ms 2250ms forwards;
+    animation: draw 300ms 2250ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(19) {
+    -webkit-animation: draw 300ms 2250ms forwards;
+    animation: draw 300ms 2250ms forwards;
+    /*font-family:'ASPU';*/
+}
+.powered svg tspan > tspan:nth-of-type(20) {
+    -webkit-animation: draw 300ms 2250ms forwards;
+    animation: draw 300ms 2250ms forwards;
+    /*font-family:'ASPU';*/
+}
+
+
+
+@-webkit-keyframes draw {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes draw {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+
+
+

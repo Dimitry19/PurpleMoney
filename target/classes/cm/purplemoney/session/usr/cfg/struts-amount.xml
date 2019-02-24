@@ -1,0 +1,27 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+ 	
+	<package name="amount" namespace="/" extends="common">
+		<action name="saveAmountAction" 	class="amountAction" method="addAmount">
+		    <result name="success">/amount/pages/addAmount.jsp</result>
+		</action>
+		<action name="amountsAction" class="amountAction" method="loadAllAmounts" >
+		    <result name="success">/amount/pages/ajax/amounts.jsp</result>
+		</action>
+
+		<action name="specificAmountAction" class="amountAction" method="specificAllAmounts" >
+			<result name="success">/amount/pages/ajax/amounts.jsp</result>
+		</action>
+
+		<action name="amountsConsultAction" class="amountAction">
+			<result name="success">/amount/pages/includes/consultAmount.jsp</result>
+		</action>
+
+		<action name="addingAmountAction" class="amountAction">
+			<result name="success">/amount/pages/addAmount.jsp</result>
+		</action>
+	</package>
+</struts>
