@@ -3,6 +3,7 @@ package cm.purplemoney.members.usr.action;
 
 import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
+import cm.purplemoney.session.ent.bo.SessionBO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.common.usr.action.BaseAction;
 import cm.purplemoney.group.ent.bo.GroupBO;
@@ -11,6 +12,8 @@ import cm.purplemoney.role.ent.bo.RoleBO;
 import com.opensymphony.xwork2.Preparable;
 import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
+import com.opensymphony.xwork2.validator.annotations.*;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,12 +21,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
 @Validations(requiredStrings = {
-		@RequiredStringValidator(fieldName = "username", type = ValidatorType.FIELD, message = "Username is required"),
-		@RequiredStringValidator(fieldName = "password", type = ValidatorType.FIELD, message = "Password is required"),
+		@RequiredStringValidator(fieldName = "userInfo.association", type = ValidatorType.FIELD, message = "Association is required"),
+		@RequiredStringValidator(fieldName = "userInfo.id.name", type = ValidatorType.FIELD, message = "Name is required"),
 },
 		emails={	@EmailValidator(fieldName = "email" ,type=ValidatorType.FIELD,message = "Entrez une adresse email valide")
 		},
@@ -33,8 +37,8 @@ import java.util.List;
 		@FieldExpressionValidator(fieldName = "password", expression = "password.trim().length() > 6", message = "Password must have as minimum 6 Characters."),
 		@FieldExpressionValidator(fieldName = "agree", expression = "agree == true", message = "Accept the Agreement.")
 })
-*/
 
+*/
 @Component("memberAction")
 @Scope("prototype")
 public class MemberAction extends BaseAction implements SessionAware,Preparable{
@@ -43,35 +47,53 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 
 	private static final long serialVersionUID = 1L;
 	private MemberVO userInfo;
+	private MemberVO userSearch;
 	private MemberVO userAdding;
 	private SessionVO amount;
 	private List members;
-	private List groups;
+	private List associations;
 	private List roles;
 	private SexEnum[] sexEnums;
+
+	private List<SessionVO> sessions = new ArrayList<SessionVO>();
+
+
 
 
 
 	@Resource(name="authUserBO")
-	AuthUserBO authUserBO;
+	private AuthUserBO authUserBO;
 
 	@Resource(name="memberBO")
-	MemberBO memberBO;
+	private MemberBO memberBO;
 
-	@Resource(name = "groupBO")
-	GroupBO groupBO;
+	@Resource(name = "associationBO")
+	private AssociationBO associationBO;
 
 	@Resource(name = "roleBO")
-    RoleBO roleBO;
+	private RoleBO roleBO;
 
 	@Override
 	public void prepare() throws Exception{
 
-		groups=groupBO.loadAllGroups();
+		members=memberBO.loadAllMembers();
+		associations=associationBO.loadAllAssociations();
 		roles=roleBO.loadAllRoles();
 		sexEnums = SexEnum.values();
 	}
-	
+
+
+	public void validate(){
+		if(userSearch!=null){
+			if (StringUtils.isEmpty(userSearch.getId().getName())) {
+				addFieldError("userSearch.id.name", getText("common.member.search.error.username"));
+			}
+
+			if (StringUtils.isEmpty(userSearch.getAssociation())) {
+				addFieldError("userSearch.association", getText("common.member.search.error.association"));
+			}
+		}
+	}
 	public String execute() {
 		return SUCCESS;
 	}
@@ -88,12 +110,20 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		return SUCCESS;
 	}
 
+	public String allInfoMember()throws Exception {
+		// TODO implementer la recherche avec les textfield et penser a l'autocomplete
+		String associa=userSearch.getAssociation()!=null?userSearch.getAssociation():getCurrentAssociation().toUpperCase();
+		userInfo=memberBO.findMember(userSearch.getId().getName(), associa);
+		return SUCCESS;
+	}
+
 	public String infoMember() throws Exception {
 
 		userInfo=memberBO.findMember(amount);
 
 		return SUCCESS;
 	}
+
 
 
 	public String saveEditMember() throws Exception {
@@ -153,12 +183,12 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		this.members = members;
 	}
 
-	public List getGroups() {
-		return groups;
+	public List getAssociations() {
+		return associations;
 	}
 
-	public void setGroups(List groups) {
-		this.groups = groups;
+	public void setAssociations(List associations) {
+		this.associations = associations;
 	}
 
 
@@ -186,5 +216,11 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		this.sexEnums = sexEnums ;
 	}
 
+	public MemberVO getUserSearch() {
+		return userSearch;
+	}
 
- }
+	public void setUserSearch(MemberVO userSearch) {
+		this.userSearch = userSearch;
+	}
+}

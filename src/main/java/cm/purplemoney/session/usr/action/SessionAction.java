@@ -2,7 +2,7 @@ package cm.purplemoney.session.usr.action;
 
 import cm.purplemoney.session.ent.bo.SessionBO;
 import cm.purplemoney.session.ent.vo.SessionVO;
-import cm.purplemoney.session.ent.wrapper.AmountSearchWr;
+import cm.purplemoney.session.ent.wrapper.SessionSearchWr;
 import cm.purplemoney.common.usr.action.BaseAction;
 import cm.purplemoney.group.ent.bo.GroupBO;
 import cm.purplemoney.group.ent.vo.GroupVO;
@@ -30,27 +30,27 @@ import javax.annotation.Resource;
 		@FieldExpressionValidator(fieldName = "password", expression = "password.trim().length() > 6", message = "Password must have as minimum 6 Characters."),
 		@FieldExpressionValidator(fieldName = "agree", expression = "agree == true", message = "Accept the Agreement.")
 })*/
-@Component("amountAction")
+@Component("sessionAction")
 @Scope("prototype")
 public class SessionAction extends BaseAction implements SessionAware,Preparable{
 	
 
 	private static final long serialVersionUID = 1L;
-	private SessionVO amount;
-	private AmountSearchWr amountSearchWr;
+	private SessionVO amountSession;
+	private SessionSearchWr sessionSearchWr;
 	private List members;
 	private List<GroupVO> groups=new ArrayList<GroupVO>();
-	private List<SessionVO> amounts = new ArrayList<SessionVO>();
+	private List<SessionVO> sessions = new ArrayList<SessionVO>();
 
 
-	@Resource(name="amountBO")
-	SessionBO sessionBO;
+	@Resource(name="sessionBO")
+	private SessionBO sessionBO;
 
 	@Resource(name="memberBO")
-	MemberBO memberBO;
+	private MemberBO memberBO;
 
 	@Resource(name = "groupBO")
-	GroupBO groupBO;
+	private GroupBO groupBO;
 
 
 	@Override
@@ -64,44 +64,43 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 		//addActionMessage("Thank you for Registration!");
 		//addActionError("A sample Action Error Message!");
 		//addActionMessage("A sample Action Message.");
-		addFieldError("error", "A sample Field Error!");
+		//addFieldError("error", "A sample Field Error!");
 		return SUCCESS;
 	}
-	public String addAmount() throws Exception{
-	
-		//article.setCreatedDate(new Date());
-		sessionBO.addAmount(amount);
+	public String addSession() throws Exception{
 
-		//amounts = amountBO.loadAllAmount();
-		
+		sessionBO.addSession(amountSession);
+
 		return SUCCESS;
 	
 	}
 
-	public String specificAllAmounts()throws Exception{
+	public String specificAllSessions()throws Exception{
+
+	    sessionBO.consultSession(sessionSearchWr);
 		return SUCCESS;
 	}
-	public String loadAllAmounts() throws Exception{
-		amounts = sessionBO.loadAllAmount();
+	public String loadAllSessions() throws Exception{
+		sessions = sessionBO.loadAllSession();
 	
 		return SUCCESS;	
 	}
 
 
-	public SessionVO getAmount() {
-		return amount;
+	public SessionVO getAmountSession() {
+		return amountSession;
 	}
 
-	public void setAmount(SessionVO amount) {
-		this.amount = amount;
+	public void setAmountSession(SessionVO amountSession) {
+		this.amountSession = amountSession;
 	}
 
-	public List<SessionVO> getAmounts() {
-		return amounts;
+	public List<SessionVO> getSessions() {
+		return sessions;
 	}
 
-	public void setAmounts(List<SessionVO> amounts) {
-		this.amounts = amounts;
+	public void setSessions(List<SessionVO> sessions) {
+		this.sessions = sessions;
 	}
 
 	public List<MemberVO> getMembers() {
@@ -120,11 +119,11 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
         this.groups = groups;
     }
 
-	public AmountSearchWr getAmountSearchWr() {
-		return amountSearchWr;
+	public SessionSearchWr getSessionSearchWr() {
+		return sessionSearchWr;
 	}
 
-	public void setAmountSearchWr(AmountSearchWr amountSearchWr) {
-		this.amountSearchWr = amountSearchWr;
+	public void setSessionSearchWr(SessionSearchWr sessionSearchWr) {
+		this.sessionSearchWr = sessionSearchWr;
 	}
 }

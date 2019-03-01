@@ -1,5 +1,8 @@
 package cam.common.usr.action;
 
+import cam.libraries.component.ent.vo.BusinessException;
+import cm.purplemoney.members.ent.bo.MemberBO;
+import cm.purplemoney.members.ent.vo.MemberVO;
 import com.opensymphony.xwork2.ActionSupport;
 
 import java.util.*;
@@ -10,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.ObjectError;
 
+import javax.annotation.Resource;
 
 
 public class CommonAction extends ActionSupport implements SessionAware {
@@ -26,12 +30,15 @@ public class CommonAction extends ActionSupport implements SessionAware {
     protected String validationEntities;
     protected Boolean dataLoad;
     protected String currentUser;
+    protected MemberVO currentMember;
     protected String currentLocale;
     protected String currentAssociation;
     private static final long serialVersionUID = 1L;
 
 
 
+    @Resource(name = "memberBO")
+    MemberBO memberBO;
 
 
     public CommonAction() {
@@ -178,14 +185,14 @@ public class CommonAction extends ActionSupport implements SessionAware {
         this.dataLoad = dataLoad;
     }
 
-    public String getCurrentUser() {
+    protected String getCurrentUser() {
 
         Object o=this.session.get("CURRENT_USER");
         currentUser =(String) o;
         return  currentUser;
     }
 
-    public String getCurrentAssociation() {
+    protected String getCurrentAssociation() {
 
         Object o=this.session.get("CURRENT_ASS");
         currentAssociation =(String) o;
@@ -211,5 +218,36 @@ public class CommonAction extends ActionSupport implements SessionAware {
 
     public void setCurrentLocale(String currentLocale) {
         this.currentLocale = currentLocale;
+    }
+
+    public MemberVO getCurrentMember() {
+
+        return retrieveCurrentMember();
+        //return currentMember;
+    }
+
+    public void setCurrentMember(MemberVO currentMember) {
+
+        this.currentMember = currentMember;
+    }
+
+
+
+    private MemberVO retrieveCurrentMember(){
+
+        try {
+
+            Object ob=this.session.get("CURRENT_USER");
+            String currentUs =(String) ob;
+            Object o=this.session.get("CURRENT_ASS");
+            String currentAss =(String) o;
+            return memberBO.findMember(currentUs,currentAss);
+        }catch (Exception b){
+            log.error("Error retrieve currentmenber");
+            b.printStackTrace();
+
+        }
+        return null;
+
     }
 }

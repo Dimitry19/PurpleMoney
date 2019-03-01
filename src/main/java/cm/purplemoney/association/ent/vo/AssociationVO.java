@@ -24,7 +24,7 @@ public class AssociationVO implements Serializable{
 
 	private AssociationVOId id;
 	private String description;
-	private BigInteger quantity;
+	private BigInteger amount;
 	
 	//public static final String Q_AC_ITEM = "it.fracm.dal.article.ent.vo.ArticleVO.QAutocompleteItem";
 	public AssociationVO() {
@@ -54,11 +54,11 @@ public class AssociationVO implements Serializable{
 	
 	@Basic(optional = false)
 	@Column(name="R_AMOUNT", nullable=false)
-	public BigInteger getQuantity() {
-		return quantity;
+	public BigInteger getAmount() {
+		return amount;
 	}
-	public void setQuantity(BigInteger qty) {
-		this.quantity = qty;
+	public void setAmount(BigInteger amount) {
+		this.amount = amount;
 	}
 	
 

@@ -20,15 +20,11 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 --  Table structure for `articles`
 -- ----------------------------
-DROP TABLE IF EXISTS `articles`;
-CREATE TABLE `articles` (
-  `ID_ARTICLE` varchar(45) NOT NULL,
-  `DESCRIPTION` varchar(255) DEFAULT NULL,
-  `PRICE` bigint(20) NOT NULL,
-  `QUANTITY` int(11) NOT NULL,
-  `CATEGORY` varchar(255) NOT NULL,
-  `CREATED_DATE` datetime NOT NULL,
-  PRIMARY KEY (`ID_ARTICLE`,`CATEGORY`)
+DROP TABLE IF EXISTS `CONFIGURATION`;
+CREATE TABLE `CONFIGURATION` (
+  `KEY` varchar(45) NOT NULL,
+  `VALUE` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`KEY`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

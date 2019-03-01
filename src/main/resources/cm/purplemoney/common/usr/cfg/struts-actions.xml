@@ -25,9 +25,9 @@
 
 		<default-interceptor-ref name="defaultStack" />
 
-			<global-results>
-				<result name="loginAction" type="redirect">login.do</result>
-			</global-results>
+		<global-results>
+			<result name="loginAction" type="redirect">login.do</result>
+		</global-results>
 
 		<action name="login" class="loginHomeAction">
 			<interceptor-ref name="defaultStack">
@@ -42,10 +42,6 @@
 	<include file="cm/purplemoney/group/usr/cfg/struts-group.xml"></include>
     <include file="cm/purplemoney/profile/usr/cfg/struts-profile.xml"/>
 	<include file="cm/purplemoney/members/usr/cfg/struts-members.xml"></include>
-
-	<!--
-	<include file="cm/purplemoney/common/cfg/struts-search.xml"></include>
-	<include file="cm/purplemoney/profile/cfg/struts-profile.xml"></include>-->
-	<!-- <include file="cm/purplemoney/rest/cfg/struts-rest.xml"></include>-->
-
+	<include file="cm/purplemoney/mail/usr/cfg/struts-mail.xml"></include>
+	<include file="cm/purplemoney/session/usr/cfg/struts-session.xml"></include>
 </struts>

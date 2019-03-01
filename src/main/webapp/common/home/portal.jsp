@@ -21,8 +21,8 @@
                                 <div class="input-group margin-bottom-sm">
                                         <%--<label for="inputUsername" class="sr-only">Username</label>--%>
                                     <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                    <s:textfield  key="global.login.username" id="inputUsername"  type="username" placeholder="Username" name="user.username"  value="%{user.username}" class="form-control form-control-login"  required=" " autofocus="" tooltip="getText('global.login.username.tooltip')" />
-                                <div class="invalid-feedback"><s:text name="global.login.error.username"/></div>
+                                    <s:textfield  key="common.login.username" id="inputUsername"  type="username" placeholder="%{getText('common.login.username')}" name="user.username"  value="%{user.username}" class="form-control form-control-login"  tooltip="getText('global.login.username.tooltip')" />
+                                <div class="invalid-feedback"><s:text name="common.login.error.username"/></div>
                                 </span>
 
                                 </div>
@@ -31,29 +31,29 @@
                                 <div class="input-group">
                                         <%--<label for="inputPassword" class="sr-only custom-padding">Password</label>--%>
                                     <span class="input-group-addon"><i class="fa fa-key fa-fw"></i>
-                                    <s:password key="global.login.password" placeholder="Password"  id="inputPassword" name="user.password" value="%{user.password}"  class=" form-control form-control-login" type="Password"  required=" "/>
-                                <div class="invalid-feedback"><s:text name="global.login.error.password"/></div>
+                                    <s:password key="common.login.password" placeholder="%{getText('common.login.password')}" id="inputPassword" name="user.password" value="%{user.password}"  class=" form-control form-control-login" type="Password"  required=" "/>
+                                <div class="invalid-feedback"><s:text name="common.login.error.password"/></div>
                                 </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <s:select
-                                            tooltip="getText('global.login.group.tooltip')"
+                                            tooltip="%{getText('common.login.group.tooltip')}"
                                             class="selectpicker" data-live-search="true"
                                             label="Association"
                                             id="association"
                                             list="associations" listKey="id.id"	listValue="%{id.name}"
                                             name="user.association"
                                             emptyOption="false"
-                                            headerValue="getText('global.login.group.tooltip')"/>
+                                            headerValue="%{getText('common.login.group.tooltip')}"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                  <div class="checkbox mb-3 form-group form-check">
                     <s:checkbox id="remember"  cssStyle="" name="user.remember"  value="%{user.remember}" />
-                    <label class="form-check-label" for="remember"><s:text name="global.login.remember.me"></s:text></label>
+                    <label class="form-check-label" for="remember"><s:text name="common.login.remember.me"></s:text></label>
                 </div>
                 <div>
                     <s:submit  type="button"   id="btnLogin" cssClass="btn btn-sm btn-primary btn-login"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<s:text name="global.login.submit"></s:text></i></s:submit>

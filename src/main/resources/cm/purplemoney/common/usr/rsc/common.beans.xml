@@ -105,13 +105,20 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
-<!--	<tx:annotation-driven transaction-manager="txManager"/>
- 
-  <tx:advice id="txAdvice" transaction-manager="txManager">
-    <tx:attributes>
-      <tx:method name="*" propagation="REQUIRED" rollback-for="Exception,RuntimeException,Errors"/>
-    </tx:attributes>
-  </tx:advice>-->
+	<bean id="appProperties" class="org.apache.commons.configuration.DatabaseConfiguration">
+		<constructor-arg type="javax.sql.DataSource" ref="dataSourceH2" />
+		<constructor-arg index="1" value="PUBLIC.CONFIGURATION"  />
+		<constructor-arg index="2" value="KEY"  />
+		<constructor-arg index="3" value="VALUE"  />
+	</bean>
+
+	<!--	<tx:annotation-driven transaction-manager="txManager"/>
+
+      <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+          <tx:method name="*" propagation="REQUIRED" rollback-for="Exception,RuntimeException,Errors"/>
+        </tx:attributes>
+      </tx:advice>-->
 <!--
 	
 	<bean id="mobileTypes" class="java.util.HashMap" scope="singleton" >

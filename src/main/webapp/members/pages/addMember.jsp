@@ -15,57 +15,55 @@
 					<div class="form-group">
 						<div class="input-group">
 							<s:select
-									tooltip="Choisir le groupe"
+									tooltip="%{getText('member.common.association.tooltip')}"
 									class="selectpicker" data-live-search="true"
 									label="Groupe"
-									id="group"
-									list="groups" listKey="id" listValue="%{id+'-'+description}"
-									name="userAdding.id.memberId"
+									id="association"
+									list="associations" listKey="id.id" listValue="%{id.id +'-'+description}"
+									name="userAdding.association"
 									emptyOption="false"
-									headerKey="None"
-									headerValue="---------- Selectionnez le groupe ----------"/>
+									headerValue="%{getText('member.common.association.headerValue')}"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<s:select
-									tooltip="Choisir le role"
+									tooltip="%{getText('member.add.role.tooltip')}"
 									class="selectpicker" data-live-search="true"
 									label="Role"
 									id="role"
 									list="roles" listKey="id.role"	listValue="%{id.role + '-' + description}"
 									name="userAdding.role"
 									emptyOption="false"
-									headerKey="None"
-									headerValue="---------- Selectionnez role ----------"/>
+									headerValue="%{getText('member.add.role.headerValue')}"/>
 						</div>
 					</div>
 				<div class="form-group">
-					<s:label value="Nom du membre" id="name" for="name"  labelposition="left"></s:label>
+					<s:label value="%{getText('member.label.name')}" id="name" for="name"  labelposition="left"></s:label>
 					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>
-						<s:textfield required="true" type="text" class="form-control" name="userAdding.id.name" id="name"  placeholder="Entrer le nom"/>
+						<s:textfield required="true" type="text" class="form-control" name="userAdding.id.name" id="name"  placeholder="%{getText('member.add.placeholder.name')}" />
 						<div class="invalid-feedback"><s:text name="member.add.error.name"/></div>
 					</span>
 				</div>
 				<div class="form-group">
-					<s:label value="Prenom du membre" id="surname" for="surname"  labelposition="left"></s:label>
+					<s:label value="%{getText('member.label.surname')}" id="surname" for="surname"  labelposition="left"></s:label>
 					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i>
-						<s:textfield type="text" required="true" class="form-control" name="userAdding.surname" id="surname"  placeholder="Entrer le prenom"/>
+						<s:textfield type="text" required="true" class="form-control" name="userAdding.surname" id="surname"  placeholder="%{getText('member.add.placeholder.surname')}" />
 						<div class="invalid-feedback"><s:text name="member.add.error.surname"/></div>
 					</span>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
 						<s:select
-								tooltip="Choisir le genre"
+								tooltip="%{getText('member.add.gender.tooltip')}"
 								class="selectpicker" data-live-search="true"
 								label="Genre"
 								id="sex"
                                 headerKey="-1"
-                                list="#{'M':'Homme', 'F':'Femme'}"
+                                list="#{'M':'M', 'F':'F'}"
 								name="userAdding.sex"
 								emptyOption="false"
-								headerValue="----------Homme/Femme ----------"/>
+								headerValue="%{getText('member.add.gender.headerValue')}"/>
 
 						<%--<s:select  label="Genres" name="userAdding.sex" list="sexEnums" listValue="desc" cssClass="txt-informativo" />--%>
 					<%--<s:select name="account.accountType" list="@com.AccountType@values()"--%>
@@ -73,32 +71,32 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<s:label value="E-mail" id="email" for="email"  labelposition="left"></s:label>
+					<s:label value="%{getText('member.label.email')}" id="email" for="email"  labelposition="left"></s:label>
 					<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i>
-						<s:textfield type="email" required="true" class="form-control" name="userAdding.email" id="email"  placeholder="mail@provider.com"/>
+						<s:textfield type="email" required="true" class="form-control" name="userAdding.email" id="email"  placeholder="%{getText('member.add.placeholder.email')}" />
 					   <div class="invalid-feedback"><s:text name="member.add.error.mail"/></div>
 					</span>
 				</div>
 				<div class="form-group">
-					<s:label value="Telephone" id="telephone" for="telephone"  labelposition="left"></s:label>
+					<s:label value="%{getText('member.label.phone')}" id="telephone" for="telephone"  labelposition="left"></s:label>
 					<span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i>
-						<s:textfield type="tel" required="true" class="form-control" name="userAdding.phone" id="telephone"  onfocus="TelManager.telFormat({idTel:'telephone'})" maxlength="14" placeholder="Numero de telephone"/>
+						<s:textfield type="tel" required="true" class="form-control" name="userAdding.phone" id="telephone"  onfocus="TelManager.telFormat({idTel:'telephone'})" maxlength="14" placeholder="%{getText('member.add.placeholder.phone')}" />
 						<div class="invalid-feedback"><s:text name="member.add.error.tel"/></div>
 					</span>
 				</div>
 				<div class="form-group">
-					<s:label value="Adresse" id="address" for="address"  labelposition="left"></s:label>
+					<s:label value="%{getText('member.label.address')}"  id="address" for="address"  labelposition="left"></s:label>
 					<span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i>
-						<s:textfield type="text" required="true" class="form-control" name="userAdding.address" id="address"  placeholder="Entrer l'adresse"/>
+						<s:textfield type="text" required="true" class="form-control" name="userAdding.address" id="address"  placeholder="%{getText('member.add.placeholder.address')}" />
 					<div class="invalid-feedback"><s:text name="member.add.error.address"/></div>
 					</span>
 				</div>
 				<div class="checkbox mb-3 form-group form-check">
-					<s:checkbox id="isActive"  cssStyle="" name="userAdding.active" />
+					<s:checkbox id="isActive"  cssStyle="" tooltip="%{getText('member.add.active.tooltip')}" name="userAdding.active" />
 					<label class="form-check-label" for="isActive"><s:text name="member.add.error.active"/></label>
 				</div>
 				<div class="checkbox mb-3 form-group form-check">
-					<s:checkbox id="isAdmin"  cssStyle="" name="userAdding.admin"/>
+					<s:checkbox id="isAdmin"  cssStyle="" tooltip="%{getText('member.add.admin.tooltip')}" name="userAdding.admin"/>
 					<label class="form-check-label" for="isAdmin"><s:text name="member.add.error.admin"/></label>
 				</div>
 				<div class="form-group">
