@@ -204,11 +204,11 @@
         </dependency>
 
         <!-- Security password -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-crypto</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.struts</groupId>
@@ -373,6 +373,18 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
             <version>${jersey.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-configuration/commons-configuration -->
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations-java5</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>
