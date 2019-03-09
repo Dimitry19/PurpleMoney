@@ -71,7 +71,35 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		roles=roleBO.loadAllRoles();
 		sexEnums = SexEnum.values();
 	}
+<<<<<<< Updated upstream
 	
+=======
+
+
+	public void validate(){
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
+		if(userSearch!=null){
+			if (StringUtils.isEmpty(userSearch.getId().getName())) {
+				addFieldError("userSearch.id.name", getText("common.member.search.error.username"));
+			}
+
+			if (StringUtils.isEmpty(userSearch.getAssociation())) {
+				addFieldError("userSearch.association", getText("common.member.search.error.association"));
+			}
+		}
+
+		/*if(userAdding!=null){
+			if("mkyong".equals(getUsername())){
+				addActionMessage(getText("member.add.success.footer"));
+			}else{
+				addActionError("I don't know you, dont try to hack me!");
+			}
+
+		}*/
+	}
+>>>>>>> Stashed changes
 	public String execute() {
 		return SUCCESS;
 	}
@@ -107,10 +135,8 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 
 	public String addMember() throws Exception {
 		log.debug("addMethod");
-
-		memberBO.addMember(userAdding);
-
-		//addActionMessage("Nouveau membre correctement ajouté!");
+		//memberBO.addMember(userAdding);
+		addActionMessage(getText("member.add.success.footer"));
 		return SUCCESS;
 	}
 
@@ -118,7 +144,6 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		members=memberBO.loadAllMembers();
 		return SUCCESS;
 	}
-
 
 	public SessionVO getAmount() {
 		return amount;

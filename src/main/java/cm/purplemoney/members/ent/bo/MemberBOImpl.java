@@ -17,6 +17,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
+<<<<<<< Updated upstream
+=======
+import javax.persistence.TypedQuery;
+import java.io.Serializable;
+>>>>>>> Stashed changes
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +97,10 @@ public class MemberBOImpl implements MemberBO {
 			session=hibernateConfig.getSession();
 
 			Transaction tx=session.beginTransaction();
-			session.save(MemberVO.class.getName(),member);
+			Serializable serializable=session.save(MemberVO.class.getName(),member);
+			if(serializable!=null){
+
+			}
 			tx.commit();
 		}
 	}
@@ -139,7 +147,7 @@ public class MemberBOImpl implements MemberBO {
 		AssociationVO association=associationBO.associationInfoFromMember(member);
 		member.setAssociationDesc(association.getDescription());
 		member.setRoleDesc(role.getDescription());
-		if(member.getSex() == SexEnum.F){
+		if(member.getSex().charAt(0) == 'F'){
 			member.setSexDesc("Femme");
 		}else{
 			member.setSexDesc("Homme");
@@ -157,9 +165,9 @@ public class MemberBOImpl implements MemberBO {
 		member.setAssociation(association.getId().getName());
 
 		if(StringUtils.equals("Femme",member.getSexDesc())){
-			member.setSex(SexEnum.F);
+			member.setSex("F");
 		}else{
-			member.setSex(SexEnum.M);
+			member.setSex("M");
 		}
 		return member;
 	}

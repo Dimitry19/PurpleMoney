@@ -46,7 +46,24 @@
                                             list="associations" listKey="id.id"	listValue="%{id.name}"
                                             name="user.association"
                                             emptyOption="false"
+<<<<<<< Updated upstream
                                             headerValue="getText('global.login.group.tooltip')"/>
+=======
+                                            headerValue="%{getText('common.login.association.tooltip')}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                  <s:select
+                                            class="selectpicker" data-live-search="true"
+                                            label="Language"
+                                            id="langue"
+                                            list="languages" listKey="id" listValueKey="%{getText(description)}"
+                                            name="user.language"
+                                            emptyOption="false"
+                                            headerKey=""
+                                            headerValue="%{getText('common.login.language')}"/>
+>>>>>>> Stashed changes
                                 </div>
                             </div>
                         </div>

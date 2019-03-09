@@ -32,7 +32,7 @@ public class MemberVO implements Serializable{
 	private boolean admin;
 	private String address;
 	private String roleDesc;
-	private SexEnum sex;
+	private String sex;
 	private  String association;
     private  String associationDesc;
 	private String sexDesc;
@@ -74,8 +74,8 @@ public class MemberVO implements Serializable{
 
 	@Basic(optional = false)
 	@Column(name="SEXE",nullable = true,length = FieldConstants.SEX_STD_LEN)
-	@Enumerated(EnumType.STRING)
-	public SexEnum getSex() {
+	//@Enumerated(EnumType.STRING)
+	public String getSex() {
 		return sex;
 	}
 
@@ -134,7 +134,7 @@ public class MemberVO implements Serializable{
 		this.phone = phone;
 	}
 
-	public void setSex(SexEnum sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 

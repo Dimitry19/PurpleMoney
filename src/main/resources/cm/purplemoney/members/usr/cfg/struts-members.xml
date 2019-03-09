@@ -19,7 +19,7 @@
 			<result name="success">/members/pages/addMember.jsp</result>
 		</action>
 		<action name="addMemberAction" class="memberAction"  method="addMember">
-			<result name="success">/common/home/home.jsp</result>
+			<result name="success">/members/pages/addMember.jsp</result>
 		</action>
 		<action name="saveEditMemBerAction" class="memberAction" method="saveEditMember">
 			<result name="success">/members/pages/infoMember.jsp</result>

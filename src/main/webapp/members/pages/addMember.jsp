@@ -13,7 +13,9 @@
 			<div class="card-body">
 				<s:form class="form-horizontal"  action="addMemberAction" id="formRegister">
 					<div class="form-group">
+						<s:label value="%{getText('member.label.association')}" id="idnameadd" for="idnameadd"  labelposition="left"></s:label>
 						<div class="input-group">
+<<<<<<< Updated upstream
 							<s:select
 									tooltip="Choisir le groupe"
 									class="selectpicker" data-live-search="true"
@@ -24,9 +26,15 @@
 									emptyOption="false"
 									headerKey="None"
 									headerValue="---------- Selectionnez le groupe ----------"/>
+=======
+							<s:textfield id="userSearchAssociation"   value="%{associationCurrent.description}" class="form-control form-control-login" readonly="true" />
+							<s:hidden  name="userAdding.association" value="%{associationCurrent.id.id}" />
+							<s:hidden  name="userAdding.id.memberId" value="%{associationCurrent.id.id}" />
+>>>>>>> Stashed changes
 						</div>
 					</div>
 					<div class="form-group">
+						<s:label value="%{getText('member.label.role')}" id="idrole" for="idrole"  labelposition="left"></s:label>
 						<div class="input-group">
 							<s:select
 									tooltip="Choisir le role"
@@ -55,6 +63,7 @@
 					</span>
 				</div>
 				<div class="form-group">
+<<<<<<< Updated upstream
 					<div class="input-group">
 						<s:select
 								tooltip="Choisir le genre"
@@ -74,6 +83,9 @@
 				</div>
 				<div class="form-group">
 					<s:label value="E-mail" id="email" for="email"  labelposition="left"></s:label>
+=======
+					<s:label value="%{getText('member.label.email')}" id="email" for="email"  labelposition="left"></s:label>
+>>>>>>> Stashed changes
 					<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i>
 						<s:textfield type="email" required="true" class="form-control" name="userAdding.email" id="email"  placeholder="mail@provider.com"/>
 					   <div class="invalid-feedback"><s:text name="member.add.error.mail"/></div>
@@ -93,6 +105,9 @@
 					<div class="invalid-feedback"><s:text name="member.add.error.address"/></div>
 					</span>
 				</div>
+				<div class="form-group">
+					<s:radio label="%{getText('member.label.gender')}" list="#{'F':'Female','M':'Male'}" name="userAdding.sex"    class="radio-inline" multiple="false">&nbsp;</s:radio>
+				</div>
 				<div class="checkbox mb-3 form-group form-check">
 					<s:checkbox id="isActive"  cssStyle="" name="userAdding.active" />
 					<label class="form-check-label" for="isActive"><s:text name="member.add.error.active"/></label>
@@ -106,7 +121,18 @@
 				</div>
 				</s:form>
 			</div>
-			<div class="card-footer bg-transparent border-success"><s:text name="member.add.success.footer"/></div>
+			<%--<div class="card-footer bg-transparent border-success">
+			</div>--%>
+			<s:if test="hasActionMessages()">
+				<div class="success-notification">
+					<s:actionmessage/>
+				</div>
+			</s:if>
+			<s:if test="hasActionErrors()">
+				<div class="errors-notification">
+					<s:actionerror/>
+				</div>
+			</s:if>
 		</div>
 	</div>
 </body>
