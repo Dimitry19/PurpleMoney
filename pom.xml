@@ -23,6 +23,7 @@
         <org.springframework.version>4.2.3.RELEASE</org.springframework.version>
         <struts2.version>2.3.32</struts2.version>
         <struts2.struts.version>2.3.24</struts2.struts.version>
+        <struts2.autocomplete.version>2.2.1</struts2.autocomplete.version>
         <struts2.dojo.version>2.1.8</struts2.dojo.version>
         <jersey.version>2.23.2</jersey.version>
         <hibernate.version>4.3.1.Final</hibernate.version>
@@ -202,13 +203,27 @@
             <artifactId>struts2-json-plugin</artifactId>
             <version>${struts2.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.jgeppert.struts2.jquery/struts2-jquery-plugin -->
+        <dependency>
+            <groupId>com.jgeppert.struts2.jquery</groupId>
+            <artifactId>struts2-jquery-plugin</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-json-plugin -->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+            <version>${struts2.autocomplete.version}</version>
+        </dependency>
+
+
 
         <!-- Security password -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-crypto</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.struts</groupId>
@@ -373,6 +388,18 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
             <version>${jersey.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-configuration/commons-configuration -->
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations-java5</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>

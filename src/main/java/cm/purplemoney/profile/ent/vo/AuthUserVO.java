@@ -32,6 +32,9 @@ public class AuthUserVO implements Serializable{
 	@Transient
 	private boolean remember;
 
+	@Transient
+	private String language;
+
 	public int getAuthId() {
 		return 	 authId;
 
@@ -85,5 +88,13 @@ public class AuthUserVO implements Serializable{
 
 	public void setRmember(String rmember) {
 		this.rmember = rmember;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 }

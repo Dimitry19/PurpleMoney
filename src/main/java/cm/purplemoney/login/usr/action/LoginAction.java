@@ -1,17 +1,23 @@
 package cm.purplemoney.login.usr.action;
 
-import java.util.List;
+import java.util.*;
 
 import cm.purplemoney.association.ent.bo.AssociationBO;
+import cm.purplemoney.common.ent.bo.LanguageBO;
+import cm.purplemoney.common.ent.vo.LanguageVO;
+import cm.purplemoney.common.enums.LanguageEnum;
 import cm.purplemoney.common.usr.action.BaseAction;
 import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
+import com.opensymphony.xwork2.ActionContext;
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 import com.opensymphony.xwork2.Preparable;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
 import cm.purplemoney.profile.ent.vo.AuthUserVO;
+import org.apache.struts2.interceptor.I18nInterceptor;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +33,7 @@ public class LoginAction extends BaseAction implements Preparable{
 	
 	private AuthUserVO user;
 	List associations ;
+	List languages;
 
 
 	@Resource(name="authUserBO")
@@ -35,22 +42,20 @@ public class LoginAction extends BaseAction implements Preparable{
 	@Resource(name ="memberBO")
 	MemberBO memberBO;
 
-
+	@Resource(name ="languageBO")
+	LanguageBO languageBO;
 
 	@Resource(name = "associationBO")
 	AssociationBO associationBO;
 
 	@Override
 	public void prepare() throws Exception{
-
-		//groups=groupBO.loadAllGroups();
-		// en_US
-
+		languages=languageBO.loadAllLanguages();//Arrays.asList(LanguageEnum.values());
 		associations= associationBO.loadAllAssociations();
 	}
 	@Override
 	public String execute() throws Exception{
-		
+
 		return SUCCESS;
 	}
 
@@ -72,23 +77,23 @@ public class LoginAction extends BaseAction implements Preparable{
 	
 	public String login() throws Exception{
         logger.debug("into login method");
-
+        // TODO Voir comment arranger le code du login
+		saveToSession("LOCALE",changelocaleMenu());
         if(StringUtils.equals(ADMINISTRATOR, user.getUsername())){
 
             if(user.isRemember()){
                 this.session.put("ADMIN", user);
             }
-			this.session.put("CURRENT_USER", user.getUsername());
-			this.session.put("CURRENT_ASS", user.getAssociation());
-           // setCurrentUser(user.getUsername());
+			saveToSession("CURRENT_USER", user);
+			saveToSession("CURRENT_ASS", user.getAssociation());
+
             return SUCCESS;
-
-
         }
 
 		boolean isLogin=true;
 		boolean isSuccess=false;
 		Object adminSessionUser=this.session.get("ADMIN");
+
 
 		if(adminSessionUser!=null){
 			AuthUserVO us=(AuthUserVO) adminSessionUser;
@@ -112,7 +117,7 @@ public class LoginAction extends BaseAction implements Preparable{
 					if(StringUtils.equals(ADMINISTRATOR, authUser.getUsername())){
 							isSuccess=true;
 							if(user.isRemember()){
-								this.session.put("ADMIN", user);
+								saveToSession("ADMIN", user);
 							}
 
 
@@ -121,20 +126,19 @@ public class LoginAction extends BaseAction implements Preparable{
 						if(member!=null){
 							isSuccess=true;
 							if(user.isRemember()){
-								this.session.put("MEMBER", member);
-								this.session.put("USR",user.getUsername());
-								this.session.put("PASS",user.getPassword());
-                                this.session.put("REM",user.isRemember());
-								this.session.put("ASS",user.getAssociation());
+								saveToSession("MEMBER", member);
+								saveToSession("USR",user.getUsername());
+								saveToSession("PASS",user.getPassword());
+								saveToSession("REM",user.isRemember());
+								saveToSession("ASS",user.getAssociation());
 							}
 						}
 					}
-					this.session.put("CURRENT_USER", authUser.getRmember());
-					this.session.put("CURRENT_ASS", user.getAssociation());
+					saveToSession("CURRENT_USER", authUser.getRmember());
+					saveToSession("CURRENT_ASS", user.getAssociation());
 
 				}
 			}else{
-			// isLogin==false;
 				return SUCCESS;
 		}
 		if(isSuccess) {
@@ -143,7 +147,11 @@ public class LoginAction extends BaseAction implements Preparable{
 
 		return INPUT;
 	}
-	
+
+	void saveToSession(Object key , Object value){
+		this.session.put(key,value);
+
+	}
 	public String home() throws Exception{
 		
 		return SUCCESS;
@@ -153,6 +161,8 @@ public class LoginAction extends BaseAction implements Preparable{
 
 	    AuthUserVO userLocal=new AuthUserVO();
 		Object adminSessionUser=this.session.get("ADMIN");
+		Locale locale =(Locale)this.session.get("LOCALE");
+		userLocal.setLanguage(locale.getLanguage());
         if(adminSessionUser!=null){
             AuthUserVO us=(AuthUserVO) adminSessionUser;
             userLocal.setUsername(us.getUsername());
@@ -206,4 +216,32 @@ public class LoginAction extends BaseAction implements Preparable{
 	public void setAssociations(List associations) {
 		this.associations = associations;
 	}
+
+	public List getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(List languages) {
+		this.languages = languages;
+	}
+
+	public Locale  changelocaleMenu() throws Exception{
+		Map<String, Object> sessionAttributes =getSession();
+		Locale currentLocale=Locale.getDefault();
+
+		if(StringUtils.isNotEmpty(user.getLanguage())){
+
+			LanguageVO language =languageBO.retrieveLanguage(user.getLanguage());
+			currentLocale= new Locale(language.getId(),language.getCountry());
+		}
+
+		ActionContext.getContext().setLocale(currentLocale);
+		sessionAttributes.put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, currentLocale);
+		return currentLocale;
+	}
+
+	public String  changelocale() throws Exception{
+		return SUCCESS;
+	}
+
 }

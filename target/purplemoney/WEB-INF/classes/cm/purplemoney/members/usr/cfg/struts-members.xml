@@ -12,17 +12,26 @@
 		<action name="infoMemberAction" class="memberAction"  method="info">
 			<result name="success">/members/pages/infoMember.jsp</result>
 		</action>
-		<action name="retrieveMemberAction" class="memberAction"  method="infoMember">
-			<result name="json"></result>
+		<action name="allInfoMemberAction" class="memberAction"  method="allInfoMember">
+			<result name="success">/members/pages/infoMember.jsp</result>
+			<result name="input">/members/pages/searchMember.jsp</result>
+		</action>
+		<action name="editMemberAction" class="memberAction">
+			<result name="success">/members/pages/searchMember.jsp</result>
 		</action>
 		<action name="menuAddMemberAction" class="memberAction">
 			<result name="success">/members/pages/addMember.jsp</result>
 		</action>
 		<action name="addMemberAction" class="memberAction"  method="addMember">
-			<result name="success">/common/home/home.jsp</result>
+			<result name="success">/members/pages/addMember.jsp</result>
 		</action>
 		<action name="saveEditMemBerAction" class="memberAction" method="saveEditMember">
 			<result name="success">/members/pages/infoMember.jsp</result>
+		</action>
+		<action name="autocompleteMember" class="memberAction" method="autocompleteMember">
+			<result type="json" name="success">
+				<param name="root">membersNames</param>
+			</result>
 		</action>
 	</package>
 </struts>

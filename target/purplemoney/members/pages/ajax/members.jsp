@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <s:include value="../../../common/home/include/commons.jsp"/>
+</head>
 <body>
 <%@ include file="../../../common/home/include/header-logo.jsp" %>
 <%@ include file="../../../common/menu/menu.jsp" %>
@@ -30,7 +31,7 @@
 					<s:iterator value="members" status="userStatus">
 						<tr>
 							<td>
-								<s:if test="sex=='M'">
+								<s:if test="sex=='%{getText('member.sex.male')}">
 									<span ><i class="fa fa-male" aria-hidden="true"></i>&nbsp;&nbsp;</span>
 								</s:if>
 								<s:else>

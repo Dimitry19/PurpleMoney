@@ -33,13 +33,14 @@ public class GroupAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
 
-	@Resource(name = "amountBO")
-	SessionBO sessionBO;
+	@Resource(name = "sessionBO")
+    private SessionBO sessionBO;
 
 	@Resource(name = "memberBO")
-	MemberBO memberBO;
+	private MemberBO memberBO;
 	@Resource(name = "groupBO")
-	GroupBO groupBO;
+    private GroupBO groupBO;
+
 	SessionVO amount;
 
 
@@ -64,7 +65,7 @@ public class GroupAction extends BaseAction{
 	public String addAmount() throws Exception{
 	
 		//article.setCreatedDate(new Date());
-		sessionBO.addAmount(amount);
+		sessionBO.addSession(amount);
 
 		//amounts = amountBO.loadAmounts();
 		
@@ -73,7 +74,7 @@ public class GroupAction extends BaseAction{
 	}
 
 	public String loadAllAmounts() throws Exception{
-		amounts = sessionBO.loadAllAmount();
+		amounts = sessionBO.loadAllSession();
 	
 		return SUCCESS;	
 	}

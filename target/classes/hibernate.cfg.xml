@@ -58,5 +58,6 @@
         <mapping class="cm.purplemoney.group.ent.vo.GroupVO" />
         <mapping class="cm.purplemoney.role.ent.vo.RoleVO" />
         <mapping class="cm.purplemoney.role.ent.vo.RoleVOId" />
+        <mapping class="cm.purplemoney.common.ent.vo.LanguageVO" />
     </session-factory>
 </hibernate-configuration>

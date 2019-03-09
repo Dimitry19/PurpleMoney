@@ -9,10 +9,11 @@ import java.util.List;
 
 public interface MemberBO {
 	
-	public MemberVO findMember(String username, String assId) throws BusinessException;
-	public MemberVO findMember(SessionVO session) throws BusinessException;
-	public void addMember(MemberVO member) throws BusinessException;
-	public List<MemberVO> loadAllMembers() throws BusinessException;
-	public void saveEditMember(MemberVO member) throws BusinessException;
+	 MemberVO findMember(String username, String assId) throws BusinessException;
+	 MemberVO findMember(SessionVO session) throws BusinessException;
+	 void addMember(MemberVO member) throws BusinessException;
+	 List<MemberVO> loadAllMembers() throws BusinessException;
+	 void saveEditMember(MemberVO member) throws BusinessException;
+	String[] autocomplete(String search) throws BusinessException;
 
 }

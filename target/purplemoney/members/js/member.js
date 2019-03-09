@@ -4,7 +4,16 @@ MembersManager = function () {
     var debug = true;
 
     function disable(formName){
-
+        $.ajax({
+            traditional: true,
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function(response) {
+                var div = $('#questionAndAnswerDisplayDiv');
+                div.html(response);
+            }
+        });
     }
 
     function disableAllField(json) {

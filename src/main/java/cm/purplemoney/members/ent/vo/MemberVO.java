@@ -16,6 +16,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="MEMBER" , schema="PUBLIC")
+@NamedQueries({
+@NamedQuery(name = MemberVO.Q_AC_ITEM, query = "select m from MemberVO m where (upper(id.name) like :searchFilter) or(upper(surname) like :" +
+		"searchFilter ) or(id.name like :searchFilter) or( surname like :searchFilter) order by m.id.name"),
+})
 public class MemberVO implements Serializable{
 
 	/**
@@ -37,6 +41,8 @@ public class MemberVO implements Serializable{
     private  String associationDesc;
 	private String sexDesc;
 
+
+	public static final String Q_AC_ITEM = "cm.purplemoney.members.ent.vo.MemberVO.QAutocompleteItem";
 	@EmbeddedId
 	public MemberIdVO getId(){return id;}
 
