@@ -20,7 +20,8 @@
         </repository>
     </repositories>
     <properties>
-        <org.springframework.version>4.2.3.RELEASE</org.springframework.version>
+         <!--<org.springframework.version>4.2.3.RELEASE</org.springframework.version>-->
+        <org.springframework.version>[4.3.17,)</org.springframework.version>
         <!--<struts2.version>2.3.32</struts2.version>-->
         <struts2.version>[2.3.35,)</struts2.version>
         <struts2.struts.version>2.3.24</struts2.struts.version>
