@@ -28,6 +28,7 @@
         <jersey.version>2.23.2</jersey.version>
         <hibernate.version>4.3.1.Final</hibernate.version>
         <mySql.version>5.1.16.2</mySql.version>
+        <jackson.version>1.8.5</jackson.version>
 
     </properties>
     <dependencies>
@@ -309,6 +310,31 @@
             <artifactId>struts2-dojo-plugin</artifactId>
             <version>${struts2.dojo.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+      <!--  <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+      <!--  <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.google.maps</groupId>
+            <artifactId>google-maps-services</artifactId>
+            <version>0.2.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>org.apache.struts</groupId>

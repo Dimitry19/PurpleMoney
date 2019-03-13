@@ -10,17 +10,20 @@
                     <div class="row">
                         <div class="center-div">
                             <div class="form-group">
+                                <s:if test="hasActionMessages()">
+                                    <s:include value="include/notification.jsp"/>
+                                </s:if>
+                            </div>
+                            <div class="form-group">
                                 <div class="input-group margin-bottom-sm">
                                     <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                    <s:textfield  key="common.login.username" id="inputUsername"  type="username" placeholder="%{getText('common.login.username')}" name="user.username"  value="%{user.username}" class="form-control form-control-login"  required=" " tooltip="getText('common.login.username.tooltip')" />
-                                <div class="invalid-feedback"><s:text name="common.login.error.username"/></div>
-                                </span>
-
+                                        <s:textfield  key="common.login.username" id="inputUsername"  type="username" placeholder="%{getText('common.login.username')}" name="user.username"  value="%{user.username}" class="form-control form-control-login"  required=" " tooltip="getText('common.login.username.tooltip')" />
+                                        <div class="invalid-feedback"><s:text name="common.login.error.username"/></div>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                        <%--<label for="inputPassword" class="sr-only custom-padding">Password</label>--%>
                                     <span class="input-group-addon"><i class="fa fa-key fa-fw"></i>
                                     <s:password key="common.login.password" placeholder="%{getText('common.login.password')}" id="inputPassword" name="user.password" value="%{user.password}"  class=" form-control form-control-login" type="Password"  required=" "/>
                                 <div class="invalid-feedback"><s:text name="common.login.error.password"/></div>

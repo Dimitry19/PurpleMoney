@@ -113,13 +113,12 @@
 		<constructor-arg index="3" value="VALUE"  />
 	</bean>
 
-	<!--	<tx:annotation-driven transaction-manager="txManager"/>
-
+	<tx:annotation-driven transaction-manager="txManager"/>
       <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
           <tx:method name="*" propagation="REQUIRED" rollback-for="Exception,RuntimeException,Errors"/>
         </tx:attributes>
-      </tx:advice>-->
+      </tx:advice>
 <!--
 	
 	<bean id="mobileTypes" class="java.util.HashMap" scope="singleton" >

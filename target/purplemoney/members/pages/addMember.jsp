@@ -71,7 +71,7 @@
 					</span>
                 </div>
                 <div class="form-group">
-                    <s:radio label="%{getText('member.label.gender')}" list="#{'F':'Female','M':'Male'}" name="userAdding.sex"    class="radio-inline" multiple="false">&nbsp;</s:radio>
+                    <s:radio label="%{getText('member.label.gender')}" list="#{'F':'  Female','M':'  Male'}" name="userAdding.sex"  class="radio-inline" multiple="false"></s:radio>
                 </div>
                 <div class="checkbox mb-3 form-group form-check">
                     <s:checkbox id="isActive"  cssStyle="" tooltip="%{getText('member.add.active.tooltip')}" name="userAdding.active" />

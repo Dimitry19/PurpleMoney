@@ -15,6 +15,9 @@ import org.springframework.validation.ObjectError;
 
 import javax.annotation.Resource;
 
+import static cm.purplemoney.constants.PortalConstants.CURRENT_ASS;
+import static cm.purplemoney.constants.PortalConstants.CURRENT_USER;
+
 
 public class CommonAction extends ActionSupport implements SessionAware {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -187,14 +190,14 @@ public class CommonAction extends ActionSupport implements SessionAware {
 
     protected String getCurrentUser() {
 
-        Object o=this.session.get("CURRENT_USER");
+        Object o=this.session.get(CURRENT_USER);
         currentUser =(String) o;
         return  currentUser;
     }
 
     protected String getCurrentAssociation() {
 
-        Object o=this.session.get("CURRENT_ASS");
+        Object o=this.session.get(CURRENT_ASS);
         currentAssociation =(String) o;
         return  currentAssociation;
     }
@@ -236,9 +239,9 @@ public class CommonAction extends ActionSupport implements SessionAware {
     private MemberVO retrieveCurrentMember(){
 
         try {
-                Object ob=this.session.get("CURRENT_USER");
+                Object ob=this.session.get(CURRENT_USER);
                 String currentUs =(String) ob;
-                Object o=this.session.get("CURRENT_ASS");
+                Object o=this.session.get(CURRENT_ASS);
                 String currentAss =(String) o;
                 return memberBO.findMember(currentUs,currentAss);
         }catch (Exception b){

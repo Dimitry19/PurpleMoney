@@ -29,6 +29,7 @@
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
+          <root url="file://$MODULE_DIR$/libs" />
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
         </sourceRoots>
@@ -52,6 +53,7 @@
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-dojo-plugin/2.1.8/struts2-dojo-plugin-2.1.8.jar!/struts-plugin.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-json-plugin/2.3.32/struts2-json-plugin-2.3.32.jar!/struts-plugin.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.3.32/struts2-spring-plugin-2.3.32.jar!/struts-plugin.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-map.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
@@ -59,7 +61,10 @@
     </facet>
     <facet type="hibernate" name="Hibernate">
       <configuration>
-        <datasource-map />
+        <datasource-map>
+          <unit-entry name="java:hibernate/SessionFactory" />
+          <unit-entry name="sessionFactory" />
+        </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
       </configuration>
@@ -73,10 +78,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/libs" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="geonames-1.1.14" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.0.7" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.0.7" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-tools:4.3.1.Final" level="project" />
@@ -167,6 +174,11 @@
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.22" level="project" />
     <orderEntry type="library" name="Maven: ognl:ognl:3.0.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.struts:struts2-dojo-plugin:2.1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.google.maps:google-maps-services:0.2.9" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.14.0" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.10" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.apache.struts:struts2-spring-plugin:2.3.32" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4.7" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />

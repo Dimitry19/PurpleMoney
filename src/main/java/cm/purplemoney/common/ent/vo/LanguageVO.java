@@ -1,7 +1,5 @@
 package cm.purplemoney.common.ent.vo;
 
-
-
 import javax.persistence.*;
 import java.io.Serializable;
 
