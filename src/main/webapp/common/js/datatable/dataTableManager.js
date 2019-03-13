@@ -1,5 +1,61 @@
 var DataTableManager;
 DataTableManager = function () {
+    /*css details
+    td.details-control {
+    background: url('../resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../resources/details_close.png') no-repeat center center;
+}
+    */
+    
+    var detailsRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                        '<tr>'+
+                            '<td>Full name:</td>'+
+                             '<td>'+d.name+'</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                            '<td>Extension number:</td>'+
+                            '<td>'+d.extn+'</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                        '   <td>Extra info:</td>'+
+                            '<td>And any further details here (images etc)...</td>'+
+                        '</tr>'+
+                    '</table>';
+        
+        
+        function format ( d ) {
+            // `d` is the original data object for the row
+             return detailsRow;
+        }
+    
+    function showDetails(json){
+      // Add event listener for opening and closing details
+         console.log("showDetails");
+        var idDataTable='#'+json.idDataTable +'tbody';
+        
+     $(idDataTable).on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+ 
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } );
+   }
+    
+    
+    
+    
 
     var idioma=
         {
@@ -138,8 +194,6 @@ DataTableManager = function () {
 
 
         var options={
-
-
             scrollY: '200',
             scrollX: true,
             paging: true,
