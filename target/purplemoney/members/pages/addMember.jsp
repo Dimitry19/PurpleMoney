@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <s:include value="../../common/home/include/commons.jsp"/>
-<sb:head/>
+</head>
 <body>
 <%@ include file="../../common/home/include/header-logo.jsp" %>
 <%@ include file="../../common/menu/menu.jsp" %>
