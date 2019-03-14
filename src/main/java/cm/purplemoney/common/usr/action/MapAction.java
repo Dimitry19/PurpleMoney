@@ -4,6 +4,7 @@ import cam.googleUtils.converters.AddressConverter;
 import cam.googleUtils.converters.response.GoogleResponse;
 import cam.googleUtils.converters.results.Result;
 import cm.purplemoney.common.ent.vo.MapDestinationVO;
+import cm.purplemoney.common.ent.vo.MapLatLonCoordinates;
 import cm.purplemoney.common.ent.vo.MapOriginVO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,6 +24,8 @@ public class MapAction extends BaseAction implements SessionAware,Preparable {
 
     private MapOriginVO origin;
     private MapDestinationVO destination;
+    private MapLatLonCoordinates mapLatLonCoordinates;
+
     @Override
     public void prepare() throws Exception {
 
@@ -39,15 +42,22 @@ public class MapAction extends BaseAction implements SessionAware,Preparable {
     }
     public String search() throws Exception{
 
+        mapLatLonCoordinates=new MapLatLonCoordinates();
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         AddressConverter addressConverter= new AddressConverter();
         GeocodingResult[] results=addressConverter.convertToLatLong(origin.getFormat());
 
-        System.out.println(gson.toJson(results[0].geometry.location.lat));
-        System.out.println(gson.toJson(results[0].geometry.location.lng));
+        mapLatLonCoordinates.setLatOrigin(results[0].geometry.location.lat);
+        mapLatLonCoordinates.setLonOrigin(results[0].geometry.location.lng);
+
         results=addressConverter.convertToLatLong(destination.getFormat());
-        System.out.println(gson.toJson(results[0].geometry.location.lat));
-        System.out.println(gson.toJson(results[0].geometry.location.lng));
+
+        mapLatLonCoordinates.setLatDestination(results[0].geometry.location.lat);
+        mapLatLonCoordinates.setLonDestination(results[0].geometry.location.lng);
+
+        mapLatLonCoordinates.setDestination(destination);
+        mapLatLonCoordinates.setOrigin(origin);
 
 
         return SUCCESS;
@@ -67,5 +77,13 @@ public class MapAction extends BaseAction implements SessionAware,Preparable {
 
     public void setDestination(MapDestinationVO destination) {
         this.destination = destination;
+    }
+
+    public MapLatLonCoordinates getMapLatLonCoordinates() {
+        return mapLatLonCoordinates;
+    }
+
+    public void setMapLatLonCoordinates(MapLatLonCoordinates mapLatLonCoordinates) {
+        this.mapLatLonCoordinates = mapLatLonCoordinates;
     }
 }

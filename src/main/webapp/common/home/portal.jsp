@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <s:select
-                                            tooltip="%{getText('common.login.group.tooltip')}"
+                                            tooltip="%{getText('common.login.association.tooltip')}"
                                             class="selectpicker" data-live-search="true"
                                             label="Association"
                                             id="association"
@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                   <s:select
-                                            tooltip="%{getText('common.login.group.tooltip')}"
+                                            tooltip="%{getText('common.login.association.tooltip')}"
                                             class="selectpicker" data-live-search="true"
                                             label="Language"
                                             id="langue"

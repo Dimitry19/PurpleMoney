@@ -6,10 +6,10 @@
  	
 	<package name="map" namespace="/" extends="common">
 		<action name="gmapAction" class="mapAction" method="map">
-			<result name="success">/utils/google/pages/map.jsp</result>
+			<result name="success">/utils/google/pages/searchLocation.jsp</result>
 		</action>
 		<action name="mapsearchAction" class="mapAction" method="search">
-			<result name="success">/utils/google/pages/map.jsp</result>
+			<result name="success">/utils/google/pages/ajax/map.jsp</result>
 		</action>
 	</package>
 </struts>

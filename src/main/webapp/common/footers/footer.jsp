@@ -75,38 +75,21 @@
                 <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <%--    <p>
-                    <a href="#!">Your Account</a>
-                </p>
-                <p>
-                    <a href="#!">Become an Affiliate</a>
-                </p>
-                <p>
-                    <a href="#!">Shipping Rates</a>
-                </p>--%>
-                <p>
-                    <a href="#!">Help</a>
-                </p>
-                <p>
-                    <a href="<s:url action="gmapAction"/>" target="_blank">Google map</a>
-                </p>
+                <p><a href="#!"><i class="fa fa-hand-paper-o"></i>&nbsp;Help</a></p>
+                <p><a href="<s:url action="gmapAction"/>"><i class="fa fa-map"></i>&nbsp;Google map</a></p>
             </div>
             <!-- Grid column -->
-
             <!-- Grid column -->
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
                 <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Contact</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+                    <i class="fa fa-home mr-3"></i>&nbsp;Via la Spezia 123,43126 PR,IT</p>
                 <p>
-                    <i class="fa fa-envelope mr-3"></i> info@example.com</p>
+                    <i class="fa fa-envelope mr-3"></i>&nbsp;info@purplemoney.com</p>
                 <p>
-                    <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
-                <p>
-                    <i class="fa fa-print mr-3"></i> + 01 234 567 89
+                    <i class="fa fa-phone mr-3"></i>&nbsp;+ 01 234 567 88
                 </p>
             </div>
             <!-- Grid column -->
@@ -116,7 +99,7 @@
     <!-- Footer Links -->
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2018 Copyright:
-        <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+        <a href="https://mdbootstrap.com/education/bootstrap/"> Purplemoney.com</a>
     </div>
     <!-- Copyright -->
 </footer>

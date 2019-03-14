@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <s:include value="../../common/home/include/commons.jsp"/>
-</head>
+<sb:head/>
 <body>
 <%@ include file="../../common/home/include/header-logo.jsp" %>
 <%@ include file="../../common/menu/menu.jsp" %>
@@ -90,12 +90,12 @@
         </div>--%>
         <s:if test="hasActionMessages()">
             <div class="success-notification">
-                <s:actionmessage/>
+                <s:actionmessage theme="bootstrap"/>
             </div>
         </s:if>
         <s:if test="hasActionErrors()">
             <div class="errors-notification">
-                <s:actionerror/>
+                <s:actionerror theme="bootstrap"/>
             </div>
         </s:if>
     </div>
@@ -116,7 +116,6 @@
 </script>
 <script>
     FormManager.validationForm({idForm: 'formRegister',idSubmit:'btnRegister'})
-    /*	FormManager.validationEmail({idForm: 'formRegister'});*/
     TelManager.telFormat({idTel:'telephone'})
 </script>
 </html>
