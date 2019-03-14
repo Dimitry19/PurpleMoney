@@ -4,6 +4,25 @@
 <s:include value="../../../../common/home/include/commons.jsp"/>
 </head>
 <body onload="initMap();">
+<%@ include file="../../../../common/home/include/header-logo.jsp" %>
+<div id="floating-panel">
+    <b><s:text name="map.mode.travel"></s:text></b>
+    <select id="mode">
+        <option value="DRIVING"><s:text name="map.mode.travel.driving"></s:text></option>
+        <option value="WALKING"><s:text name="map.mode.travel.walking"></s:text></option>
+        <option value="BICYCLING"><s:text name="map.mode.travel.bicyling"></s:text></option>
+        <option value="TRANSIT"><s:text name="map.mode.travel.transit"></s:text></option>
+    </select>
+</div>
+<%--<div id="floating-panel-mapType">
+    <b><s:text name="map.type.view"></s:text></b>
+    <select id="mapType">
+        <option value="roadmap"><s:text name="map.mapType.roadmap"></s:text></option>
+        <option value="satellite"><s:text name="map.mapType.satellite"></s:text></option>
+        <option value="hybrid"><s:text name="map.mapType.hybrid"></s:text></option>
+        <option value="terrain"><s:text name="map.mapType.terrain"></s:text></option>
+    </select>
+</div>--%>
 <div id="map"></div>
 <div id="right-panel">
     <div>
@@ -35,17 +54,9 @@
                 <s:hidden id="destinationId2" value="%{mapLatLonCoordinates.lonDestination}" name="mapLatLonCoordinates.lonDestination"/>
                 <span class = "input-group-addon"></span>
             </div>
-            <%--<div class="btn btn-group-md">
-                <s:submit  type="button"   id="searchMapBtn" cssClass="btn btn-sm btn-primary btn-login"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.search"></s:text></i></s:submit>
-            </div>--%>
-</s:form>
+        </s:form>
     </div>
     <div id="directions-panel"></div>
-   <%-- <div class="btn btn-group-md">
-        <button type="button" class="btn  btn-primary btn-sm">
-            <a href="<s:url action="gmapAction"/>"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<s:text name="map.back.to.search"/></a>
-        </button>
-    </div>--%>
 </div>
 <script>
     function initMap() {
@@ -63,7 +74,14 @@
         var end = new google.maps.LatLng(latDestination, lonDestination);
 
        /*var start = new google.maps.LatLng('37.7683909618184', '-122.51089453697205');
-        var end = new google.maps.LatLng('41.850033', '-87.6500523');*/
+        var end = new google.maps.LatLng('41.850033', '-87.6500523');
+        var mapType;
+        document.getElementById('mapType').addEventListener('change', function() {
+              mapType = document.getElementById('mapType').value;
+        });
+        console.log("mapType:" +mapType);*/
+
+
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var myOptions = {
@@ -73,26 +91,14 @@
         }
         var map = new google.maps.Map(document.getElementById('map'), myOptions);
         directionsDisplay.setMap(map);
-        var transitOptions=
-        {
-            departureTime: new Date(1337675679473),
-            modes: ['BUS'],
-            routingPreference: 'FEWER_TRANSFERS'
 
-        }
-        var request = {
-            origin:start,
-            destination:end,
-            optimizeWaypoints: true,
-            travelMode:"DRIVING",
-            transitOptions: transitOptions
-        };
-        calculateAndDisplayRoute(request,directionsService, directionsDisplay);
-       /* document.getElementById('searchMapBtn').addEventListener('click', function() {
-        });*/
+        calculateAndDisplayRoute(start,end,directionsService, directionsDisplay);
+        document.getElementById('mode').addEventListener('change', function() {
+            calculateAndDisplayRoute(start,end,directionsService, directionsDisplay);
+        });
     }
 
-    function calculateAndDisplayRoute(request,directionsService, directionsDisplay) {
+    function calculateAndDisplayRoute(start,end,directionsService, directionsDisplay) {
        /* var waypts = [];
         var checkboxArray = document.getElementById('waypoints');
         for (var i = 0; i < checkboxArray.length; i++) {
@@ -104,11 +110,29 @@
             }
         }*/
 
+        var transitOptions=
+            {
+                departureTime: new Date(1337675679473),
+                modes: ['BUS'],
+                routingPreference: 'FEWER_TRANSFERS'
+
+            }
+
+        var selectedMode = document.getElementById('mode').value;
+        console.log("selectedMode:"+selectedMode);
+        var request = {
+            origin:start,
+            destination:end,
+            optimizeWaypoints: true,
+            travelMode:google.maps.TravelMode[selectedMode],
+            transitOptions: transitOptions
+        };
+
         directionsService.route(request, function(response, status) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
                 var route = response.routes[0];
-                console.log(JSON.stringify(route));
+                //console.log(JSON.stringify(route));
                 var summaryPanel = document.getElementById('directions-panel');
                 summaryPanel.innerHTML = '';
                 // For each route, display summary information.
@@ -130,29 +154,4 @@
 <script async defer    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbqWY9UOtRQwVYOxv-VfTn93F-nGLwWW8&callback=initMap">
 </script>
 </body>
-<%--<script src="<s:url value="/utils/google/js/prettify_188_0_0.js"/>"></script>
-<script src="<s:url value="/utils/google/js/jeoquery.js"/>"></script>
-<script src="<s:url value="/utils/google/js/tracking.js"/>"></script>
-<script src="<s:url value="/utils/google/js/map.js"/>"></script>
-<script>
-    $(function () {
-        jeoquery.defaultData.userName = 'dimitridevelopper';
-
-        $("#destinationId").jeoCityAutoComplete({
-            callback: function(city) {
-                if (console) console.log(city);
-            }
-        });
-
-        $("#originId").jeoCityAutoComplete({
-            callback: function(city) {
-                if (console) console.log(city);
-            }
-        });
-        prettyPrint();
-    });
-</script>
-<script>
-    MapManager.drawRoute()
-</script>--%>
 </html>

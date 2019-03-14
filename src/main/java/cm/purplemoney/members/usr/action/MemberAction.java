@@ -102,6 +102,16 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 				addFieldError("userSearch.association", getText("common.member.search.error.association"));
 			}
 		}
+		if (userAdding!=null){
+			if(!userAdding.isActive()){
+				addActionError("I don't know you, dont try to hack me!");
+				addFieldError("userAdding.active", getText("common.member.add.error.active"));
+			}
+			if(StringUtils.isEmpty(userAdding.getSex())){
+				addActionError("I don't know you, dont try to hack me!");
+				addFieldError("userAdding.sex", getText("common.member.add.error.gender"));
+			}
+		}
 
 		/*if(userAdding!=null){
 			if("mkyong".equals(getUsername())){
@@ -173,6 +183,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		log.debug("addMethod");
 		//memberBO.addMember(userAdding);
 		addActionMessage(getText("member.add.success.footer"));
+
 		return SUCCESS;
 	}
 

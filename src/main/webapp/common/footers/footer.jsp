@@ -75,8 +75,9 @@
                 <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p><a href="#!"><i class="fa fa-hand-paper-o"></i>&nbsp;Help</a></p>
-                <p><a href="<s:url action="gmapAction"/>"><i class="fa fa-map"></i>&nbsp;Google map</a></p>
+                <p><a href="<s:url action="login"/>"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<s:text name="footer.link.login"></s:text></a></p>
+                <p><a href="#!"><i class="fa fa-hand-paper-o"></i>&nbsp;<s:text name="footer.link.help"></s:text></a></p>
+                <p><a href="<s:url action="gmapAction"/>"><i class="fa fa-map"></i>&nbsp;<s:text name="footer.link.map"></s:text></a></p>
             </div>
             <!-- Grid column -->
             <!-- Grid column -->
@@ -98,7 +99,7 @@
     </div>
     <!-- Footer Links -->
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
         <a href="https://mdbootstrap.com/education/bootstrap/"> Purplemoney.com</a>
     </div>
     <!-- Copyright -->

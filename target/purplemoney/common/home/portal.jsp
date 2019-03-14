@@ -2,18 +2,16 @@
 
 <s:include value="include/commons.jsp"/>
 </head>
-    <body class="text-center">
-    <div class="container">
+<body>
+    <div class="container text-center">
+        <s:if test="hasActionMessages()">
+            <%@ include file="../../common/pages/notifications/logout-success.jsp" %>
+        </s:if>
         <s:form action="loginAction" theme="simple"  id="formLogin" class="form-login form-horizontal">
                 <img class="mb-4 img-circle" src=" <s:url value="/theme/img/icon-purple.jpg"/>"  width="95" height="72">
                 <h1 class="h3 mb-3 font-weight-normal"><s:text name="common.home.login.title"/></h1>
                     <div class="row">
                         <div class="center-div">
-                            <div class="form-group">
-                                <s:if test="hasActionMessages()">
-                                    <s:include value="include/notification.jsp"/>
-                                </s:if>
-                            </div>
                             <div class="form-group">
                                 <div class="input-group margin-bottom-sm">
                                     <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i>

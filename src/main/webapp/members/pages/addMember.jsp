@@ -2,11 +2,21 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <s:include value="../../common/home/include/commons.jsp"/>
+<s:head />
 </head>
 <body>
 <%@ include file="../../common/home/include/header-logo.jsp" %>
 <%@ include file="../../common/menu/menu.jsp" %>
 <div class="container text-center">
+    <s:if test="hasActionMessages()">
+        <%@ include file="../../common/pages/notifications/save-member-success.jsp" %>
+    </s:if>
+    <s:if test="hasActionErrors()">
+        <%@ include file="../../common/pages/notifications/save-member-error.jsp" %>
+       <%-- <div class="errors-notification">
+            <s:actionerror theme="bootstrap"/>
+        </div>--%>
+    </s:if>
     <div class="card card-perso">
         <div class="card-header">
             <h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright"><s:text name="member.add.title"/></h1>
@@ -88,16 +98,6 @@
         </div>
         <%--<div class="card-footer bg-transparent border-success">
         </div>--%>
-        <s:if test="hasActionMessages()">
-            <div class="success-notification">
-                <s:actionmessage theme="bootstrap"/>
-            </div>
-        </s:if>
-        <s:if test="hasActionErrors()">
-            <div class="errors-notification">
-                <s:actionerror theme="bootstrap"/>
-            </div>
-        </s:if>
     </div>
 </div>
 </body>
@@ -107,16 +107,17 @@
 <%--<script src="<s:url value="/common/js/BootstrapValidator/bootstrapValidator.js"/>"></script>--%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <%--<script src="https://code.jquery.com/jquery-latest.min.js"></script>--%>
-<script src="<s:url value="/common/js/notification-manager.js"/>"></script>
-<script src="<s:url value="/common/js/intlTelInput/build/js/intlTelInput.js"/>"></script>
-<script src="<s:url value="/common/js/tel-pattern.js"/>"></script>
+<%--<script src="<s:url value="/common/js/notification-manager.js"/>"></script>--%>
+<script src="<s:url value="/common/js/notification-toast.js"/>"></script>
+<%--<script src="<s:url value="/common/js/intlTelInput/build/js/intlTelInput.js"/>"></script>
+<script src="<s:url value="/common/js/tel-pattern.js"/>"></script>--%>
 <script>
     //var input = document.querySelector("#telephone");
     //window.intlTelInput(input);
 </script>
 <script>
     FormManager.validationForm({idForm: 'formRegister',idSubmit:'btnRegister'})
-    TelManager.telFormat({idTel:'telephone'})
+    //TelManager.telFormat({idTel:'telephone'})
 </script>
 </html>
 

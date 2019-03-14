@@ -9,7 +9,7 @@ tr.shown td.details-control {
     background: url('../resources/details_close.png') no-repeat center center;
 }
     */
-    
+  /*
     var detailsRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
                         '<tr>'+
                             '<td>Full name:</td>'+
@@ -53,7 +53,7 @@ tr.shown td.details-control {
     } );
    }
     
-    
+    */
     
     
 

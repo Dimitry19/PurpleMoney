@@ -53,6 +53,7 @@
 		<script src="<s:url value="/common/js/jquery/ui/1.12.1/jquery-ui.js"/>"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
 		<script src="<s:url value="/common/js/bootstrap/build/js/bootstrap-datetimepicker.min.js"/>"></script>
+		<%--<script src="<s:url value="/common/js/bootstrap/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>--%>
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
