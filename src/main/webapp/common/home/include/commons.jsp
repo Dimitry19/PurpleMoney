@@ -25,6 +25,7 @@
 		<link  rel="stylesheet"  href="<s:url value="/common/css/custom.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/footer.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/datatable/datatable.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/css/datatable/responsive.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/js/intlTelInput/build/css/intlTelInput.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/teloveride.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/jquery/ui/1.12.1/jquery-ui.css"/>">

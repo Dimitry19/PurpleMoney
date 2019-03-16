@@ -1,14 +1,6 @@
 var DataTableManager;
 DataTableManager = function () {
 
-
-
-
-
-
-
-
-
     /*css details
 
     td.details-control {
@@ -219,8 +211,22 @@ tr.shown td.details-control {
             info: true,
             autoWidth: true,
             //"language": (converter.dooa() == en) ? en : converter.dooa(),
-            render:colorRow,
-            responsive: true,
+            customize: function( row, data, dataIndex ) {
+                if ( data[6] =='false' || data[6] =='Non' || data[6] =='No') {
+                    $(row).addClass('darkseagreen');
+                }
+            },
+            responsive:  {
+                         details: {
+                            display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                                }
+                            } ),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                }
+            },
             lengthMenu: [[5,10,20, -1],[5,10,50,"Montrer Tout"]],
             dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
             buttons: {
@@ -343,7 +349,15 @@ tr.shown td.details-control {
                 }
             });*/
 
-            $(idDataTable).DataTable( options);
+            var table=$(idDataTable).DataTable( options);
+            console.log(idDataTable+' tbody');
+            $(idDataTable+' tbody')
+                .on( 'mouseenter', 'td', function () {
+                    var colIdx = table.cell(this).index().column;
+
+                    $( table.cells().nodes() ).removeClass( 'highlight' );
+                    $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
+                } );
         } );
     }
 

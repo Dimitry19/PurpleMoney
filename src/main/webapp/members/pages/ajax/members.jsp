@@ -18,7 +18,7 @@
 								<i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;<s:text name="common.refresh"></s:text>
 					</button>
 				</div>
-				<table id="members"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" class="display table table-striped table-bordered">
+				<table id="members"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" class="display  nowrap table table-striped table-bordered row-border hover order-column">
 					<thead>
 						<tr>
 							<th><s:property value="getText('member.column.gender')"/></th>
@@ -77,6 +77,7 @@
 	<%@ include file = "../../../common/footers/footer.jsp" %>
 </div>
 <script src="<s:url value="/common/js/datatable/dataTableManager.js"/>"></script>
+<script src="<s:url value="/common/js/datatable/jquery.datatable/2.2.3/responsive.datatable.js "/>"></script>
 <script>
     var data='<s:property  value="%{#lang}" />';
 	DataTableManager.constructDatatable({idDataTable: 'members',title:'Liste des membres',lang:data})

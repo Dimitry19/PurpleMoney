@@ -192,7 +192,9 @@ dropdown-menu show{
   appearance: none;
 }
 
-
+.notrasform{
+  text-transform: none;
+}
 
 
 

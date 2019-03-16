@@ -144,3 +144,7 @@ div.dataTables_wrapper div.dataTables_filter {
     background-color: darkseagreen !important;
 }
 
+td.highlight {
+    background-color: whitesmoke !important;
+}
+
