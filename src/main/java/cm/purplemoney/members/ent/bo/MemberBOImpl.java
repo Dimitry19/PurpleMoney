@@ -47,7 +47,7 @@ public class MemberBOImpl implements MemberBO {
 
 		String usernameParts[] = username.split(CommonUtils.SPACE_REGEX, 2);
 		session= hibernateConfig.getSession();
-		Query query=session.createQuery("from MemberVO where id.name =:uName and association=:ass and active=:act");
+		Query query=session.getNamedQuery(MemberVO.FINDBYID);
 
 		query.setParameter("uName", usernameParts[0]);
 		query.setParameter("ass", assId.toUpperCase());
@@ -63,12 +63,12 @@ public class MemberBOImpl implements MemberBO {
 	}
 
 
-	public MemberVO findMember(SessionVO sess) {
+	public MemberVO findMemberFromSession(SessionVO sess) {
 
 		session= hibernateConfig.getSession();
-		Query query=session.createQuery("from MemberVO where id.name =:uName");
+		Query query=session.getNamedQuery(MemberVO.FINDBYSESSION);
 
-		//query.setParameter("uName", username.toUpperCase());
+		query.setParameter("uName", sess.getId().getMember());
 		List<MemberVO> users=decoder(query.list());
 		if(users!=null && users.size()>0) {
 			return users.get(0);
@@ -80,7 +80,7 @@ public class MemberBOImpl implements MemberBO {
 	@Override
 	public List<MemberVO> loadAllMembers() {
 		session=hibernateConfig.getSession();
-		Query query=session.createQuery("from MemberVO ");
+		Query query=session.getNamedQuery(MemberVO.ALL);
 
 		List<MemberVO> members= null;
 		try {
@@ -168,8 +168,10 @@ public class MemberBOImpl implements MemberBO {
 		member.setRoleDesc(role.getDescription());
 		if(member.getSex().charAt(0) == 'F'){
 			member.setSexDesc("Femme");
+			member.setMale(false);
 		}else{
 			member.setSexDesc("Homme");
+			member.setMale(true);
 		}
 	}
 

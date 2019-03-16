@@ -1,0 +1,48 @@
+The Copyright Symbol (©):
+(
+&copy;
+) This symbol is used quite frequently, and represents a copyright announcement for the materials upon which it appears.
+
+The Registered Trademark Symbol (®):
+(
+&reg;
+) Another frequently used symbol to indicate that the materials it appears on is a registered trademark of the owner.
+
+The Trademark Symbol (™):
+(
+&trade;
+) Similar to the registered trademark is the trademark symbol, usually used when the owner of the material it appears on has filed an application for a registered trademark.
+
+The Non-breaking Space:
+(
+&nbsp;
+) A non-breaking space is really just a space. Since HTML only renders one space if there are gaps in the code, this is used when consecutive spaces need to be shown. Rather than needing one between every word in a document, the non-breaking space is reserved for adding extra space when needed.
+
+The Ampersand (&):
+(
+&amp;
+) Obviously this one is frequently used. To display an ampersand simple use the code above.
+
+Less Than and Greater Than (< , >):
+(
+&lt;
+or
+&gt;
+) These are another that are frequently used but a bit confusing. Along with the ampersand, these are the few characters that appear on your keyboard that require special codes.
+
+French Accent Marks (é or è):
+(
+&eacute;
+or
+&egrave;
+) Accent marks are common and confusing. Use these codes to ensure that your content is displayed correctly to your customers.
+
+The Spanish Tilde (ñ):
+(
+&ntilde;
+) Another confusing part of displaying your text can be solved with this special character, especially if you provide Spanish content.
+
+The Cents Symbol (¢):
+(
+&cent;
+)

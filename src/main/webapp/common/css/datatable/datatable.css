@@ -136,3 +136,11 @@ div.dataTables_wrapper div.dataTables_filter {
     background-color: #4682b4;
     border-radius: 9px;
 }
+
+.red {
+    background-color: red !important;
+}
+.darkseagreen {
+    background-color: darkseagreen !important;
+}
+

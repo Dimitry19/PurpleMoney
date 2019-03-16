@@ -1,26 +1,26 @@
 
 #right-panel {
     font-family: 'Roboto','sans-serif';
-    line-height: 30px;
+    line-height: 20px;
     padding-left: 10px;
 }
 
-#right-panel select, #right-panel input {
-    font-size: 15px;
-}
+/*#right-panel select, #right-panel input {*/
+    /*font-size: 15px;*/
+/*}*/
 
-#right-panel select {
+/*#right-panel select {
     width: 100%;
-}
+}*/
 
 #right-panel i {
     font-size: 12px;
 }
-html, body {
+/*html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
+}*/
 #map {
     height: 100%;
     float: left;
@@ -28,10 +28,10 @@ html, body {
     height: 100%;
 }
 #right-panel {
-    margin: 20px;
+    margin: 2%;
     border-width: 2px;
-    width: 20%;
-    height: 400px;
+    width: 25%;
+    height: 95%;
     float: left;
     text-align: left;
     padding-top: 0;
@@ -44,9 +44,9 @@ html, body {
     height: 174px;
 }
 #floating-panel {
-    position: absolute;
-    top: 18%;
-    left: 16%;
+    /*position: absolute;*/
+    top: 15%;
+    left: 25%;
     z-index: 5;
     background-color: #fff;
     padding: 5px;

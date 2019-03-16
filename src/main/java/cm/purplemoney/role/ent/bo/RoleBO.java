@@ -11,6 +11,7 @@ public interface RoleBO {//extends GenericBO<AmountVO,AmountIdVO,String>  {
 
     public List<RoleVO> loadAllRoles() throws BusinessException;
     public void addRole(RoleVO role) throws BusinessException;
+    public int  updateRoleByMember(String roleId) throws BusinessException;
     public RoleVO retrieveRoleFromMember(MemberVO member) throws BusinessException;
 
 }

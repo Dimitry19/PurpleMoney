@@ -74,7 +74,6 @@ FormManager = function () {
 
             form.addClass('was-validated');
         });
-
     }
 
     function popolateField(jsonObj){

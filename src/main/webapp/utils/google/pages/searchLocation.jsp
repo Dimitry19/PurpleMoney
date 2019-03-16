@@ -14,14 +14,18 @@
                 <div class="card-body">
                     <s:form  id="mapForm" cssClass="form-horizontal" method="POST" action="mapsearchAction">
                         <div class="form-group">
-                            <s:label value="%{getText('map.label.origin')}" id="idorigin" for="idorigin"  labelposition="left"></s:label>
-                            <s:textfield   name="origin.format" id="originId" placeholder="%{getText('map.placeholder.input')}" cssClass="form-control"/>
-                            <span class = "input-group-addon"></span>
+                            <span class = "input-group-addon">
+                                <s:label value="%{getText('map.label.origin')}" id="idorigin" for="idorigin"  labelposition="left"></s:label>
+                                <s:textfield   name="origin.format" id="originId" required=" " placeholder="%{getText('map.placeholder.input')}" cssClass="form-control" />
+                                 <div class="invalid-feedback"><s:text name="map.search.start.point.error"/></div>
+                            </span>
                         </div>
                         <div class="form-group">
-                            <s:label value="%{getText('map.label.destination')}" id="iddestination" for="iddestination"  labelposition="left"></s:label>
-                            <s:textfield   name="destination.format"  id="destinationId"  placeholder="%{getText('map.placeholder.input')}" cssClass="form-control"/>
-                            <span class = "input-group-addon"></span>
+                           <span class = "input-group-addon">
+                                 <s:label value="%{getText('map.label.destination')}" id="iddestination" for="iddestination"  labelposition="left"></s:label>
+                                <s:textfield   name="destination.format"  id="destinationId"  required=" " placeholder="%{getText('map.placeholder.input')}" cssClass="form-control"/>
+                                <div class="invalid-feedback"><s:text name="map.search.end.point.error"/></div>
+                            </span>
                         </div>
                         <div class="btn btn-group-md">
                             <s:submit  type="button"   id="searchMapBtn" cssClass="btn btn-sm  align-self-center btn-primary btn-login">
@@ -33,6 +37,10 @@
         </div>
     </div>
 </body>
+<script src="<s:url value="/common/js/form.js"/>"></script>
+<script>
+    FormManager.validationForm({idForm:'mapForm',idSubmit:'searchMapBtn'})
+</script>
 <script src="<s:url value="/utils/google/js/prettify_188_0_0.js"/>"></script>
 <script src="<s:url value="/utils/google/js/jeoquery.js"/>"></script>
 <script src="<s:url value="/utils/google/js/tracking.js"/>"></script>
@@ -54,9 +62,6 @@
         });
         prettyPrint();
     });
-</script>
-<script>
-    //MapManager.drawRoute()
 </script>
 <div class="col">
     <%@ include file = "../../../common/footers/footer.jsp" %>

@@ -56,7 +56,7 @@
 						<s:textfield  value="%{userInfo.associationDesc}"  name="userInfo.association" id="associationId" readonly="true" cssClass="form-control"/>
 						<span class = "input-group-addon"></span>
 					</div>
-					<s:if test="userInfo.admin==true">
+					<s:if test="userInfo.admin==true || currentMember.admin=true">
 						<div class="btn btn-group-md">
 							<button type="button" class="btn  btn-sm  fa fa-ban  btn-outline-warning float-right"   onclick="MembersManager.disableFields({formId:'memberForm', editBtn:'editMenberBtn'})" id="cancelMenberBtn"><s:text name="common.button.cancel.label"/></button>
 						</div>

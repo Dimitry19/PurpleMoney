@@ -10,7 +10,7 @@ import java.util.List;
 public interface MemberBO {
 	
 	 MemberVO findMember(String username, String assId) throws BusinessException;
-	 MemberVO findMember(SessionVO session) throws BusinessException;
+	 MemberVO findMemberFromSession(SessionVO session) throws BusinessException;
 	 void addMember(MemberVO member) throws BusinessException;
 	 List<MemberVO> loadAllMembers() throws BusinessException;
 	 void saveEditMember(MemberVO member) throws BusinessException;

@@ -156,7 +156,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
-		userInfo=memberBO.findMember(amount);
+		userInfo=memberBO.findMemberFromSession(amount);
 
 		return SUCCESS;
 	}
@@ -165,7 +165,6 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 
 		if(StringUtils.isNotBlank(term)){
 			membersNames = memberBO.autocomplete(term);
-
 		}
 			return SUCCESS;
 	}
@@ -178,10 +177,15 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		//addActionMessage("Nouveau membre correctement ajouté!");
 		return SUCCESS;
 	}
+	public String  showDetailsMember() throws Exception {
+		return SUCCESS;
+	}
+
 
 	public String addMember() throws Exception {
 		log.debug("addMethod");
-		//memberBO.addMember(userAdding);
+		roleBO.updateRoleByMember(userAdding.getRole());
+		memberBO.addMember(userAdding);
 		addActionMessage(getText("member.add.success.footer"));
 
 		return SUCCESS;

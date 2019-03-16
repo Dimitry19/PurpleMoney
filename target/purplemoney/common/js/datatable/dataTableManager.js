@@ -1,6 +1,16 @@
 var DataTableManager;
 DataTableManager = function () {
+
+
+
+
+
+
+
+
+
     /*css details
+
     td.details-control {
     background: url('../resources/details_open.png') no-repeat center center;
     cursor: pointer;
@@ -9,7 +19,7 @@ tr.shown td.details-control {
     background: url('../resources/details_close.png') no-repeat center center;
 }
     */
-    
+  /*
     var detailsRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
                         '<tr>'+
                             '<td>Full name:</td>'+
@@ -53,7 +63,7 @@ tr.shown td.details-control {
     } );
    }
     
-    
+    */
     
     
 
@@ -192,6 +202,12 @@ tr.shown td.details-control {
         var titlePage=json.title;
         var lang=json.lang;
 
+        var  colorRow= function( row, data, dataIndex ) {
+            if ( data[6] =='false' || data[6] =='Non' || data[6] =='No') {
+                $(row).addClass('darkseagreen');
+            }
+        }
+
 
         var options={
             scrollY: '200',
@@ -203,6 +219,7 @@ tr.shown td.details-control {
             info: true,
             autoWidth: true,
             //"language": (converter.dooa() == en) ? en : converter.dooa(),
+            render:colorRow,
             responsive: true,
             lengthMenu: [[5,10,20, -1],[5,10,50,"Montrer Tout"]],
             dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
@@ -303,31 +320,55 @@ tr.shown td.details-control {
 
         }
 
+
+
+
         $(document).ready(function() {
+
             if(lang == 'it'){
                 options.language=it;
-
             }
             if(lang == 'en'){
                 options.language=en;
-
             }
             if(lang == 'fr'){
                 options.language=fr;
             }
+
+            /*var table=$(idDataTable).DataTable({
+                "createdRow": function( row, data, dataIndex ) {
+                    if ( data[6] =='false' || data[6] =='Non' || data[6] =='No') {
+                        $(row).addClass('darkseagreen');
+                    }
+                }
+            });*/
+
             $(idDataTable).DataTable( options);
-
-
-
-            /*table.fnDestroy();
-            table=null;
-            var currentLang = (currentLang == ll) ? ll : fr;
-            table=$(lk).dataTable( {"oLanguage": currentLang} );*/
         } );
-
-
     }
 
+   /* $(document).ready( function () {
+        var table = $('#example').DataTable({
+            select: true,
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: 'tr', //THIS WORKS GREAT IN RESPONSIVE VIEW
+                    display: $.fn.dataTable.Responsive.display.modal( {
+                        header: function ( row ) {
+                            var data = row.data();
+                            return 'Details for '+data[0]+' '+data[1];
+                        }
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                        tableClass: 'table'
+                    })
+                }
+            }
+        }).on( 'select', function ( e, dt, type, indexes ) {
+            //if not responsive view launch responsive modal
+        });
+    });*/
 
     function constructDatatable(jsonObj) {
         buildDatatable(jsonObj)

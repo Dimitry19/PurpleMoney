@@ -10,7 +10,7 @@
 
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark">
-    <div style="background-color: #6351ce;">
+    <div class ="bar-footer">
         <div class="container">
             <!-- Grid row-->
             <div class="row py-4 d-flex align-items-center">
@@ -22,25 +22,25 @@
                 <!-- Grid column -->
                 <div class="col-md-6 col-lg-7 text-center text-md-right">
                     <!-- Facebook -->
-                    <a class="fb-ic">
+                    <a href="https://www.facebook.com/XlionD" class="fb-ic">
                         <i class="fa fa-facebook-square white-text mr-4"> </i>
                     </a>
                     <!-- Twitter -->
-                    <a class="tw-ic">
+                    <a class="tw-ic" href="https://twitter.com/DXlionaire">
                         <i class="fa fa-twitter white-text mr-4"> </i>
                     </a>
                     <!-- Google +-->
-                    <a class="gplus-ic">
+                    <a class="gplus-ic" href="https://plus.google.com/u/0/104372700159542371601">
                         <i class="fa fa-google white-text mr-4"> </i>
                     </a>
                     <!--Linkedin -->
-                    <a class="li-ic">
-                        <i class="fa fa-linkedin-in white-text mr-4"> </i>
+                    <a class="li-ic" href="https://www.linkedin.com/in/dimitri-sime-ndjouomo-74804337/">
+                        <i class="fa fa-linkedin white-text mr-4"> </i>
                     </a>
                     <!--Instagram-->
-                   <%-- <a class="ins-ic">
-                        <i class="fab fa-instagram white-text"> </i>
-                    </a>--%>
+                   <a class="ins-ic" href="https://www.instagram.com/lion_dx">
+                        <i class="fa fa-instagram white-text"> </i>
+                    </a>
                 </div>
                 <!-- Grid column -->
             </div>
@@ -86,11 +86,11 @@
                 <h6 class="text-uppercase font-weight-bold">Contact</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <i class="fa fa-home mr-3"></i>&nbsp;Via la Spezia 123,43126 PR,IT</p>
+                    <i class="fa fa-home"></i>&nbsp;Via la Spezia 123,43126 PR,IT</p>
                 <p>
-                    <i class="fa fa-envelope mr-3"></i>&nbsp;info@purplemoney.com</p>
+                    <i class="fa fa-envelope"></i>&nbsp;info@purplemoney.com</p>
                 <p>
-                    <i class="fa fa-phone mr-3"></i>&nbsp;+ 01 234 567 88
+                    <i class="fa fa-phone"></i>&nbsp;+ 01 234 567 88
                 </p>
             </div>
             <!-- Grid column -->
@@ -99,7 +99,7 @@
     </div>
     <!-- Footer Links -->
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <div class="footer-copyright text-center py-3">&copy;2019 Copyright:
         <a href="https://mdbootstrap.com/education/bootstrap/"> Purplemoney.com</a>
     </div>
     <!-- Copyright -->

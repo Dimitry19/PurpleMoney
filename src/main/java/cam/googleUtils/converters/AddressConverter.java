@@ -1,13 +1,10 @@
 package cam.googleUtils.converters;
-import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.sql.Connection;
-import java.util.List;
-
 import cam.googleUtils.converters.response.GoogleResponse;
 import cam.googleUtils.converters.results.Result;
 import com.google.gson.Gson;
@@ -16,7 +13,6 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
-import org.apache.commons.io.IOUtils;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 

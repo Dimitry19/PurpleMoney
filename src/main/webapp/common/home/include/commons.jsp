@@ -4,9 +4,9 @@
 <%-- Using Struts2 Tags in JSP --%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <head>
-	<meta charset="utf-8">
 	<meta name="robots" content="noindex">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<meta charset="UTF-8">
 
 	<!--Bootstrap- select plugin-->
 		<!-- Latest compiled and minified CSS -->
@@ -23,6 +23,7 @@
 
 		<!-- Custom styles for this template -->
 		<link  rel="stylesheet"  href="<s:url value="/common/css/custom.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/css/footer.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/datatable/datatable.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/js/intlTelInput/build/css/intlTelInput.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/teloveride.css"/>">
@@ -33,6 +34,7 @@
 		<link rel="stylesheet"   href="<s:url value="/common/css/powered/powered.css"/>">
 	    <link rel="stylesheet"   href="<s:url value="/common/css/flag-icon/css/flag-icon.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/utils/google/css/map.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/menu/css/menu.css"/>">
 
 		<script src="<s:url value="/common/js/powered/console_runner.js"/>"></script>
     	<script src="<s:url value="/common/js/powered/css_reload.js"/>"></script>
@@ -54,8 +56,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
 		<script src="<s:url value="/common/js/bootstrap/build/js/bootstrap-datetimepicker.min.js"/>"></script>
 		<%--<script src="<s:url value="/common/js/bootstrap/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>--%>
+	<%--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.css"/>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
 
-		<!-- Latest compiled and minified JavaScript -->
+--%>
+
+
+	<!-- Latest compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 	<title class="bg-success"><s:text name="common.page.title"/> </title>
 	<s:head /><!-- pour la validation-->

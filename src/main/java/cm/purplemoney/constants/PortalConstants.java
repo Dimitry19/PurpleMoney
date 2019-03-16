@@ -15,7 +15,7 @@ public class PortalConstants {
 	public static final String ACTIVITY_COMPLETE= "2";
 	public static final String AUTH_COMPANY_ID="authCompanyId";
 	public static final String AUTH_USER_ID="authUserId";
-	public static final String SINAPSI_MONITOR_SUPERVISOR="SMNT_SV";
+	public static final String MEMBER_LABEL_KEY="MBR";
 	public static final String SINAPSI_MONITOR_PRIORITY="SMNT_PRT";
 	public static final String SINAPSI_MONITOR_DEPARTMENT="SMNT_DPT";
 	public static final String RESOURCE_TYPE="M";

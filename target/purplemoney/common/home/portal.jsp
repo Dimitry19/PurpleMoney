@@ -24,7 +24,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-key fa-fw"></i>
                                     <s:password key="common.login.password" placeholder="%{getText('common.login.password')}" id="inputPassword" name="user.password" value="%{user.password}"  class=" form-control form-control-login" type="Password"  required=" "/>
-                                <div class="invalid-feedback"><s:text name="common.login.error.password"/></div>
+                                    <div class="invalid-feedback"><s:text name="common.login.error.password"/></div>
                                 </span>
                                 </div>
                             </div>

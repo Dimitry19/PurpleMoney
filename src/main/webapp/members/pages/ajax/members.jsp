@@ -14,9 +14,10 @@
 		</div>
 		<div class="card-body">
 				<div class="btn btn-group-md">
-					<button type="button" class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" value="refresh" onclick="DataTableManager.reloadDatatable({idDataTable: 'members'})" id="refreshMemberBtn"/><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Refresh</button>
+					<button type="button" class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" onclick="DataTableManager.reloadDatatable({idDataTable: 'members'})" id="refreshMemberBtn"/>
+								<i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;<s:text name="common.refresh"></s:text>
+					</button>
 				</div>
-				<%--<s:if test="members!=null && members.size() > 0">--%>
 				<table id="members"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" class="display table table-striped table-bordered">
 					<thead>
 						<tr>
@@ -26,17 +27,21 @@
 							<th><s:property value="getText('member.column.phone')"/></th>
 							<th><s:property value="getText('member.column.email')"/></th>
 							<th><s:property value="getText('member.column.role')"/></th>
+							<th><s:property value="getText('member.column.active')"/></th>
+							<th></th>
 						</tr>
 					</thead>
+					<tbody class="<s:property value="#notrasform"/>">
 					<s:iterator value="members" status="userStatus">
+						<%--<tr class='clickable-row' data-toggle="modal" data-target="#detailsModal" style="cursor:pointer">--%>
 						<tr>
 							<td>
-								<s:if test="sex=='%{getText('member.sex.male')}">
-									<span ><i class="fa fa-male" aria-hidden="true"></i>&nbsp;&nbsp;</span>
-								</s:if>
-								<s:else>
+								<s:if test="male==false">
 									<span ><i class="fa fa-female" aria-hidden="true"></i>&nbsp;&nbsp;</span>
-								</s:else>
+								</s:if>
+								<s:elseif test="male==true">
+									<span ><i class="fa fa-male" aria-hidden="true"></i>&nbsp;&nbsp;</span>
+								</s:elseif>
 								<s:property value="sex"/>
 							</td>
 							<td><s:property value="id.name"/></td>
@@ -44,8 +49,24 @@
 							<td><s:property value="phone"/></td>
 							<td><s:property value="email"/></td>
 							<td><s:property value="roleDesc"/></td>
+							<s:if test="active==true">
+								<td><s:property value="getText('member.column.active.YES')"/></td>
+							</s:if>
+							<s:if test="active==false">
+								<td><s:property value="getText('member.column.active.NO')"/></td>
+							</s:if>
+							<td>
+								<s:url action="showDetails" id="showDetailsURL"  escapeAmp="false">
+									<s:param name="userInfo.id.name" value="%{id.name}"/>
+									<s:param name="userInfo.id.memberId" value="%{id.memberId}"/>
+								</s:url>
+								<button type="button"  class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" data-toggle="modal" data-url="%{#showDetailsURL}">
+									<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.show.detail"></s:text>
+								</button>
+							</td>
 						</tr>
 					</s:iterator>
+					</tbody">
 				</table>
 			</div>
 		<%--</s:if>--%>
