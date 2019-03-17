@@ -56,19 +56,19 @@
 								<td><s:property value="getText('member.column.active.NO')"/></td>
 							</s:if>
 							<td>
-								<s:url action="showDetails" id="showDetailsURL"  escapeAmp="false">
+								<%--<s:url action="showDetails" id="showDetailsURL"  escapeAmp="false">
 									<s:param name="userInfo.id.name" value="%{id.name}"/>
 									<s:param name="userInfo.id.memberId" value="%{id.memberId}"/>
 								</s:url>
 								<button type="button"  class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" data-toggle="modal" data-url="%{#showDetailsURL}">
 									<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.show.detail"></s:text>
-								</button>
+								</button>--%>
 							</td>
 						</tr>
 					</s:iterator>
 					</tbody">
 				</table>
-			</div>
+			<%@ include file = "../../../common/pages/modal/modal.jsp" %>
 		<%--</s:if>--%>
 	</div>
 </div>
@@ -79,8 +79,10 @@
 <script src="<s:url value="/common/js/datatable/dataTableManager.js"/>"></script>
 <script src="<s:url value="/common/js/datatable/jquery.datatable/2.2.3/responsive.datatable.js "/>"></script>
 <script>
-    var data='<s:property  value="%{#lang}" />';
-	DataTableManager.constructDatatable({idDataTable: 'members',title:'Liste des membres',lang:data})
+    var lng='<s:property  value="%{#lang}" />';
+    var button='<button type="button"  class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length">' +
+        '<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.show.detail"></s:text></button>';
+	DataTableManager.constructDatatable({idDataTable: 'members',button:button,title:'Liste Membres',lang:lng})
 
 </script>
 </html>

@@ -1,63 +1,7 @@
 var DataTableManager;
 DataTableManager = function () {
 
-    /*css details
 
-    td.details-control {
-    background: url('../resources/details_open.png') no-repeat center center;
-    cursor: pointer;
-}
-tr.shown td.details-control {
-    background: url('../resources/details_close.png') no-repeat center center;
-}
-    */
-  /*
-    var detailsRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-                        '<tr>'+
-                            '<td>Full name:</td>'+
-                             '<td>'+d.name+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                            '<td>Extension number:</td>'+
-                            '<td>'+d.extn+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '   <td>Extra info:</td>'+
-                            '<td>And any further details here (images etc)...</td>'+
-                        '</tr>'+
-                    '</table>';
-        
-        
-        function format ( d ) {
-            // `d` is the original data object for the row
-             return detailsRow;
-        }
-    
-    function showDetails(json){
-      // Add event listener for opening and closing details
-         console.log("showDetails");
-        var idDataTable='#'+json.idDataTable +'tbody';
-        
-     $(idDataTable).on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row( tr );
- 
-        if ( row.child.isShown() ) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row
-            row.child( format(row.data()) ).show();
-            tr.addClass('shown');
-        }
-    } );
-   }
-    
-    */
-    
-    
 
     var idioma=
         {
@@ -198,6 +142,14 @@ tr.shown td.details-control {
             if ( data[6] =='false' || data[6] =='Non' || data[6] =='No') {
                 $(row).addClass('darkseagreen');
             }
+            if ( data[6] =='Oui' || data[6] =='Yes' || data[6] =='Si') {
+                //$(row).addClass('active-m');
+            }
+        }
+        var  colorActiveRow= function( row, data, dataIndex ) {
+            if ( data[6] =='Oui' || data[6] =='Yes' || data[6] =='Si') {
+               // $(row).addClass('active-m');
+            }
         }
 
 
@@ -210,25 +162,40 @@ tr.shown td.details-control {
             ordering: true,
             info: true,
             autoWidth: true,
-            //"language": (converter.dooa() == en) ? en : converter.dooa(),
-            customize: function( row, data, dataIndex ) {
-                if ( data[6] =='false' || data[6] =='Non' || data[6] =='No') {
-                    $(row).addClass('darkseagreen');
-                }
-            },
-            responsive:  {
+            "createdRow":colorRow,
+            responsive: true, /*{
                          details: {
-                            display: $.fn.dataTable.Responsive.display.modal( {
-                            header: function ( row ) {
-                                var data = row.data();
-                                return 'Details for '+data[0]+' '+data[1];
+                             type: 'column',
+                             target: 'tr',
+                             display: $.fn.dataTable.Responsive.display.modal( {
+                                header: function ( row ) {
+                                        var data = row.data();
+                                        var html=''+data[1]+' '+data[2]+'';
+
+                                        //return 'Details for :'+data[1]+' '+data[2];
+                                    return 'Details for :['+html+']';
                                 }
                             } ),
-                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
                 }
-            },
+            },*/
             lengthMenu: [[5,10,20, -1],[5,10,50,"Montrer Tout"]],
             dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
+            columnDefs: [{
+                             targets: [2],
+                             visible: false
+                         }, {
+                              targets: [3],
+                              visible: false
+                         }, {
+                           // adding a more info button at the end
+                              targets: -1,
+                               data: null,
+                               defaultContent: "<button type='button'    data-toggle='tooltip' data-placement='top' title='Details Info' class='btn  btn-md btn btn-secondary buttons-collection  buttons-page-length'>" +
+                               "<i class='fa fa-eye' aria-hidden='true'></i>&nbsp;</button>"
+                             }],
             buttons: {
                 dom: {
                     container:{
@@ -341,27 +308,52 @@ tr.shown td.details-control {
                 options.language=fr;
             }
 
-            /*var table=$(idDataTable).DataTable({
-                "createdRow": function( row, data, dataIndex ) {
-                    if ( data[6] =='false' || data[6] =='Non' || data[6] =='No') {
-                        $(row).addClass('darkseagreen');
-                    }
-                }
+            var table=$(idDataTable).DataTable( options);
+            /* table.on( 'select', function ( e, dt, type, indexes ) {
+                //if not responsive view launch responsive modal
             });*/
 
-            var table=$(idDataTable).DataTable( options);
-            console.log(idDataTable+' tbody');
-            $(idDataTable+' tbody')
-                .on( 'mouseenter', 'td', function () {
-                    var colIdx = table.cell(this).index().column;
+            var tbo=idDataTable+' tbody';
 
-                    $( table.cells().nodes() ).removeClass( 'highlight' );
-                    $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
-                } );
+            $(tbo).on('click', 'button', function() {
+                var data = table.row($(this).parents('tr')).data(); // getting target row data
+                $('.insertHere').html(
+                    // Adding and structuring the full data
+                    '<table class="table dtr-details" width="100%">' +
+                    '<tbody>' +
+                        '<tr>' +
+                            '<td>Name<td>' +
+                            '<td>' + data[0] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td>Position<td>' +
+                            '<td>' + data[1] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td>Office<td>' +
+                            '<td>' + data[2] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td>Age<td>' +
+                            '<td>' + data[3] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td>Start date<td>' +
+                            '<td>' + data[4] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td>Salary<td>' +
+                            '<td>' + data[5] + '</td>' +
+                        '</tr>' +
+                    '</tbody>' +
+                    '</table>'
+                );
+                $('#myModal').modal('show'); // calling the bootstrap modal
+            });
         } );
     }
 
-   /* $(document).ready( function () {
+    /*$(document).ready( function () {
         var table = $('#example').DataTable({
             select: true,
             responsive: {
@@ -383,6 +375,11 @@ tr.shown td.details-control {
             //if not responsive view launch responsive modal
         });
     });*/
+
+
+
+
+
 
     function constructDatatable(jsonObj) {
         buildDatatable(jsonObj)
@@ -424,9 +421,6 @@ tr.shown td.details-control {
             $(btn).click(function(){
                 dtable.fnDestroy();
                 dtable = null;
-               // currentLang = (currentLang == english) ? espanol : english;
-               // dtable = $(idDataTable).dataTable( {"oLanguage": lang} );
-
                 $(idDataTable).DataTable( controlLanguage(lang) );
             });
 

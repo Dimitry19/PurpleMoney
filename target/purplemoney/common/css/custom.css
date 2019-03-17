@@ -196,5 +196,10 @@ dropdown-menu show{
   text-transform: none;
 }
 
+.cap-activate{
+  visibility:hidden;
+  color:red;
+}
+
 
 

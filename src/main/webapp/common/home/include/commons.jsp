@@ -36,6 +36,7 @@
 	    <link rel="stylesheet"   href="<s:url value="/common/css/flag-icon/css/flag-icon.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/utils/google/css/map.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/menu/css/menu.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/css/modal/modal.css"/>">
 
 		<script src="<s:url value="/common/js/powered/console_runner.js"/>"></script>
     	<script src="<s:url value="/common/js/powered/css_reload.js"/>"></script>

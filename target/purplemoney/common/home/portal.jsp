@@ -23,8 +23,9 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-key fa-fw"></i>
-                                    <s:password key="common.login.password" placeholder="%{getText('common.login.password')}" id="inputPassword" name="user.password" value="%{user.password}"  class=" form-control form-control-login" type="Password"  required=" "/>
+                                    <s:password key="common.login.password" placeholder="%{getText('common.login.password')}" id="inputPassword" name="user.password" value="%{user.password}"  class=" form-control form-control-login password-field" type="Password"  onkeypress="UtilsManager.activated(event)" required=" "/>
                                     <div class="invalid-feedback"><s:text name="common.login.error.password"/></div>
+                                    <div id="passmajactive" class="cap-activate"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;<s:text name="common.cap.activted"></s:text></div>
                                 </span>
                                 </div>
                             </div>
@@ -72,6 +73,7 @@
         <%@ include file = "../../common/footers/footer.jsp" %>
     </div>
 <script src="<s:url value="/common/js/form.js"/>"></script>
+<script src="<s:url value="/common/js/detectCap.js"/>"></script>
 <script>
     FormManager.validationForm({idForm:'formLogin',idSubmit:'btnLogin'})
 </script>

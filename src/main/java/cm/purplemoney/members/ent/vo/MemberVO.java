@@ -18,10 +18,10 @@ import javax.persistence.*;
 @Table(name="MEMBER" , schema="PUBLIC")
 @NamedQueries({
 		@NamedQuery(name = MemberVO.Q_AC_ITEM, query = "select m from MemberVO m where (upper(id.name) like :searchFilter) or(upper(surname) like :" +
-				"searchFilter ) or(id.name like :searchFilter) or( surname like :searchFilter) order by id.name"),
+				"searchFilter ) or(id.name like :searchFilter) or( surname like :searchFilter)  and association=:ass order by id.name"),
 		@NamedQuery(name = MemberVO.ALL, query = "select m from MemberVO m  order by id.name"),
 		@NamedQuery(name = MemberVO.FINDBYID, query = "select m from MemberVO m where id.name =:uName and association=:ass and active=:act "),
-		@NamedQuery(name = MemberVO.FINDBYSESSION, query = "select m from MemberVO m where id.name =:uName order by id.name"),
+		@NamedQuery(name = MemberVO.FINDBYSESSION, query = "select m from MemberVO m where id.name =:uName and association=:ass order by id.name"),
 })
 public class MemberVO implements Serializable{
 

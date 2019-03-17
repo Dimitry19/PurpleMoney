@@ -14,6 +14,6 @@ public interface MemberBO {
 	 void addMember(MemberVO member) throws BusinessException;
 	 List<MemberVO> loadAllMembers() throws BusinessException;
 	 void saveEditMember(MemberVO member) throws BusinessException;
-	String[] autocomplete(String search) throws BusinessException;
+	String[] autocomplete(String search,String association) throws BusinessException;
 
 }

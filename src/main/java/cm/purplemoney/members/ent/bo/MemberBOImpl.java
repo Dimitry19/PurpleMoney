@@ -69,6 +69,7 @@ public class MemberBOImpl implements MemberBO {
 		Query query=session.getNamedQuery(MemberVO.FINDBYSESSION);
 
 		query.setParameter("uName", sess.getId().getMember());
+		query.setParameter("ass", sess.getId().getAssociationId());
 		List<MemberVO> users=decoder(query.list());
 		if(users!=null && users.size()>0) {
 			return users.get(0);
@@ -125,13 +126,14 @@ public class MemberBOImpl implements MemberBO {
 	}
 
 	@Override
-	public String[] autocomplete(String search) throws BusinessException {
+	public String[] autocomplete(String search, String association) throws BusinessException {
 
 		List<String> memberList = new ArrayList<String>();
 		session=hibernateConfig.getSession();
 
 		Query query =session.getNamedQuery(MemberVO.Q_AC_ITEM);
 				query.setParameter("searchFilter",SQLUtils.forLike(search, true, true, true));
+				query.setParameter("ass",association);
 		List<MemberVO> results = query.list();
 
 		for(MemberVO member: results){

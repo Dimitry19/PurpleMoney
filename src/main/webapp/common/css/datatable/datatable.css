@@ -140,11 +140,20 @@ div.dataTables_wrapper div.dataTables_filter {
 .red {
     background-color: red !important;
 }
+.active-m {
+    background-color: #007bff !important;
+}
 .darkseagreen {
     background-color: darkseagreen !important;
 }
 
 td.highlight {
     background-color: whitesmoke !important;
+}
+.dtr-modal-content h2{
+    color:ghostwhite !important;
+}
+.dtr-modal-content{
+    background-color: dodgerblue!important;
 }
 

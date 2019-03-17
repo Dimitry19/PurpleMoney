@@ -164,7 +164,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 	public String autocompleteMember() throws Exception{
 
 		if(StringUtils.isNotBlank(term)){
-			membersNames = memberBO.autocomplete(term);
+			membersNames = memberBO.autocomplete(term,currentAssociation);
 		}
 			return SUCCESS;
 	}
