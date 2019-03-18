@@ -51,7 +51,7 @@ public class GroupAction extends BaseAction{
 
 	public void prepare() throws Exception {
 		//articles=articleBO.retrieveArticles();
-		members=memberBO.loadAllMembers();
+		members=memberBO.loadAllMembers(currentAssociation.toUpperCase());
 	}
 	
 	public String execute() {

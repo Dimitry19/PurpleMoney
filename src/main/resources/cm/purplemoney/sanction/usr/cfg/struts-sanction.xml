@@ -1,0 +1,21 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+ 	
+	<package name="sanction" namespace="/" extends="common">
+		<action name="addSanction" 	class="sanctionAction" method="addSanction" >
+		    <result name="success">/articles/pages/articles.jsp</result>
+		</action>
+		<action name="allSanctions" class="sanctionAction" method="allSanctions" >
+		    <result name="success">/articles/pages/includes/articles-list.jsp</result>
+		</action>
+		<action name="findSanctionByUser" class="sanctionAction" method="findSanctionByUser" >
+			<result name="success">/articles/pages/includes/articles-list.jsp</result>
+		</action>
+		<action name="autocomplete" class="sanctionAction" method="autocomplete" >
+			<result name="success">/articles/pages/includes/articles-list.jsp</result>
+		</action>
+	</package>
+</struts>

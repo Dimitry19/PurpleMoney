@@ -7,6 +7,7 @@
 <%@ include file="../../../common/home/include/header-logo.jsp" %>
 <%@ include file="../../../common/menu/menu.jsp" %>
 <s:set var="lang" value="%{currentLocale}"/>
+<s:set var="size" value="%{getSanctions().size()}"/>
 <div class="container text-center">
 	<div class="card card-perso">
 		<div class="card-header">
@@ -28,6 +29,7 @@
 							<th><s:property value="getText('member.column.email')"/></th>
 							<th><s:property value="getText('member.column.role')"/></th>
 							<th><s:property value="getText('member.column.active')"/></th>
+							<th><s:property value="getText('member.column.sanction')"/></th>
 							<th></th>
 						</tr>
 					</thead>
@@ -55,6 +57,14 @@
 							<s:if test="active==false">
 								<td><s:property value="getText('member.column.active.NO')"/></td>
 							</s:if>
+							<s:if test="%{getSanctions().size()>1}">
+								<td><s:property value="%{getSanctions().iterator().next().getDescription()}"/>
+									<s:text name="member.column.sanction.more"></s:text>
+								</td>
+							</s:if>
+							<s:else>
+								<td><s:property value="%{getSanctions().iterator().next().getDescription()}"/></td>
+							</s:else>
 							<td>
 								<%--<s:url action="showDetails" id="showDetailsURL"  escapeAmp="false">
 									<s:param name="userInfo.id.name" value="%{id.name}"/>
@@ -68,6 +78,23 @@
 					</s:iterator>
 					</tbody">
 				</table>
+			<div>
+                <fieldset>
+                    <legend><s:text name="common.legend"></s:text></legend>
+                        <s:div cssClass="legend">
+                        <span class="badge traffic-light darkseagreen">&nbsp;&nbsp;</span>
+                            <s:property value="%{getText('member.datatable.legend.active')}" />
+                        </s:div>
+                        <s:div cssClass="legend">
+                            <span class="badge traffic-light sanction-inactive">&nbsp;&nbsp;</span>
+                            <s:property value="%{getText('member.datatable.legend.sanction.active')}" />
+                        </s:div>
+                        <s:div cssClass="legend">
+                            <span class="badge traffic-light sanction">&nbsp;&nbsp;</span>
+                            <s:property value="%{getText('member.datatable.legend.sanction')}" />
+                        </s:div>
+                </fieldset>
+			</div>
 			<%@ include file = "../../../common/pages/modal/modal.jsp" %>
 		<%--</s:if>--%>
 	</div>

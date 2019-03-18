@@ -8,8 +8,7 @@
                 <h3 class="pull-left bold font-red-thunderbird">
                         <span class="padding-left-18">
 						</span>
-
-                    <s:text name="member.detail.title"></s:text></s:else>
+                    <s:text name="member.detail.title"></s:text>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
             </div>

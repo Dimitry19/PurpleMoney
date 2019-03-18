@@ -200,6 +200,10 @@ dropdown-menu show{
   visibility:hidden;
   color:red;
 }
+.legend{
+  width: 20% !important;
+  float: left;
+}
 
 
 

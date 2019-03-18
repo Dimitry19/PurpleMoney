@@ -42,4 +42,5 @@
 	<include file="cm/purplemoney/mail/usr/cfg/struts-mail.xml"></include>
 	<include file="cm/purplemoney/session/usr/cfg/struts-session.xml"></include>
 	<include file="cm/purplemoney/common/usr/cfg/struts-map.xml"></include>
+	<include file="cm/purplemoney/sanction/usr/cfg/struts-sanction.xml"></include>
 </struts>

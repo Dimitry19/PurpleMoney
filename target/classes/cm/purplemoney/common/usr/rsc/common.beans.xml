@@ -79,6 +79,7 @@
 				<value>cm.purplemoney.found.ent.vo</value>
 				<value>cm.purplemoney.profile.ent.vo</value>
 				<value>cm.purplemoney.role.ent.vo</value>
+				<value>cm.purplemoney.sanction.ent.vo</value>
 			</list>
 		</property>
 		<property name="annotatedClasses">
@@ -98,6 +99,8 @@
 				<value>cm.purplemoney.profile.ent.vo.AuthUserVO</value>
 				<value>cm.purplemoney.role.ent.vo.RoleVO</value>
 				<value>cm.purplemoney.role.ent.vo.RoleVOId</value>
+				<value>cm.purplemoney.sanction.ent.vo.SanctionIdVO</value>
+				<value>cm.purplemoney.sanction.ent.vo.SanctionVO</value>
 			</list>
 		</property>
 	</bean>
@@ -119,19 +122,6 @@
           <tx:method name="*" propagation="REQUIRED" rollback-for="Exception,RuntimeException,Errors"/>
         </tx:attributes>
       </tx:advice>
-<!--
-	
-	<bean id="mobileTypes" class="java.util.HashMap" scope="singleton" >
-    <constructor-arg>
-        <map key-type="java.lang.String" value-type="java.lang.String">
-           <entry key=".*iPhone.*" value="iphone" />
-           <entry key=".*iPad.*" value="iphone" />                
-           <entry key=".*Android.*" value="iphone" />
-           <entry key=".*Safari.*Pre.*" value="iphone" />
-           <entry key=".*Nokia.*AppleWebKit.*" value="iphone" />            
-        </map>
-    </constructor-arg>
-	</bean> -->
 
 	<import resource="classpath:cm/purplemoney/config/rsc/hibernateConfig.bean.xml"/>
 	<import resource="classpath:cm/purplemoney/common/usr/rsc/portal.bean.xml"/>

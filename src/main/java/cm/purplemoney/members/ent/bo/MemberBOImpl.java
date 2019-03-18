@@ -79,9 +79,10 @@ public class MemberBOImpl implements MemberBO {
 	}
 
 	@Override
-	public List<MemberVO> loadAllMembers() {
+	public List<MemberVO> loadAllMembers(String association) {
 		session=hibernateConfig.getSession();
 		Query query=session.getNamedQuery(MemberVO.ALL);
+		query.setParameter("ass", association);
 
 		List<MemberVO> members= null;
 		try {
@@ -185,7 +186,8 @@ public class MemberBOImpl implements MemberBO {
 		RoleVO role=roleBO.retrieveRoleFromMember(member);
 		AssociationVO association=associationBO.associationInfoFromMember(member);
 		member.setRole(role.getId().getRole());
-		member.setAssociation(association.getId().getName());
+		member.setAssociation(association.getId().getId());
+		member.setAssociationDesc(association.getDescription());
 
 		if(StringUtils.equals("Femme",member.getSexDesc())){
 			member.setSex("F");

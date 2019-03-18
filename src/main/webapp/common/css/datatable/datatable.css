@@ -140,8 +140,11 @@ div.dataTables_wrapper div.dataTables_filter {
 .red {
     background-color: red !important;
 }
-.active-m {
-    background-color: #007bff !important;
+.sanction {
+    background-color: #d33333 !important;
+}
+.sanction-inactive {
+    background-color: #e0a800 !important;
 }
 .darkseagreen {
     background-color: darkseagreen !important;

@@ -4,6 +4,7 @@ package cm.purplemoney.members.usr.action;
 import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.association.ent.vo.AssociationVO;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
+import cm.purplemoney.sanction.ent.bo.SanctionBO;
 import cm.purplemoney.session.ent.bo.SessionBO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.common.usr.action.BaseAction;
@@ -25,21 +26,6 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-@Validations(requiredStrings = {
-		@RequiredStringValidator(fieldName = "userInfo.association", type = ValidatorType.FIELD, message = "Association is required"),
-		@RequiredStringValidator(fieldName = "userInfo.id.name", type = ValidatorType.FIELD, message = "Name is required"),
-},
-		emails={	@EmailValidator(fieldName = "email" ,type=ValidatorType.FIELD,message = "Entrez une adresse email valide")
-		},
-		expressions = {
-				@ExpressionValidator(expression = "password.trim().length() > 5", message = "Password must have as minimum 6 Characters.")
-		}, fieldExpressions = {
-		@FieldExpressionValidator(fieldName = "password", expression = "password.trim().length() > 6", message = "Password must have as minimum 6 Characters."),
-		@FieldExpressionValidator(fieldName = "agree", expression = "agree == true", message = "Accept the Agreement.")
-})
-
-*/
 @Component("memberAction")
 @Scope("prototype")
 public class MemberAction extends BaseAction implements SessionAware,Preparable{
@@ -73,7 +59,8 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 
 	@Resource(name = "roleBO")
 	private RoleBO roleBO;
-    private String collectionName;
+
+
 
     @Override
 	public void prepare() throws Exception{
@@ -81,7 +68,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
-		members=memberBO.loadAllMembers();
+		members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
 		associations=associationBO.loadAllAssociations();
 		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
 		roles=roleBO.loadAllRoles();
@@ -113,14 +100,6 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 			}
 		}
 
-		/*if(userAdding!=null){
-			if("mkyong".equals(getUsername())){
-				addActionMessage(getText("member.add.success.footer"));
-			}else{
-				addActionError("I don't know you, dont try to hack me!");
-			}
-
-		}*/
 	}
 	public String execute() {
 
@@ -164,7 +143,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 	public String autocompleteMember() throws Exception{
 
 		if(StringUtils.isNotBlank(term)){
-			membersNames = memberBO.autocomplete(term,currentAssociation);
+			membersNames = memberBO.autocomplete(term,currentAssociation.toUpperCase());
 		}
 			return SUCCESS;
 	}
@@ -172,8 +151,9 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 	public String saveEditMember() throws Exception {
 
 	    memberBO.saveEditMember(userInfo);
-		authUserBO.saveEditUser(null, null,userInfo);
-
+	    if(StringUtils.equals(userInfo.getId().getName(),getCurrentUser())){
+	    	authUserBO.saveEditUser(null, null,userInfo);
+		}
 		//addActionMessage("Nouveau membre correctement ajouté!");
 		return SUCCESS;
 	}
@@ -192,7 +172,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 	}
 
 	public String loadAllMembers() throws Exception{
-		members=memberBO.loadAllMembers();
+		members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
 		return SUCCESS;
 	}
 

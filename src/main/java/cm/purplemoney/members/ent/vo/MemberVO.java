@@ -1,15 +1,11 @@
 package cm.purplemoney.members.ent.vo;
 
 import java.io.Serializable;
-
+import java.util.HashSet;
+import java.util.Set;
 import cm.purplemoney.constants.FieldConstants;
-import cm.purplemoney.members.ent.enums.SexEnum;
-import cm.purplemoney.profile.ent.vo.AuthUserVO;
-import cm.purplemoney.role.ent.vo.RoleVO;
-import com.opensymphony.xwork2.validator.annotations.EmailValidator;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
-import org.hibernate.annotations.JoinFormula;
+import cm.purplemoney.sanction.ent.vo.SanctionVO;
+
 
 import javax.persistence.*;
 
@@ -19,7 +15,7 @@ import javax.persistence.*;
 @NamedQueries({
 		@NamedQuery(name = MemberVO.Q_AC_ITEM, query = "select m from MemberVO m where (upper(id.name) like :searchFilter) or(upper(surname) like :" +
 				"searchFilter ) or(id.name like :searchFilter) or( surname like :searchFilter)  and association=:ass order by id.name"),
-		@NamedQuery(name = MemberVO.ALL, query = "select m from MemberVO m  order by id.name"),
+		@NamedQuery(name = MemberVO.ALL, query = "select m from MemberVO m  where association=:ass order by id.name"),
 		@NamedQuery(name = MemberVO.FINDBYID, query = "select m from MemberVO m where id.name =:uName and association=:ass and active=:act "),
 		@NamedQuery(name = MemberVO.FINDBYSESSION, query = "select m from MemberVO m where id.name =:uName and association=:ass order by id.name"),
 })
@@ -44,7 +40,7 @@ public class MemberVO implements Serializable{
     private  String associationDesc;
 	private String sexDesc;
 	private boolean male;
-
+	private Set<SanctionVO> sanctions= new HashSet<SanctionVO>();
 
 	public static final String Q_AC_ITEM = "cm.purplemoney.members.ent.vo.MemberVO.QAutocompleteItem";
 	public static final String ALL = "cm.purplemoney.members.ent.vo.MemberVO.All";
@@ -110,6 +106,16 @@ public class MemberVO implements Serializable{
 	@Column(name="R_ASSOCIATION")
 	public String getAssociation() {
 		return association;
+	}
+
+	@OneToMany(mappedBy = "member",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("description DESC")
+	public Set<SanctionVO> getSanctions() {
+		return sanctions;
+	}
+
+	public void setSanctions(Set<SanctionVO> sanctions) {
+		this.sanctions = sanctions;
 	}
 
 	public void setAssociation(String association) {

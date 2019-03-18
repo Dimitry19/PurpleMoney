@@ -139,16 +139,14 @@ DataTableManager = function () {
         var lang=json.lang;
 
         var  colorRow= function( row, data, dataIndex ) {
-            if ( data[6] =='false' || data[6] =='Non' || data[6] =='No') {
+            if ( data[6] =='Oui' || data[6] =='Non' || data[6] =='No') {
                 $(row).addClass('darkseagreen');
             }
-            if ( data[6] =='Oui' || data[6] =='Yes' || data[6] =='Si') {
-                //$(row).addClass('active-m');
+            if (data[7].length > 1) {
+                $(row).addClass('sanction');
             }
-        }
-        var  colorActiveRow= function( row, data, dataIndex ) {
-            if ( data[6] =='Oui' || data[6] =='Yes' || data[6] =='Si') {
-               // $(row).addClass('active-m');
+            if (data[7].length > 1 && (data[6] =='Oui' || data[6] =='Non' || data[6] =='No')) {
+                $(row).addClass('sanction-inactive');
             }
         }
 
@@ -184,28 +182,37 @@ DataTableManager = function () {
             lengthMenu: [[5,10,20, -1],[5,10,50,"Montrer Tout"]],
             dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
             columnDefs: [{
-                             targets: [2],
-                             visible: false
-                         }, {
-                              targets: [3],
+                             targets: [4],
+                             visible: true
+                         },
+                            {
+                            targets: [5],
+                            visible: false
+                         },
+                        {
+                            targets: [6],
+                            visible: false
+                        },
+                            {
+                              targets: [7],
                               visible: false
                          }, {
                            // adding a more info button at the end
                               targets: -1,
                                data: null,
-                               defaultContent: "<button type='button'    data-toggle='tooltip' data-placement='top' title='Details Info' class='btn  btn-md btn btn-secondary buttons-collection  buttons-page-length'>" +
+                               defaultContent: "<button type='button' data-toggle='tooltip' data-placement='top' title='Details Info' class='btn  btn-md btn btn-secondary buttons-collection  buttons-page-length'>" +
                                "<i class='fa fa-eye' aria-hidden='true'></i>&nbsp;</button>"
                              }],
-            buttons: {
-                dom: {
-                    container:{
-                        tag:'div',
-                        className:'flexcontent'
+                buttons: {
+                    dom: {
+                        container:{
+                            tag:'div',
+                            className:'flexcontent'
+                        },
+                        buttonLiner: {
+                            tag: null
+                        }
                     },
-                    buttonLiner: {
-                        tag: null
-                    }
-                },
 
                 buttons: [
                     {
@@ -313,41 +320,72 @@ DataTableManager = function () {
                 //if not responsive view launch responsive modal
             });*/
 
+
+            table.columns().every( function () {
+                // Column data
+                console.log("Data:", this.data() );
+
+                // Column visibility
+                console.log("Visibility:", this.visible() );
+
+                // Column header
+                console.log("Header:", $(this.header()).text() );
+            } );
+
+
+
+
             var tbo=idDataTable+' tbody';
 
             $(tbo).on('click', 'button', function() {
                 var data = table.row($(this).parents('tr')).data(); // getting target row data
-                $('.insertHere').html(
-                    // Adding and structuring the full data
-                    '<table class="table dtr-details" width="100%">' +
+
+                var header0 = $(table.column( 0 ).header()).html();
+                var header1 = $(table.column( 1 ).header()).html();
+                var header2 = $(table.column( 2 ).header()).html();
+                var header3 = $(table.column( 3 ).header()).html();
+                var header4 = $(table.column( 4 ).header()).html();
+                var header5 = $(table.column( 5 ).header()).html();
+                var header6 = $(table.column( 6 ).header()).html();
+                var header7 = $(table.column( 7 ).header()).html();
+
+
+                var HTML_TABLE= '<table class="table dtr-details" width="100%">' +
                     '<tbody>' +
                         '<tr>' +
-                            '<td>Name<td>' +
+                            '<td style="font-style:italic;color: mediumvioletred;">'+header0+'<td>' +
                             '<td>' + data[0] + '</td>' +
                         '</tr>' +
                         '<tr>' +
-                            '<td>Position<td>' +
+                            '<td  style="font-style: italic;color: mediumvioletred;">'+header1+'<td>' +
                             '<td>' + data[1] + '</td>' +
                         '</tr>' +
                         '<tr>' +
-                            '<td>Office<td>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header2+'<td>' +
                             '<td>' + data[2] + '</td>' +
                         '</tr>' +
                         '<tr>' +
-                            '<td>Age<td>' +
+                            '<td  style="font-style: italic;color: mediumvioletred;">'+header3+'<td>' +
                             '<td>' + data[3] + '</td>' +
                         '</tr>' +
                         '<tr>' +
-                            '<td>Start date<td>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header4+'<td>' +
                             '<td>' + data[4] + '</td>' +
                         '</tr>' +
                         '<tr>' +
-                            '<td>Salary<td>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header5+'<td>' +
                             '<td>' + data[5] + '</td>' +
                         '</tr>' +
-                    '</tbody>' +
-                    '</table>'
-                );
+                        '<tr>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header6+'<td>' +
+                            '<td>' + data[6] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header7+'<td>' +
+                            '<td>' + data[7] + '</td>' +
+                        '</tr>' +
+                    '</tbody>' + '</table>';
+                $('.insertHere').html(HTML_TABLE);
                 $('#myModal').modal('show'); // calling the bootstrap modal
             });
         } );

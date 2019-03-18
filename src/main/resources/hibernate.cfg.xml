@@ -22,10 +22,10 @@
         <property name="connection.url">jdbc:h2:tcp://localhost/../../../db/purplemoney</property>
         <property name="connection.username">sa</property>
         <property name="connection.password">orlynn1anais</property>
-        <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+       <!-- <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>-->
         <property name="dialect">org.hibernate.dialect.H2Dialect</property>
         <property name="hibernate.default_schema">PUBLIC</property>
-
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
 
@@ -47,6 +47,7 @@
         <mapping package="cm.purplemoney.program.ent.vo"/>
         <mapping package="cm.purplemoney.sanction.ent.vo"/>
         <mapping package="cm.purplemoney.role.ent.vo"/>
+        <mapping package="cm.purplemoney.sanction.ent.vo"/>
 
         <!-- Mapping de toutes les classes VO -->
         <mapping class="cm.purplemoney.profile.ent.vo.AuthUserVO" />
@@ -60,5 +61,7 @@
         <mapping class="cm.purplemoney.role.ent.vo.RoleVO" />
         <mapping class="cm.purplemoney.role.ent.vo.RoleVOId" />
         <mapping class="cm.purplemoney.common.ent.vo.LanguageVO" />
+        <mapping class="cm.purplemoney.sanction.ent.vo.SanctionIdVO"/>
+        <mapping class="cm.purplemoney.sanction.ent.vo.SanctionVO"/>
     </session-factory>
 </hibernate-configuration>
