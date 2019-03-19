@@ -33,13 +33,13 @@
 		<link rel="stylesheet" 	 href="<s:url value="/common/css/powered/normalize.css"/>">
 		<link rel="stylesheet"   href="<s:url value="/common/css/powered/normalize.min.css"/>">
 		<link rel="stylesheet"   href="<s:url value="/common/css/powered/powered.css"/>">
-	    <link rel="stylesheet"   href="<s:url value="/common/css/flag-icon/css/flag-icon.css"/>">
+	    	<link rel="stylesheet"   href="<s:url value="/common/css/flag-icon/css/flag-icon.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/utils/google/css/map.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/menu/css/menu.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/modal/modal.css"/>">
 
 		<script src="<s:url value="/common/js/powered/console_runner.js"/>"></script>
-    	<script src="<s:url value="/common/js/powered/css_reload.js"/>"></script>
+    		<script src="<s:url value="/common/js/powered/css_reload.js"/>"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
