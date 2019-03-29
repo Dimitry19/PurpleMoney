@@ -28,6 +28,40 @@ FormManager = function () {
         });
     }
 
+
+    function toaster() {
+
+        $(document).ready(function() {
+           // jQuery.noConflict();
+            $('.mdb-select').materialSelect();
+        });
+       /* console.log("formValidation");
+        var type=+json.type;
+        var msg='#'+json.idForm;
+
+        toastr.options = {
+            "closeButton": true, // true/false
+            "debug": false, // true/false
+            "newestOnTop": false, // true/false
+            "progressBar": false, // true/false
+            "positionClass": "md-toast-top-right", // md-toast-top-right / md-toast-top-left / md-toast-bottom-right /
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300", // in milliseconds
+            "hideDuration": "1000", // in milliseconds
+            "timeOut": "5000", // in milliseconds
+            "extendedTimeOut": "1000", // in milliseconds
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+    }
+
+        //toastr["info"]("I was launched via jQuery!");
+        toastr["info"]("I was launched via jQuery!");*/
+
+    }
+
     function formValidation(json) {
         console.log("formValidation");
         var idSubmit='#'+json.idSubmit;
@@ -44,15 +78,8 @@ FormManager = function () {
             }
 
             form.addClass('was-validated');
-    });
-
+        });
     }
-
-    function actionCall(url) {
-        window.location=url;
-    }
-
-
 
     function popolateField(jsonObj){
         console.log(JSON.stringify(jsonObj));
@@ -70,12 +97,6 @@ FormManager = function () {
         if(selectId=='member2'){
             $("#aMember").val(value);
         }
-        //actionCall("retrieveMemberAction.do?member="+value);
-
-
-        /*if(value.length!=0){
-            gs.sendForm({containerId:'machineContainer',formId:'activities-form',actionUrl:'reloadMachines.do?department='+value});
-        }*/
     }
     $("#select").change(function(e){
         var value = $(this).val();
@@ -83,20 +104,6 @@ FormManager = function () {
         //submit a form or make ajax call or use window.location
     });
 
-    var orderEsecSelector = function (ev, selection) {
-        if(debug){
-            console.log(JSON.stringify(selection));
-        }
-
-        if(selection.value == ''){
-            clearOrderEsecSelectorData();
-        }else{
-            $('#itemsOrderEsecAc').typeahead('val', defaultAutocompleteDescription(selection));
-            $('#itemOrderEsecCode').val(selection.value);
-            $('#acOrderEsecDesc').html(selection.shortDescription);
-        }
-
-    }
 
 
     function fillField(jsonObj){
@@ -106,6 +113,9 @@ FormManager = function () {
     function validationForm(jsonObj) {
         formValidation(jsonObj)
     }
+    function toastWindows(jsonObj) {
+        toaster(jsonObj)
+    }
 
     return {
         validationForm:function(jsonObj){
@@ -113,6 +123,9 @@ FormManager = function () {
         },
         fillField:function (jsonObj) {
             fillField(jsonObj)
+        },
+        selectorForm:function () {
+            toastWindows();
         }
     }
 

@@ -4,7 +4,7 @@
 	 <s:hidden name="currentUser"/>
 	 <s:set var="currentUs" value="%{currentUser}"/>
 	<s:set var="isAdmin" value="%{currentMember.isAdmin()}"/>
-	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	 <nav class="navbar navbar-expand-lg navbar-light bg-purple-light">
 	 	<img class="mb-4 img-circle menu-mini-logo" src=" <s:url value="/theme/img/icon-purple.jpg"/>"  width="25" height="25" align="left">
 	 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		 	<span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
 		 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			 <ul class="navbar-nav mr-auto">
 				 <li class="nav-item active">
-	 				<a class="nav-link" href="#"><i class="fa fa-home"></i>&nbsp;<s:text name="common.menu.home"/></a>
+	 				<a class="nav-link" href="<s:url action="homeAction"/>"><i class="fa fa-home"></i>&nbsp;<s:text name="common.menu.home"/></a>
 				 </li>
 				 <li class="nav-item dropdown">
 				 	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMembersLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,7 +23,7 @@
 					 <div class="dropdown-menu" aria-labelledby="navbarDropdownMembersLink">
 						<s:if test="currentMember.isAdmin()== true">
 						 	<a class="dropdown-item" href="<s:url action="menuAddMemberAction"/>"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.members.add"/></a>
-							<a class="dropdown-item" href="<s:url action="editMemberAction"/>"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.members.edit"/></a>
+							<a class="dropdown-item" href="<s:url action="editMemberAction"/>"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.members.edit"/></a>
 						</s:if>
 						<a class="dropdown-item" href="<s:url action="allMembersAction"/>"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.members.all"/></a>
 					 </div>
@@ -43,6 +43,7 @@
 	 							<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds.open"/>
 	 					 </a>
 	                     <a class="nav-link" href="<s:url action="sessionsAction"/>"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds.all"/></a>
+						 <a class="nav-link"  href="<s:url action="retrieveCalendar"/>"><i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;<s:text name="footer.link.calendar"></s:text></a>
 					 </div>
 				 </li>
 				 <li class="nav-item">
@@ -51,12 +52,32 @@
 				 <li class="nav-item">
 				 	<a class="nav-link" href="#"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.reglements"/></a>
 				 </li>
-				 <li class="nav-item">
-					<a class="nav-link" href="#"><i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.contact"/></a>
-				 </li>
-				 <li class="nav-item">
-				 	<a class="nav-link" href="#"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.about"/></a>
-				 </li>
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguageLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fa fa-language" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.language"/>
+				</a>
+				<!-- bloc menu déroulant -->
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownLanguageLink">
+					<s:url id="indexEN"  namespace="/" action="locale" >
+						<s:param name="request_locale" >en</s:param>
+					</s:url>
+					<s:url id="indexEN" namespace="/" action="locale" >
+						<s:param name="request_locale" >es</s:param>
+					</s:url>
+					<s:url id="indexFR" namespace="/" action="locale" >
+						<s:param name="request_locale" >fr</s:param>
+					</s:url>
+					<a class="dropdown-item" href="%{#indexEN}"><span class="flag-icon flag-icon-us flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.english"/></a>
+					<a class="dropdown-item" href="%{#indexFR}"><span class="flag-icon flag-icon-fr flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.french"/></a>
+					<a class="dropdown-item" href="%{#indexIT}"><span class="flag-icon flag-icon-it flag-icon-squared"></span></i>&nbsp;<s:text name="common.menu.language.italian"/></a>
+				</div>
+				</li>
+				 <%--<li class="nav-item">--%>
+					<%--<a class="nav-link" href="#"><i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.contact"/></a>--%>
+				 <%--</li>--%>
+				 <%--<li class="nav-item">--%>
+				 	<%--<a class="nav-link" href="#"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.about"/></a>--%>
+				 <%--</li>--%>
 			 </ul>
 			 <div class="top-menu" style="margin-right: 5px;">
 				 <ul class="nav navbar-nav pull-right">

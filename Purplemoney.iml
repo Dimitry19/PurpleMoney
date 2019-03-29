@@ -1,21 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
   <component name="FacetManager">
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="java:hibernate/SessionFactory" value="49f04042-cb97-4cb5-ad37-7cdffe5ce12b" />
+          <unit-entry name="sessionFactory" value="bad33d31-96d7-4949-a752-63dc3077b663" />
+        </datasource-map>
+        <naming-strategy-map />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
+      </configuration>
+    </facet>
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/session/usr/rsc/amount.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/search.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/group/usr/rsc/group.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/portal.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/config/rsc/hibernateConfig.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/members/usr/rsc/members.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/loginHome.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/common.beans.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/profile/usr/rsc/profile.bean.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/association/rsc/article.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/role/usr/rsc/group.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/common.beans.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/group/usr/rsc/group.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/config/rsc/hibernateConfig.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/loginHome.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/members/usr/rsc/members.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/portal.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/profile/usr/rsc/profile.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/role/usr/rsc/role.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/search.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/session/usr/rsc/session.bean.xml</file>
+          <file>jar://$MAVEN_REPOSITORY$/org/apache/camel/camel-spring-boot/2.17.0/camel-spring-boot-2.17.0.jar!/org/apache/camel/spring/boot/CamelAutoConfiguration.class</file>
+          <file>jar://$MAVEN_REPOSITORY$/org/apache/camel/camel-spring-boot/2.17.0/camel-spring-boot-2.17.0.jar!/org/apache/camel/spring/boot/TypeConversionConfiguration.class</file>
+          <file>file://$MAVEN_REPOSITORY$/org/apache/camel/camel-spring-boot/2.17.0/camel-spring-boot-2.17.0.jar</file>
+          <file>jar://$MAVEN_REPOSITORY$/io/rhiot/rhiot-cloudplatform-encoding-json/0.1.5-SNAPSHOT/rhiot-cloudplatform-encoding-json-0.1.5-20160418.131617-96.jar!/io/rhiot/cloudplatform/encoding/json/spring/JsonPayloadEncodingConfiguration.class</file>
+          <file>file://$MAVEN_REPOSITORY$/io/rhiot/rhiot-cloudplatform-encoding-json/0.1.5-SNAPSHOT/rhiot-cloudplatform-encoding-json-0.1.5-20160418.131617-96.jar</file>
+          <file>jar://$MAVEN_REPOSITORY$/io/rhiot/rhiot-gateway-app/0.1.5-SNAPSHOT/rhiot-gateway-app-0.1.5-20160418.131702-97.jar!/io/rhiot/spring/activemq/broker/ActivemqBrokerConfiguration.class</file>
+          <file>jar://$MAVEN_REPOSITORY$/io/rhiot/rhiot-gateway-app/0.1.5-SNAPSHOT/rhiot-gateway-app-0.1.5-20160418.131702-97.jar!/io/rhiot/cloudplatform/encoding/json/spring/JsonPayloadEncodingConfiguration.class</file>
+          <file>file://$MAVEN_REPOSITORY$/io/rhiot/rhiot-gateway-app/0.1.5-SNAPSHOT/rhiot-gateway-app-0.1.5-20160418.131702-97.jar</file>
+          <file>jar://$MAVEN_REPOSITORY$/io/rhiot/rhiot-spring-activemq/0.1.5-SNAPSHOT/rhiot-spring-activemq-0.1.5-20160427.153828-98.jar!/io/rhiot/spring/activemq/broker/ActivemqBrokerConfiguration.class</file>
+          <file>file://$MAVEN_REPOSITORY$/io/rhiot/rhiot-spring-activemq/0.1.5-SNAPSHOT/rhiot-spring-activemq-0.1.5-20160427.153828-98.jar</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/event/usr/rsc/article.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/config/rsc/hibernateConfig.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/association/rsc/article.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/sanction/usr/rsc/article.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/event/usr/rsc/article.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/sanction/usr/rsc/article.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/common/usr/rsc/common.beans.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/group/usr/rsc/group.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/jsonplugin.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/common/usr/rsc/loginHome.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/members/usr/rsc/members.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/common/usr/rsc/portal.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/profile/usr/rsc/profile.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/role/usr/rsc/role.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/common/usr/rsc/search.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources_/cm/purplemoney/session/usr/rsc/session.bean.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -27,43 +64,34 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-        </sourceRoots>
       </configuration>
       <facet type="Struts2" name="Struts 2">
         <configuration>
-          <fileset id="s2fileset" name="My Fileset " removed="false">
+          <fileset id="s2fileset" name="Struts2 Filset" removed="false">
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-actions.xml</file>
-            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/session/usr/cfg/struts-amount.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/association/cfg/struts-article.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/group/usr/cfg/struts-group.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-home.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/mail/usr/cfg/struts-mail.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-map.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/members/usr/cfg/struts-members.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/profile/usr/cfg/struts-profile.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/role/usr/cfg/struts-role.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/sanction/usr/cfg/struts-sanction.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-search.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/session/usr/cfg/struts-session.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/com/jgeppert/struts2/bootstrap/struts2-bootstrap-plugin/2.5.2/struts2-bootstrap-plugin-2.5.2.jar!/struts-plugin.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.3.24/struts2-core-2.3.24.jar!/struts-default.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-dojo-plugin/2.1.8/struts2-dojo-plugin-2.1.8.jar!/struts-plugin.xml</file>
-            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.3.32/struts2-spring-plugin-2.3.32.jar!/struts-plugin.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/com/jgeppert/struts2/jquery/struts2-jquery-plugin/3.0.1/struts2-jquery-plugin-3.0.1.jar!/struts-plugin.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-json-plugin/2.3.32/struts2-json-plugin-2.3.32.jar!/struts-plugin.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.3.32/struts2-spring-plugin-2.3.32.jar!/struts-plugin.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/event/usr/cfg/struts-event.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
       </facet>
-    </facet>
-    <facet type="hibernate" name="Hibernate">
-      <configuration>
-        <datasource-map>
-          <unit-entry name="java:hibernate/SessionFactory" value="a71c6f3f-04fc-49d3-864e-095d87c5a19b" />
-          <unit-entry name="sessionFactory" value="f3fbe1c2-a70a-440f-8491-99d85c0bd5c3" />
-        </datasource-map>
-        <naming-strategy-map />
-        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
-      </configuration>
     </facet>
   </component>
 </module>

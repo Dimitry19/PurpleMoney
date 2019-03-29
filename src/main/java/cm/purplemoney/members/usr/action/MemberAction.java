@@ -2,17 +2,15 @@ package cm.purplemoney.members.usr.action;
 
 
 import cm.purplemoney.association.ent.bo.AssociationBO;
+import cm.purplemoney.association.ent.vo.AssociationVO;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
-import cm.purplemoney.session.ent.bo.SessionBO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.common.usr.action.BaseAction;
-import cm.purplemoney.group.ent.bo.GroupBO;
 import cm.purplemoney.members.ent.enums.SexEnum;
 import cm.purplemoney.role.ent.bo.RoleBO;
 import com.opensymphony.xwork2.Preparable;
 import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
-import com.opensymphony.xwork2.validator.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.slf4j.Logger;
@@ -24,21 +22,6 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-@Validations(requiredStrings = {
-		@RequiredStringValidator(fieldName = "userInfo.association", type = ValidatorType.FIELD, message = "Association is required"),
-		@RequiredStringValidator(fieldName = "userInfo.id.name", type = ValidatorType.FIELD, message = "Name is required"),
-},
-		emails={	@EmailValidator(fieldName = "email" ,type=ValidatorType.FIELD,message = "Entrez une adresse email valide")
-		},
-		expressions = {
-				@ExpressionValidator(expression = "password.trim().length() > 5", message = "Password must have as minimum 6 Characters.")
-		}, fieldExpressions = {
-		@FieldExpressionValidator(fieldName = "password", expression = "password.trim().length() > 6", message = "Password must have as minimum 6 Characters."),
-		@FieldExpressionValidator(fieldName = "agree", expression = "agree == true", message = "Accept the Agreement.")
-})
-
-*/
 @Component("memberAction")
 @Scope("prototype")
 public class MemberAction extends BaseAction implements SessionAware,Preparable{
@@ -52,14 +35,14 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 	private SessionVO amount;
 	private List members;
 	private List associations;
+	private AssociationVO associationCurrent;
 	private List roles;
 	private SexEnum[] sexEnums;
+	private String term;
+	private String[] membersNames;
+
 
 	private List<SessionVO> sessions = new ArrayList<SessionVO>();
-
-
-
-
 
 	@Resource(name="authUserBO")
 	private AuthUserBO authUserBO;
@@ -73,17 +56,26 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 	@Resource(name = "roleBO")
 	private RoleBO roleBO;
 
-	@Override
+
+
+    @Override
 	public void prepare() throws Exception{
 
-		members=memberBO.loadAllMembers();
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
+		members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
 		associations=associationBO.loadAllAssociations();
+		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
 		roles=roleBO.loadAllRoles();
 		sexEnums = SexEnum.values();
 	}
 
 
 	public void validate(){
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
 		if(userSearch!=null){
 			if (StringUtils.isEmpty(userSearch.getId().getName())) {
 				addFieldError("userSearch.id.name", getText("common.member.search.error.username"));
@@ -93,62 +85,92 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 				addFieldError("userSearch.association", getText("common.member.search.error.association"));
 			}
 		}
+		if (userAdding!=null){
+			if(!userAdding.isActive()){
+				addActionError("I don't know you, dont try to hack me!");
+				addFieldError("userAdding.active", getText("common.member.add.error.active"));
+			}
+			if(StringUtils.isEmpty(userAdding.getSex())){
+				addActionError("I don't know you, dont try to hack me!");
+				addFieldError("userAdding.sex", getText("common.member.add.error.gender"));
+			}
+		}
+
 	}
 	public String execute() {
-		return SUCCESS;
+
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}return SUCCESS;
 	}
 	 
 	public String login() {
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
 		System.out.println(getUserAdding());
 		
 		return SUCCESS;
 	}
 	public String info() throws Exception {
-
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
 		userInfo=memberBO.findMember(getCurrentUser(), getCurrentAssociation().toUpperCase());
 
 		return SUCCESS;
 	}
 
 	public String allInfoMember()throws Exception {
-		// TODO implementer la recherche avec les textfield et penser a l'autocomplete
 		String associa=userSearch.getAssociation()!=null?userSearch.getAssociation():getCurrentAssociation().toUpperCase();
 		userInfo=memberBO.findMember(userSearch.getId().getName(), associa);
 		return SUCCESS;
 	}
 
 	public String infoMember() throws Exception {
-
-		userInfo=memberBO.findMember(amount);
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
+		userInfo=memberBO.findMemberFromSession(amount);
 
 		return SUCCESS;
 	}
 
+	public String autocompleteMember() throws Exception{
 
+		if(StringUtils.isNotBlank(term)){
+			membersNames = memberBO.autocomplete(term,currentAssociation.toUpperCase());
+		}
+			return SUCCESS;
+	}
 
 	public String saveEditMember() throws Exception {
 
 	    memberBO.saveEditMember(userInfo);
-		authUserBO.saveEditUser(null, null,userInfo);
-
+	    if(StringUtils.equals(userInfo.getId().getName(),getCurrentUser())){
+	    	authUserBO.saveEditUser(null, null,userInfo);
+		}
 		//addActionMessage("Nouveau membre correctement ajouté!");
 		return SUCCESS;
 	}
+	public String  showDetailsMember() throws Exception {
+		return SUCCESS;
+	}
+
 
 	public String addMember() throws Exception {
 		log.debug("addMethod");
-
+		roleBO.updateRoleByMember(userAdding.getRole());
 		memberBO.addMember(userAdding);
+		addActionMessage(getText("member.add.success.footer"));
 
-		//addActionMessage("Nouveau membre correctement ajouté!");
 		return SUCCESS;
 	}
 
 	public String loadAllMembers() throws Exception{
-		members=memberBO.loadAllMembers();
+		members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
 		return SUCCESS;
 	}
-
 
 	public SessionVO getAmount() {
 		return amount;
@@ -222,5 +244,29 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 
 	public void setUserSearch(MemberVO userSearch) {
 		this.userSearch = userSearch;
+	}
+
+	public String getTerm() {
+		return term;
+	}
+
+	public void setTerm(String term) {
+		this.term = term;
+	}
+
+	public String[] getMembersNames() {
+		return membersNames;
+	}
+
+	public void setMembersNames(String[] membersNames) {
+		this.membersNames = membersNames;
+	}
+
+	public AssociationVO getAssociationCurrent() {
+		return associationCurrent;
+	}
+
+	public void setAssociationCurrent(AssociationVO associationCurrent) {
+		this.associationCurrent = associationCurrent;
 	}
 }

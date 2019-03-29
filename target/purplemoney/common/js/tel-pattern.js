@@ -17,42 +17,8 @@ TelManager = function () {
         '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
         '</div></div></div></div>';
 
-    function printLabel(jsonObj){
-
-        sendRequest(jsonObj);
-    }
-
-    function printWorking(jsonObj){
-        sendRequest(jsonObj);
-
-    }
 
 
-
-
-    function sendRequest(jsonObj) {
-
-        var idTable='#'+jsonObj.idTable; //id della tabella dalla quale si fa la richiesta
-
-        var printerName = $('#printer').val();
-        if(printerName==emptyString){
-
-            showErrorMessage(idTable,idErrorModal);
-        }
-        else{
-            var url = QSManager.appendParameters(jsonObj.url+'&printerInfo.printerName='+printerName);
-            if(debug){
-                console.log('Url invocato: ' + url);
-            }
-
-            gs.executeAction({url:url,
-                manageResult:function(data){
-                    eval('var response='+data );
-                    NotificationManager.showMessage('success', response.result);
-
-                }});
-        }
-    }
 
 
     function  showErrorMessage(id,idErrorModal){
@@ -60,22 +26,15 @@ TelManager = function () {
         $(idErrorModal).modal('show');
     }
 
-    function fonetel(json){
-        var id='#'+json.idTel;
-        var input = document.querySelector(id);
-        window.intlTelInput(input,({
-            utilsScript:'/intlTelInput/build/js/utils.js', //file from google’s libphonenumber library
-            autoPlaceholder:true
-
-    }));
-
-    }
     function formatTel(json) {
         var id='#'+json.idTel;
+        var lang=json.lang;
+
+        console.log(lang);
         console.log(id);
-          $(id).intlTelInput({
-              utilsScript:'/intlTelInput/build/js/utils.js', //file from google’s libphonenumber library
-              autoPlaceholder:true
+          $(id).CcPicker({
+              dataUrl:"data.json",
+              "countryCode":lang
           });
     }
 

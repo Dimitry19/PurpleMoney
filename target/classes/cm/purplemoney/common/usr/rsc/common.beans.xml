@@ -79,6 +79,8 @@
 				<value>cm.purplemoney.found.ent.vo</value>
 				<value>cm.purplemoney.profile.ent.vo</value>
 				<value>cm.purplemoney.role.ent.vo</value>
+				<value>cm.purplemoney.sanction.ent.vo</value>
+				<value>cm.purplemoney.event.ent.vo</value>
 			</list>
 		</property>
 		<property name="annotatedClasses">
@@ -87,6 +89,7 @@
 				<value>cm.purplemoney.association.ent.vo.AssociationVO</value>
 				<value>cm.purplemoney.customers.ent.vo.CustomerVO</value>
 				<value>cm.purplemoney.common.ent.vo.CommonIdVO</value>
+				<value>cm.purplemoney.common.ent.vo.LanguageVO</value>
 				<value>cm.purplemoney.members.ent.vo.MemberIdVO</value>
 				<value>cm.purplemoney.members.ent.vo.MemberVO</value>
 				<value>cm.purplemoney.customers.ent.vo.CustomerVO</value>
@@ -97,6 +100,10 @@
 				<value>cm.purplemoney.profile.ent.vo.AuthUserVO</value>
 				<value>cm.purplemoney.role.ent.vo.RoleVO</value>
 				<value>cm.purplemoney.role.ent.vo.RoleVOId</value>
+				<value>cm.purplemoney.sanction.ent.vo.SanctionIdVO</value>
+				<value>cm.purplemoney.sanction.ent.vo.SanctionVO</value>
+				<value>cm.purplemoney.event.ent.vo.ProgramIdVO</value>
+				<value>cm.purplemoney.event.ent.vo.EventVO</value>
 			</list>
 		</property>
 	</bean>
@@ -105,37 +112,24 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
-<!--	<tx:annotation-driven transaction-manager="txManager"/>
- 
-  <tx:advice id="txAdvice" transaction-manager="txManager">
-    <tx:attributes>
-      <tx:method name="*" propagation="REQUIRED" rollback-for="Exception,RuntimeException,Errors"/>
-    </tx:attributes>
-  </tx:advice>-->
-<!--
-	
-	<bean id="mobileTypes" class="java.util.HashMap" scope="singleton" >
-    <constructor-arg>
-        <map key-type="java.lang.String" value-type="java.lang.String">
-           <entry key=".*iPhone.*" value="iphone" />
-           <entry key=".*iPad.*" value="iphone" />                
-           <entry key=".*Android.*" value="iphone" />
-           <entry key=".*Safari.*Pre.*" value="iphone" />
-           <entry key=".*Nokia.*AppleWebKit.*" value="iphone" />            
-        </map>
-    </constructor-arg>
-	</bean> -->
+	<!--<bean id="appProperties" class="org.apache.commons.configuration.DatabaseConfiguration">
+		<constructor-arg type="javax.sql.DataSource" ref="dataSourceH2" />
+		<constructor-arg index="1" value="PUBLIC.CONFIGURATION"  />
+		<constructor-arg index="2" value="KEY"  />
+		<constructor-arg index="3" value="VALUE"  />
+	</bean>-->
+
+	<tx:annotation-driven transaction-manager="txManager"/>
+      <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+          <tx:method name="*" propagation="REQUIRED" rollback-for="Exception,RuntimeException,Errors"/>
+        </tx:attributes>
+      </tx:advice>
 
 	<import resource="classpath:cm/purplemoney/config/rsc/hibernateConfig.bean.xml"/>
 	<import resource="classpath:cm/purplemoney/common/usr/rsc/portal.bean.xml"/>
 	<import resource="classpath:cm/purplemoney/common/usr/rsc/loginHome.bean.xml"/>
 	<import resource="classpath:cm/purplemoney/members/usr/rsc/members.bean.xml"/>
 	<import resource="classpath:cm/purplemoney/common/usr/rsc/search.bean.xml"/>
-	<!--
 
-	<import resource="classpath:cm/purplemoney/profile/rsc/profile.bean.xml"/>
-    <import resource="classpath:cm/purplemoney/articles/rsc/article.bean.xml"/>
-    <import resource="classpath:cm/purplemoney/amount/rsc/amount.bean.xml"/>
-
-    <import resource="classpath:cm/purplemoney/group/rsc/group.bean.xml"/>-->
 </beans>

@@ -1,6 +1,8 @@
 var DataTableManager;
 DataTableManager = function () {
 
+
+
     var idioma=
         {
             "sProcessing":     "Procesando...",
@@ -136,10 +138,23 @@ DataTableManager = function () {
         var titlePage=json.title;
         var lang=json.lang;
 
+        var  colorRow= function( row, data, dataIndex ) {
+            console.log(data[6] );
+            console.log(data[7] );
+
+            if ( data[6] =='Non' || data[6] =='No') {
+                $(row).addClass('darkseagreen');
+            }
+            if (data[7].length > 1) {
+                $(row).addClass('sanction');
+            }
+            if (data[7].length > 1 && (data[6] =='Non' || data[6] =='No')) {
+                $(row).addClass('sanction-inactive');
+            }
+        }
+
 
         var options={
-
-
             scrollY: '200',
             scrollX: true,
             paging: true,
@@ -148,28 +163,65 @@ DataTableManager = function () {
             ordering: true,
             info: true,
             autoWidth: true,
-            //"language": (converter.dooa() == en) ? en : converter.dooa(),
-            responsive: true,
+            "createdRow":colorRow,
+            responsive: true, /*{
+                         details: {
+                             type: 'column',
+                             target: 'tr',
+                             display: $.fn.dataTable.Responsive.display.modal( {
+                                header: function ( row ) {
+                                        var data = row.data();
+                                        var html=''+data[1]+' '+data[2]+'';
+
+                                        //return 'Details for :'+data[1]+' '+data[2];
+                                    return 'Details for :['+html+']';
+                                }
+                            } ),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
+                }
+            },*/
             lengthMenu: [[5,10,20, -1],[5,10,50,"Montrer Tout"]],
             dom: 'Bfrt<"col-md-6 inline"i> <"col-md-6 inline"p>',
-            buttons: {
-                dom: {
-                    container:{
-                        tag:'div',
-                        className:'flexcontent'
+            columnDefs: [{
+                             targets: [4],
+                             visible: true
+                         },
+                            {
+                            targets: [5],
+                            visible: false
+                         },
+                        {
+                            targets: [6],
+                            visible: false
+                        },
+                            {
+                              targets: [7],
+                              visible: true
+                         }, {
+                           // adding a more info button at the end
+                              targets: -1,
+                               data: null,
+                               defaultContent: "<button type='button'  data-toggle='tooltip' data-placement='top' title='Details Info' class='btn  btn-md btn perso-eye buttons-collection showDetails buttons-page-length'>" +
+                               "<i class='fa fa-eye' aria-hidden='true'></i>&nbsp;</button>"
+                             }],
+                buttons: {
+                    dom: {
+                        container:{
+                            tag:'div',
+                            className:'flexcontent'
+                        },
+                        buttonLiner: {
+                            tag: null
+                        }
                     },
-                    buttonLiner: {
-                        tag: null
-                    }
-                },
 
                 buttons: [
                     {
                         extend:    'copyHtml5',
-                        text:      '<i class="fa fa-clipboard"></i>Copier',
-                        title:titlePage,
-                        titleAttr: 'Copier',
-                        className: 'btn btn-app export barras',
+                        text:      '<i class="fa fa-clipboard"></i>',
+                        className: 'btn btn-app export perso-copy barras',
                         exportOptions: {
                             columns: ':visible'
                         }
@@ -177,10 +229,9 @@ DataTableManager = function () {
 
                     {
                         extend:    'pdfHtml5',
-                        text:      '<i class="fa fa-file-pdf-o"></i>PDF',
+                        text:      '<i class="fa fa-file-pdf-o"></i>',
                         title:titlePage,
-                        titleAttr: 'PDF',
-                        className: 'btn btn-app export pdf',
+                        className: 'btn btn-app perso-pdf export pdf',
                         exportOptions: {
                             columns: ':visible'
                         },
@@ -205,30 +256,27 @@ DataTableManager = function () {
 
                     {
                         extend:    'excelHtml5',
-                        text:      '<i class="fa fa-file-excel-o"></i>Excel',
+                        text:      '<i class="fa fa-file-excel-o"></i>',
                         title:titlePage,
-                        titleAttr: 'Excel',
-                        className: 'btn btn-app export excel',
+                        className: 'btn btn-app perso-excel export excel',
                         exportOptions: {
                             columns: ':visible'
                         },
                     },
                     {
                         extend:    'csvHtml5',
-                        text:      '<i class="fa fa-file-text-o"></i>CSV',
+                        text:      '<i class="fa fa-file-text-o"></i>',
                         title:titlePage,
-                        titleAttr: 'CSV',
-                        className: 'btn btn-app export csv',
+                        className: 'btn btn-app perso-csv export csv',
                         exportOptions: {
                             columns: ':visible'
                         }
                     },
                     {
                         extend:    'print',
-                        text:      '<i class="fa fa-print"></i>Imprimer',
+                        text:      '<i class="fa fa-print"></i>',
                         title:titlePage,
-                        titleAttr: 'Imprimer',
-                        className: 'btn btn-app export print',
+                        className: 'btn btn-app perso-print export print',
                         exportOptions: {
                             columns: ':visible'
                         }
@@ -249,30 +297,121 @@ DataTableManager = function () {
 
         }
 
+
+
+
         $(document).ready(function() {
+
             if(lang == 'it'){
                 options.language=it;
-
             }
             if(lang == 'en'){
                 options.language=en;
-
             }
             if(lang == 'fr'){
                 options.language=fr;
             }
-            $(idDataTable).DataTable( options);
+
+            var table=$(idDataTable).DataTable( options);
 
 
 
-            /*table.fnDestroy();
-            table=null;
-            var currentLang = (currentLang == ll) ? ll : fr;
-            table=$(lk).dataTable( {"oLanguage": currentLang} );*/
+            table.columns().every( function () {
+                // Column data
+               // console.log("Data:", this.data() );
+
+                // Column visibility
+                //console.log("Visibility:", this.visible() );
+
+                // Column header
+                //console.log("Header:", $(this.header()).text() );
+            } );
+
+            var tbo=idDataTable+' tbody';
+
+
+          // $(tbo).on('click', 'button', function() {
+                //var data = table.row($(this).parents('tr')).data(); // getting target row data
+            $(tbo).on('click', 'tr', function () {
+                var data = table.row( this ).data();
+
+                var header0 = $(table.column( 0 ).header()).html();
+                var header1 = $(table.column( 1 ).header()).html();
+                var header2 = $(table.column( 2 ).header()).html();
+                var header3 = $(table.column( 3 ).header()).html();
+                var header4 = $(table.column( 4 ).header()).html();
+                var header5 = $(table.column( 5 ).header()).html();
+                var header6 = $(table.column( 6 ).header()).html();
+                var header7 = $(table.column( 7 ).header()).html();
+
+
+                var HTML_TABLE= '<table class="table dtr-details" width="100%">' +
+                    '<tbody>' +
+                        '<tr>' +
+                            '<td style="font-style:italic;color: mediumvioletred;">'+header0+'<td>' +
+                            '<td>' + data[0] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td  style="font-style: italic;color: mediumvioletred;">'+header1+'<td>' +
+                            '<td>' + data[1] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header2+'<td>' +
+                            '<td>' + data[2] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td  style="font-style: italic;color: mediumvioletred;">'+header3+'<td>' +
+                            '<td>' + data[3] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header4+'<td>' +
+                            '<td>' + data[4] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header5+'<td>' +
+                            '<td>' + data[5] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header6+'<td>' +
+                            '<td>' + data[6] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td style="font-style: italic;color: mediumvioletred;">'+header7+'<td>' +
+                            '<td>' + data[7] + '</td>' +
+                        '</tr>' +
+                    '</tbody>' + '</table>';
+                $('.insertHere').html(HTML_TABLE);
+                $('#myModal').modal('show'); // calling the bootstrap modal
+            });
         } );
-
-
     }
+
+    /*$(document).ready( function () {
+        var table = $('#example').DataTable({
+            select: true,
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: 'tr', //THIS WORKS GREAT IN RESPONSIVE VIEW
+                    display: $.fn.dataTable.Responsive.display.modal( {
+                        header: function ( row ) {
+                            var data = row.data();
+                            return 'Details for '+data[0]+' '+data[1];
+                        }
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                        tableClass: 'table'
+                    })
+                }
+            }
+        }).on( 'select', function ( e, dt, type, indexes ) {
+            //if not responsive view launch responsive modal
+        });
+    });*/
+
+
+
+
 
 
     function constructDatatable(jsonObj) {
@@ -315,9 +454,6 @@ DataTableManager = function () {
             $(btn).click(function(){
                 dtable.fnDestroy();
                 dtable = null;
-               // currentLang = (currentLang == english) ? espanol : english;
-               // dtable = $(idDataTable).dataTable( {"oLanguage": lang} );
-
                 $(idDataTable).DataTable( controlLanguage(lang) );
             });
 

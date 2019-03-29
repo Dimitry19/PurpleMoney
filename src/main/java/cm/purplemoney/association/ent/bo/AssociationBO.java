@@ -8,9 +8,9 @@ import cm.purplemoney.members.ent.vo.MemberVO;
 
 public interface AssociationBO {
 	
-	public void addAssociation(AssociationVO association) throws BusinessException;
-	public List<AssociationVO> loadAllAssociations() throws  BusinessException;
-	public AssociationVO associationInfoFromMember(MemberVO member) throws BusinessException;
+	 void addAssociation(AssociationVO association) throws BusinessException;
+	 List<AssociationVO> loadAllAssociations() throws  BusinessException;
+	 AssociationVO associationInfoFromMember(MemberVO member) throws BusinessException;
 
 
 }

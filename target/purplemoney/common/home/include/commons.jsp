@@ -4,43 +4,45 @@
 <%-- Using Struts2 Tags in JSP --%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <head>
-	<meta charset="utf-8">
 	<meta name="robots" content="noindex">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<meta charset="UTF-8">
 
-	<!--Bootstrap- select plugin-->
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
 
 
-		<!--Bootstrap- select plugin-->
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
-
 		<!-- Custom styles for this template -->
 		<link  rel="stylesheet"  href="<s:url value="/common/css/custom.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/css/footer.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/datatable/datatable.css"/>">
-		<link  rel="stylesheet"  href="<s:url value="/common/js/intlTelInput/build/css/intlTelInput.css"/>">
-		<link  rel="stylesheet"  href="<s:url value="/common/css/teloveride.css"/>">
-		<link  rel="stylesheet"  href="<s:url value="/common/css/jquery/ui/1.12.1/jquery-ui.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/css/datatable/responsive.css"/>">
 		<link  rel="stylesheet"  href="<s:url value="/common/css/bootstrap/build/css/bootstrap-datetimepicker.css"/>">
 		<link rel="stylesheet" 	 href="<s:url value="/common/css/powered/normalize.css"/>">
 		<link rel="stylesheet"   href="<s:url value="/common/css/powered/normalize.min.css"/>">
 		<link rel="stylesheet"   href="<s:url value="/common/css/powered/powered.css"/>">
+	    <link rel="stylesheet"   href="<s:url value="/common/css/flag-icon/css/flag-icon.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/utils/google/css/map.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/menu/css/menu.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/css/modal/modal.css"/>">
+		<link  rel="stylesheet"  href="<s:url value="/common/js/bootstrap/datepicker/css/datepicker.css"/>">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+		<link  rel="stylesheet"  href="<s:url value="/common/gijgo-combined-1.9.11/combined/css/gijgo.min.css"/>">
+		<!-- JQuery -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-
-
-		<script src="<s:url value="/common/js/powered/console_runner.js"/>"></script>
+    	<script src="<s:url value="/common/js/powered/console_runner.js"/>"></script>
     	<script src="<s:url value="/common/js/powered/css_reload.js"/>"></script>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 		<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
@@ -51,12 +53,19 @@
 		<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
 		<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 		<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-		<script src="<s:url value="/common/js/jquery/ui/1.12.1/jquery-ui.js"/>"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
-		<script src="<s:url value="/common/js/bootstrap/build/js/bootstrap-datetimepicker.min.js"/>"></script>
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+	<!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script src="<s:url value="/event/js/event.js"/>"></script>
+	<script src="<s:url value="/common/js/bootstrap/datepicker/js/bootstrap-datepicker.js"/>"></script>
+	<link  rel="stylesheet"  href="<s:url value="/common/css/datatable/customdatable.css"/>">
+
 	<title class="bg-success"><s:text name="common.page.title"/> </title>
-	<s:head />
-</head>
+	<s:head /><!-- pour la validation-->
+

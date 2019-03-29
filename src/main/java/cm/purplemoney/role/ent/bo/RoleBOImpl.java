@@ -2,6 +2,7 @@ package cm.purplemoney.role.ent.bo;
 
 import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.config.HibernateConfig;
+import cm.purplemoney.constants.PortalConstants;
 import cm.purplemoney.members.ent.enums.SexEnum;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.role.ent.vo.RoleVO;
@@ -23,8 +24,8 @@ public class RoleBOImpl implements RoleBO {
 
     public List<RoleVO> loadAllRoles() {
 
-          session=hibernateConfig.getSession();
-        Query query=session.createQuery("from RoleVO order by id.role asc");
+        session=hibernateConfig.getSession();
+        Query query=session.getNamedQuery(RoleVO.QUERY_AVAILABE_ROLE);
         return query.list();
     }
 
@@ -35,6 +36,22 @@ public class RoleBOImpl implements RoleBO {
         session.save(RoleVO.class.getName(), role);
 
         tx.commit();
+    }
+
+    @Override
+    public int  updateRoleByMember(String roleId) throws BusinessException {
+        int  rs=0;
+        if(!StringUtils.equals(roleId,PortalConstants.MEMBER_LABEL_KEY)){
+            session=hibernateConfig.getSession();
+            Transaction tx=session.beginTransaction();
+            Query query=session.getNamedQuery(RoleVO.QUERY_UPDATE_ROLE);
+            query.setParameter("role",roleId);
+            rs=query.executeUpdate();
+            tx.commit();
+
+        }
+        return rs;
+
     }
 
     @Override

@@ -1,15 +1,24 @@
 package cm.purplemoney.interceptors;
 
+import cm.purplemoney.constants.PortalConstants;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
 import cm.purplemoney.profile.ent.vo.AuthUserVO;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
+import org.apache.commons.lang3.LocaleUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.I18nInterceptor;
+import org.apache.tools.ant.util.CollectionUtils;
+import org.w3c.tidy.StreamIn;
 
 import java.util.Locale;
 import java.util.Map;
+
+import static cm.purplemoney.constants.PortalConstants.CURRENT_USER;
+import static cm.purplemoney.constants.PortalConstants.LOCALE;
+import static cm.purplemoney.constants.PortalConstants.LOGIN_REDIRECT;
 
 public class CommonInterceptor implements Interceptor {
 
@@ -29,12 +38,22 @@ public class CommonInterceptor implements Interceptor {
 		System.out.println("inside common interceptor");
 		Map<String, Object> sessionAttributes = actionInvocation.getInvocationContext().getSession();
 
-		Locale currentLocale=Locale.getDefault();
+		if (actionInvocation.getInvocationContext().getName().equals("login")){
+			Locale currentLocale=Locale.getDefault();
+			Object o=sessionAttributes.get(LOCALE);
+			Locale currentLocation  =(Locale) o;
+			if(currentLocation!=null) currentLocale=currentLocation;
 
-		ActionContext.getContext().setLocale(currentLocale);
-		sessionAttributes.put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, currentLocale);
+			ActionContext.getContext().setLocale(currentLocale);
+			sessionAttributes.put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, currentLocale);
+			return actionInvocation.invoke();
+		}
+
+
+		if ((sessionAttributes==null && sessionAttributes.get(CURRENT_USER)==null)){
+			 return LOGIN_REDIRECT;
+		}
 
 		return actionInvocation.invoke();
 	}
-
 }

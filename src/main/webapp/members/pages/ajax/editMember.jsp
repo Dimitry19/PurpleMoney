@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <s:include value="../../../common/home/include/commons.jsp"/>
-<body>
+
 <%@ include file="../../../common/home/include/header-logo.jsp" %>
 <%@ include file="../../../common/menu/menu.jsp" %>
 	<div class="container text-center">
@@ -19,6 +19,8 @@
 						<span class = "input-group-addon"></span>
 						<s:hidden name="userInfo.id.memberId" value="%{userInfo.id.memberId}"/>
 						<s:hidden name="userInfo.admin" value="%{userInfo.admin}"/>
+						<s:hidden  name="userInfo.association" value="%{userInfo.id.memberId}" />
+						<s:hidden  name="userInfo.active" value="%{userInfo.active}" />
 					</div>
 					<div class="form-group">
 						<s:label value="%{getText('member.label.surname')}" id="idsurname" for="idsurname"  labelposition="left"></s:label>
@@ -49,10 +51,11 @@
 						<s:label value="%{getText('member.label.role')}" id="idrole" for="idrole"  labelposition="left"></s:label>
 						<s:textfield  value="%{userInfo.roleDesc}"  name="userInfo.roleDesc" id="role" readonly="true" cssClass="form-control"/>
 						<span class = "input-group-addon"></span>
+						<s:hidden  name="userInfo.role" value="%{userInfo.role}" />
 					</div>
 					<div class="form-group">
 						<s:label value="%{getText('member.label.association')}" id="idAssociation" for="idAssociation"  labelposition="left"></s:label>
-						<s:textfield  value="%{userInfo.associationDesc}"  name="userInfo.association" id="associationId" readonly="true" cssClass="form-control"/>
+						<s:textfield  value="%{userInfo.associationDesc}"  name="userInfo.associationDesc" id="associationId" readonly="true" cssClass="form-control"/>
 						<span class = "input-group-addon"></span>
 					</div>
 					<s:if test="userInfo.admin==true">

@@ -35,6 +35,8 @@ public class AssociationBOImpl implements AssociationBO {
 		tx.commit();
 	}
 
+
+
 	public List<AssociationVO> loadAllAssociations() {
 
 		session=hibernateConfig.getSession();

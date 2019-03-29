@@ -1,21 +1,25 @@
 package cm.purplemoney.members.ent.vo;
 
 import java.io.Serializable;
-
+import java.util.HashSet;
+import java.util.Set;
 import cm.purplemoney.constants.FieldConstants;
-import cm.purplemoney.members.ent.enums.SexEnum;
-import cm.purplemoney.profile.ent.vo.AuthUserVO;
-import cm.purplemoney.role.ent.vo.RoleVO;
-import com.opensymphony.xwork2.validator.annotations.EmailValidator;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
-import org.hibernate.annotations.JoinFormula;
+import cm.purplemoney.event.ent.vo.EventVO;
+import cm.purplemoney.sanction.ent.vo.SanctionVO;
+
 
 import javax.persistence.*;
 
 
 @Entity
 @Table(name="MEMBER" , schema="PUBLIC")
+@NamedQueries({
+		@NamedQuery(name = MemberVO.Q_AC_ITEM, query = "select m from MemberVO m where (upper(id.name) like :searchFilter) or(upper(surname) like :" +
+				"searchFilter ) or(id.name like :searchFilter) or( surname like :searchFilter)  and association=:ass order by id.name"),
+		@NamedQuery(name = MemberVO.ALL, query = "select m from MemberVO m  where association=:ass order by id.name"),
+		@NamedQuery(name = MemberVO.FINDBYID, query = "select m from MemberVO m where id.name =:uName and association=:ass and active=:act "),
+		@NamedQuery(name = MemberVO.FINDBYSESSION, query = "select m from MemberVO m where id.name =:uName and association=:ass order by id.name"),
+})
 public class MemberVO implements Serializable{
 
 	/**
@@ -32,10 +36,18 @@ public class MemberVO implements Serializable{
 	private boolean admin;
 	private String address;
 	private String roleDesc;
-	private SexEnum sex;
+	private String sex;
 	private  String association;
     private  String associationDesc;
 	private String sexDesc;
+	private boolean male;
+	private Set<SanctionVO> sanctions= new HashSet<SanctionVO>();
+	private EventVO program;
+
+	public static final String Q_AC_ITEM = "cm.purplemoney.members.ent.vo.MemberVO.QAutocompleteItem";
+	public static final String ALL = "cm.purplemoney.members.ent.vo.MemberVO.All";
+	public static final String FINDBYID="cm.purplemoney.members.ent.vo.MemberVO.findById";
+	public static final String  FINDBYSESSION="cm.purplemoney.members.ent.vo.MemberVO.findByName";
 
 	@EmbeddedId
 	public MemberIdVO getId(){return id;}
@@ -74,8 +86,8 @@ public class MemberVO implements Serializable{
 
 	@Basic(optional = false)
 	@Column(name="SEXE",nullable = true,length = FieldConstants.SEX_STD_LEN)
-	@Enumerated(EnumType.STRING)
-	public SexEnum getSex() {
+	//@Enumerated(EnumType.STRING)
+	public String getSex() {
 		return sex;
 	}
 
@@ -96,6 +108,29 @@ public class MemberVO implements Serializable{
 	@Column(name="R_ASSOCIATION")
 	public String getAssociation() {
 		return association;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumns({
+			@JoinColumn(name = "ID", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false),
+			@JoinColumn(name = "MNAME", referencedColumnName ="R_MEMBER" ,insertable=false, updatable=false)
+	})
+	public EventVO getProgram() {
+		return program;
+	}
+
+	@OneToMany(mappedBy = "member",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("description DESC")
+	public Set<SanctionVO> getSanctions() {
+		return sanctions;
+	}
+
+	public void setProgram(EventVO program) {
+		this.program = program;
+	}
+
+	public void setSanctions(Set<SanctionVO> sanctions) {
+		this.sanctions = sanctions;
 	}
 
 	public void setAssociation(String association) {
@@ -134,7 +169,7 @@ public class MemberVO implements Serializable{
 		this.phone = phone;
 	}
 
-	public void setSex(SexEnum sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
@@ -164,7 +199,17 @@ public class MemberVO implements Serializable{
     public void setAssociationDesc(String associationDesc) {
         this.associationDesc = associationDesc;
     }
-/*
+
+	@Transient
+	public boolean isMale() {
+		return male;
+	}
+
+	public void setMale(boolean male) {
+		this.male = male;
+	}
+
+    /*
 	public String getConfirmedPassword() {
 		return confirmedPassword;
 	}

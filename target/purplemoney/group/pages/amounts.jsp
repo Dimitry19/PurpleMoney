@@ -93,11 +93,11 @@ $(document).ready(function() {
 						<s:textfield name="amount.amount" label="Montant" value="" javascriptTooltip="" cssClass="form-control"/>
 						<span class = "input-group-addon">€</span>
 					</div>
-					<div class="form-group  input-group">
+					<%--<div class="form-group  input-group">
 						<sx:datetimepicker name="amount.receiverTwo.id.date"
 										   label="Select Date"
 										   displayFormat="dd-MMM-yyyy" />
-					</div>
+					</div>--%>
 					<div class="form-group  input-group">
 						<s:select
 							tooltip="Choisir le premier beneficiare"

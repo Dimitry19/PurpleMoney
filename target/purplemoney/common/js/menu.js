@@ -8,11 +8,6 @@ $('.closeButton').click(function(){
 		});
 
 
-
-
-
-
-
 /* GESTIONE STAMPE */
 var PrinterManager;
 PrinterManager = function () {

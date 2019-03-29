@@ -55,7 +55,7 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 
 	@Override
 	public void prepare() throws Exception {
-		members=memberBO.loadAllMembers();
+		members=memberBO.loadAllMembers(currentAssociation.toUpperCase());
 		groups=groupBO.loadAllGroups();
 	}
 	

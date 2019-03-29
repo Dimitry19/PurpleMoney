@@ -25,4 +25,5 @@ public class MailAction extends BaseAction implements SessionAware,Preparable {
         return SUCCESS;
     }
 
+
 }

@@ -1,14 +1,14 @@
 <!DOCTYPE struts PUBLIC
-"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-"http://struts.apache.org/dtds/struts-2.0.dtd">
- 
+		"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+		"http://struts.apache.org/dtds/struts-2.0.dtd">
+
 <struts>
-	<package name="common"  extends="struts-default" namespace="/">
-	<interceptors>
+	<package name="common"  extends="struts-default,json-default" namespace="/">
+		<interceptors>
 			<interceptor name="authentication" 	class="cm.purplemoney.interceptors.AuthenticationInterceptor"></interceptor>
-			<interceptor name="commonInter" 	class="cm.purplemoney.interceptors.CommonInterceptor"></interceptor>
-			<interceptor-stack name="defaultStack">
-				<interceptor-ref name="commonInter" />
+			<interceptor name="commonInterceptor" 	class="cm.purplemoney.interceptors.CommonInterceptor"></interceptor>
+			<interceptor-stack name="myDefaultStack">
+				<interceptor-ref name="commonInterceptor" />
 				<interceptor-ref name="i18n" />
 				<interceptor-ref name="servletConfig" />
 				<interceptor-ref name="staticParams" />
@@ -23,16 +23,13 @@
 			</interceptor-stack>
 		</interceptors>
 
-		<default-interceptor-ref name="defaultStack" />
+		<default-interceptor-ref name="myDefaultStack" />
 
-			<global-results>
-				<result name="loginAction" type="redirect">login.do</result>
-			</global-results>
+		<global-results>
+			<result name="loginAction" type="redirect">login.do</result>
+		</global-results>
 
 		<action name="login" class="loginHomeAction">
-			<interceptor-ref name="defaultStack">
-				<param name="i18n.parameterName">appLocale</param>
-			</interceptor-ref>
 			<result name="success">/common/home/portal.jsp</result>
 		</action>
 
@@ -40,12 +37,11 @@
 
 	<include file="cm/purplemoney/common/usr/cfg/struts-home.xml"></include>
 	<include file="cm/purplemoney/group/usr/cfg/struts-group.xml"></include>
-    <include file="cm/purplemoney/profile/usr/cfg/struts-profile.xml"/>
+	<include file="cm/purplemoney/profile/usr/cfg/struts-profile.xml"/>
 	<include file="cm/purplemoney/members/usr/cfg/struts-members.xml"></include>
-
-	<!--
-	<include file="cm/purplemoney/common/cfg/struts-search.xml"></include>
-	<include file="cm/purplemoney/profile/cfg/struts-profile.xml"></include>-->
-	<!-- <include file="cm/purplemoney/rest/cfg/struts-rest.xml"></include>-->
-
+	<include file="cm/purplemoney/mail/usr/cfg/struts-mail.xml"></include>
+	<include file="cm/purplemoney/session/usr/cfg/struts-session.xml"></include>
+	<include file="cm/purplemoney/common/usr/cfg/struts-map.xml"></include>
+	<include file="cm/purplemoney/sanction/usr/cfg/struts-sanction.xml"></include>
+	<include file="cm/purplemoney/event/usr/cfg/struts-event.xml"></include>
 </struts>
