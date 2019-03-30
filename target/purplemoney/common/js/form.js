@@ -106,6 +106,18 @@ FormManager = function () {
 
 
 
+    function phone(jsonObj) {
+
+        var value='#'+jsonObj.idPhone;
+        $(value).usPhoneFormat({
+
+            format: '(xxx) xxx-xxxx'
+
+    });
+
+
+    }
+
     function fillField(jsonObj){
         popolateField(jsonObj)
     }
@@ -126,6 +138,9 @@ FormManager = function () {
         },
         selectorForm:function () {
             toastWindows();
+        },
+        phoneFormat:function (jsonObj) {
+            phone(jsonObj)
         }
     }
 

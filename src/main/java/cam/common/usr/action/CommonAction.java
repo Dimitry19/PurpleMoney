@@ -1,6 +1,6 @@
 package cam.common.usr.action;
 
-import cam.libraries.component.ent.vo.BusinessException;
+
 import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import com.opensymphony.xwork2.ActionSupport;

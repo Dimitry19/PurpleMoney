@@ -1,6 +1,7 @@
 package cm.purplemoney.session.ent.bo;
 
 
+import cam.common.CommonUtils;
 import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.session.ent.wrapper.SessionSearchWr;
@@ -34,6 +35,9 @@ public class SessionBOImpl implements SessionBO {
         if(amountSession!=null){
             session=hibernateConfig.getSession();
             Transaction tx=session.beginTransaction();
+
+            String usernameParts[] = amountSession.getId().getMember().split(CommonUtils.SPACE_REGEX, 2);
+            amountSession.getId().setMember(usernameParts[0]);
             session.saveOrUpdate(SessionVO.class.getName(), amountSession);
             tx.commit();
         }

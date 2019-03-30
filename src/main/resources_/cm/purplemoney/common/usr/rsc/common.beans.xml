@@ -1,0 +1,148 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	<!-- *** RSC ***--> 	
+	
+	<!-- Hibernate configuration -->
+
+	<!-- Database Property -->
+<!--	<bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.default_schema">PURPLEMONEY</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>-->
+	<bean id="hibernatePropertiesH2" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+				<prop key="hibernate.default_schema">PUBLIC</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- end Database Property -->
+	<!-- DataSource  -->
+	<!--	<bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql://192.168.1.87:3306/purplemoney" />
+			<property name="username" value="LionDx" />
+			<property name="password" value="orlynn1anais" />
+  		</bean>-->
+
+
+
+	<bean id="dataSourceH2"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:tcp://localhost/../../../db/purplemoney" />
+		<property name="username" value="sa" />
+		<property name="password" value="orlynn1anais"/>
+	</bean>
+	<!-- end DataSource -->
+
+	<!-- Hibernate SessionFactory-->
+	<bean id="sessionFactory"   class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
+		<property name="dataSource" ref="dataSourceH2"/>
+		 <property name="mappingLocations">
+            <value>classpath:hibernate.cfg.xml</value>
+        </property>
+		<property name="hibernateProperties">
+			<ref bean="hibernatePropertiesH2" />
+		</property>
+		<property name="annotatedPackages">
+			<list>
+				<value>cm.purplemoney.common.ent.vo</value>
+				<value>cm.purplemoney.members.ent.vo</value>
+				<value>cm.purplemoney.association.ent.vo</value>
+				<value>cm.purplemoney.customers.ent.vo</value>
+				<value>cm.purplemoney.session.ent.vo</value>
+				<value>cm.purplemoney.group.ent.vo</value>
+				<value>cm.purplemoney.found.ent.vo</value>
+				<value>cm.purplemoney.profile.ent.vo</value>
+				<value>cm.purplemoney.role.ent.vo</value>
+			</list>
+		</property>
+		<property name="annotatedClasses">
+			<list>	
+				<value>cm.purplemoney.association.ent.vo.AssociationVOId</value>
+				<value>cm.purplemoney.association.ent.vo.AssociationVO</value>
+				<value>cm.purplemoney.customers.ent.vo.CustomerVO</value>
+				<value>cm.purplemoney.common.ent.vo.CommonIdVO</value>
+				<value>cm.purplemoney.members.ent.vo.MemberIdVO</value>
+				<value>cm.purplemoney.members.ent.vo.MemberVO</value>
+				<value>cm.purplemoney.customers.ent.vo.CustomerVO</value>
+				<value>cm.purplemoney.session.ent.vo.SessionIdVO</value>
+				<value>cm.purplemoney.session.ent.vo.SessionVO</value>
+				<value>cm.purplemoney.group.ent.vo.GroupVO</value>
+				<value>cm.purplemoney.found.ent.vo.FoundVO</value>
+				<value>cm.purplemoney.profile.ent.vo.AuthUserVO</value>
+				<value>cm.purplemoney.role.ent.vo.RoleVO</value>
+				<value>cm.purplemoney.role.ent.vo.RoleVOId</value>
+			</list>
+		</property>
+	</bean>
+ <!-- Run SQL queries in transactions -->
+	<bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="appProperties" class="org.apache.commons.configuration.DatabaseConfiguration">
+		<constructor-arg type="javax.sql.DataSource" ref="dataSourceH2" />
+		<constructor-arg index="1" value="PUBLIC.CONFIGURATION"  />
+		<constructor-arg index="2" value="KEY"  />
+		<constructor-arg index="3" value="VALUE"  />
+	</bean>
+
+	<!--	<tx:annotation-driven transaction-manager="txManager"/>
+
+      <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+          <tx:method name="*" propagation="REQUIRED" rollback-for="Exception,RuntimeException,Errors"/>
+        </tx:attributes>
+      </tx:advice>-->
+<!--
+	
+	<bean id="mobileTypes" class="java.util.HashMap" scope="singleton" >
+    <constructor-arg>
+        <map key-type="java.lang.String" value-type="java.lang.String">
+           <entry key=".*iPhone.*" value="iphone" />
+           <entry key=".*iPad.*" value="iphone" />                
+           <entry key=".*Android.*" value="iphone" />
+           <entry key=".*Safari.*Pre.*" value="iphone" />
+           <entry key=".*Nokia.*AppleWebKit.*" value="iphone" />            
+        </map>
+    </constructor-arg>
+	</bean> -->
+
+	<import resource="classpath:cm/purplemoney/config/rsc/hibernateConfig.bean.xml"/>
+
+	<!--
+	<import resource="classpath:cm/purplemoney/common/usr/rsc/portal.bean.xml"/>
+	<import resource="classpath:cm/purplemoney/common/usr/rsc/loginHome.bean.xml"/>
+	<import resource="classpath:cm/purplemoney/members/usr/rsc/members.bean.xml"/>
+	<import resource="classpath:cm/purplemoney/common/usr/rsc/search.bean.xml"/>
+	<import resource="classpath:cm/purplemoney/profile/rsc/profile.bean.xml"/>
+    <import resource="classpath:cm/purplemoney/articles/rsc/article.bean.xml"/>
+    <import resource="classpath:cm/purplemoney/amount/rsc/amount.bean.xml"/>
+
+    <import resource="classpath:cm/purplemoney/group/rsc/group.bean.xml"/>-->
+</beans>

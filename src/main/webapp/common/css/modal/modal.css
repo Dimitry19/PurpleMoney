@@ -1,0 +1,16 @@
+.modal-title-custom{
+    margin-left: 19%;
+    margin-right: 35%;
+    text-decoration-color: #bd2130!important;
+}
+.modal-header {
+    text-decoration-line: underline;
+    background-color: cornflowerblue;
+}
+.modal-header-custom {
+    margin-left: 19%;
+    margin-right: 35%;
+    color: darkmagenta;
+    text-decoration-color: #bd2130!important;
+    font-style: oblique;
+}

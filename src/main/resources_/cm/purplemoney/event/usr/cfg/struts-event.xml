@@ -1,0 +1,19 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+ 	
+	<package name="program" namespace="/" extends="common">
+		<action name="retrieveCalendar" class="eventAction" >
+		    <!--<result name="success">/common/fullcalendar-master/calendar.jsp</result>-->
+			<result name="success">/event/pages/addEvent.jsp</result>
+		</action>
+		<action name="addEvent" class="eventAction"  method="addEvent" >
+			<result name="success">/event/pages/addEvent.jsp</result>
+		</action>
+		<action name="fingEvent" class="eventAction" >
+			<result name="success">/articles/pages/includes/articles-list.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,5 +1,7 @@
 package cm.purplemoney.session.usr.action;
 
+import cm.purplemoney.association.ent.bo.AssociationBO;
+import cm.purplemoney.association.ent.vo.AssociationVO;
 import cm.purplemoney.session.ent.bo.SessionBO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.session.ent.wrapper.SessionSearchWr;
@@ -38,6 +40,7 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 	private static final long serialVersionUID = 1L;
 	private SessionVO amountSession;
 	private SessionSearchWr sessionSearchWr;
+	private AssociationVO associationCurrent;
 	private List members;
 	private List<GroupVO> groups=new ArrayList<GroupVO>();
 	private List<SessionVO> sessions = new ArrayList<SessionVO>();
@@ -52,10 +55,14 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 	@Resource(name = "groupBO")
 	private GroupBO groupBO;
 
+	@Resource(name = "associationBO")
+	private AssociationBO associationBO;
+
 
 	@Override
 	public void prepare() throws Exception {
-		members=memberBO.loadAllMembers(currentAssociation.toUpperCase());
+		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
+		members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
 		groups=groupBO.loadAllGroups();
 	}
 	
@@ -65,6 +72,8 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 		//addActionError("A sample Action Error Message!");
 		//addActionMessage("A sample Action Message.");
 		//addFieldError("error", "A sample Field Error!");
+
+		//TODO  Gerez la session la formatation des pages et
 		return SUCCESS;
 	}
 	public String addSession() throws Exception{
@@ -125,5 +134,13 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 
 	public void setSessionSearchWr(SessionSearchWr sessionSearchWr) {
 		this.sessionSearchWr = sessionSearchWr;
+	}
+
+	public AssociationVO getAssociationCurrent() {
+		return associationCurrent;
+	}
+
+	public void setAssociationCurrent(AssociationVO associationCurrent) {
+		this.associationCurrent = associationCurrent;
 	}
 }

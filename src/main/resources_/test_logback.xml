@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d [%thread] %-5level @%X{RemoteUser} %class{50} %method[%line] - %msg%n%xEx</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.base}/logs/pm-application.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d [%thread] %-5level @%X{RemoteUser} %class %method[%line] - %msg%n%xEx</pattern>
+		</encoder>
+	</appender>
+
+	<root level="ERROR">
+		<appender-ref ref="ROLLING_FILE" />
+	</root>
+
+	<logger name="cm.purplemoney" />
+
+	<logger name="org.apache.struts2" />
+
+	<logger name="org.springframework"  />
+
+	<logger name="com.opensymphony.xwork2"  />
+
+	<logger name="org.hibernate"  />
+
+	<logger name="org.hibernate.SQL"  />
+
+	<logger name="org.hibernate.stat"  level="NONE"/>
+
+	<logger name="org.reflections.Reflections"  />
+
+</configuration>

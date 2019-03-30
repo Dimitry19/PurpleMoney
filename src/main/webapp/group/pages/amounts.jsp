@@ -90,7 +90,8 @@ $(document).ready(function() {
 							headerValue="---------- Please Select ----------"/>
 					</div>
 			  		<div class="form-group  input-group">
-						<s:textfield name="amount.amount" label="Montant" value="" javascriptTooltip="" cssClass="form-control"/>
+						<s:textfield key="netpl" value="%{getText('format.money',netpl)}" />
+						<s:textfield name="amount.amount" label="Montant"  javascriptTooltip="" cssClass="form-control"/>
 						<span class = "input-group-addon">€</span>
 					</div>
 					<%--<div class="form-group  input-group">
