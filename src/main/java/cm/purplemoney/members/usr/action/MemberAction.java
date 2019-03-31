@@ -150,7 +150,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 	    if(StringUtils.equals(userInfo.getId().getName(),getCurrentUser())){
 	    	authUserBO.saveEditUser(null, null,userInfo);
 		}
-		//addActionMessage("Nouveau membre correctement ajouté!");
+		addActionMessage("Nouveau membre correctement ajouté!");
 		return SUCCESS;
 	}
 	public String  showDetailsMember() throws Exception {
@@ -160,8 +160,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 
 	public String addMember() throws Exception {
 		log.debug("addMethod");
-		roleBO.updateRoleByMember(userAdding.getRole());
-		memberBO.addMember(userAdding);
+		//memberBO.addMember(userAdding);
 		addActionMessage(getText("member.add.success.footer"));
 
 		return SUCCESS;

@@ -3,7 +3,7 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <s:include value="../../common/home/include/commons.jsp"/>
-<sj:head jqueryui="true" />
+<sj:head locale="it" jquerytheme="ui-lightness" jqueryui="true" />
 </head>
 <body>
 <%@ include file="../../common/home/include/header-logo.jsp" %>

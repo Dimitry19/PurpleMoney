@@ -9,7 +9,7 @@
 		<div class="card card-perso">
 			<div class="card-header">
 				<i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;
-				<h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright">Info membre</h1>
+				<h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright"><s:text name="member.info.title"/></h1>
 			</div>
 			<div class="card-body">
 				<s:form  id="memberForm" cssClass="form-horizontal" action="saveEditMemBerAction">
@@ -74,6 +74,21 @@
 				</s:form>
 			</div>
 			<div class="card-footer bg-transparent border-success">Info Membre</div>
+			<div>
+				<s:if test="hasActionMessages()">
+					<script>
+                        var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="member.edit.sucess"/></p>';
+                        NotificationManager.displayNotification({message:message, type:'success'})
+                        FormManager.disableAllFields({idForm:'memberForm'})
+					</script>
+				</s:if>
+				<s:if test="hasActionErrors()">
+					<script>
+                        var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="common.edit.error"/></p>';
+                        NotificationManager.displayNotification({message:message, type:'error'})
+					</script>
+				</s:if>
+			</div>
 		</div>
 	</div>
 </body>

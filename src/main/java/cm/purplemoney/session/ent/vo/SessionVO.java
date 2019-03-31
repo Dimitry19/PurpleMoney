@@ -12,6 +12,7 @@ public class SessionVO implements Serializable {
     private SessionIdVO id;
     private BigInteger amount;
     private boolean status;
+    private String surnameMember;
 
     @EmbeddedId
     public SessionIdVO getId() {
@@ -28,6 +29,15 @@ public class SessionVO implements Serializable {
     @Column(name = "R_AMOUNT")
     public BigInteger getAmount() {
         return amount;
+    }
+
+    @Transient
+    public String getSurnameMember() {
+        return surnameMember;
+    }
+
+    public void setSurnameMember(String surnameMember) {
+        this.surnameMember = surnameMember;
     }
 
     public void setAmount(BigInteger amount) {

@@ -143,6 +143,7 @@ public class LoginAction extends BaseAction implements Preparable{
 			return SUCCESS;
 		}
 
+		addActionError(getText("common.login.error"));
 		return INPUT;
 	}
 

@@ -79,6 +79,7 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 	public String addSession() throws Exception{
 
 		sessionBO.addSession(amountSession);
+		addActionMessage("Nouvelle session correctement ajoutée!");
 
 		return SUCCESS;
 	

@@ -1,8 +1,5 @@
 var DataTableManager;
 DataTableManager = function () {
-
-
-
     var idioma=
         {
             "sProcessing":     "Procesando...",
@@ -296,9 +293,6 @@ DataTableManager = function () {
             }
 
         }
-
-
-
 
         $(document).ready(function() {
 

@@ -95,14 +95,14 @@ public class MemberBOImpl implements MemberBO {
 	}
 
 	@Override
-	public void addMember(MemberVO member) {
+	public void addMember(MemberVO member) throws BusinessException{
 		if(member!=null){
 			session=hibernateConfig.getSession();
 
 			Transaction tx=session.beginTransaction();
 			Serializable serializable=session.save(MemberVO.class.getName(),member);
 			if(serializable!=null){
-
+				roleBO.updateRoleByMember(member.getRole());
 			}
 			tx.commit();
 		}
