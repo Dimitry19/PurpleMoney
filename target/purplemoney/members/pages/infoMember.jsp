@@ -13,7 +13,7 @@
 				<h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright"><s:text name="member.info.title"/></h1>
 			</div>
 			<div class="card-body">
-				<s:form  id="memberForm" cssClass="form-horizontal" action="saveEditMemBerAction">
+				<s:form  id="editMemberForm" cssClass="form-horizontal" action="saveEditMemBerAction">
 					<div class="form-group">
 						<s:label value="%{getText('member.label.name')}" id="idname" for="idname"  labelposition="left"></s:label>
 						<s:textfield  value="%{userInfo.id.name}"  name="userInfo.id.name" readonly="true" id="nameId" cssClass="form-control"/>
@@ -76,6 +76,21 @@
 				</s:form>
 			</div>
 			<div class="card-footer bg-transparent border-success">Info Membre</div>
+			<div>
+				<s:if test="hasActionMessages()">
+					<script>
+                        var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="member.edit.sucess"/></p>';
+                        NotificationManager.displayNotification({message:message, type:'success'})
+                        FormManager.disableAllFields({idForm:'editMemberForm'})
+					</script>
+				</s:if>
+				<s:if test="hasActionErrors()">
+					<script>
+                        var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="common.edit.error"/></p>';
+                        NotificationManager.displayNotification({message:message, type:'error'})
+					</script>
+				</s:if>
+			</div>
 		</div>
 	</div>
 </body>
@@ -83,6 +98,7 @@
 <div class="col">
 	<%@ include file = "../../common/footers/footer.jsp" %>
 </div>
+<script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/members/js/member.js"/>"></script>
 <%--<script>
     MembersManager.enableFields({formId:'memberForm', editBtn:'editMenberBtn'})

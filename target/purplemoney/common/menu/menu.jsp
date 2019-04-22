@@ -5,7 +5,7 @@
 	 <s:set var="currentUs" value="%{currentUser}"/>
 	<s:set var="isAdmin" value="%{currentMember.isAdmin()}"/>
 	 <nav class="navbar navbar-expand-lg navbar-light bg-purple-light">
-	 	<img class="mb-4 img-circle menu-mini-logo" src=" <s:url value="/theme/img/icon-purple.jpg"/>"  width="25" height="25" align="left">
+	 	<img class="mb-4 img-circle menu-mini-logo" src="<s:url value="../../common/logo/piccolissimo.png"/>"  width="25" height="25" align="left">
 	 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		 	<span class="navbar-toggler-icon"></span>
 		 </button>

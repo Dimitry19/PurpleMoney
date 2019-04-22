@@ -67,7 +67,7 @@
                                     inputAppendIcon="calendar"
                             />
                         </div>
-                        <div class="invalid-feedback"><s:text name="amount.date.error"/></div>
+                        <div class="invalid-feedback"><s:text name="event.date.error"/></div>
                 </div>
                 <div class="form-group">
                     <s:submit type="button" id="btnRegister" class="btn btn-primary btn-md btn-login-button"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>

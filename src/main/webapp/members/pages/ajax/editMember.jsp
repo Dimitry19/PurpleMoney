@@ -96,6 +96,7 @@
 <div class="col">
 	<%@ include file = "../../../common/footers/footer.jsp" %>
 </div>
+<script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/members/js/member.js"/>"></script>
 <%--<script>
     MembersManager.enableFields({formId:'memberForm', editBtn:'editMenberBtn'})

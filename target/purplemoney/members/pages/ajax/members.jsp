@@ -57,22 +57,19 @@
 							<s:if test="active==false">
 								<td><s:property value="getText('member.column.active.NO')"/></td>
 							</s:if>
-							<s:if test="%{getSanctions().size()>1}">
-								<td><s:property value="%{getSanctions().iterator().next().getDescription()}"/>
-									<s:text name="member.column.sanction.more"></s:text>
-								</td>
+
+							<s:if test ="%{getSanctions() != null}">
+								<s:if test="%{getSanctions().size()>1}">
+									<td><s:property value="%{getSanctions().iterator().next().getDescription()}"/>
+										<s:text name="member.column.sanction.more"></s:text>
+									</td>
+								</s:if>
+								<s:else>
+									<td><s:property value="%{getSanctions().iterator().next().getDescription()}"/></td>
+								</s:else>
 							</s:if>
-							<s:else>
-								<td><s:property value="%{getSanctions().iterator().next().getDescription()}"/></td>
-							</s:else>
+
 							<td>
-								<%--<s:url action="showDetails" id="showDetailsURL"  escapeAmp="false">
-									<s:param name="userInfo.id.name" value="%{id.name}"/>
-									<s:param name="userInfo.id.memberId" value="%{id.memberId}"/>
-								</s:url>
-								<button type="button"  class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" data-toggle="modal" data-url="%{#showDetailsURL}">
-									<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.show.detail"></s:text>
-								</button>--%>
 							</td>
 						</tr>
 					</s:iterator>

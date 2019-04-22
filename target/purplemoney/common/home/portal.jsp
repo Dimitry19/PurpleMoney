@@ -1,14 +1,11 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
 <s:include value="include/commons.jsp"/>
+
 </head>
 <body>
 <div class="container text-center">
-        <s:if test="hasActionMessages()">
-            <%@ include file="../../common/pages/notifications/logout-success.jsp" %>
-        </s:if>
         <s:form action="loginAction" theme="simple"  id="formLogin" class="form-login form-horizontal">
-                <img class="mb-4 img-circle" src=" <s:url value="/theme/img/icon-purple.jpg"/>"  width="95" height="72">
+                <img class="mb-4 img-circle-sa" src=" <s:url value="../../common/logo/medio.png"/>"  width="95" height="72">
                 <h1 class="h3 mb-3 font-weight-normal"><s:text name="common.home.login.title"/></h1>
                     <div class="row">
                         <div class="center-div">
@@ -97,6 +94,20 @@
                 <div class="bd-placeholder-img"></div>
         </s:form>
     </div>
+    <div>
+        <s:if test="hasActionErrors()">
+            <script>
+                var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="common.login.error"/></p>';
+                NotificationManager.displayNotification({message:message, type:'error'})
+            </script>
+        </s:if>
+        <s:if test="hasActionMessages()">
+            <script>
+                var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="common.logout.success"/></p>';
+                NotificationManager.displayNotification({message:message, type:'success'})
+            </script>
+        </s:if>
+    </div>
     </body>
     <div class="custom-padding col">
         <%@ include file = "../../common/footers/footer.jsp" %>
@@ -106,10 +117,5 @@
 <script src="<s:url value="/common/js/bootstrap-show-password.min.js"/>"></script>
 <script>
     FormManager.validationForm({idForm:'formLogin',idSubmit:'btnLogin'})
-    //UtilsManager.passwordToogle()
-
-</script>
-<script>
-
 </script>
 </html>

@@ -6,8 +6,8 @@
  	
 	<package name="program" namespace="/" extends="common">
 		<action name="retrieveCalendar" class="eventAction" >
-		    <result name="success">/common/fullcalendar-master/calendar.jsp</result>
-			<!--<result name="success">/event/pages/addEvent.jsp</result>-->
+		    <!--<result name="success">/common/fullcalendar-master/calendar.jsp</result>-->
+			<result name="success">/event/pages/addEvent.jsp</result>
 		</action>
 		<action name="addEvent" class="eventAction"  method="addEvent" >
 			<result name="success">/event/pages/addEvent.jsp</result>

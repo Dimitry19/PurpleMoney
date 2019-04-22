@@ -12,7 +12,7 @@
 			</div>
 			<div class="card-body">
 				<div class="btn btn-group-md">
-					<button type="button" class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" value="refresh" onclick="DataTableManager.reloadDatatable({idDataTable: 'amounts'})" id="refreshMemberBtn"/><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Refresh</button>
+					<button type="button" class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" value="refresh" onclick="DataTableManager.reloadDatatable({idDataTable: 'amounts'})" id="refreshSessionsBtn"/><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Refresh</button>
 				</div>
 				<table id="sessions"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" class="display table table-striped table-bordered">
 					<thead>

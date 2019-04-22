@@ -1,5 +1,7 @@
 package cm.purplemoney.session.ent.vo;
 
+import cm.purplemoney.members.ent.vo.MemberVO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -7,12 +9,17 @@ import java.math.BigInteger;
 
 @Entity
 @Table(name="SESSION" , schema="PUBLIC")
+@NamedQueries({
+        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s  where id.associationId=:ass order by id.member"),
+})
 public class SessionVO implements Serializable {
 
     private SessionIdVO id;
     private BigInteger amount;
     private boolean status;
     private String surnameMember;
+
+    public static final String ALL = "cm.purplemoney.session.ent.vo.SessionVO.All";
 
     @EmbeddedId
     public SessionIdVO getId() {
@@ -21,7 +28,7 @@ public class SessionVO implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "STATUS")
-       public boolean isStatus() {
+    public boolean isStatus() {
         return status;
     }
 

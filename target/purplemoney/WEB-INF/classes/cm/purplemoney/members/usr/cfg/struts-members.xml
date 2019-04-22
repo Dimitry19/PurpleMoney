@@ -23,7 +23,8 @@
 			<result name="success">/members/pages/addMember.jsp</result>
 		</action>
 		<action name="addMemberAction" class="memberAction"  method="addMember">
-			<result name="success">/members/pages/includes/home-add-member.jsp</result>
+			<!--<result name="success">/members/pages/includes/home-add-member.jsp</result>-->
+			<result name="success">/members/pages/addMember.jsp</result>
 			<result name="input">/members/pages/addMember.jsp</result>
 		</action>
 		<action name="saveEditMemBerAction" class="memberAction" method="saveEditMember">

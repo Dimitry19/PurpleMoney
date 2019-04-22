@@ -5,7 +5,7 @@
 <body>
 <div class="container text-center">
         <s:form action="loginAction" theme="simple"  id="formLogin" class="form-login form-horizontal">
-                <img class="mb-4 img-circle" src=" <s:url value="/theme/img/icon-purple.jpg"/>"  width="95" height="72">
+                <img class="mb-4 img-circle-sa" src=" <s:url value="../../common/logo/medio.png"/>"  width="95" height="72">
                 <h1 class="h3 mb-3 font-weight-normal"><s:text name="common.home.login.title"/></h1>
                     <div class="row">
                         <div class="center-div">

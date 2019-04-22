@@ -1,56 +1,106 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <s:include value="../../../common/home/include/commons.jsp"/>
+<s:set var="lang" value="%{currentLocale}"/>
+<sj:head locale="%{#lang}"  jquerytheme="smoothness" jqueryui="true" />
 <body>
 <%@ include file="../../../common/home/include/header-logo.jsp" %>
 <%@ include file="../../../common/menu/menu.jsp" %>
 <div class="container text-center">
     <div class="card card-perso">
         <div class="card-header">
-            <h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright"><s:text name="amount.consult.title"/></h1>
+            <h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright"><s:text name="session.consult.title"/></h1>
         </div>
         <div class="card-body">
-                <s:form class="form-horizontal"  action="specificAmountAction" id="amountViewer">
+            <s:form class="form-horizontal"  action="specificSessionAction" id="sessionsViewer">
                     <div class="form-group row">
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <s:select
-                                            class="selectpicker" data-live-search="true"
-                                            listCssStyle="custom-select"
-                                            tooltip="Choisir le beneficiaire"
-                                            label="Beneficiaire"
-                                            id="member" list="members" listKey="id.name" listValue="%{id.name + ' ' + surname}"
-                                            name="amountSearchWr.receiver.id.name"
-                                            emptyOption="false"
-                                            headerKey="None"
-                                            headerValue="---------- Selectionner le beneficiaire ----------"/>
-                                    <s:hidden id="memberId" name="amountSearchWr.receiver.id.memberId" value="%{@cm.purplemoney.constants.PortalConstants@DEFAULT_GROUP}"/>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon-member">
+                                    <strong>
+                                        <s:text name="member.label.name"/>
+                                       <i class="fa fa-user" aria-hidden="true"></i>
+                                     </strong>
+                                </span>
+                                </div>
+                                <s:url var="memberURL" action="autocompleteMember"/>
+                                <sj:autocompleter id="membersNames"
+                                                  name="sessionSearchWr.receiver.id.memberId"
+                                                  href="%{memberURL}"
+                                                  loadMinimumCount="2"
+                                                  delay="50"
+                                                  cssClass="custom-select-sa"
+                                                  onCompleteTopics="onCompleteLoading"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon-date-from">
+                                            <strong>
+                                                <s:text name="session.consult.from"/>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                             </strong>
+                                        </span>
+                                    </div>
+                                    <sj:datepicker
+                                            id="sessionDataFrom"
+                                            name="sessionSearchWr.from"
+                                            parentTheme="bootstrap"
+                                            tooltip="Date from"
+                                            cssClass="form-control"
+                                            elementCssClass="col-sm-3"
+                                            showOn="focus"
+                                            label="%{getText('session.consult.from')}"
+                                            displayFormat="dd/mm/yy"
+                                            minDate="%{new java.sql.Date()}"
+                                            inputAppendIcon="calendar"
+                                    />
+                                    <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <s:label value="De" id="from" for="from"  labelposition="left"></s:label>
-                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i>
-                                        <s:textfield name="amountSearchWr.from" lengthSuffix="xlarge" type="text" id="fromDate"/>
-                                    </span>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon-date-to">
+                                            <strong>
+                                                <s:text name="session.consult.to"/>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                             </strong>
+                                        </span>
+                                    </div>
+                                    <sj:datepicker
+                                            id="sessionDataTo"
+                                            name="sessionSearchWr.to"
+                                            parentTheme="bootstrap"
+                                            tooltip="Date To"
+                                            cssClass="form-control"
+                                            elementCssClass="col-sm-3"
+                                            showOn="focus"
+                                            label="%{getText('session.consult.to')}"
+                                            displayFormat="dd/mm/yy"
+                                            minDate="%{new java.sql.Date()}"
+                                            inputAppendIcon="calendar"
+                                    />
+                                    <div class="invalid-feedback"><s:text name="session.date.error"/></div>
+                                    <s:hidden id="amountCompId" name="sessionSearchWr.companyId" value="%{@cm.purplemoney.constants.PortalConstants@DEFAULT_GROUP}"/>
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <s:label value="A:" id="to" for="to"  labelposition="left"></s:label>
-                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i>
-                                        <s:textfield name="amountSearchWr.to" lengthSuffix="xlarge" type="text"  id='toDate'/>
-                                        <s:hidden id="amountCompId" name="amountSearchWr.companyId" value="%{@cm.purplemoney.constants.PortalConstants@DEFAULT_GROUP}"/>
-                                    </span>
-                                </div>
-                            </div>
-                </div>
+                        </div>
+                     </div>
                 <div class="form-group">
-                    <s:submit type="button" id="btnRegister" class="btn btn-primary btn-md btn-login-button"><i class="fa fa-search" aria-hidden="true"></i>&nbsp; <s:text name="amount.consult.search"/></s:submit>
+                    <s:submit type="button" id="btnSessionSearch" class="btn btn-primary btn-md btn-login-button">
+                        <i class="fa fa-search" aria-hidden="true"></i>&nbsp;<s:text name="session.consult.search"/>
+                    </s:submit>
                 </div>
-                </s:form>
+            </s:form>
             </div>
         </div>
     </div>

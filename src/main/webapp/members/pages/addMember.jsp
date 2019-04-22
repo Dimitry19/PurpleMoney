@@ -40,7 +40,6 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon-role">
                                 <strong>
-                                    <%--<s:label value="%{getText('member.label.role')}" id="idrole" for="idrole"  labelposition="left"></s:label>--%>
                                      <s:text name="member.label.role"/>
                                     <i class="fa fa-wrench" aria-hidden="true"></i>
                                  </strong>
@@ -63,7 +62,6 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon-user-name">
                                 <strong>
-                                      <%--<s:label value="%{getText('member.label.name')}" id="name" for="name"  labelposition="left"></s:label>--%>
                                      <s:text name="member.label.name"/>
                                     <i class="fa fa-user fa" aria-hidden="true"></i>
                                  </strong>
