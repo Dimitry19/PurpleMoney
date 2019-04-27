@@ -15,82 +15,90 @@
         </div>
         <div class="card-body">
             <s:form class="form-horizontal"  action="specificSessionAction" id="sessionsViewer">
-                    <div class="form-group row">
-                        <div class="col-md-4">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon-member">
-                                    <strong>
-                                        <s:text name="member.label.name"/>
-                                       <i class="fa fa-user" aria-hidden="true"></i>
-                                     </strong>
-                                </span>
-                                </div>
-                                <s:url var="memberURL" action="autocompleteMember"/>
-                                <sj:autocompleter id="membersNames"
-                                                  name="sessionSearchWr.receiver.id.memberId"
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon-member">
+                                            <strong>
+                                                <s:text name="member.label.name"/>
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </strong>
+                                        </span>
+                                    </div>
+                                    <s:url var="memberURL" action="autocompleteMember"/>
+                                    <sj:autocompleter id="membersNames"
+                                                  name="sessionSearchWr.member.id.memberId"
                                                   href="%{memberURL}"
                                                   loadMinimumCount="2"
                                                   delay="50"
                                                   cssClass="custom-select-sa"
                                                   onCompleteTopics="onCompleteLoading"
-                                />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon-date-from">
-                                            <strong>
-                                                <s:text name="session.consult.from"/>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                             </strong>
-                                        </span>
-                                    </div>
-                                    <sj:datepicker
-                                            id="sessionDataFrom"
-                                            name="sessionSearchWr.from"
-                                            parentTheme="bootstrap"
-                                            tooltip="Date from"
-                                            cssClass="form-control"
-                                            elementCssClass="col-sm-3"
-                                            showOn="focus"
-                                            label="%{getText('session.consult.from')}"
-                                            displayFormat="dd/mm/yy"
-                                            minDate="%{new java.sql.Date()}"
-                                            inputAppendIcon="calendar"
                                     />
-                                    <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon-date-to">
-                                            <strong>
-                                                <s:text name="session.consult.to"/>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                             </strong>
-                                        </span>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon-date-from">
+                                                <strong>
+                                                    <s:text name="session.consult.from"/>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                 </strong>
+                                            </span>
+                                        </div>
+                                        <sj:datepicker
+                                                id="sessionDataFrom"
+                                                name="sessionSearchWr.from"
+                                                parentTheme="bootstrap"
+                                                tooltip="Date from"
+                                                cssClass="form-control"
+                                                elementCssClass="col-sm-3"
+                                                showOn="focus"
+                                                label="%{getText('session.consult.from')}"
+                                                displayFormat="dd/mm/yy"
+                                                minDate="%{new java.sql.Date()}"
+                                                inputAppendIcon="calendar"
+                                        />
+                                        <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                                     </div>
-                                    <sj:datepicker
-                                            id="sessionDataTo"
-                                            name="sessionSearchWr.to"
-                                            parentTheme="bootstrap"
-                                            tooltip="Date To"
-                                            cssClass="form-control"
-                                            elementCssClass="col-sm-3"
-                                            showOn="focus"
-                                            label="%{getText('session.consult.to')}"
-                                            displayFormat="dd/mm/yy"
-                                            minDate="%{new java.sql.Date()}"
-                                            inputAppendIcon="calendar"
-                                    />
-                                    <div class="invalid-feedback"><s:text name="session.date.error"/></div>
-                                    <s:hidden id="amountCompId" name="sessionSearchWr.companyId" value="%{@cm.purplemoney.constants.PortalConstants@DEFAULT_GROUP}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon-date-to">
+                                                <strong>
+                                                    <s:text name="session.consult.to"/>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                 </strong>
+                                            </span>
+                                        </div>
+                                        <sj:datepicker
+                                                id="sessionDataTo"
+                                                name="sessionSearchWr.to"
+                                                parentTheme="bootstrap"
+                                                tooltip="Date To"
+                                                cssClass="form-control"
+                                                elementCssClass="col-sm-3"
+                                                showOn="focus"
+                                                label="%{getText('session.consult.to')}"
+                                                displayFormat="dd/mm/yy"
+                                                minDate="%{new java.sql.Date()}"
+                                                inputAppendIcon="calendar"
+                                        />
+                                        <div class="invalid-feedback"><s:text name="session.date.error"/></div>
+                                        <s:hidden id="amountCompId" name="sessionSearchWr.companyId" value="%{@cm.purplemoney.constants.PortalConstants@DEFAULT_GROUP}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-check">
+                                    <s:checkbox id="status"  class="form-check-input" type="checkbox" tooltip="%{getText('session.benef')}" name="sessionSearchWr.status"/>
+                                    <label class="form-check-label" for="status"><s:text name="session.benef"/></label>
                                 </div>
                             </div>
                         </div>

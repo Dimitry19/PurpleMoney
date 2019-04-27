@@ -27,9 +27,9 @@
 					<s:iterator value="sessions" status="userStatus">
 						<tr>
 							<td><s:property value="id.member"/></td>
+							<td><s:property value="surnameMember"/></td>
 							<td><s:property value="amount"/></td>
-							<td><s:property value="receiverOne.surname"/></td>
-							<td><s:property value="receiverTwo.surname"/></td>
+							<td><s:property value="status"/></td>
 							<td><s:date name="id.date" format="dd/MM/yyyy" /></td>
 						</tr>
 					</s:iterator>

@@ -42,8 +42,8 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 	private SessionSearchWr sessionSearchWr;
 	private AssociationVO associationCurrent;
 	private List members;
-	private List<GroupVO> groups=new ArrayList<GroupVO>();
-	private List<SessionVO> sessions = new ArrayList<SessionVO>();
+	private List groups;
+	private List sessions;
 
 
 	@Resource(name="sessionBO")
@@ -87,7 +87,7 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 
 	public String specificAllSessions()throws Exception{
 
-	    sessionBO.consultSession(sessionSearchWr);
+		sessions=sessionBO.consultSession(sessionSearchWr);
 		return SUCCESS;
 	}
 	public String loadAllSessions() throws Exception{
@@ -105,11 +105,11 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 		this.amountSession = amountSession;
 	}
 
-	public List<SessionVO> getSessions() {
+	public List getSessions() {
 		return sessions;
 	}
 
-	public void setSessions(List<SessionVO> sessions) {
+	public void setSessions(List sessions) {
 		this.sessions = sessions;
 	}
 
@@ -121,11 +121,11 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 		this.members = members;
 	}
 
-    public List<GroupVO> getGroups() {
+    public List getGroups() {
         return groups;
     }
 
-    public void setGroups(List<GroupVO> groups) {
+    public void setGroups(List groups) {
         this.groups = groups;
     }
 

@@ -10,7 +10,8 @@ public class SessionSearchWr implements Serializable{
 
 
     private String companyId;
-    private MemberVO receiver;
+    private MemberVO member;
+    private boolean status;
     private Date from;
     private Date to;
 
@@ -23,12 +24,12 @@ public class SessionSearchWr implements Serializable{
     }
 
 
-    public MemberVO getReceiver() {
-        return receiver;
+    public MemberVO getMember() {
+        return member;
     }
 
-    public void setReceiver(MemberVO receiver) {
-        this.receiver = receiver;
+    public void setMember(MemberVO member) {
+        this.member = member;
     }
 
     public void setFrom(Date from) {
@@ -56,5 +57,13 @@ public class SessionSearchWr implements Serializable{
 
     public void setCompanyId(String companyId) {
         this.companyId = companyId;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

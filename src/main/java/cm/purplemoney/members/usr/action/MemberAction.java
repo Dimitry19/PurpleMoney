@@ -160,7 +160,7 @@ public class MemberAction extends BaseAction implements SessionAware,Preparable{
 
 	public String addMember() throws Exception {
 		log.debug("addMethod");
-		//memberBO.addMember(userAdding);
+		memberBO.addMember(userAdding);
 		addActionMessage(getText("member.add.success.footer"));
 
 		return SUCCESS;

@@ -57,7 +57,7 @@ public class SessionIdVO implements Serializable{//extends CommonIdVO {
 
 
         try {
-            this.date = DateUtils.parseDate(DateUtils.formatDate( date));
+            this.date = DateUtils.parseDate(DateUtils.formatDate(date));
         } catch (ParseException e) {
             e.printStackTrace();
         }

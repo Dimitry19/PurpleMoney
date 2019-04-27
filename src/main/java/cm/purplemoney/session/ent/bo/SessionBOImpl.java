@@ -2,8 +2,8 @@ package cm.purplemoney.session.ent.bo;
 
 
 import cam.common.CommonUtils;
+import cam.common.date.utils.DateUtils;
 import cam.libraries.component.ent.vo.BusinessException;
-import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.session.ent.wrapper.SessionSearchWr;
 import cm.purplemoney.config.HibernateConfig;
@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import javax.persistence.TypedQuery;
 import java.util.Date;
 import java.util.List;
 
@@ -50,51 +51,80 @@ public class SessionBOImpl implements SessionBO {
     public List<SessionVO> consultSession(SessionSearchWr ssw) throws BusinessException {
         if(ssw!=null){
 
-            if(ssw.getReceiver().getId().getMemberId()==null && ssw.getFrom()==null && ssw.getTo()==null){
+            if(StringUtils.isEmpty(ssw.getMember().getId().getMemberId())&& ssw.getFrom()==null && ssw.getTo()==null){
                 return loadAllSession();
             }else{
 
-                String username= ssw.getReceiver().getId().getMemberId().split(CommonUtils.SPACE_REGEX, 2)[0];
-                Date dateFrom=ssw.getFrom();
-                Date dateTo=ssw.getTo();
                 session= hibernateConfig.getSession();
-                String selectQuery=composeWhere(dateFrom,dateTo , username, ssw.getCompanyId());
-                Query query=session.createSQLQuery(selectQuery);
-                List<SessionVO> sessions=query.list();
-                return sessions;
+                String selectQuery=composeWhere(ssw);
+                Query query=session.createQuery(selectQuery);
+                setParameters(query, ssw);
+                return query.list();
             }
         }
         return null;
     }
 
-    private String composeWhere(Date dateFrom,Date dateTo, String username, String associationId){
-        StringBuilder sbWhere=new StringBuilder("select s SessionVO s where id.associationId = '");
-        sbWhere.append(associationId);
-        sbWhere.append("'");
-     //   String selectQuery="select s SessionVO s where id.associationId = "+associationId;
+    private String composeWhere(SessionSearchWr ssw){
+        String username= ssw.getMember().getId().getMemberId().split(CommonUtils.SPACE_REGEX, 2)[0];
+        Date dateFrom=ssw.getFrom();
+        Date dateTo=ssw.getTo();
 
+
+        StringBuilder sbWhere=new StringBuilder(" from SessionVO where id.associationId = :ass ");
+
+        if(ssw.isStatus()){
+            sbWhere.append(" and status = :sts");
+        }
         if(StringUtils.isNotEmpty(username)){
-            sbWhere.append(" and  id.member = '"+username);
-            sbWhere.append("'");
-
+            sbWhere.append(" and id.member = :mbr");
         }
         if(dateFrom!=null && dateTo!=null){
-            sbWhere.append(" and  id.date>='"+dateFrom);
-            sbWhere.append(" '");
-            sbWhere.append(" and  id.date=<'"+dateTo);
-            sbWhere.append(" '");
+            sbWhere.append(" and id.date between :from and :to");
         }
         if(dateFrom==null && dateTo!=null){
-            sbWhere.append(" and  id.date=<'"+dateTo);
-            sbWhere.append("'");
+            sbWhere.append("and id.date <= :to");
         }
         if(dateFrom!=null && dateTo==null){
-            sbWhere.append(" and  id.date>='"+dateFrom);
-            sbWhere.append("'");
+            sbWhere.append("and id.date >= :from");
         }
+
 
         return sbWhere.toString();
 
+    }
+
+    private void setParameters(Query query,SessionSearchWr ssw){
+
+        if(ssw!=null){
+            String username= ssw.getMember().getId().getMemberId().split(CommonUtils.SPACE_REGEX, 2)[0];
+            Date dateFrom=ssw.getFrom();
+            Date dateTo=ssw.getTo();
+
+            query.setParameter("ass", ssw.getCompanyId().trim());
+
+            String dateT=DateUtils.formatDateForQuery(dateTo);
+            String dateF=DateUtils.formatDateForQuery(dateFrom);
+
+
+            if(ssw.isStatus()){
+                query.setParameter("sts",ssw.isStatus());
+            }
+
+            if(StringUtils.isNotEmpty(username)){
+                query.setParameter("mbr", username.trim());
+            }
+            if(dateFrom!=null && dateTo!=null){
+                query.setParameter("from", dateFrom);
+                query.setParameter("to", dateTo);
+            }
+            if(dateFrom==null && dateTo!=null){
+                query.setParameter("to", dateTo);
+            }
+            if(dateFrom!=null && dateTo==null){
+                query.setParameter("from", dateFrom);
+            }
+        }
     }
 
 
