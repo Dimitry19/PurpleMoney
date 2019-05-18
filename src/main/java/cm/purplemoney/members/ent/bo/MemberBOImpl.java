@@ -68,7 +68,8 @@ public class MemberBOImpl implements MemberBO {
 		session= hibernateConfig.getSession();
 		Query query=session.getNamedQuery(MemberVO.FINDBYSESSION);
 
-		query.setParameter("uName", sess.getId().getMember());
+		//query.setParameter("uName", sess.getId().getMember());
+		query.setParameter("uName", sess.getMembre().getId().getName());
 		query.setParameter("ass", sess.getId().getAssociationId());
 		List<MemberVO> users=decoder(query.list());
 		if(users!=null && users.size()>0) {

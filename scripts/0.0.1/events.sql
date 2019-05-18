@@ -1,0 +1,15 @@
+-- ----------------------------
+--  Table structure for `EVENTS`
+-- ----------------------------
+DROP TABLE IF EXISTS `EVENTS`;
+CREATE TABLE `EVENTS` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `R_ASSOCIATION` varchar(3) NOT NULL,
+  `DATE` DATE NOT NULL,
+  `R_MEMBER` varchar(25)  DEFAULT NULL ,
+  `R_EVENT_TYPE` char(3) NOT NULL,
+   `TIMESTAMP` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`ID`,`R_ASSOCIATION`,`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+

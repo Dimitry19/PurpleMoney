@@ -2,6 +2,7 @@ package cm.purplemoney.session.usr.action;
 
 import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.association.ent.vo.AssociationVO;
+import cm.purplemoney.members.usr.action.MemberAction;
 import cm.purplemoney.session.ent.bo.SessionBO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.session.ent.wrapper.SessionSearchWr;
@@ -15,6 +16,8 @@ import cm.purplemoney.members.ent.bo.MemberBO;
 import java.util.List;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +38,7 @@ import javax.annotation.Resource;
 @Component("sessionAction")
 @Scope("prototype")
 public class SessionAction extends BaseAction implements SessionAware,Preparable{
+	private static final Logger log = LoggerFactory.getLogger(SessionAction.class);
 	
 
 	private static final long serialVersionUID = 1L;

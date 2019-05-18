@@ -102,8 +102,8 @@
 				<value>cm.purplemoney.role.ent.vo.RoleVOId</value>
 				<value>cm.purplemoney.sanction.ent.vo.SanctionIdVO</value>
 				<value>cm.purplemoney.sanction.ent.vo.SanctionVO</value>
-				<value>cm.purplemoney.event.ent.vo.ProgramIdVO</value>
 				<value>cm.purplemoney.event.ent.vo.EventVO</value>
+				<value>cm.purplemoney.event.ent.vo.EventTypeVO</value>
 			</list>
 		</property>
 	</bean>

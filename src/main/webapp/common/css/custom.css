@@ -222,5 +222,10 @@ dropdown-menu show{
   float: left;
 }
 
+.center-element{
+  margin-right: -30% !important;
+  margin-left: 23% !important;
+}
+
 
 

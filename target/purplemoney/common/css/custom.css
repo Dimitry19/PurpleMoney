@@ -194,7 +194,7 @@ dropdown-menu show{
 
 .custom-select-sa {
   display: inline-block;
-  width: 55%;
+  width: 78%;
   height: calc(2.25rem + 2px);
   padding: .375rem 1.75rem .375rem .75rem;
   line-height: 1.5;
@@ -220,6 +220,11 @@ dropdown-menu show{
 .legend{
   width: 20% !important;
   float: left;
+}
+
+.center-element{
+  margin-right: -30% !important;
+  margin-left: 23% !important;
 }
 
 

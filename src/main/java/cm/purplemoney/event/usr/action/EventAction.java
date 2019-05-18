@@ -5,6 +5,7 @@ import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.association.ent.vo.AssociationVO;
 import cm.purplemoney.common.usr.action.BaseAction;
 import cm.purplemoney.event.ent.bo.EventBO;
+import cm.purplemoney.event.ent.bo.EventTypeBO;
 import cm.purplemoney.event.ent.vo.EventVO;
 import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.enums.SexEnum;
@@ -28,11 +29,15 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 	private MemberVO user;
 	private EventVO event;
 	private AssociationVO associationCurrent;
+	private List eventTypes;
 	private String term;
 	private String[] membersNames;
 
 	@Resource(name = "eventBO")
 	private EventBO eventBO;
+
+	@Resource(name = "eventTypeBO")
+	private EventTypeBO eventTypeBO;
 
 	@Resource(name="memberBO")
 	private MemberBO memberBO;
@@ -47,16 +52,21 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 			debugMessageCall();
 		}
 
+		eventTypes=eventTypeBO.allEventsType(getCurrentLocale().toLowerCase().trim());
+		eventBO.allEvents();
 		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
 
 	}
+
 	
 	public String execute() {
 		return SUCCESS;
 	}
 	 
-	public String addEvent() {
+	public String addEvent() throws Exception{
 		System.out.println(getUser());
+
+		eventBO.addEvent(event);
 		
 		return SUCCESS;
 	}
@@ -109,5 +119,13 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 
 	public void setMembersNames(String[] membersNames) {
 		this.membersNames = membersNames;
+	}
+
+	public List getEventTypes() {
+		return eventTypes;
+	}
+
+	public void setEventTypes(List eventTypes) {
+		this.eventTypes = eventTypes;
 	}
 }

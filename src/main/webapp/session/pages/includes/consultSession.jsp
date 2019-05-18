@@ -29,7 +29,7 @@
                                     </div>
                                     <s:url var="memberURL" action="autocompleteMember"/>
                                     <sj:autocompleter id="membersNames"
-                                                  name="sessionSearchWr.member.id.memberId"
+                                                  name="sessionSearchWr.member.id.name"
                                                   href="%{memberURL}"
                                                   loadMinimumCount="2"
                                                   delay="50"
@@ -52,7 +52,7 @@
                                         <sj:datepicker
                                                 id="sessionDataFrom"
                                                 name="sessionSearchWr.from"
-                                                parentTheme="bootstrap"
+                                                parentTheme="bootstrap4"
                                                 tooltip="Date from"
                                                 cssClass="form-control"
                                                 elementCssClass="col-sm-3"

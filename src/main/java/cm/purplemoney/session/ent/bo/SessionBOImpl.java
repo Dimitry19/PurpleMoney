@@ -11,15 +11,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
-import javax.persistence.TypedQuery;
 import java.util.Date;
 import java.util.List;
 
 @Component("sessionBO")
 public class SessionBOImpl implements SessionBO {
+
+    private static final Logger log = LoggerFactory.getLogger(SessionBOImpl.class);
 
     @Resource(name = "hibernateConfig")
     HibernateConfig hibernateConfig;
@@ -34,39 +36,61 @@ public class SessionBOImpl implements SessionBO {
 
 
     @Override
-    public void addSession(SessionVO amountSession) {
+    public void addSession(SessionVO amountSession){
 
-        if(amountSession!=null){
-            session=hibernateConfig.getSession();
-            Transaction tx=session.beginTransaction();
 
-            String usernameParts[] = amountSession.getId().getMember().split(CommonUtils.SPACE_REGEX, 2);
-            amountSession.getId().setMember(usernameParts[0]);
-            session.saveOrUpdate(SessionVO.class.getName(), amountSession);
-            tx.commit();
+        try{
+
+            if(amountSession!=null) {
+                session = hibernateConfig.getSession();
+                Transaction tx = session.beginTransaction();
+
+                //String usernameParts[] = amountSession.getId().getMember().split(CommonUtils.SPACE_REGEX, 2);
+                // amountSession.getId().setMember(usernameParts[0]);
+
+                String usernameParts[] = amountSession.getMembre().getId().getName().split(CommonUtils.SPACE_REGEX, 2);
+                amountSession.getMembre().getId().setName(usernameParts[0]);
+                session.saveOrUpdate(SessionVO.class.getName(), amountSession);
+                tx.commit();
+
+            }
+        }catch(Exception e){
+            log.error("Error save session" +e.getMessage());
+            e.printStackTrace();
+
         }
+
     }
 
     @Override
     public List<SessionVO> consultSession(SessionSearchWr ssw) throws BusinessException {
-        if(ssw!=null){
 
-            if(StringUtils.isEmpty(ssw.getMember().getId().getMemberId())&& ssw.getFrom()==null && ssw.getTo()==null){
-                return loadAllSession();
-            }else{
+        try{
+            if(ssw!=null){
 
-                session= hibernateConfig.getSession();
-                String selectQuery=composeWhere(ssw);
-                Query query=session.createQuery(selectQuery);
-                setParameters(query, ssw);
-                return query.list();
+                if(!ssw.isStatus() && StringUtils.isEmpty(ssw.getMember().getId().getMemberId())&& ssw.getFrom()==null && ssw.getTo()==null){
+                    return loadAllSession();
+                }else{
+
+                    session= hibernateConfig.getSession();
+                    String selectQuery=composeWhere(ssw);
+                    Query query=session.createQuery(selectQuery);
+                    setParameters(query, ssw);
+                    return query.list();
+                }
             }
+        }catch (Exception e){
+
+            log.error("Error consult session" +e.getMessage());
+            e.printStackTrace();
+
         }
         return null;
+
     }
 
     private String composeWhere(SessionSearchWr ssw){
-        String username= ssw.getMember().getId().getMemberId().split(CommonUtils.SPACE_REGEX, 2)[0];
+        String username= ssw.getMember().getId().getName().split(CommonUtils.SPACE_REGEX, 2)[0];//ssw.getMember().getId().getMemberId().split(CommonUtils.SPACE_REGEX, 2)[0];
         Date dateFrom=ssw.getFrom();
         Date dateTo=ssw.getTo();
 
@@ -77,7 +101,7 @@ public class SessionBOImpl implements SessionBO {
             sbWhere.append(" and status = :sts");
         }
         if(StringUtils.isNotEmpty(username)){
-            sbWhere.append(" and id.member = :mbr");
+            sbWhere.append(" and membre.id.name = :mbr");
         }
         if(dateFrom!=null && dateTo!=null){
             sbWhere.append(" and id.date between :from and :to");
@@ -97,7 +121,7 @@ public class SessionBOImpl implements SessionBO {
     private void setParameters(Query query,SessionSearchWr ssw){
 
         if(ssw!=null){
-            String username= ssw.getMember().getId().getMemberId().split(CommonUtils.SPACE_REGEX, 2)[0];
+            String username= ssw.getMember().getId().getName().split(CommonUtils.SPACE_REGEX, 2)[0];//ssw.getMember().getId().getMemberId().split(CommonUtils.SPACE_REGEX, 2)[0];
             Date dateFrom=ssw.getFrom();
             Date dateTo=ssw.getTo();
 

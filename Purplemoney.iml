@@ -43,6 +43,7 @@
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-json-plugin/2.3.32/struts2-json-plugin-2.3.32.jar!/struts-plugin.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/com/jgeppert/struts2/jquery/struts2-jquery-plugin/3.0.1/struts2-jquery-plugin-3.0.1.jar!/struts-plugin.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.3.32/struts2-spring-plugin-2.3.32.jar!/struts-plugin.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/event/usr/cfg/struts-event-type.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>

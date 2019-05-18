@@ -4,7 +4,7 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <s:include value="../../common/home/include/commons.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
-<sj:head locale="%{#lang}"  jquerytheme="smoothness" jqueryui="true" />
+<sj:head locale="%{#lang}"  jquerytheme="ui-lightness" jqueryui="true" />
 </head>
 <body>
 <%@ include file="../../common/home/include/header-logo.jsp" %>
@@ -42,7 +42,7 @@
 						</div>
 							<s:url var="memberURL" action="autocompleteMember"/>
 							<sj:autocompleter id="membersNames"
-												  name="amountSession.id.member"
+												  name="amountSession.membre.id.name"
 												  href="%{memberURL}"
 												  loadMinimumCount="2"
 												  delay="50"
@@ -83,7 +83,7 @@
                         <sj:datepicker
                                 id="sessionData"
                                 name="amountSession.id.date"
-                                parentTheme="bootstrap"
+                                parentTheme="bootstrap4"
                                 tooltip="Date"
                                 cssClass="form-control"
                                 elementCssClass="col-sm-3"

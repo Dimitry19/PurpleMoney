@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 import cam.common.date.utils.*;
+import cm.purplemoney.members.ent.vo.MemberVO;
 
 
 @Embeddable
@@ -20,10 +21,10 @@ public class SessionIdVO implements Serializable{//extends CommonIdVO {
     public SessionIdVO() {
 
     }
-    public SessionIdVO(String member, Date date, String associationId ){
+    public SessionIdVO(MemberVO member, Date date, String associationId ){
         this.associationId=associationId;
         this.date=date;
-        this.member = member;
+        //this.membre = member;
     }
 
 
@@ -35,12 +36,12 @@ public class SessionIdVO implements Serializable{//extends CommonIdVO {
 
 
 
-    @Basic(optional = false)
+   /* @Basic(optional = false)
     @Column(name="R_MEMBER",nullable = false,length = FieldConstants.NAME_STD_LEN)
    // @RequiredStringValidator(message =" Selectioner le membre")
     public String getMember() {
         return member;
-    }
+    }*/
 
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
@@ -49,9 +50,9 @@ public class SessionIdVO implements Serializable{//extends CommonIdVO {
         return date;
     }
 
-    public void setMember(String member) {
+   /* public void setMember(String member) {
         this.member = member;
-    }
+    }*/
 
     public void setDate(Date date) {
 

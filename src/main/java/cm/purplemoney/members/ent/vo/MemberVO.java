@@ -6,6 +6,7 @@ import java.util.Set;
 import cm.purplemoney.constants.FieldConstants;
 import cm.purplemoney.event.ent.vo.EventVO;
 import cm.purplemoney.sanction.ent.vo.SanctionVO;
+import cm.purplemoney.session.ent.vo.SessionVO;
 
 
 import javax.persistence.*;
@@ -42,7 +43,8 @@ public class MemberVO implements Serializable{
 	private String sexDesc;
 	private boolean male;
 	private Set<SanctionVO> sanctions= new HashSet<SanctionVO>();
-	private EventVO program;
+	private Set<SessionVO> sessions= new HashSet<SessionVO>();
+	private EventVO event;
 
 	public static final String Q_AC_ITEM = "cm.purplemoney.members.ent.vo.MemberVO.QAutocompleteItem";
 	public static final String ALL = "cm.purplemoney.members.ent.vo.MemberVO.All";
@@ -115,8 +117,8 @@ public class MemberVO implements Serializable{
 			@JoinColumn(name = "ID", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false),
 			@JoinColumn(name = "MNAME", referencedColumnName ="R_MEMBER" ,insertable=false, updatable=false)
 	})
-	public EventVO getProgram() {
-		return program;
+	public EventVO getEvent() {
+		return event;
 	}
 
 	@OneToMany(mappedBy = "member",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -125,12 +127,23 @@ public class MemberVO implements Serializable{
 		return sanctions;
 	}
 
-	public void setProgram(EventVO program) {
-		this.program = program;
+
+	@OneToMany(mappedBy = "membre",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("id.date  DESC")
+	public Set<SessionVO> getSessions() {
+		return sessions;
+	}
+
+	public void setEvent(EventVO event) {
+		this.event = event;
 	}
 
 	public void setSanctions(Set<SanctionVO> sanctions) {
 		this.sanctions = sanctions;
+	}
+
+	public void setSessions(Set<SessionVO> sessions) {
+		this.sessions = sessions;
 	}
 
 	public void setAssociation(String association) {

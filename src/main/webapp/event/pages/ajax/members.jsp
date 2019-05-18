@@ -100,7 +100,7 @@
 <script src="<s:url value="/common/js/datatable/jquery.datatable/2.2.3/responsive.datatable.js "/>"></script>
 <script>
     var lng='<s:property  value="%{#lang}" />';
-	DataTableManager.constructDatatable({idDataTable: 'members',button:button,title:'Liste Membres',lang:lng})
+	DataTableManager.constructDatatable({idDataTable: 'members',title:'Liste Membres',lang:lng})
 
 </script>
 </html>
