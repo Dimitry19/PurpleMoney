@@ -98,7 +98,7 @@
         <s:if test="hasActionErrors()">
             <script>
                 var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="common.login.error"/></p>';
-                NotificationManager.displayNotification({message:message, type:'error'})
+               NotificationManager.displayNotification({message:message, type:'error'})
             </script>
         </s:if>
         <s:if test="hasActionMessages()">

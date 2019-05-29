@@ -3,7 +3,6 @@
 -- ----------------------------
 DROP TABLE IF EXISTS `EVENT_TYPE`;
 CREATE TABLE `EVENT_TYPE` (
-  `ID` int NOT NULL AUTO_INCREMENT,
   `EVENT_ID` varchar(8) NOT NULL,
   `R_LANGUAGE` char(2) NOT NULL,
   `DESCRIPTION` varchar(50) NOT NULL,

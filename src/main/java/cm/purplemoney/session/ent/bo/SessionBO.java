@@ -10,7 +10,7 @@ public interface SessionBO {//extends GenericBO<AmountVO,AmountIdVO,String>  {
 
 
      List<SessionVO> loadAllSession() throws BusinessException;
-     void addSession(SessionVO amount) throws BusinessException;
+     boolean addSession(SessionVO amount) throws BusinessException;
      List<SessionVO> consultSession(SessionSearchWr asw ) throws BusinessException;
 
 }

@@ -33,7 +33,7 @@
                                                   href="%{memberURL}"
                                                   loadMinimumCount="2"
                                                   delay="50"
-                                                  cssClass="custom-select-sa"
+                                                  cssClass="custom-select-b"
                                                   onCompleteTopics="onCompleteLoading"
                                     />
                                 </div>
@@ -95,7 +95,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-check">
                                     <s:checkbox id="status"  class="form-check-input" type="checkbox" tooltip="%{getText('session.benef')}" name="sessionSearchWr.status"/>
                                     <label class="form-check-label" for="status"><s:text name="session.benef"/></label>
@@ -116,8 +118,3 @@
 <div class="col">
 	<%@ include file = "../../../common/footers/footer.jsp" %>
 </div>
-<script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
-<script>
-    DataPickerManager.enable({id:'fromDate', isBootstrap:false})
-    DataPickerManager.enable({id:'toDate', isBootstrap:false})
-</script>

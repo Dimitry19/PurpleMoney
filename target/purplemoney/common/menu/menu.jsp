@@ -29,28 +29,35 @@
 					 </div>
 				 </li>
 				 <li class="nav-item dropdown">
-					 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAmountLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="title"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;
-	 					<s:text name="common.menu.founds"/>
-	 				</span></a>
+					 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAmountLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-money" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds"/>
+	                 </a>
 					 <!-- bloc menu déroulant -->
 					 <div class="dropdown-menu" aria-labelledby="navbarDropdownAmountLink">
-					<s:if test="currentMember.isAdmin()== true">
-	 					 <a class="nav-link" href="<s:url action="addingSessionAction"/>">
+						<s:if test="currentMember.isAdmin()== true">
+	 					 	<a class="nav-link" href="<s:url action="addingSessionAction"/>">
 	 							<i class="fa fa-money" aria-hidden="true"></i>&nbsp; <s:text name="common.menu.founds.add"/>
-	 					 </a>
-					</s:if>
+	 					 	</a>
+						</s:if>
 						 <a class="nav-link" href="<s:url action="sessionConsultAction"/>">
 	 							<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds.open"/>
 	 					 </a>
 	                     <a class="nav-link" href="<s:url action="sessionsAction"/>"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds.all"/></a>
-						 <a class="nav-link"  href="<s:url action="retrieveCalendar"/>"><i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;<s:text name="footer.link.calendar"></s:text></a>
+
 					 </div>
 				 </li>
 				 <li class="nav-item">
 				 	<a class="nav-link" href="#"><i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.sanctions"/></a>
 				 </li>
-				 <li class="nav-item">
-				 	<a class="nav-link" href="#"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.reglements"/></a>
+				 <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEventLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;<s:text name="footer.link.calendar"/>
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownEventLink">
+						<a class="nav-link"  href="<s:url action="addingEvent"/>"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;<s:text name="event.add.title"></s:text></a>
+					</div>
+
+				 	<%--<a class="nav-link" href="#"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.reglements"/></a>--%>
 				 </li>
 				<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguageLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

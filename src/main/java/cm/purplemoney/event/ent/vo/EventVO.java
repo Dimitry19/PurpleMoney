@@ -2,6 +2,9 @@ package cm.purplemoney.event.ent.vo;
 
 import cm.purplemoney.constants.FieldConstants;
 import cm.purplemoney.members.ent.vo.MemberVO;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "EVENTS", schema = "PUBLIC")
 @NamedQueries({
-        @NamedQuery(name = EventVO.ALL, query = "select k from EventTypeVO k  order by eventCode"),
+        @NamedQuery(name = EventVO.ALL, query = "select e from EventTypeVO e  order by eventCode"),
 })
 public class EventVO implements Serializable {
 
@@ -79,8 +82,8 @@ public class EventVO implements Serializable {
         this.members = members;
     }
 
-    @OneToOne(optional=false)
-    @JoinColumn(name = "R_EVENT_TYPE")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "R_EVENT_TYPE",referencedColumnName="EVENT_ID")
     public EventTypeVO getEventType() {
         return eventType;
     }

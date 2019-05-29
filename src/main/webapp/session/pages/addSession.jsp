@@ -4,12 +4,18 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <s:include value="../../common/home/include/commons.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
+<s:set var="showNotification" value="%{showNotification}"/>
 <sj:head locale="%{#lang}"  jquerytheme="ui-lightness" jqueryui="true" />
 </head>
 <body>
 <%@ include file="../../common/home/include/header-logo.jsp" %>
 <%@ include file="../../common/menu/menu.jsp" %>
 <div class="container text-center">
+    <s:if test="hasActionErrors()">
+        <div class="fieldError">
+            <s:actionerror escape="false"/>
+        </div>
+    </s:if>
 	<div class="card card-perso">
 		<div class="card-header">
 			<h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright"><s:text name="common.menu.founds.add"/></h1>
@@ -107,11 +113,11 @@
             </s:form>
 		</div>
         <div>
+        <s:if test="%{#lang}==true">
             <s:if test="hasActionMessages()">
                 <script>
                     var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="session.add.success"/></p>';
                     NotificationManager.displayNotification({message:message, type:'success'})
-                    FormManager.unfilledAllFields({idForm:'formAddSession'})
                 </script>
             </s:if>
             <s:if test="hasActionErrors()">
@@ -120,8 +126,10 @@
                     NotificationManager.displayNotification({message:message, type:'error'})
                 </script>
             </s:if>
+        </s:if>
         </div>
 	</div>
+    </div>
 </div>
 </body>
 <div class="col">

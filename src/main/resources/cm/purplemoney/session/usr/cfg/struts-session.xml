@@ -7,6 +7,7 @@
 	<package name="session" namespace="/" extends="common">
 		<action name="saveSessionAction" 	class="sessionAction" method="addSession">
 		    <result name="success">/session/pages/addSession.jsp</result>
+			<result name="input">/session/pages/addSession.jsp</result>
 		</action>
 		<action name="sessionsAction" class="sessionAction" method="loadAllSessions" >
 		    <result name="success">/session/pages/ajax/sessions.jsp</result>

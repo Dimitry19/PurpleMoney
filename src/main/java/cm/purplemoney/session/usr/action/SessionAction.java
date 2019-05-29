@@ -15,6 +15,7 @@ import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.members.ent.bo.MemberBO;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,10 +81,29 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 		//TODO  Gerez la session la formatation des pages et
 		return SUCCESS;
 	}
+
+	public void validate(){
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
+		if(amountSession!=null) {
+			showNotification=false;
+			if (StringUtils.isEmpty(amountSession.getMembre().getId().getName())) {
+				addActionError(getText("session.add.member.error"));
+			}
+			if (amountSession.getId().getDate()==null){
+				addActionError(getText("session.add.data.error"));;
+			}
+		}
+	}
 	public String addSession() throws Exception{
 
-		sessionBO.addSession(amountSession);
-		addActionMessage("Nouvelle session correctement ajoutée!");
+		if(sessionBO.addSession(amountSession)){
+			addActionMessage(getText("session.add.success"));
+		}else{
+			addActionError(getText("session.add.error"));
+		}
+
 
 		return SUCCESS;
 	

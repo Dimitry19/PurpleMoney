@@ -11,6 +11,7 @@ import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.enums.SexEnum;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import com.opensymphony.xwork2.Preparable;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +59,17 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 
 	}
 
+	public void validate(){
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
+		if(event!=null) {
+			if (event.getData()==null) {
+				addActionError(getText("event.date.error"));
+				//addFieldError("event.data", getText("event.date.error"));
+			}
+		}
+	}
 	
 	public String execute() {
 		return SUCCESS;

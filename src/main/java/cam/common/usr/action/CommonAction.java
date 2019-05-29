@@ -36,6 +36,7 @@ public class CommonAction extends ActionSupport implements SessionAware {
     protected MemberVO currentMember;
     protected String currentLocale;
     protected String currentAssociation;
+    protected boolean showNotification=Boolean.TRUE;
     private static final long serialVersionUID = 1L;
 
 
@@ -235,6 +236,13 @@ public class CommonAction extends ActionSupport implements SessionAware {
     }
 
 
+    public boolean isShowNotification() {
+        return showNotification;
+    }
+
+    public void setShowNotification(boolean showNotification) {
+        this.showNotification = showNotification;
+    }
 
     private MemberVO retrieveCurrentMember(){
 

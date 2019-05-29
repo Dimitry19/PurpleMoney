@@ -36,30 +36,35 @@ public class SessionBOImpl implements SessionBO {
 
 
     @Override
-    public void addSession(SessionVO amountSession){
+    public boolean addSession(SessionVO amountSession) throws BusinessException{
 
+        Transaction tx =null;
+        boolean saved=true;
 
         try{
 
             if(amountSession!=null) {
                 session = hibernateConfig.getSession();
-                Transaction tx = session.beginTransaction();
+                 tx = session.beginTransaction();
 
                 //String usernameParts[] = amountSession.getId().getMember().split(CommonUtils.SPACE_REGEX, 2);
-                // amountSession.getId().setMember(usernameParts[0]);
+                //
 
                 String usernameParts[] = amountSession.getMembre().getId().getName().split(CommonUtils.SPACE_REGEX, 2);
                 amountSession.getMembre().getId().setName(usernameParts[0]);
+               // amountSession.getId().setMember(usernameParts[0]);
                 session.saveOrUpdate(SessionVO.class.getName(), amountSession);
                 tx.commit();
 
             }
         }catch(Exception e){
-            log.error("Error save session" +e.getMessage());
+            log.error("Error save session " +e.getMessage());
             e.printStackTrace();
+            tx.rollback();
+            saved=false;
 
         }
-
+        return saved;
     }
 
     @Override
@@ -68,7 +73,7 @@ public class SessionBOImpl implements SessionBO {
         try{
             if(ssw!=null){
 
-                if(!ssw.isStatus() && StringUtils.isEmpty(ssw.getMember().getId().getMemberId())&& ssw.getFrom()==null && ssw.getTo()==null){
+                if(!ssw.isStatus() && StringUtils.isEmpty(ssw.getMember().getId().getName())&& ssw.getFrom()==null && ssw.getTo()==null){
                     return loadAllSession();
                 }else{
 

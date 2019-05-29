@@ -12,7 +12,7 @@ var DataPickerManager = function(){
     function enablejQueryDatePicker(id) {
 
         console.log("enablejQueryDatePicker");
-        $(id).datepicker();
+      //  $(id).datepicker();
 
         //$(id).datepicker({dateFormat: dateFormat});
     }
