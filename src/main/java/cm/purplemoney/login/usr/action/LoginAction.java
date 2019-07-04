@@ -16,9 +16,12 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
 import cm.purplemoney.profile.ent.vo.AuthUserVO;
 import org.apache.struts2.interceptor.I18nInterceptor;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import static cm.purplemoney.constants.PortalConstants.*;
 
 @Component("loginAction")
@@ -32,6 +35,7 @@ public class LoginAction extends BaseAction implements Preparable{
 	private AuthUserVO user;
 	List associations ;
 	List languages;
+	private String rLocale;
 
 
 	@Resource(name="authUserBO")
@@ -45,6 +49,7 @@ public class LoginAction extends BaseAction implements Preparable{
 
 	@Resource(name = "associationBO")
 	AssociationBO associationBO;
+	private String rlocale;
 
 	@Override
 	public void prepare() throws Exception{
@@ -84,6 +89,7 @@ public class LoginAction extends BaseAction implements Preparable{
             }
 			saveToSession(CURRENT_USER, user);
 			saveToSession(CURRENT_ASS, user.getAssociation());
+	        saveToSession(TO_SESSION, user);
 
             return SUCCESS;
         }
@@ -134,6 +140,7 @@ public class LoginAction extends BaseAction implements Preparable{
 					}
 					saveToSession(CURRENT_USER, authUser.getRmember());
 					saveToSession(CURRENT_ASS, user.getAssociation());
+					saveToSession(TO_SESSION, user);
 
 				}
 			}else{
@@ -225,23 +232,42 @@ public class LoginAction extends BaseAction implements Preparable{
 		this.languages = languages;
 	}
 
+
 	public Locale  changelocaleMenu() throws Exception{
-		Map<String, Object> sessionAttributes =getSession();
-		Locale currentLocale=Locale.getDefault();
-
-		if(StringUtils.isNotEmpty(user.getLanguage())){
-
-			LanguageVO language =languageBO.retrieveLanguage(user.getLanguage());
-			currentLocale= new Locale(language.getId(),language.getCountry());
-		}
-
-		ActionContext.getContext().setLocale(currentLocale);
-		sessionAttributes.put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, currentLocale);
-		return currentLocale;
+		changeLanguages(true);
+		return currlocale;
 	}
 
 	public String  changelocale() throws Exception{
+		saveToSession(LOCALE,changeLanguages(false));
 		return SUCCESS;
 	}
 
+	private Locale changeLanguages(boolean fromLogin) throws Exception{
+		Map<String, Object> sessionAttributes =getSession();
+		Locale cLocale=Locale.getDefault();
+
+		if(fromLogin){
+			if(StringUtils.isNotEmpty(user.getLanguage())){
+
+				LanguageVO language =languageBO.retrieveLanguage(user.getLanguage());
+				cLocale= new Locale(language.getId(),language.getCountry());
+			}
+		}else{
+				LanguageVO language =languageBO.retrieveLanguage(getRlocale());
+				cLocale= new Locale(language.getId(),language.getCountry());
+		}
+
+		currlocale=cLocale;
+		ActionContext.getContext().setLocale(cLocale);
+		sessionAttributes.put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, cLocale);
+		return cLocale;
+	}
+	public void setRlocale(String rlocale) {
+		this.rlocale = rlocale;
+	}
+
+	public String getRlocale() {
+		return rlocale;
+	}
 }

@@ -27,7 +27,7 @@
 	<link  rel="stylesheet"  href="<s:url value="/common/menu/css/menu.css"/>">
 	<link  rel="stylesheet"  href="<s:url value="/common/css/modal/modal.css"/>">
 	<!-- NOTIFICATION MANAGER FILE CSS-->
-	<link  rel="stylesheet"  href="<s:url value="/common/NotificationStyles/css/normalize.css"/>">
+
 	<link  rel="stylesheet"  href="<s:url value="/common/NotificationStyles/css/normalize.css"/>">
 	<link  rel="stylesheet"  href="<s:url value="/common/NotificationStyles/css/ns-default.css"/>">
 	<link  rel="stylesheet"  href="<s:url value="/common/NotificationStyles/css/ns-style-bar.css"/>">

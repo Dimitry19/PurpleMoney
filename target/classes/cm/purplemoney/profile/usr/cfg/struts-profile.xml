@@ -9,7 +9,7 @@
 			<result name="input">/common/home/portal.jsp</result>
 		</action>
 		<action name="locale" class="loginHomeAction" method="changelocale">
-			<result name="SUCCESS">/common/home/portal.jsp</result>
+			<result name="success">/common/home/home.jsp</result>
 		</action>
 	</package>
 </struts>

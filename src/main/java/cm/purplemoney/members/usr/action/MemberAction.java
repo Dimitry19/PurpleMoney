@@ -24,7 +24,7 @@ import java.util.List;
 
 @Component("memberAction")
 @Scope("prototype")
-public class MemberAction extends BaseAction implements SessionAware,Preparable{
+public class MemberAction extends BaseAction implements Preparable{
 
 	private static final Logger log = LoggerFactory.getLogger(MemberAction.class);
 

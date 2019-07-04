@@ -36,6 +36,8 @@ public class PortalConstants {
 	public static final String  PASS_SESSION="PASS";
 	public static final String  ASS_SESSION="ASS";
 	public static final String  REM_SESSION="REM";
+	public static final String  TO_SESSION="TO";
+	public static final String  EXPIRED_SESSION="sessionexpired";
 
 
 }
