@@ -53,18 +53,6 @@
                     <p><a target="_blank" href="<s:url action="retrieveCalendar"/>"><i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;<s:text name="footer.link.calendar"></s:text></a></p>
                 </s:if>
             </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-          <%--  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <!-- Links -->
-                <h6 class="text-uppercase font-weight-bold">Products</h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>
-                    <a href="#!">MDBootstrap</a>
-                </p>
-            </div>--%>
-            <!-- Grid column -->
-            <!-- Grid column -->
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Useful links</h6>

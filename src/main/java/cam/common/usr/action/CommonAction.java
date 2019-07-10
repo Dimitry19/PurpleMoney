@@ -7,19 +7,22 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import java.util.*;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.I18nInterceptor;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.ObjectError;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import static cm.purplemoney.constants.PortalConstants.CURRENT_ASS;
 import static cm.purplemoney.constants.PortalConstants.CURRENT_USER;
 
 
-public class CommonAction extends ActionSupport implements SessionAware {
+public class CommonAction extends ActionSupport implements SessionAware ,ServletRequestAware {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     protected Map session;
     protected Boolean rollbackOnly;
@@ -39,6 +42,9 @@ public class CommonAction extends ActionSupport implements SessionAware {
     public Locale currlocale;
     protected boolean showNotification=Boolean.TRUE;
     private static final long serialVersionUID = 1L;
+    protected String currentAction;
+    public HttpServletRequest request;
+
 
 
 
@@ -267,4 +273,20 @@ public class CommonAction extends ActionSupport implements SessionAware {
         }
         return null;
     }
+
+    public String getCurrentAction() {
+        return currentAction;
+    }
+
+    public void setCurrentAction(String currentAction) {
+        this.currentAction = ServletActionContext.getRequest().getHeader("Referer");
+    }
+
+
+    @Override
+    public void setServletRequest(HttpServletRequest request) {
+        this.request = request;
+    }
+
+
 }

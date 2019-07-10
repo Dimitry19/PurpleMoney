@@ -6,7 +6,7 @@ import cm.purplemoney.event.ent.vo.EventVO;
 import java.util.List;
 
 public interface EventBO {
-    List<EventVO> allEvents() throws BusinessException;
+    List<EventVO> allEvents(String association) throws BusinessException;
     void addEvent(EventVO event) throws BusinessException;
     void deleteEvent(EventVO event) throws BusinessException;
 

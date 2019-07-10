@@ -31,8 +31,10 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 	private EventVO event;
 	private AssociationVO associationCurrent;
 	private List eventTypes;
+	private List events;
 	private String term;
 	private String[] membersNames;
+	private String eventJson;
 
 	@Resource(name = "eventBO")
 	private EventBO eventBO;
@@ -46,6 +48,7 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 	@Resource(name = "associationBO")
 	private AssociationBO associationBO;
 
+
 	@Override
 	public void prepare() throws Exception{
 
@@ -53,8 +56,8 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 			debugMessageCall();
 		}
 
-		eventTypes=eventTypeBO.allEventsType(getCurrentLocale().toLowerCase().trim());
-		eventBO.allEvents();
+		//eventTypes=eventTypeBO.allEventsType(getCurrentLocale().toLowerCase().trim());
+		//eventBO.allEvents(getCurrentAssociation().toUpperCase());
 		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
 
 	}
@@ -72,6 +75,12 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 	}
 	
 	public String execute() {
+		return SUCCESS;
+	}
+
+	public String allEvents() throws Exception{
+
+		events=eventBO.allEvents(getCurrentAssociation().toUpperCase());
 		return SUCCESS;
 	}
 	 
@@ -139,5 +148,21 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 
 	public void setEventTypes(List eventTypes) {
 		this.eventTypes = eventTypes;
+	}
+
+	public String getEventJson() {
+		return eventJson;
+	}
+
+	public void setEventJson(String eventJson) {
+		eventJson = eventJson;
+	}
+
+	public List getEvents() {
+		return events;
+	}
+
+	public void setEvents(List events) {
+		this.events = events;
 	}
 }

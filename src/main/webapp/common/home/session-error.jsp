@@ -7,7 +7,7 @@
         <img class="mb-4 img-circle" src=" <s:url value="/theme/img/icon-purple.jpg"/>"  width="95" height="72">
         <div>
             <h1 class="h3 mb-3 font-weight-normal"><p>Session Time out!!!</p></h1>
-            <a href="<s:url action="login"/>">
+            <a href="<s:url action="logoutAction"/>">
                 <s:submit  type="button"   id="btnLogin" cssClass="btn btn-sm btn-primary btn-login"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Go to Login</s:submit>
             </a>
         </div>

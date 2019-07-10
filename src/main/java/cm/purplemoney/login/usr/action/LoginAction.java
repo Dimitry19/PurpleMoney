@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
 import cm.purplemoney.profile.ent.vo.AuthUserVO;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.I18nInterceptor;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.context.annotation.Scope;
@@ -36,6 +37,7 @@ public class LoginAction extends BaseAction implements Preparable{
 	List associations ;
 	List languages;
 	private String rLocale;
+	private String url;
 
 
 	@Resource(name="authUserBO")
@@ -58,6 +60,8 @@ public class LoginAction extends BaseAction implements Preparable{
 	}
 	@Override
 	public String execute() throws Exception{
+		String contextPath = request.getContextPath();
+		System.out.println("Context Path " + contextPath);
 
 		return SUCCESS;
 	}
@@ -79,10 +83,24 @@ public class LoginAction extends BaseAction implements Preparable{
 	}*/
 	
 	public String login() throws Exception{
+
+		String contextPath = request.getContextPath();
+		System.out.println("Context Path " + contextPath);
         logger.debug("into login method");
         // TODO Voir comment arranger le code du login
 		saveToSession(LOCALE,changelocaleMenu());
-        if(StringUtils.equals(ADMINISTRATOR, user.getUsername())){
+		if(StringUtils.equals("ADMIN", user.getUsername())){
+
+			if(user.isRemember()){
+				this.session.put(ADMIN_SESSION, user);
+			}
+			saveToSession(CURRENT_USER, user);
+			saveToSession(CURRENT_ASS, user.getAssociation());
+			saveToSession(TO_SESSION, user);
+
+			return SUCCESS;
+		}
+       /* if(StringUtils.equals(ADMINISTRATOR, user.getUsername())){
 
             if(user.isRemember()){
                 this.session.put(ADMIN_SESSION, user);
@@ -92,7 +110,7 @@ public class LoginAction extends BaseAction implements Preparable{
 	        saveToSession(TO_SESSION, user);
 
             return SUCCESS;
-        }
+        }*/
 
 		boolean isLogin=true;
 		boolean isSuccess=false;
@@ -239,8 +257,14 @@ public class LoginAction extends BaseAction implements Preparable{
 	}
 
 	public String  changelocale() throws Exception{
+		url=ServletActionContext.getRequest().getHeader("Referer");
 		saveToSession(LOCALE,changeLanguages(false));
-		return SUCCESS;
+		if(StringUtils.contains(url,"loginAction.do")){
+
+			return SUCCESS;
+		}
+
+		return INPUT;
 	}
 
 	private Locale changeLanguages(boolean fromLogin) throws Exception{
@@ -270,4 +294,9 @@ public class LoginAction extends BaseAction implements Preparable{
 	public String getRlocale() {
 		return rlocale;
 	}
+
+	public String getUrl() {
+		return url;
+	}
+
 }

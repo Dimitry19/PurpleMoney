@@ -4,17 +4,19 @@ import cm.purplemoney.constants.FieldConstants;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+import javafx.event.EventType;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "EVENTS", schema = "PUBLIC")
 @NamedQueries({
-        @NamedQuery(name = EventVO.ALL, query = "select e from EventTypeVO e  order by eventCode"),
+        @NamedQuery(name = EventVO.ALL, query = "select e from EventVO e where associationId =:assId order by id"),
 })
 public class EventVO implements Serializable {
 
@@ -28,7 +30,7 @@ public class EventVO implements Serializable {
     private String associationId;
     private Date data;
     private String member;
-    private EventTypeVO eventType;
+    private List<EventTypeVO> eventTypes;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -82,13 +84,21 @@ public class EventVO implements Serializable {
         this.members = members;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "R_EVENT_TYPE",referencedColumnName="EVENT_ID")
-    public EventTypeVO getEventType() {
-        return eventType;
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "EVENT_ID")
+    public List<EventTypeVO> getEventTypes() {
+        return eventTypes;
     }
 
-    public void setEventType(EventTypeVO eventType) {
-        this.eventType = eventType;
+    public void setEventTypes(List<EventTypeVO> eventTypes) {
+        this.eventTypes = eventTypes;
+    }
+
+    public void addEventType(EventTypeVO eventType) {
+        eventTypes.add(eventType);
+    }
+
+    public void removeEventType(EventTypeVO eventType) {
+        eventTypes.remove(eventType);
     }
 }

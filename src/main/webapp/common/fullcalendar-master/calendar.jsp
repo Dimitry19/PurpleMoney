@@ -23,6 +23,7 @@
             var m = date.getMonth();
             var y = date.getFullYear();
 
+            // call action  window.location = "${pageContext.request.contextPath}/falseAction";
 
             /*All Events*/
             var events= [
@@ -220,6 +221,30 @@
                     $( '.fc-agenda-axis' ).empty();
                     $( '.fc-agenda-axis' ).html('Jour entier');
                 }
+	            if(lang==='en'){
+		            $( '.fc-button-agendaDay' ).empty();
+		            $( '.fc-button-agendaDay' ).html('Day');
+		            $( '.fc-button-agendaWeek' ).empty();
+		            $( '.fc-button-agendaWeek' ).html('Week');
+		            $( '.fc-button-month' ).empty();
+		            $( '.fc-button-month' ).html('Month');
+		            $( '.fc-button-today' ).empty();
+		            $( '.fc-button-today' ).html('Today');
+		            $( '.fc-agenda-axis' ).empty();
+		            $( '.fc-agenda-axis' ).html('Whole day');
+	            }
+	            if(lang==='it'){
+		            $( '.fc-button-agendaDay' ).empty();
+		            $( '.fc-button-agendaDay' ).html('Giorno');
+		            $( '.fc-button-agendaWeek' ).empty();
+		            $( '.fc-button-agendaWeek' ).html('Settimana');
+		            $( '.fc-button-month' ).empty();
+		            $( '.fc-button-month' ).html('Mese');
+		            $( '.fc-button-today' ).empty();
+		            $( '.fc-button-today' ).html('Oggi');
+		            $( '.fc-agenda-axis' ).empty();
+		            $( '.fc-agenda-axis' ).html('Intero giorno');
+	            }
             }
         });
 

@@ -104,6 +104,7 @@
 				<value>cm.purplemoney.sanction.ent.vo.SanctionVO</value>
 				<value>cm.purplemoney.event.ent.vo.EventVO</value>
 				<value>cm.purplemoney.event.ent.vo.EventTypeVO</value>
+				<value>cm.purplemoney.event.ent.vo.Calendar</value>
 			</list>
 		</property>
 	</bean>

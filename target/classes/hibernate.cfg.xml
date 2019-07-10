@@ -66,5 +66,6 @@
         <mapping class="cm.purplemoney.sanction.ent.vo.SanctionVO"/>
        <mapping class="cm.purplemoney.event.ent.vo.EventVO"/>
        <mapping class="cm.purplemoney.event.ent.vo.EventTypeVO"/>
+       <mapping class="cm.purplemoney.event.ent.vo.Calendar"/>
     </session-factory>
 </hibernate-configuration>

@@ -58,9 +58,10 @@
 					<i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;<s:text name="footer.link.calendar"/>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownEventLink">
-					<a class="nav-link"  href="<s:url action="addingEvent"/>			"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;<s:text name="event.add.title"></s:text></a>
+					<a class="nav-link"  href="<s:url action="addingEvent"/>"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;<s:text name="event.add.title"></s:text></a>
+					<a class="nav-link" href="<s:url action="allEvents"/>"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<s:text name="event.all.title"/></a>
 				</div>
-			<%--<a class="nav-link" href="#"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.reglements"/></a>--%>
+				<%--<a class="nav-link" href="#"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.reglements"/></a>--%>
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguageLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -9,6 +9,12 @@
 		    <!--<result name="success">/common/fullcalendar-master/calendar.jsp</result>-->
 			<result name="success">/event/pages/addEvent.jsp</result>
 		</action>
+		<action name="allEvents" class="eventAction"  method="allEvents">
+			
+			<!--<result name="success" type="json" />
+			<param name="root">events</param>-->
+			<result name="success">/common/fullcalendar-master/calendar.jsp</result>
+		</action>
 		<action name="addEvent" class="eventAction"  method="addEvent">
 			<result name="success">/event/pages/addEvent.jsp</result>
 			<result name="input">/event/pages/addEvent.jsp</result>

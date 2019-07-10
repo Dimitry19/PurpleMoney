@@ -42,7 +42,7 @@
 		</global-results>
 
 		<action name="login" class="loginHomeAction">
-			<result name="success">/common/home/portal.jsp</result>
+			<result name="success">/common/home/index.jsp</result>
 		</action>
 
 	</package>

@@ -11,7 +11,7 @@
 			<result name="sessionexpired" >/common/home/session-error.jsp</result>
 		</action>
 		<action name="logoutAction" class="loginHomeAction" method="logout">
-			<result name="success">/common/home/portal.jsp</result>
+			<result name="success">/common/home/index.jsp</result>
 		</action>
 		<action name="timeout" class="loginHomeAction">
 			<result name="success">/common/home/session-error.jsp</result>
