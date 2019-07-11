@@ -19,14 +19,44 @@
         <li class="nav-item active">
             <a class="nav-link" href="#"><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></a>
         </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading"><s:text name="common.menu.language"/></div>
+        <!-- Nav Item - Sessions Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menuLanguages" aria-expanded="true" aria-controls="collapseLanguage">
+                <i class="fa fa-language"></i>
+                <span><s:text name="common.menu.language"/></span>
+            </a>
+            <div id="menuLanguages" class="collapse" aria-labelledby="menuLanguages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <s:url var="indexEN"  action="locale" >
+                        <s:param name="rlocale" >en</s:param>
+                    </s:url>
+                    <s:url var="indexFR" action="locale" >
+                        <s:param name="rlocale" >fr</s:param>
+                    </s:url>
+                    <s:url var="indexIT" action="locale" >
+                        <s:param name="rlocale" >it</s:param>
+                    </s:url>
+                    <h6 class="collapse-header"><s:text name="common.menu.language.english"/></h6>
+                    <a class="collapse-item" href="<s:property value="#indexEN" />"><span class="flag-icon flag-icon-us flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.english"/></a>
+                    <h6 class="collapse-header"><s:text name="common.menu.language.french"/></h6>
+                    <a class="collapse-item" href="<s:property value="#indexFR" />"><span class="flag-icon flag-icon-fr flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.french"/></a>
+                    <h6 class="collapse-header"><s:text name="common.menu.language.italian"/></h6>
+                    <a class="collapse-item" href="<s:property value="#indexIT" />"><span class="flag-icon flag-icon-it flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.italian"/></a>
+                </div>
+            </div>
+        </li>
         <s:if test="currentMember.isAdmin()== true">
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
-            <div class="sidebar-heading"><s:text name="common.admin.title"/></div>
+            <div class="sidebar-heading"><i class="fas fa-fw fa-cog"></i><s:text name="common.admin.title"/></div>
             <!-- Nav Item - Admin Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addOperation" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addOperation" aria-expanded="true" aria-controls="collapseAddOperation">
                         <%--<i class="fas fa-fw fa-cog"></i>--%>
                     <i class="fa fa-plus"></i>
                     <span><s:text name="common.admin.add.operations"/></span>
@@ -47,7 +77,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#editOperation" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#editOperation" aria-expanded="true" aria-controls="collapseEditOperation">
                     <i class="fa fa-edit"></i><span><s:text name="common.admin.edit.operations"/></span>
                 </a>
                 <div id="editOperation" class="collapse" aria-labelledby="editOperation" data-parent="#accordionSidebar">
@@ -59,7 +89,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mail" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mail" aria-expanded="true" aria-controls="collapseMail">
                     <i class="fa fa-envelope"></i><span><s:text name="common.menu.mail"/></span>
                 </a>
                 <div id="mail" class="collapse" aria-labelledby="mail" data-parent="#accordionSidebar">
@@ -132,6 +162,8 @@
                 </div>
             </div>
         </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
         <li class="nav-item">
             <a class="nav-link" href="<s:url action="allEvents"/>"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<s:text name="event.all.title"/></a>
         </li>

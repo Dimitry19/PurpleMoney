@@ -10,7 +10,7 @@
 		</action>
 		<action name="locale" class="loginHomeAction" method="changelocale">
 			<result name="input" type="redirect">${url}</result>
-			<result name="success">/common/home/index.jsp</result>
+			<result name="success">/common/home/home.jsp</result>
 		</action>
 	</package>
 </struts>

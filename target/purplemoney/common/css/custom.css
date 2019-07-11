@@ -257,6 +257,12 @@ dropdown-menu show{
 .bckgd{
   background-color: #800080;
 }
+.custum-info{
+  margin-top: -2rem!important;
+}
+.widget-info{
+  margin-top: -1rem!important;
+}
 
 
 
