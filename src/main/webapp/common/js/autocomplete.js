@@ -5,9 +5,21 @@ AutocompleteManager = function () {
 
     function autocomplete(){
 
-        $.subscribe('onCompleteLoading', function(event, data) {
-            alert("hi");
-        });
+	    $("#autocomplete").autocomplete({
+		    source : function(request, response) {
+			    $.ajax({
+				    url : "autocompleteMember",
+				    type : "POST",
+				    data : {
+					    term : request.term
+				    },
+				    dataType : "json",
+				    success : function(result) {
+					    response(result.membersNames);
+				    }
+			    });
+		    }
+	    });
 
     }
 

@@ -1,37 +1,37 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-<s:include value="../../../common/home/include/commons.jsp"/>
+<s:include value="../../../common/home/include/header.jsp"/>
+
 </head>
-<body>
-<%@ include file="../../../common/home/include/header-logo.jsp" %>
-<%@ include file="../../../common/menu/menu.jsp" %>
+<body class="bg-gradient-primary">
+<%@ include file = "../../../common/home/include/common-header-top.jsp" %>
+<%@ include file="../../../common/home/include/common-widgets-infos.jsp"%>
 <s:set var="lang" value="%{currentLocale}"/>
-<s:set var="size" value="%{getSanctions().size()}"/>
-<div class="container text-center">
-	<div class="card card-perso">
-		<div class="card-header">
-			<h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright"><s:text name="member.all.title"/></h1>
-		</div>
+<s:set var="title"><s:text name="member.all.title"/></s:set>
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<a href="#membersCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+			<h6 class="m-0 font-weight-bold text-primary"><s:text name="member.all.title"/></h6>
+		</a>
+	</div>
+
+	<div class="collapse show" id="membersCard">
 		<div class="card-body">
-				<div class="btn btn-group-md">
-					<button type="button" class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" onclick="DataTableManager.reloadDatatable({idDataTable: 'members'})" id="refreshMemberBtn"/>
-								<i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;<s:text name="common.refresh"></s:text>
-					</button>
-				</div>
-				<table id="members"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" class="display  nowrap table table-striped table-bordered row-border hover order-column">
+			<div class="table-responsive">
+				<table id="members"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
 					<thead>
-						<tr>
-							<th><s:property value="getText('member.column.gender')"/></th>
-							<th><s:property value="getText('member.column.name')"/></th>
-							<th><s:property value="getText('member.column.surname')"/></th>
-							<th><s:property value="getText('member.column.phone')"/></th>
-							<th><s:property value="getText('member.column.email')"/></th>
-							<th><s:property value="getText('member.column.role')"/></th>
-							<th><s:property value="getText('member.column.active')"/></th>
-							<th><s:property value="getText('member.column.sanction')"/></th>
-							<th></th>
-						</tr>
+					<tr>
+						<th><s:property value="getText('member.column.gender')"/></th>
+						<th><s:property value="getText('member.column.name')"/></th>
+						<th><s:property value="getText('member.column.surname')"/></th>
+						<th><s:property value="getText('member.column.phone')"/></th>
+						<th><s:property value="getText('member.column.email')"/></th>
+						<th><s:property value="getText('member.column.role')"/></th>
+						<th><s:property value="getText('member.column.active')"/></th>
+						<th><s:property value="getText('member.column.sanction')"/></th>
+						<th></th>
+					</tr>
 					</thead>
 					<tbody class="<s:property value="#notrasform"/>">
 					<s:iterator value="members" status="userStatus">
@@ -73,41 +73,35 @@
 							</td>
 						</tr>
 					</s:iterator>
-					</tbody">
+					</tbody>
 				</table>
-			<div>
-                <fieldset>
-                    <legend><s:text name="common.legend"></s:text></legend>
-                        <s:div cssClass="legend">
-                        <span class="badge traffic-light darkseagreen">&nbsp;&nbsp;</span>
-                            <s:property value="%{getText('member.datatable.legend.active')}" />
-                        </s:div>
-                        <s:div cssClass="legend">
-                            <span class="badge traffic-light sanction-inactive">&nbsp;&nbsp;</span>
-                            <s:property value="%{getText('member.datatable.legend.sanction.active')}" />
-                        </s:div>
-                        <s:div cssClass="legend">
-                            <span class="badge traffic-light sanction">&nbsp;&nbsp;</span>
-                            <s:property value="%{getText('member.datatable.legend.sanction')}" />
-                        </s:div>
-                </fieldset>
+				<div>
+					<fieldset>
+						<legend><s:text name="common.legend"></s:text></legend>
+						<s:div cssClass="legend">
+							<span class="badge badge-success darkseagreen">&nbsp;&nbsp;</span>
+							<s:property value="%{getText('member.datatable.legend.beneficiary')}" />
+						</s:div>
+					</fieldset>
+				</div>
+				<%@ include file = "../../../common/pages/modal/modal.jsp" %>
 			</div>
-			<%@ include file = "../../../common/pages/modal/modal.jsp" %>
-		<%--</s:if>--%>
+		</div>
 	</div>
 </div>
-</body>
-<div class="col">
-	<%@ include file = "../../../common/footers/footer.jsp" %>
 </div>
-<script src="<s:url value="/common/js/datatable/dataTableManager.js"/>"></script>
-<script src="<s:url value="/common/js/datatable/jquery.datatable/2.2.3/responsive.datatable.js "/>"></script>
+</div>
+</div>
+<%@ include file = "../../../common/home/include/common-header-bottom.jsp"%>
+<%@ include file = "../../../common/home/include/datatable.js.jsp"%>
 <script>
-    var lng='<s:property  value="%{#lang}" />';
-    var button='<button type="button"  class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length">' +
-        '<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.show.detail"></s:text></button>';
-	DataTableManager.constructDatatable({idDataTable: 'members',button:button,title:'Liste Membres',lang:lng})
+	var lng='<s:property  value="%{#lang}" />';
+	var title='<s:property  value="%{#title}" />';
+	DataTableManager.constructDatatable({idDataTable: 'members',title:title,lang:lng})
 
 </script>
+</body>
+
+
 </html>
 

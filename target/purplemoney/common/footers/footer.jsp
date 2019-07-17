@@ -49,9 +49,6 @@
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <%--<p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
                     adipisicing elit.</p>--%>
-                <s:if test="%{#currentUs}!=null">
-                    <p><a target="_blank" href="<s:url action="retrieveCalendar"/>"><i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;<s:text name="footer.link.calendar"></s:text></a></p>
-                </s:if>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <!-- Links -->

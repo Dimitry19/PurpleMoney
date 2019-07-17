@@ -7,7 +7,7 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<s:url action="homeAction"/>">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
             <%--<div class="sidebar-brand-icon rotate-n-15">--%>
             <div class="sidebar-brand-icon"><i class="fa fa-home"></i></div>
             <%--<div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>--%>
@@ -90,7 +90,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mail" aria-expanded="true" aria-controls="collapseMail">
-                    <i class="fa fa-envelope"></i><span><s:text name="common.menu.mail"/></span>
+                    <i class="fas fa-satellite-dish"></i><span><s:text name="common.menu.communication"/></span>
                 </a>
                 <div id="mail" class="collapse" aria-labelledby="mail" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">

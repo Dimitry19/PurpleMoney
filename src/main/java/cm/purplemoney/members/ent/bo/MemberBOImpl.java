@@ -43,7 +43,7 @@ public class MemberBOImpl implements MemberBO {
 
 	
 
-	public MemberVO findMember(String username,String assId) {
+	public  List<MemberVO>  findMember(String username,String assId) {
 
 		String usernameParts[] = username.split(CommonUtils.SPACE_REGEX, 2);
 		session= hibernateConfig.getSession();
@@ -55,8 +55,19 @@ public class MemberBOImpl implements MemberBO {
 		List<MemberVO> users=decoder(query.list());
 		if(users!=null && users.size()>0) {
 
-			return users.get(0);
+			//return users.get(0);
+			return users;
 
+		}
+		return null;
+
+	}
+
+	public  MemberVO  findMemberInfo(String username,String assId) {
+
+		List<MemberVO> users=findMember(  username,  assId);
+		if(users!=null && users.size()>0) {
+			return users.get(0);
 		}
 		return null;
 
@@ -141,6 +152,8 @@ public class MemberBOImpl implements MemberBO {
 		for(MemberVO member: results){
 			memberList.add(member.getId().getName().concat(" ").concat(member.getSurname()) );
 		}
+
+		//return memberList;
 
 		return  (String[]) memberList.toArray(new String[memberList.size()]);
 

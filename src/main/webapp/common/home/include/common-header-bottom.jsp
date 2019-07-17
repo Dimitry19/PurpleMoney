@@ -8,12 +8,45 @@
 <!-- End of Main Content -->
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
+ <div class="container my-auto">
         <div class="copyright text-center my-auto">
+            <div class="row py-4 d-flex align-items-center">
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                    <h6 class="mb-0"><s:text name="footer.contact.social"></s:text></h6>
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/XlionD" class="fb-ic">
+                        <i class="fa fa-facebook-square white-text mr-4"> </i>
+                    </a>
+                    <!-- Twitter -->
+                    <a class="tw-ic" href="https://twitter.com/DXlionaire">
+                        <i class="fa fa-twitter white-text mr-4"> </i>
+                    </a>
+                    <!-- Google +-->
+                    <a class="gplus-ic" href="https://plus.google.com/u/0/104372700159542371601">
+                        <i class="fa fa-google white-text mr-4"> </i>
+                    </a>
+                    <!--Linkedin -->
+                    <a class="li-ic" href="https://www.linkedin.com/in/dimitri-sime-ndjouomo-74804337/">
+                        <i class="fa fa-linkedin white-text mr-4"> </i>
+                    </a>
+                    <!--Instagram-->
+                    <a class="ins-ic" href="https://www.instagram.com/lion_dx">
+                        <i class="fa fa-instagram white-text"> </i>
+                    </a>
+                </div>
+                <!-- Grid column -->
+            </div>
             <span>Copyright &copy; Your Website 2019</span>
         </div>
     </div>
+
 </footer>
+
 <!-- End of Footer -->
 
 </div>
@@ -52,5 +85,9 @@
 <!-- Page level custom scripts -->
 <script src="<s:url value="/common/template/demo/chart-area-demo.js"/>"></script>
 <script src="<s:url value="/common/template/demo/chart-pie-demo.js"/>"></script>
+<script src="<s:url value="/common/template/demo/chart-bar-demo.js"/>"></script>
+<script src="<s:url value="/common/template/demo/chart-pie-frequence-demo.js"/>"></script>
+<script src="<s:url value="/common/template/demo/chart-bar-pret-demo.js"/>"></script>
+
 
 

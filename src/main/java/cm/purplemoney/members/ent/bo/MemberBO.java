@@ -8,8 +8,9 @@ import cm.purplemoney.members.ent.vo.MemberVO;
 import java.util.List;
 
 public interface MemberBO {
-	
-	 MemberVO findMember(String username, String assId) throws BusinessException;
+
+	List<MemberVO>  findMember(String username, String assId) throws BusinessException;
+	MemberVO  findMemberInfo(String username, String assId) throws BusinessException;
 	 MemberVO findMemberFromSession(SessionVO session) throws BusinessException;
 	 void addMember(MemberVO member) throws BusinessException;
 	 List<MemberVO> loadAllMembers(String association) throws BusinessException;

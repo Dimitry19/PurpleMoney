@@ -8,6 +8,7 @@
 <%@ include file = "../../../common/home/include/common-header-top.jsp" %>
 <%@ include file="../../../common/home/include/common-widgets-infos.jsp"%>
 <s:set var="lang" value="%{currentLocale}"/>
+<s:set var="title"><s:text name="session.all.amounts"/></s:set>
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<a href="#amountsCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
@@ -67,12 +68,15 @@
 					</div>
 				</div>
 			</div>
+		</div>
 	</div>
+</div>
 <%@ include file = "../../../common/home/include/common-header-bottom.jsp"%>
 <%@ include file = "../../../common/home/include/datatable.js.jsp"%>
 <script>
 	var lng='<s:property  value="%{#lang}" />';
-	DataTableManager.constructDatatable({idDataTable: 'sessions',title:'Sessions',lang:lng})
+	var title='<s:property  value="%{#title}" />';
+	DataTableManager.constructDatatable({idDataTable: 'sessions',title:title,lang:lng})
 
 </script>
 </body>

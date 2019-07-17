@@ -64,7 +64,7 @@ public class MemberAction extends BaseAction implements Preparable{
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
-		members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
+		//members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
 		associations=associationBO.loadAllAssociations();
 		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
 		roles=roleBO.loadAllRoles();
@@ -116,14 +116,15 @@ public class MemberAction extends BaseAction implements Preparable{
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
-		userInfo=memberBO.findMember(getCurrentUser(), getCurrentAssociation().toUpperCase());
+		userInfo=memberBO.findMemberInfo(getCurrentUser(), getCurrentAssociation().toUpperCase());
 
 		return SUCCESS;
 	}
 
 	public String allInfoMember()throws Exception {
 		String associa=userSearch.getAssociation()!=null?userSearch.getAssociation():getCurrentAssociation().toUpperCase();
-		userInfo=memberBO.findMember(userSearch.getId().getName(), associa);
+		members=memberBO.findMember(userSearch.getId().getName(), associa);
+
 		return SUCCESS;
 	}
 
@@ -139,7 +140,7 @@ public class MemberAction extends BaseAction implements Preparable{
 	public String autocompleteMember() throws Exception{
 
 		if(StringUtils.isNotBlank(term)){
-			membersNames = memberBO.autocomplete(term,currentAssociation.toUpperCase());
+			membersNames = memberBO.autocomplete(term,getCurrentAssociation().toUpperCase());
 		}
 			return SUCCESS;
 	}

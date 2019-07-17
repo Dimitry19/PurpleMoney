@@ -9,7 +9,7 @@
 </head>
 
 <%@ include file = "../../common/home/include/common-header-top.jsp" %>
-<%@ include file = "../../common/home/include/demo.jsp"%>
+<%@ include file = "../../common/home/include/infos.jsp"%>
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
 </body>
 

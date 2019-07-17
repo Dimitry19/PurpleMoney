@@ -266,7 +266,7 @@ public class CommonAction extends ActionSupport implements SessionAware ,Servlet
                 String currentUs =(String) ob;
                 Object o=this.session.get(CURRENT_ASS);
                 String currentAss =(String) o;
-                return memberBO.findMember(currentUs,currentAss);
+                return memberBO.findMemberInfo(currentUs,currentAss);
         }catch (Exception b){
                 log.error("Error retrieve currentMember");
                 b.printStackTrace();

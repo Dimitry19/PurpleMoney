@@ -144,7 +144,7 @@ public class LoginAction extends BaseAction implements Preparable{
 
 
 					}else{
-						MemberVO member = memberBO.findMember(authUser.getRmember(),user.getAssociation());
+						MemberVO member = memberBO.findMemberInfo(authUser.getRmember(),user.getAssociation());
 						if(member!=null){
 							isSuccess=true;
 							if(user.isRemember()){
