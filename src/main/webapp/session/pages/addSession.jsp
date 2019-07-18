@@ -1,114 +1,94 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <s:include value="../../common/home/include/header.jsp"/>
 <s:include value="../../common/home/include/notification-header.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
 <s:set var="showNotification" value="%{showNotification}"/>
-<sj:head locale="%{#lang}"  jquerytheme="ui-lightness" jqueryui="true" />
+
 
 
 </head>
 <body class="bg-gradient-primary">
 <%@ include file = "../../common/home/include/common-header-top.jsp" %>
 <%@ include file="../../common/home/include/common-widgets-infos.jsp"%>
-        <div class="container">
-                <s:if test="hasActionErrors()">
-                    <div class="fieldError">
-                        <s:actionerror escape="false"/>
-                    </div>
-                </s:if>
-                <div class="row justify-content-center">
-                    <div class="col-xl-10 col-lg-12 col-md-9">
-                        <div class="card o-hidden border-0 shadow-lg my-5">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <a href="#addSessionCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                        <h6 class="m-0 font-weight-bold text-primary"><s:text name="common.menu.founds.add"/></h6>
-                                    </a>
-                                </div>
-                                <div class="collapse show" id="addSessionCard">
-                                    <div class="card-body p-0">
-                                        <s:form class="form-login form-horizontal user"  action="saveSessionAction" id="formAddSession">
-                                            <div class="form-group">
-                                                <s:textfield id="userSearchAssociation"  value="%{associationCurrent.description}" class="form-control form-control-user" readonly="true" />
-                                                <s:hidden name="amountSession.id.associationId" value="%{associationCurrent.id.id}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <s:url var="memberURL" action="autocompleteMember"/>
-                                                <sj:autocompleter id="membersNames"
-                                                                      name="amountSession.membre.id.name"
-                                                                      href="%{memberURL}"
-                                                                      loadMinimumCount="2"
-                                                                      delay="50"
-                                                                      cssClass="custom-select form-control form-control-user"
-                                                                      onCompleteTopics="onCompleteLoading"
-                                                    />
-                                            </div>
-                                            <div class="form-group">
-                                                <s:textfield name="amountSession.amount"    key="common.login.username" value="%{associationCurrent.amount}" required="true"  type="number"  pattern="^\d+(\.\d{1,2})?$" readonly="true" class="form-control form-control-user"/>
-                                                <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
-                                                <div class="invalid-feedback"><s:text name="session.money.error"/></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <sj:datepicker
-                                                        id="sessionData"
-                                                        name="amountSession.id.date"
-                                                        parentTheme="bootstrap4"
-                                                        tooltip="Date"
-                                                        cssClass="form-control"
-                                                        elementCssClass="col-sm-3"
-                                                        showOn="focus"
-                                                        label="%{getText('common.label.date')}"
-                                                        displayFormat="dd/mm/yy"
-                                                        minDate="%{new java.sql.Date()}"
-                                                        inputAppendIcon="calendar"
-                                                />
-                                                <div class="invalid-feedback"><s:text name="session.date.error"/></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <s:checkbox id="status"  class="custom-control-input"   name="amountSession.status"/>
-                                                    <label class="form-check-label custom-control-label" for="status"><s:text name="session.benef"/></label>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <s:submit type="button" id="btnAddAmount" class="btn btn-sm btn-primary btn-login btn btn-primary btn-user btn-block"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; <s:text name="session.add.adding"/></s:submit>
-                                            </div>
-                                        </s:form>
+<s:set var="lang" value="%{currentLocale}"/>
+                    <div class="card shadow mb-4">
+                        <a href="#addSessionCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                            <div class="card-header"><h6 class="m-0 font-weight-bold text-primary"><s:text name="common.menu.founds.add"/></h6></div>
+                        </a>
+
+                        <div class="collapse show" id="addSessionCard">
+                            <div class="card-body">
+                                <s:form class="form-login form-horizontal user"  action="saveSessionAction" id="formAddSession">
+                                    <div class="md-form">
+                                        <s:textfield id="userSearchAssociation"  type="text" value="%{associationCurrent.description}" class="form-control" readonly="true" />
+                                        <label for="userSearchAssociation"><s:text name="member.label.association"/></label>
+                                        <s:hidden name="amountSession.id.associationId" value="%{associationCurrent.id.id}"/>
                                     </div>
-                                    <div>
-                                        <s:if test="%{#lang}==true">
-                                            <s:if test="hasActionMessages()">
-                                                <script>
-                                                    var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="session.add.success"/></p>';
-                                                    NotificationManager.displayNotification({message:message, type:'success'})
-                                                </script>
-                                            </s:if>
-                                            <s:if test="hasActionErrors()">
-                                                <script>
-                                                    var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="session.add.error"/></p>';
-                                                    NotificationManager.displayNotification({message:message, type:'error'})
-                                                </script>
-                                            </s:if>
-                                        </s:if>
+                                    <div class="md-form">
+                                        <s:url var="memberURL" action="autocompleteMember"/>
+                                        <sj:autocompleter id="membersNames"
+                                                          name="amountSession.membre.id.name"
+                                                          href="%{memberURL}"
+                                                          loadMinimumCount="2"
+                                                          delay="50"
+                                                          cssClass="form-control"
+                                                          onCompleteTopics="onCompleteLoading"
+                                        />
+                                        <s:hidden  name="amountSession.membre.id.name" />
+                                        <label for="membersNames"><s:text name="member.column.name"/></label>
                                     </div>
-                                </div>
+                                    <div class="md-form">
+                                        <s:textfield id="amountSession" name="amountSession.amount" value="%{associationCurrent.amount}" required="true"  type="number"  pattern="^\d+(\.\d{1,2})?$" readonly="true" class="form-control"/>
+                                        <label for="amountSession"><s:text name="session.label.amount"/>&nbsp;<i class="fas fa-euro-sign"></i></label>
+                                        <div class="invalid-feedback"><s:text name="session.money.error"/></div>
+                                    </div>
+                                    <div class="md-form">
+                                        <s:textfield id="dateSession" name="amountSession.id.date"   required="true"   class="form-control"/>
+                                        <label for="dateSession"><s:text name="common.label.date"/>&nbsp;<i class="fas fa-calendar"></i></label>
+                                        <div class="invalid-feedback"><s:text name="session.date.error"/></div>
+                                    </div>
+                                    <div class="md-form">
+                                        <div class="custom-control custom-checkbox small">
+                                            <s:checkbox id="status"  class="custom-control-input"   name="amountSession.status"/>
+                                            <label class="form-check-label custom-control-label" for="status"><s:text name="session.benef"/></label>
+                                        </div>
+                                    </div>
+                                    <s:submit type="button" id="btnAddAmount" class="btn btn-outline-primary waves-effect"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; <s:text name="session.add.adding"/></s:submit>
+
+                                </s:form>
+                            </div>
+                            <div>
+                                <s:if test="%{#lang}==true">
+                                    <s:if test="hasActionMessages()">
+                                        <script>
+                                            var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="session.add.success"/></p>';
+                                            NotificationManager.displayNotification({message:message, type:'success'})
+                                        </script>
+                                    </s:if>
+                                    <s:if test="hasActionErrors()">
+                                        <script>
+                                            var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="session.add.error"/></p>';
+                                            NotificationManager.displayNotification({message:message, type:'error'})
+                                        </script>
+                                    </s:if>
+                                </s:if>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
+<script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	FormManager.validationForm({idForm: 'formAddAmount',idSubmit:'btnAddAmount'})
 </script>
-
+<script>
+	var lng='<s:property  value="%{#lang}" />';
+	DataPickerManager.enable({id: 'dateSession',lang:lng})
+</script>
 </body>
 
 

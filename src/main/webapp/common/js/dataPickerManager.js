@@ -2,19 +2,25 @@ var DataPickerManager = function(){
 
 
     var dateFormat="dd/MM/yyyy";
-    function enableBootstrapDataPicker(id) {
 
-        console.log("enableBootstrapDataPicker");
-        $(id).datetimepicker();
 
-    }
+    function enablejQueryDatePicker(json) {
 
-    function enablejQueryDatePicker(id) {
+		    var id='#'+json.id;
+		    var lang=json.lang;
 
-        console.log("enablejQueryDatePicker");
-      //  $(id).datepicker();
+		    console.log(lang);
+		    $(id).datepicker($.datepicker.regional[ lang ]);
 
-        //$(id).datepicker({dateFormat: dateFormat});
+
+	   /* $( function() {
+		    var id='#'*json.btn;
+		    var lang=json.lang;
+		    $(id).datepicker($.datepicker.regional[ lang ]);
+	    } );*/
+
+
+
     }
 
 
@@ -22,16 +28,10 @@ var DataPickerManager = function(){
     return {
 
         enable: function(json){
-            var   id='#'+json.id;
-            console.log(id);
-            var   isBootstrap=json.isBootstrap;
-            if(isBootstrap==true){
-                enableBootstrapDataPicker(id);
-            }else{
 
-                enablejQueryDatePicker(id);
+                enablejQueryDatePicker(json);
             }
-        }
+
     }
 
 }();
