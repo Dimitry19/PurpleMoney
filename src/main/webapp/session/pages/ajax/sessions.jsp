@@ -22,34 +22,27 @@
 						<table id="sessions"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
 							<thead>
 								<tr>
+									<th></th>
 									<th><s:property value="getText('member.column.name')"/></th>
 									<th><s:property value="getText('member.column.surname')"/></th>
 									<th><s:property value="getText('session.label.amount')"/></th>
-									<th><s:property value="getText('session.benef')"/></th>
 									<th><s:property value="getText('common.label.date')"/></th>
-									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 							<s:iterator value="sessions" status="userStatus">
 								<tr>
+									<td>
+										<s:if test="status==true">
+											<s:set var="priorityLightStyle">bg-red-thunderbird bg-font-red-thunderbird bg-gradient-success</s:set>
+											<span class="badge traffic-light <s:property value="%{#priorityLightStyle}"/>">&nbsp;&nbsp;</span>
+										</s:if>
+
+									</td>
 									<td><s:property value="membre.id.name"/></td>
 									<td><s:property value="membre.surname"/></td>
 									<td><s:property value="amount"/></td>
-
-										<s:if test="status==false">
-											<td>
-												<s:property value="%{getText('common.label.false')}" />
-											</td>
-										</s:if>
-										<s:elseif test="status==true">
-											<td class="bg-gradient-success">
-												<s:property value="%{getText('common.label.true')}" />
-											</td>
-										</s:elseif>
-
 									<td><s:date name="id.date" format="dd/MM/yyyy" /></td>
-									<td></td>
 								</tr>
 							</s:iterator>
 							</tbody>

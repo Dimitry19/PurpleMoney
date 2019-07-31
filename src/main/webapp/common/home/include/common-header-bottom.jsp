@@ -72,7 +72,7 @@
             </div>
             <div class="modal-body"><s:text name="common.menu.logout.select"/>&nbsp;<strong><s:text name="common.menu.logout"/></strong> <s:text name="common.menu.logout"/>.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal"><s:text name="common.label.btn.reset"/></button>
+                <button class="btn btn-alert-custom" type="button" data-dismiss="modal"><s:text name="common.label.btn.reset"/></button>
                 <a class="btn btn-primary" href="<s:url action="logoutAction"/>"><s:text name="common.menu.logout"/></a>
             </div>
         </div>

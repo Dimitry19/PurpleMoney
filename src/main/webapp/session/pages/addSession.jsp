@@ -1,12 +1,11 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sx" uri="/struts-json-tags" %>
 <s:include value="../../common/home/include/header.jsp"/>
 <s:include value="../../common/home/include/notification-header.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
 <s:set var="showNotification" value="%{showNotification}"/>
-
-
 
 </head>
 <body class="bg-gradient-primary">

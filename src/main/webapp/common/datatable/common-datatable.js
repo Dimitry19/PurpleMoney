@@ -48,9 +48,9 @@ DataTableManager = function () {
 			},
 			"select": {
 				"rows": {
-					_: "%d lignes sÃ©lÃ©ctionnÃ©es",
-					0: "Aucune ligne sÃ©lÃ©ctionnÃ©e",
-					1: "1 ligne sÃ©lÃ©ctionnÃ©e"
+					_: "%d lignes séléctionnées",
+					0: "Aucune ligne séléctionnée",
+					1: "1 ligne séléctionnée"
 				}
 			}
 		}
@@ -58,14 +58,10 @@ DataTableManager = function () {
 
 
 	function buildDatatable(json) {
-
-
-
 		console.log("DataTableManager");
 		var idDataTable='#'+json.idDataTable;
 		var titlePage=json.title;
 		var lang=json.lang;
-
 
 
 		var options={
@@ -184,11 +180,7 @@ DataTableManager = function () {
 			constructDatatable(jsonObj);
 		},
 		reloadDatatable:function (jsonObj) {
-			reloadDatatable(jsonObj)
-		},
-		changeLanguage:function (jsonObj) {
-			changeLang(jsonObj);
-
+			//reloadDatatable(jsonObj)
 		}
 	}
 }();

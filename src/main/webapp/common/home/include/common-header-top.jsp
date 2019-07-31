@@ -1,6 +1,8 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<link  rel="stylesheet"  href="<s:url value="common/Player/css/styles.css"/>">
+
 <body id="page-top">
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -190,6 +192,121 @@
                         </div>
                     </div>
                 </s:form>
+
+                <div class="container plyer">
+                    <audio id="audio" preload="none" tabindex="0">
+                        <source src="<s:url value="/common/Player/data/KM.mp3"/>" data-track-number="1" />
+                        <source src="<s:url value="/common/Player/data/MM.mp3"/>" data-track-number="2" />
+                        <source src="<s:url value="/common/Player/data/Larissa.mp3"/>" data-track-number="3" />
+                        <source src="<s:url value="/common/Player/data/nikeles.mp3"/>" data-track-number="4" />
+                        Your browser does not support HTML5 audio.
+                    </audio>
+
+                    <div class="player">
+                        <div class="large-toggle-btn">
+                            <i class="large-play-btn"><span class="screen-reader-text">Large toggle button</span></i>
+                        </div>
+                        <!-- /.play-box -->
+
+                        <div class="info-box">
+                            <div class="track-info-box">
+                                <div class="track-title-text"></div>
+                                <div class="audio-time">
+                                    <span class="current-time">00:00</span> /
+                                    <span class="duration">00:00</span>
+                                </div>
+                            </div>
+                            <!-- /.info-box -->
+
+                            <div class="progress-box">
+                                <div class="progress-cell">
+                                    <div class="progress">
+                                        <div class="progress-buffer"></div>
+                                        <div class="progress-indicator"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.progress-box -->
+
+                        <div class="controls-box">
+                            <i class="previous-track-btn disabled"><span class="screen-reader-text">Previous track button</span></i>
+                            <i class="next-track-btn"><span class="screen-reader-text">Next track button</span></i>
+                        </div>
+                        <!-- /.controls-box -->
+
+                    </div>
+                    <!-- /.player -->
+
+                    <div class="play-list" style="display: none;">
+
+                        <div class="play-list-row" data-track-row="1">
+                            <div class="small-toggle-btn">
+                                <i class="small-play-btn"><span class="screen-reader-text">Small toggle button</span></i>
+                            </div>
+                            <div class="track-number">
+                                1.
+                            </div>
+                            <div class="track-title">
+                                <a class="playlist-track" href="#" data-play-track="1">Lion Dx - Kylian Mbappe</a>
+                            </div>
+                        </div>
+                        <div class="play-list-row" data-track-row="2">
+                            <div class="small-toggle-btn">
+                                <i class="small-play-btn"><span class="screen-reader-text">Small toggle button</span></i>
+                            </div>
+                            <div class="track-number">
+                                2.
+                            </div>
+                            <div class="track-title">
+                                <a class="playlist-track" href="#" data-play-track="2">Lion Dx - Me & Myself</a>
+                            </div>
+                        </div>
+                        <div class="play-list-row" data-track-row="3">
+                            <div class="small-toggle-btn">
+                                <i class="small-play-btn"><span class="screen-reader-text">Small toggle button</span></i>
+                            </div>
+                            <div class="track-number">
+                                3.
+                            </div>
+                            <div class="track-title">
+                                <a class="playlist-track" href="#" data-play-track="3">Lion Dx - Larissa</a>
+                            </div>
+                        </div>
+                        <div class="play-list-row" data-track-row="4">
+                            <div class="small-toggle-btn">
+                                <i class="small-play-btn"><span class="screen-reader-text">Small toggle button</span></i>
+                            </div>
+                            <div class="track-number">
+                                4.
+                            </div>
+                            <div class="track-title">
+                                <a class="playlist-track" href="#" data-play-track="4">Bantou Posi - Nikeles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+               <div class="example">
+                   <%-- <input type="file" id="rll" />
+                  <audio  id="audioPlayer" controls>
+                       <source src="" id="rlly" />
+                   </audio>
+
+                   function handleFiles(event) {
+	var files = event.target.files;
+	$("#rlly").attr("src", URL.createObjectURL(files[0]));
+	document.getElementById("rllly").load();
+}
+
+document.getElementById("rll").addEventListener("change", handleFiles, false);
+
+
+                   --%>
+            </div>
+
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">

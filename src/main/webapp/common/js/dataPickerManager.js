@@ -1,8 +1,6 @@
 var DataPickerManager = function(){
 
-
     var dateFormat="dd/MM/yyyy";
-
 
     function enablejQueryDatePicker(json) {
 
@@ -11,16 +9,6 @@ var DataPickerManager = function(){
 
 		    console.log(lang);
 		    $(id).datepicker($.datepicker.regional[ lang ]);
-
-
-	   /* $( function() {
-		    var id='#'*json.btn;
-		    var lang=json.lang;
-		    $(id).datepicker($.datepicker.regional[ lang ]);
-	    } );*/
-
-
-
     }
 
 
