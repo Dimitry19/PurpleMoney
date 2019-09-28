@@ -6,7 +6,7 @@
 <s:include value="../../common/home/include/notification-header.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
 <s:set var="showNotification" value="%{showNotification}"/>
-
+<sj:head jqueryui="true"/>
 </head>
 <body class="bg-gradient-primary">
 <%@ include file = "../../common/home/include/common-header-top.jsp" %>
@@ -26,17 +26,18 @@
                                         <s:hidden name="amountSession.id.associationId" value="%{associationCurrent.id.id}"/>
                                     </div>
                                     <div class="md-form">
-                                        <s:url var="memberURL" action="autocompleteMember"/>
-                                        <sj:autocompleter id="membersNames"
-                                                          name="amountSession.membre.id.name"
-                                                          href="%{memberURL}"
-                                                          loadMinimumCount="2"
-                                                          delay="50"
-                                                          cssClass="form-control"
-                                                          onCompleteTopics="onCompleteLoading"
-                                        />
+                                        <div class="md-form">
+                                            <label for="membersNames"><s:text name="member.column.name"/></label>
+                                        </div>
+                                        <s:select
+                                                tooltip="%{getText('common.login.association.tooltip')}"
+                                                class="browser-default custom-select form-control"  data-live-search="true"
+                                                id="membersNames"
+                                                list="members" listKey="id.name"	listValue="%{id.name}"
+                                                name="amountSession.membre.id.name"
+                                                emptyOption="true"
+                                                headerValue="%{getText('common.login.group.tooltip')}"/>
                                         <s:hidden  name="amountSession.membre.id.name" />
-                                        <label for="membersNames"><s:text name="member.column.name"/></label>
                                     </div>
                                     <div class="md-form">
                                         <s:textfield id="amountSession" name="amountSession.amount" value="%{associationCurrent.amount}" required="true"  type="number"  pattern="^\d+(\.\d{1,2})?$" readonly="true" class="form-control"/>
@@ -77,14 +78,13 @@
                         </div>
                     </div>
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
-<script src="<s:url value="/common/js/form.js"/>"></script>
-<script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<s:url value="/common/js/form.js"/>"></script>
+<script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
+
 <script>
 	FormManager.validationForm({idForm: 'formAddAmount',idSubmit:'btnAddAmount'})
-</script>
-<script>
 	var lng='<s:property  value="%{#lang}" />';
 	DataPickerManager.enable({id: 'dateSession',lang:lng})
 </script>

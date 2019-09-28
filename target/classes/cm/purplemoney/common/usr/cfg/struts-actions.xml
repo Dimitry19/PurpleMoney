@@ -12,6 +12,7 @@
 				<interceptor-ref name="commonInterceptor" />
 				<interceptor-ref name="i18n" />
 				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="json" />
 				<interceptor-ref name="staticParams" />
 				<interceptor-ref name="prepare" />
 				<interceptor-ref name="checkbox" />

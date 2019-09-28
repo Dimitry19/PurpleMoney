@@ -32,8 +32,10 @@ public class EventBOImpl implements EventBO {
     @Override
     public void addEvent(EventVO event) throws BusinessException{
         if(event!=null){
-            String memberId=event.getMember().split(CommonUtils.SPACE_REGEX, 2)[0];
+            String memberId=event.getMember().split(CommonUtils.COMMA_REGEX, 2)[0];
+            String eventType=event.getEventType().split(CommonUtils.COMMA_REGEX, 2)[0];
             event.setMember(memberId);
+            event.setEventType(eventType);
             session=hibernateConfig.getSession();
             Transaction tx=session.beginTransaction();
             Serializable serializable=session.save(EventVO.class.getName(),event);

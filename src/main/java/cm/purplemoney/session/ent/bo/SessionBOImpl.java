@@ -50,9 +50,9 @@ public class SessionBOImpl implements SessionBO {
                 //String usernameParts[] = amountSession.getId().getMember().split(CommonUtils.SPACE_REGEX, 2);
                 //
 
-                String usernameParts[] = amountSession.getMembre().getId().getName().split(CommonUtils.SPACE_REGEX, 2);
+                String usernameParts[] = amountSession.getMembre().getId().getName().split(CommonUtils.COMMA_REGEX, 2);
                 amountSession.getMembre().getId().setName(usernameParts[0]);
-               // amountSession.getId().setMember(usernameParts[0]);
+                amountSession.getId().setMember(usernameParts[0]);
                 session.saveOrUpdate(SessionVO.class.getName(), amountSession);
                 tx.commit();
 

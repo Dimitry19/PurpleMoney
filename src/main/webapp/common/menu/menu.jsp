@@ -80,7 +80,7 @@
 					</s:url>
 					<a class="dropdown-item" href="<s:property value="#indexEN" />"><span class="flag-icon flag-icon-us flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.english"/>					</a>
 					<a class="dropdown-item" href="<s:property value="#indexFR" />"><span class="flag-icon flag-icon-fr flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.french"/></a>
-					<a class="dropdown-item" href="<s:property value="#indexIT" />"><span class="flag-icon flag-icon-it flag-icon-squared"></span></i>&nbsp;<s:text name="common.menu.language.italian"/></a>
+					<a class="dropdown-item" href="<s:property value="#indexIT" />"><span class="flag-icon flag-icon-it flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.italian"/></a>
 				</div>
 			</li>
 

@@ -13,9 +13,8 @@
 			<result name="success">/members/pages/infoMember.jsp</result>
 		</action>
 		<action name="allInfoMemberAction" class="memberAction"  method="allInfoMember">
-			<result name="success">members/pages/ajax/members.jsp</result>
-			<!--<result name="success">/members/pages/infoMember.jsp</result>
-			<result name="input">/members/pages/searchMember.jsp</result>-->
+			<result name="success">members/pages/ajax/result-members.jsp</result>
+			<!--<result name="success">/members/pages/infoMember.jsp</result>-->
 		</action>
 		<action name="editMemberAction" class="memberAction">
 			<result name="success">/members/pages/searchMember.jsp</result>

@@ -98,7 +98,6 @@
 	var lng='<s:property  value="%{#lang}" />';
 	var title='<s:property  value="%{#title}" />';
 	DataTableManager.constructDatatable({idDataTable: 'members',title:title,lang:lng})
-
 </script>
 </body>
 

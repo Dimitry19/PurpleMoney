@@ -28,7 +28,7 @@
         <hibernate.version>4.3.1.Final</hibernate.version>
         <mySql.version>5.1.16.2</mySql.version>
         <org.springframework.version>4.2.3.RELEASE</org.springframework.version>
-        <struts.jquery.plugin.version>4.0.1</struts.jquery.plugin.version>
+        <struts.jquery.plugin.version>3.7.1</struts.jquery.plugin.version>
         <struts2.version>2.3.32</struts2.version>
         <mySql.version>5.1.16.2</mySql.version>
         <jackson.version>1.8.5</jackson.version>
@@ -233,11 +233,13 @@
             <!--<version>3.0.1</version>-->
             <version>${struts.jquery.plugin.version}</version>
         </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-json-plugin -->
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-json-plugin</artifactId>
-            <version>${struts2.version}</version>
+            <version>2.3.15</version>
         </dependency>
 
 

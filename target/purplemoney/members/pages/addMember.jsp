@@ -1,50 +1,34 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-<s:include value="../../common/home/include/commons.jsp"/>
-</head>
-<body>
-<!-- MDB core JavaScript -->
-<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/js/mdb.min.js"></script>
-<script src="<s:url value="/common/js/form.js"/>"></script>
-
-<%@ include file="../../common/home/include/header-logo.jsp" %>
-<%@ include file="../../common/menu/menu.jsp" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sx" uri="/struts-json-tags" %>
+<s:include value="../../common/home/include/header.jsp"/>
+<s:include value="../../common/home/include/notification-header.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
-<div class="container text-center">
-
-    <div class="card card-perso">
-        <div class="card-header">
-            <h1 class="h3 mb-3 font-weight-normal bd-text-purple-bright"><s:text name="member.add.title"/></h1>
-        </div>
+<s:set var="showNotification" value="%{showNotification}"/>
+<sj:head jqueryui="true"/>
+</head>
+<body class="bg-gradient-primary">
+<%@ include file = "../../common/home/include/common-header-top.jsp" %>
+<%@ include file="../../common/home/include/common-widgets-infos.jsp"%>
+<div class="card shadow mb-4">
+        <a href="#addMemberCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+            <div class="card-header"><h6 class="m-0 font-weight-bold text-primary"><s:text name="member.add.title"/></h6></div>
+        </a>
+    <div class="collapse show" id="addMemberCard">
         <div class="card-body">
-            <s:form class="form-horizontal"  action="addMemberAction" id="formRegister">
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon-association">
-                                <strong>
-                                    <s:text name="member.label.association"/>
-                                   <i class="fa fa-users" aria-hidden="true"></i>
-                                 </strong>
-                            </span>
-                        </div>
-                        <s:textfield id="userSearchAssociation"   value="%{associationCurrent.description}" class="form-control form-control-login" readonly="true" />
+            <s:form class="form-login form-horizontal user"  action="addMemberAction" id="formRegister">
+                    <div class="md-form">
+                        <s:textfield id="userSearchAssociation"  type="text" value="%{associationCurrent.description}" class="form-control form-control-login" readonly="true" />
+                        <label for="userSearchAssociation"><s:text name="member.label.association"/></label>
                         <s:hidden name="userAdding.id.memberId" value="%{associationCurrent.id.id}"/>
                         <s:hidden name="userAdding.association" value="%{associationCurrent.id.id}"/>
                         <s:hidden name="userAdding.associationDesc" value="%{associationCurrent.description}"/>
                     </div>
+                <div class="md-form">
+
                 </div>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon-role">
-                                <strong>
-                                     <s:text name="member.label.role"/>
-                                    <i class="fa fa-wrench" aria-hidden="true"></i>
-                                 </strong>
-                            </span>
-                        </div>
+                <div class="md-form">
                         <s:select
                                 tooltip="%{getText('member.add.role.tooltip')}"
                                 class="browser-default custom-select" data-live-search="true"
@@ -55,102 +39,59 @@
                                 emptyOption="false"
                                 headerValue="%{getText('member.add.role.headerValue')}"
                         />
-                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon-user-name">
-                                <strong>
-                                     <s:text name="member.label.name"/>
-                                    <i class="fa fa-user fa" aria-hidden="true"></i>
-                                 </strong>
-                            </span>
-                        </div>
+                <div class="md-form">
                         <s:textfield required="true" type="text" class="form-control" name="userAdding.id.name" id="name"  placeholder="%{getText('member.add.placeholder.name')}" />
+                        <label for="name"><s:text name="member.label.name"/></label>
                         <div class="invalid-feedback"><s:text name="member.add.error.name"/></div>
-                    </div>
-                    </div>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon-user-surname">
-                                    <strong>
-                                          <%--<s:label value="%{getText('member.label.surname')}" id="surname" for="surname"  labelposition="left"></s:label>--%>
-                                         <s:text name="member.label.surname"/>
-                                        <i class="fa fa-user fa" aria-hidden="true"></i>
-                                     </strong>
-                                </span>
-                        </div>
+                </div>
+                <div class="md-form">
                         <s:textfield type="text" required="true" class="form-control" name="userAdding.surname" id="surname"  placeholder="%{getText('member.add.placeholder.surname')}" />
+                        <label for="surname"><s:text name="member.label.surname"/></label>
                         <div class="invalid-feedback"><s:text name="member.add.error.surname"/></div>
-                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon-email">
-                                <strong>
-                                     <%--<s:label value="%{getText('member.label.email')}" id="email" for="email"  labelposition="left"></s:label>--%>
-                                    <s:text name="member.label.email"/>
-                                    <i class="fa fa-envelope fa" aria-hidden="true"></i>
-                                 </strong>
-                            </span>
-                        </div>
+                <div class="md-form">
 						<s:textfield type="email" required="true" class="form-control" name="userAdding.email" id="email"  pattern="^[^@\s]+@([^@\s]+\.)+[^@\s]+$" placeholder="%{getText('member.add.placeholder.email')}" />
-					   <div class="invalid-feedback"><s:text name="member.add.error.mail"/></div>
-                    </div>
+                        <label for="email"><s:text name="member.label.email"/></label>
+                        <div class="invalid-feedback"><s:text name="member.add.error.mail"/></div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon-phone">
-                                <strong>
-                                     <%--<s:label value="%{getText('member.label.phone')}" id="telephone" for="telephone"  labelposition="left"></s:label>--%>
-                                     <s:text name="member.label.phone"/>
-                                     <i class="fa fa-mobile" aria-hidden="true"></i>
-                                 </strong>
-                            </span>
-                        </div>
+                <div class="md-form">
 						<s:textfield type="tel" required="true" class="form-control" name="userAdding.phone" id="telephone" maxlength="14" placeholder="%{getText('member.add.placeholder.phone')}" />
-						<div class="invalid-feedback"><s:text name="member.add.error.tel"/></div>
-                    </div>
+                        <label for="telephone"><s:text name="member.label.phone"/></label>
+                        <div class="invalid-feedback"><s:text name="member.add.error.tel"/></div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon-address">
-                                <strong>
-                                      <%--<s:label value="%{getText('member.label.address')}"  id="address" for="address"  labelposition="left"></s:label>--%>
-                                      <s:text name="member.label.address"/>
-                                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                 </strong>
-                            </span>
+                <div class="md-form">
+                    <s:textfield type="text" required="true" class="form-control" name="userAdding.address" id="address"  placeholder="%{getText('member.add.placeholder.address')}" />
+					 <label for="address"><s:text name="member.label.address"/></label>
+                        <div class="invalid-feedback"><s:text name="member.add.error.address"/></div>
+                </div>
+                <div class="row">
+                    <div class="form-sm col-sm-4">
+                        <div class="custom-control custom-checkbox small">
+                            <s:radio list="#{'M':''}"  label="%{getText('member.label.gender')}"   id="male" class="form-check-input" type="radio"  name="userAdding.sex" value="M" multiple="false"></s:radio>
+                            <label for="male"><s:text name="member.label.gender.male"/></label>
                         </div>
-						<s:textfield type="text" required="true" class="form-control" name="userAdding.address" id="address"  placeholder="%{getText('member.add.placeholder.address')}" />
-					<div class="invalid-feedback"><s:text name="member.add.error.address"/></div>
-					</div>
+                        <div class="custom-control custom-checkbox small">
+                            <s:radio label="%{getText('member.label.gender')}" list="#{'F':''}" name="userAdding.sex"  id="female" class="form-check-input" type="radio"  multiple="false"></s:radio>
+                            <label  for="female"><s:text name="member.label.gender.female"/></label>
+                        </div>
+                    </div>
+                    <div class="form-sm col-sm-4">
+                        <div class="custom-control custom-checkbox small">
+                            <s:checkbox id="isActive"  class="custom-control-input"  tooltip="%{getText('member.add.active.tooltip')}" name="userAdding.active" />
+                            <label class="form-check-label custom-control-label" for="isActive"><s:text name="member.add.error.active"/></label>
+                        </div>
+                    </div>
+                    <div class="form-sm col-sm-4">
+                        <div class="custom-control custom-checkbox small">
+                            <s:checkbox id="isAdmin"  class="custom-control-input" tooltip="%{getText('member.add.admin.tooltip')}" name="userAdding.admin"/>
+                            <label class="form-check-label custom-control-label" for="isAdmin"><s:text name="member.add.error.admin"/></label>
+                        </div>
+                    </div>
+                            <%--<s:radio label="%{getText('member.label.gender')}" list="#{'F':'  Female','M':'  Male'}" name="userAdding.sex"  class="radio-inline" multiple="false"></s:radio>--%>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <s:radio list="#{'M':''}"  label="%{getText('member.label.gender')}"   id="male" class="form-check-input" type="radio"  name="userAdding.sex" value="M" multiple="false"></s:radio>
-                        <label class="form-check-label" for="male"><s:text name="member.label.gender.male"/></label>
-                    </div>
-                    <div class="form-check">
-                        <s:radio label="%{getText('member.label.gender')}" list="#{'F':''}" name="userAdding.sex"  id="female" class="form-check-input" type="radio"  multiple="false"></s:radio>
-                        <label class="form-check-label" for="female"><s:text name="member.label.gender.female"/></label>
-                    </div>
-                    <div class="form-check">
-                        <s:checkbox id="isActive"  class="form-check-input" type="checkbox" tooltip="%{getText('member.add.active.tooltip')}" name="userAdding.active" />
-                        <label class="form-check-label" for="isActive"><s:text name="member.add.error.active"/></label>
-                    </div>
-                    <div class="form-check">
-                        <s:checkbox id="isAdmin"  class="form-check-input" type="checkbox" tooltip="%{getText('member.add.admin.tooltip')}" name="userAdding.admin"/>
-                        <label class="form-check-label" for="isAdmin"><s:text name="member.add.error.admin"/></label>
-                    </div>
-                    <%--<s:radio label="%{getText('member.label.gender')}" list="#{'F':'  Female','M':'  Male'}" name="userAdding.sex"  class="radio-inline" multiple="false"></s:radio>--%>
-                </div>
-                <div class="form-group">
+                <div class="md-form">
                     <s:submit type="button" id="btnRegister" class="btn btn-primary btn-md btn-login-button"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
                 </div>
             </s:form>
@@ -172,11 +113,10 @@
             </s:if>
         </div>
     </div>
-</div>
-</body>
-<div class="col">
-    <%@ include file = "../../common/footers/footer.jsp" %>
-</div>
+<%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/jquery/jquery-input-mask-phone-number.js"/>"></script>
 <script>
     FormManager.validationForm({idForm: 'formRegister',idSubmit:'btnRegister'})
@@ -187,5 +127,5 @@
     });
 </script>
 
-</html>
+</body>
 

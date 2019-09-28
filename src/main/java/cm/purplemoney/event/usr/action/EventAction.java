@@ -31,6 +31,7 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 	private EventVO event;
 	private AssociationVO associationCurrent;
 	private List eventTypes;
+	private List members;
 	private List events;
 	private String term;
 	private String[] membersNames;
@@ -55,8 +56,9 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
+		members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
 
-		//eventTypes=eventTypeBO.allEventsType(getCurrentLocale().toLowerCase().trim());
+		eventTypes=eventTypeBO.allEventsType(getCurrentLocale().toLowerCase().trim());
 		//eventBO.allEvents(getCurrentAssociation().toUpperCase());
 		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
 
@@ -164,5 +166,13 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 
 	public void setEvents(List events) {
 		this.events = events;
+	}
+
+	public List<MemberVO> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<MemberVO> members) {
+		this.members = members;
 	}
 }

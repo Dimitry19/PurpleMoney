@@ -258,12 +258,21 @@ dropdown-menu show{
   background-color: #800080;
 }
 .custum-info{
-  margin-top: -2.5rem!important;
+  margin-top: -1rem!important;
 }
 .widget-info{
   margin-top: -1rem!important;
 }
+.btn-alert-custom{
+  background-color: #DF162D;
+}
 
+select#membersNames{
+  padding-left: 50%;
+}
+.container-result{
+  margin: 1%;
+}
 
 
 

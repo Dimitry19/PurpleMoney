@@ -1,17 +1,21 @@
 var DataPickerManager = function(){
 
-    var dateFormat="dd/MM/yyyy";
+    var dateFormat="dd/mm/yy";
+
 
     function enablejQueryDatePicker(json) {
 
 		    var id='#'+json.id;
 		    var lang=json.lang;
 
-		    console.log(lang);
-		    $(id).datepicker($.datepicker.regional[ lang ]);
+	    var options = {
+		    format: dateFormat,
+		    language: lang
+	    };
+	        $(id).datepicker({ dateFormat:dateFormat,language: lang });
+		    //$(id).datepicker($.datepicker.regional[ lang ]);
+
     }
-
-
 
     return {
 

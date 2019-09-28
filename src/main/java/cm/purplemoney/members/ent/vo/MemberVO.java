@@ -17,8 +17,9 @@ import javax.persistence.*;
 @NamedQueries({
 		@NamedQuery(name = MemberVO.Q_AC_ITEM, query = "select m from MemberVO m where (upper(id.name) like :searchFilter) or(upper(surname) like :" +
 				"searchFilter ) or(id.name like :searchFilter) or( surname like :searchFilter)  and association=:ass order by id.name"),
-		@NamedQuery(name = MemberVO.ALL, query = "select m from MemberVO m  where association=:ass order by id.name"),
-		@NamedQuery(name = MemberVO.FINDBYID, query = "select m from MemberVO m where id.name =:uName and association=:ass and active=:act "),
+		@NamedQuery(name = MemberVO.ALL, query = "select m from MemberVO m  where association=:ass  and active=:act order by id.name"),
+		@NamedQuery(name = MemberVO.FINDBYID, query = "select m from MemberVO m where id.name  =:uName and association=:ass and active=:act "),
+		@NamedQuery(name = MemberVO.LIKEID, query = "select m from MemberVO m where id.name  like :uName and association=:ass and active=:act "),
 		@NamedQuery(name = MemberVO.FINDBYSESSION, query = "select m from MemberVO m where id.name =:uName and association=:ass order by id.name"),
 })
 public class MemberVO implements Serializable{
@@ -49,6 +50,7 @@ public class MemberVO implements Serializable{
 	public static final String Q_AC_ITEM = "cm.purplemoney.members.ent.vo.MemberVO.QAutocompleteItem";
 	public static final String ALL = "cm.purplemoney.members.ent.vo.MemberVO.All";
 	public static final String FINDBYID="cm.purplemoney.members.ent.vo.MemberVO.findById";
+	public static final String LIKEID="cm.purplemoney.members.ent.vo.MemberVO.findLikeId";
 	public static final String  FINDBYSESSION="cm.purplemoney.members.ent.vo.MemberVO.findByName";
 
 	@EmbeddedId

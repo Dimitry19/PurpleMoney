@@ -41,26 +41,25 @@ public class MemberBOImpl implements MemberBO {
 	Session session;
 
 
-	
 
 	public  List<MemberVO>  findMember(String username,String assId) {
 
-		String usernameParts[] = username.split(CommonUtils.SPACE_REGEX, 2);
 		session= hibernateConfig.getSession();
-		Query query=session.getNamedQuery(MemberVO.FINDBYID);
+		Query query=null;
 
-		query.setParameter("uName", usernameParts[0]);
-		query.setParameter("ass", assId.toUpperCase());
-		query.setParameter("act", true);
-		List<MemberVO> users=decoder(query.list());
-		if(users!=null && users.size()>0) {
 
-			//return users.get(0);
-			return users;
+			String usernameParts[] = username.split(CommonUtils.SPACE_REGEX, 2);
+			query=session.getNamedQuery(MemberVO.LIKEID);
+			query.setParameter("uName",SQLUtils.forLike(usernameParts[0].toUpperCase(), true, true, true));
 
-		}
+			query.setParameter("ass", assId.toUpperCase());
+			query.setParameter("act", true);
+			List<MemberVO> users=decoder(query.list());
+			if(users!=null && users.size()>0) {
+
+				return users;
+			}
 		return null;
-
 	}
 
 	public  MemberVO  findMemberInfo(String username,String assId) {
@@ -95,6 +94,7 @@ public class MemberBOImpl implements MemberBO {
 		session=hibernateConfig.getSession();
 		Query query=session.getNamedQuery(MemberVO.ALL);
 		query.setParameter("ass", association);
+		query.setParameter("act", true);
 
 		List<MemberVO> members= null;
 		try {

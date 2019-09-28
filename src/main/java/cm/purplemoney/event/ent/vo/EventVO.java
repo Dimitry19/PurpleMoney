@@ -30,7 +30,7 @@ public class EventVO implements Serializable {
     private String associationId;
     private Date data;
     private String member;
-    private List<EventTypeVO> eventTypes;
+    private String eventType;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -84,21 +84,14 @@ public class EventVO implements Serializable {
         this.members = members;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "EVENT_ID")
-    public List<EventTypeVO> getEventTypes() {
-        return eventTypes;
+    @Basic(optional = false)
+    @Column(name = "R_EVENT_TYPE")
+    public String getEventType() {
+        return eventType;
     }
 
-    public void setEventTypes(List<EventTypeVO> eventTypes) {
-        this.eventTypes = eventTypes;
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
     }
 
-    public void addEventType(EventTypeVO eventType) {
-        eventTypes.add(eventType);
-    }
-
-    public void removeEventType(EventTypeVO eventType) {
-        eventTypes.remove(eventType);
-    }
 }

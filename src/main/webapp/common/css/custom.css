@@ -267,6 +267,12 @@ dropdown-menu show{
   background-color: #DF162D;
 }
 
+select#membersNames{
+  padding-left: 50%;
+}
+.container-result{
+  margin: 1%;
+}
 
 
 
