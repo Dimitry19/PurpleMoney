@@ -130,7 +130,7 @@ public class MemberVO implements Serializable{
 	}
 
 
-	@OneToMany(mappedBy = "membre",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "mmember",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("id.date  DESC")
 	public Set<SessionVO> getSessions() {
 		return sessions;

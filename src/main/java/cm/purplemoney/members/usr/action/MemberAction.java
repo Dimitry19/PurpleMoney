@@ -39,7 +39,9 @@ public class MemberAction extends BaseAction implements Preparable{
 	private List roles;
 	private SexEnum[] sexEnums;
 	private String term;
-	private String[] membersNames;
+	private String userInput;
+	//private String[] membersNames;
+	private List<MemberVO> membersNames;
 
 
 	private List<SessionVO> sessions = new ArrayList<SessionVO>();
@@ -64,7 +66,7 @@ public class MemberAction extends BaseAction implements Preparable{
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
-		//members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
+		members=memberBO.loadAllMembers(getCurrentAssociation().toUpperCase());
 		associations=associationBO.loadAllAssociations();
 		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
 		roles=roleBO.loadAllRoles();
@@ -139,8 +141,8 @@ public class MemberAction extends BaseAction implements Preparable{
 
 	public String autocompleteMember() throws Exception{
 
-		if(StringUtils.isNotBlank(term)){
-			membersNames = memberBO.autocomplete(term,getCurrentAssociation().toUpperCase());
+		if(StringUtils.isNotBlank(userInput)){
+			membersNames = memberBO.autocomplete(userInput,getCurrentAssociation().toUpperCase());
 		}
 			return SUCCESS;
 	}
@@ -254,11 +256,19 @@ public class MemberAction extends BaseAction implements Preparable{
 		this.term = term;
 	}
 
-	public String[] getMembersNames() {
+	public String getUserInput() {
+		return userInput;
+	}
+
+	public void setUserInput(String userInput) {
+		this.userInput = userInput;
+	}
+
+	public List<MemberVO> getMembersNames() {
 		return membersNames;
 	}
 
-	public void setMembersNames(String[] membersNames) {
+	public void setMembersNames(List<MemberVO> membersNames) {
 		this.membersNames = membersNames;
 	}
 

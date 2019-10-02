@@ -63,11 +63,11 @@
             <artifactId>jackson-mapper-asl</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/select2 -->
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jackson.version}</version>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>select2</artifactId>
+            <version>3.5.3</version>
         </dependency>
 
         <dependency>

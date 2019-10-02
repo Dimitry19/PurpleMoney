@@ -36,7 +36,7 @@ public class SanctionAction extends BaseAction implements SessionAware,Preparabl
     private List sanctions;
     private AssociationVO associationCurrent;
     private String term;
-    private String[] membersNames;
+    private List<MemberVO> membersNames;
     private List associations;
 
     @Resource(name="authUserBO")
@@ -137,11 +137,11 @@ public class SanctionAction extends BaseAction implements SessionAware,Preparabl
         this.term = term;
     }
 
-    public String[] getMembersNames() {
+    public List<MemberVO>  getMembersNames() {
         return membersNames;
     }
 
-    public void setMembersNames(String[] membersNames) {
+    public void setMembersNames(List<MemberVO>  membersNames) {
         this.membersNames = membersNames;
     }
 

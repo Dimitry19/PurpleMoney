@@ -88,7 +88,7 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 		}
 		if(amountSession!=null) {
 			showNotification=false;
-			if (StringUtils.isEmpty(amountSession.getMembre().getId().getName())) {
+			if (StringUtils.isEmpty(amountSession.getMmember().getId().getName())) {
 				addActionError(getText("session.add.member.error"));
 			}
 			if (amountSession.getId().getDate()==null){

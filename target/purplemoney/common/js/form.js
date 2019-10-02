@@ -45,6 +45,19 @@ FormManager = function () {
         var id = '#' + jsonObj.idButton;
         $(id).prop("disabled",true);
     }
+
+    function enableButton(jsonObj) {
+
+        var id = '#' + jsonObj.idButton;
+	    var idField='#'+jsonObj.idField;
+	    var val=$(idField).val();
+	    if(val.length>1){
+		    $(id).prop("disabled",false);
+	    }else{
+		    $(id).prop("disabled",true);
+        }
+    }
+
     function phone(jsonObj) {
         var value='#'+jsonObj.idPhone;
         $(value).usPhoneFormat({
@@ -64,6 +77,9 @@ FormManager = function () {
         },
         disableBtn:function (jsonObj) {
             disableButton(jsonObj)
+        },
+        enableBtn:function (jsonObj) {
+	        enableButton(jsonObj)
         },
         disableAllFields:function (jsonObj) {
             disableAllField(jsonObj);

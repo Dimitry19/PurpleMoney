@@ -20,10 +20,22 @@
 					<div class="card-body">
 						<s:form class="form-horizontal" id="formSearchMember">
 							<div class="md-form">
-								<s:textfield id="membersNames"   name="userSearch.id.name"  required="true" class="form-control form-control-login"  onkeyup="FormManager.enableBtn({idButton:'btnSearchMember', idField:'membersNames'});return false;"/>
+							<%--	<div class="md-form">
+									<label for="membersNames"><s:text name="member.column.name"/></label>
+								</div>--%>
+								<s:select
+										tooltip="%{getText('common.login.association.tooltip')}"
+										class="browser-default custom-select select-autocomplete-s2"  data-live-search="true"
+										id="membersNames"
+										list="%{{}}" listKey="id.name"	listValue="%{id.name}"
+										name="userSearch.id.name"
+										emptyOption="true"
+										headerValue="%{getText('common.login.group.tooltip')}"
+								/>
+								<%--<s:textfield id="membersNames"   name="userSearch.id.name"  required="true" class="form-control form-control-login"  onkeyup="FormManager.enableBtn({idButton:'btnSearchMember', idField:'membersNames'});return false;"/>
 								<label for="membersNames"><s:text name="member.label.name"/></label>
 								<div class="invalid-feedback"><s:text name="member.add.error.name"/></div>
-								<s:hidden  name="userSearch.id.name" />
+								<s:hidden  name="userSearch.id.name" />--%>
 							</div>
 							<div class="md-form">
 								<s:textfield  name="userSearch.association" id="userSearchAssociationLabel"   value="%{associationCurrent.description}" class="form-control form-control-login" readonly="true" />
@@ -42,8 +54,11 @@
 			</div>
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
+
 <script>
+	var lng='<s:property  value="%{#lang}" />';
 	FormManager.validationForm({idForm: 'formSearchMember',idSubmit:'btnSearchMember'})
+	Select2Manager.autocomlete({lang:lng});
 </script>
 <!-- ds-framework JavaScript-->
 <script src="<s:url value="/ds-framework/js/AjaxManager.js"/>"></script>

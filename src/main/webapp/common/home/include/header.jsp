@@ -15,7 +15,7 @@
 
 	<link  rel="stylesheet"  href="<s:url value="/common/css/custom.css"/>">
 	<link  rel="stylesheet"  href="<s:url value="/common/css/footer.css"/>">
-	<link rel="stylesheet"   href="<s:url value="/common/css/flag-icon/css/flag-icon.css"/>">
+	<link  rel="stylesheet"   href="<s:url value="/common/css/flag-icon/css/flag-icon.css"/>">
 	<link  rel="stylesheet"  href="<s:url value="/utils/google/css/map.css"/>">
 	<link  rel="stylesheet"  href="<s:url value="/common/css/modal/modal.css"/>">
 
@@ -29,6 +29,9 @@
 <!-- Custom styles for this template-->
 	<link rel="stylesheet" href="<s:url value="/common/template/css/sb-admin-2.min.css"/> ">
 	<link rel="stylesheet" href="<s:url value="/common/template/datatables/dataTables.bootstrap4.min.css"/>" >
+
+	<link  rel="stylesheet"  href="<s:url value="/common/js/select2/dist-4.0.10/css/select2.min.css"/>">
+	<%--<link  rel="stylesheet"  href="<s:url value="/common/js/select2/dist-4.0.10/css/select2-bootstrap4.css"/>">--%>
 
 
 	<script src="<s:url value="/common/Player/js/jquery-1.7.2.min.js"/>"></script>

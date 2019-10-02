@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-<link  rel="stylesheet"  href="<s:url value="common/Player/css/styles.css"/>">
+<link  rel="stylesheet"  href="<s:url value="/common/Player/css/styles.css"/>">
 
 <body id="page-top">
 <!-- Page Wrapper -->

@@ -50,8 +50,8 @@ public class SessionBOImpl implements SessionBO {
                 //String usernameParts[] = amountSession.getId().getMember().split(CommonUtils.SPACE_REGEX, 2);
                 //
 
-                String usernameParts[] = amountSession.getMembre().getId().getName().split(CommonUtils.COMMA_REGEX, 2);
-                amountSession.getMembre().getId().setName(usernameParts[0]);
+                String usernameParts[] = amountSession.getMmember().getId().getName().split(CommonUtils.COMMA_REGEX, 2);
+                amountSession.getMmember().getId().setName(usernameParts[0]);
                 amountSession.getId().setMember(usernameParts[0]);
                 session.saveOrUpdate(SessionVO.class.getName(), amountSession);
                 tx.commit();
@@ -106,7 +106,7 @@ public class SessionBOImpl implements SessionBO {
             sbWhere.append(" and status = :sts");
         }
         if(StringUtils.isNotEmpty(username)){
-            sbWhere.append(" and membre.id.name = :mbr");
+            sbWhere.append(" and mmember.id.name = :mbr");
         }
         if(dateFrom!=null && dateTo!=null){
             sbWhere.append(" and id.date between :from and :to");

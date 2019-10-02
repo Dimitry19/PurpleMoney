@@ -34,10 +34,10 @@
                                                 class="browser-default custom-select form-control"  data-live-search="true"
                                                 id="membersNames"
                                                 list="members" listKey="id.name"	listValue="%{id.name}"
-                                                name="amountSession.membre.id.name"
+                                                name="amountSession.mmember.id.name"
                                                 emptyOption="true"
                                                 headerValue="%{getText('common.login.group.tooltip')}"/>
-                                        <s:hidden  name="amountSession.membre.id.name" />
+                                        <s:hidden  name="amountSession.mmember.id.name" />
                                     </div>
                                     <div class="md-form">
                                         <s:textfield id="amountSession" name="amountSession.amount" value="%{associationCurrent.amount}" required="true"  type="number"  pattern="^\d+(\.\d{1,2})?$" readonly="true" class="form-control"/>

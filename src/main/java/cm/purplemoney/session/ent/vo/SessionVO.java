@@ -10,7 +10,7 @@ import java.math.BigInteger;
 @Entity
 @Table(name="SESSION" , schema="PUBLIC")
 @NamedQueries({
-        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s where id.associationId=:ass order by membre.id.name"),
+        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s where id.associationId=:ass order by mmember.id.name"),
        // @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s where id.associationId=:ass order by id.member"),
 })
 public class SessionVO implements Serializable {
@@ -19,7 +19,7 @@ public class SessionVO implements Serializable {
     private BigInteger amount;
     private boolean status;
     private String surnameMember;
-    private MemberVO membre;
+    private MemberVO mmember;
 
     public static final String ALL = "cm.purplemoney.session.ent.vo.SessionVO.All";
 
@@ -45,12 +45,12 @@ public class SessionVO implements Serializable {
             @JoinColumn(name = "R_MEMBER", referencedColumnName ="MNAME" ,insertable=false, updatable=false),
             @JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "ID",insertable=false, updatable=false)
     })
-    public MemberVO getMembre() {
-        return membre;
+    public MemberVO getMmember() {
+        return mmember;
     }
 
-    public void setMembre(MemberVO membre) {
-        this.membre = membre;
+    public void setMmember(MemberVO mmember) {
+        this.mmember = mmember;
     }
 
 

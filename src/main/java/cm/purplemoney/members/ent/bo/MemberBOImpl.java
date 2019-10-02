@@ -79,7 +79,7 @@ public class MemberBOImpl implements MemberBO {
 		Query query=session.getNamedQuery(MemberVO.FINDBYSESSION);
 
 		//query.setParameter("uName", sess.getId().getMember());
-		query.setParameter("uName", sess.getMembre().getId().getName());
+		query.setParameter("uName", sess.getMmember().getId().getName());
 		query.setParameter("ass", sess.getId().getAssociationId());
 		List<MemberVO> users=decoder(query.list());
 		if(users!=null && users.size()>0) {
@@ -139,23 +139,24 @@ public class MemberBOImpl implements MemberBO {
 	}
 
 	@Override
-	public String[] autocomplete(String search, String association) throws BusinessException {
+	public List<MemberVO> autocomplete(String search, String association) throws BusinessException {
 
-		List<String> memberList = new ArrayList<String>();
+		//List<String> memberList = new ArrayList<String>();
 		session=hibernateConfig.getSession();
 
 		Query query =session.getNamedQuery(MemberVO.Q_AC_ITEM);
 				query.setParameter("searchFilter",SQLUtils.forLike(search, true, true, true));
 				query.setParameter("ass",association);
-		List<MemberVO> results = query.list();
+		List<MemberVO> memberList = query.list();
 
-		for(MemberVO member: results){
-			memberList.add(member.getId().getName().concat(" ").concat(member.getSurname()) );
-		}
+		return memberList;
+		//for(MemberVO member: results){
+		//	memberList.add(member.getId().getName().concat(" ").concat(member.getSurname()) );
+		//}
 
 		//return memberList;
 
-		return  (String[]) memberList.toArray(new String[memberList.size()]);
+		//return  (String[]) memberList.toArray(new String[memberList.size()]);
 
 	}
 
