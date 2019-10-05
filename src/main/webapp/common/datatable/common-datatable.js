@@ -1,5 +1,23 @@
 var DataTableManager;
 DataTableManager = function () {
+	var printCounter;
+	var modal='<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'+
+		'<div class="modal-dialog" role="document">'+
+		'<div class="modal-content">'+
+		'<div class="modal-header">'+
+		'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>'+
+		'<h4 class="modal-title modal-title-custom" id="myModalLabel"><s:text name="common.show.detail"></s:text></h4>'+
+		'</div>'+
+		'<div class="modal-body">'+
+		'<div class="insertHere"></div>'+
+		'</div><div class="modal-footer">'+
+		'<button type="button" class="btn  btn-md btn btn-secondary buttons-collection  buttons-page-length" data-dismiss="modal">'+
+		'<i class="fa fa-times-circle"></i>&nbsp;<s:text name="common.label.btn.close"></s:text>'+
+	'</button>'+
+	'</div>'+
+	'</div>'+
+	'</div>'+
+	'</div>';
 
 	var languages={
 		italian:{
@@ -23,6 +41,12 @@ DataTableManager = function () {
 			"oAria": {
 				"sSortAscending":  ": attiva per ordinare la colonna in ordine crescente",
 				"sSortDescending": ": attiva per ordinare la colonna in ordine decrescente"
+			},"select": {
+				"rows": {
+					_: "| %d righe selezionate",
+					0: "| nessuna riga selezionata",
+					1: "| 1 riga selezionata"
+				}
 			}
 		},
 		french:{
@@ -48,9 +72,9 @@ DataTableManager = function () {
 			},
 			"select": {
 				"rows": {
-					_: "%d lignes séléctionnées",
-					0: "Aucune ligne séléctionnée",
-					1: "1 ligne séléctionnée"
+					_: "| %d lignes séléctionnées",
+					0: "| Aucune ligne séléctionnée",
+					1: "| 1 ligne séléctionnée"
 				}
 			}
 		}
@@ -58,11 +82,10 @@ DataTableManager = function () {
 
 
 	function buildDatatable(json) {
-		console.log("DataTableManager");
+		console.log("CommonDataTableManager");
 		var idDataTable='#'+json.idDataTable;
 		var titlePage=json.title;
 		var lang=json.lang;
-
 
 		var options={
 
@@ -74,6 +97,14 @@ DataTableManager = function () {
 			//deferRender:    true,
 			//scroller:       true,
 			//"sPaginationType": "four_button", //
+			columnDefs: [
+				{
+					// adding a more info button at the end
+					targets: -1,
+					data: null,
+					defaultContent: "<button type='button'  data-toggle='tooltip' data-placement='top' title='Details Info' onclick='DataTableManager.editRow(this)' class='btn blue-hoki btn-icon-only btn-primary tooltips edit-btn'>" +
+					"<i class='fa fa-edit' aria-hidden='true'></i>&nbsp;</button>"
+				}],
 			buttons: [
 				{
 					extend:'copyHtml5',
@@ -98,7 +129,7 @@ DataTableManager = function () {
 						columns: ':visible'
 					},
 					customize: function(xlsx) {
-						var sheet = xlsx.xl.worksheets['sheet1.xml'];
+						var sheet = xlsx.xl.worksheets[titlePage+'_sheet1.xml'];
 
 						// Loop over the cells in column `B`
 						$('row c[r^="D"]', sheet).each( function () {
@@ -112,7 +143,7 @@ DataTableManager = function () {
 				{
 					extend: 'csvHtml5',
 					text:      '<i class="fas fa-file-csv"></i>',
-					messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
+					messageTop: 'The information in this table is copyright to Dimitri S.',
 					title:titlePage,
 					className: 'btn btn-app perso-csv export csv',
 					exportOptions: {
@@ -165,11 +196,87 @@ DataTableManager = function () {
 			}
 
 			var table=$(idDataTable).DataTable( options);
+			buildDataToModal(idDataTable,table);
 		});
 
 	}
 
 
+	function buildDataToModal(idDataTable,table){
+
+		var tbo=idDataTable+' tbody';
+
+		$(tbo).on('click', '.edit-btn', function (){
+		 //$(tbo).on('click', 'button', function() {
+		//var data = table.row($(this).parents('tr')).data(); // getting target row data
+		//$(tbo).on('click', 'tr', function () { //work!
+			var data = table.row( this ).data();
+
+			var header0 = $(table.column( 1 ).header()).html();
+			var header1 = $(table.column( 1 ).header()).html();
+			var header2 = $(table.column( 2 ).header()).html();
+			var header3 = $(table.column( 3 ).header()).html();
+			var header4 = $(table.column( 4 ).header()).html();
+			var header5 = $(table.column( 5 ).header()).html();
+			var header6 = $(table.column( 6 ).header()).html();
+			var header7 = $(table.column( 7 ).header()).html();
+
+
+			var HTML_MODAL_TABLE= '<table class="table dtr-details" width="100%">' +
+				'<tbody>' +
+				'<tr>' +
+				'<td style="font-style:italic;color: mediumvioletred;">'+header0+'<td>' +
+				'<td>' + data[0] + '</td>' +
+				'</tr>' +
+				'<tr>' +
+				'<td  style="font-style: italic;color: mediumvioletred;">'+header1+'<td>' +
+				'<td>' + data[1] + '</td>' +
+				'</tr>' +
+				'<tr>' +
+				'<td style="font-style: italic;color: mediumvioletred;">'+header2+'<td>' +
+				'<td>' + data[2] + '</td>' +
+				'</tr>' +
+				'<tr>' +
+				'<td  style="font-style: italic;color: mediumvioletred;">'+header3+'<td>' +
+				'<td>' + data[3] + '</td>' +
+				'</tr>' +
+				'<tr>' +
+				'<td style="font-style: italic;color: mediumvioletred;">'+header4+'<td>' +
+				'<td>' + data[4] + '</td>' +
+				'</tr>' +
+				'<tr>' +
+				'<td style="font-style: italic;color: mediumvioletred;">'+header5+'<td>' +
+				'<td>' + data[5] + '</td>' +
+				'</tr>' +
+				'<tr>' +
+				'<td style="font-style: italic;color: mediumvioletred;">'+header6+'<td>' +
+				'<td>' + data[6] + '</td>' +
+				'</tr>' +
+				'<tr>' +
+				'<td style="font-style: italic;color: mediumvioletred;">'+header7+'<td>' +
+				'<td>' + data[7] + '</td>' +
+				'</tr>' +
+				'</tbody>' + '</table>';
+			$('.insertHere').html(HTML_MODAL_TABLE);
+			$('#myModal').modal('show'); // calling the bootstrap modal
+		});
+	}
+
+
+
+
+	function removeRow(el){
+		//rimozione tr
+		var ulId = $(el).attr('id').replace('_delBtn');
+
+		//$('#members').DataTable().row($(el).closest('tr')).remove().draw();
+
+	}
+
+	function editRow(el) {
+		var value=$(el).val();
+		alert("MODAL"+value);
+	}
 
 	function constructDatatable(jsonObj) {
 		buildDatatable(jsonObj)
@@ -181,6 +288,12 @@ DataTableManager = function () {
 		},
 		reloadDatatable:function (jsonObj) {
 			//reloadDatatable(jsonObj)
+		},
+		editRow:function (el) {
+			editRow(el);
+		},
+		removeRow:function () {
+			removeRow(elt);
 		}
 	}
 }();

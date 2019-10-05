@@ -92,11 +92,12 @@
 		<%--</s:if>--%>
 	</div>
 </div>
+</div>
 </body>
 <div class="col">
 	<%@ include file = "../../../common/footers/footer.jsp" %>
 </div>
-<script src="<s:url value="/common/js/datatable/dataTableManager.js"/>"></script>
+<script src="<s:url value="/common/datatable/odataTableManager.js"/>"></script>
 <script src="<s:url value="/common/js/datatable/jquery.datatable/2.2.3/responsive.datatable.js "/>"></script>
 <script>
     var lng='<s:property  value="%{#lang}" />';

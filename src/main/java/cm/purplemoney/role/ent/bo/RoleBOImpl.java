@@ -1,6 +1,7 @@
 package cm.purplemoney.role.ent.bo;
 
 import cam.libraries.component.ent.vo.BusinessException;
+import cam.sql.SQLUtils;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.constants.PortalConstants;
 import cm.purplemoney.members.ent.enums.SexEnum;
@@ -77,4 +78,17 @@ public class RoleBOImpl implements RoleBO {
 
         return role;
     }
+
+    @Override
+    public List<RoleVO> autocompleteRole(String search) throws BusinessException {
+        session=hibernateConfig.getSession();
+
+        Query query =session.getNamedQuery(RoleVO.Q_AC_ITEM);
+        query.setParameter("searchFilter",SQLUtils.forLike(search, true, true, true).toUpperCase());
+        List<RoleVO> roleList = query.list();
+
+        return roleList;
+    }
+
+
 }

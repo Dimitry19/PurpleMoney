@@ -10,5 +10,10 @@
 		<action name="rolesAction" class="roleAction" method="loadAllRoles" >
 		    <result name="success">/amount/pages/includes/amounts-list.jsp</result>
 		</action>
+		<action name="autocompleteRole" class="roleAction" method="autocompleteRole">
+			<result type="json" name="success">
+				<param name="root">roleNames</param>
+			</result>
+		</action>
 	</package>
 </struts>

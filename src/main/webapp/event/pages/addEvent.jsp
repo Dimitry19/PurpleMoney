@@ -26,17 +26,18 @@
                         <s:hidden  name="user.active" value="%{userInfo.active}" />
                         <s:hidden  name="event.associationId" value="%{associationCurrent.id.id}" />
                 </div>
-                <label for="membersNames"><s:text name="member.label.name"/></label>
                 <div class="md-form">
+                    <label for="membersNames"><s:text name="member.label.name"/></label>
                     <s:select
-                                tooltip="%{getText('common.login.association.tooltip')}"
-                                class="browser-default custom-select form-control"  data-live-search="true"
-                                id="membersNames"
-                                list="members" listKey="id.name"	listValue="%{id.name}"
-                                name="event.member"
-                                emptyOption="true"
-                                headerValue="%{getText('common.login.group.tooltip')}"/>
-                        <s:hidden  name="event.member" />
+                            tooltip="%{getText('common.login.association.tooltip')}"
+                            class="browser-default custom-select form-control select-autocomplete-s2"  data-live-search="true"
+                            id="membersNames"
+                            list="%{{}}" listKey="id.name"	listValue="%{id.name}"
+                            name="event.member"
+                            emptyOption="true"
+                            headerValue="%{getText('common.login.group.tooltip')}"
+                        />
+                    <s:hidden  name="event.member" />
                 </div>
                  <div class="md-form">
                     <s:textfield id="eventDate" name="event.data"   required="true"   class="form-control"/>
@@ -47,7 +48,7 @@
                 <div class="md-form">
                     <s:select
                             tooltip="%{getText('member.add.role.tooltip')}"
-                            class="browser-default custom-select" data-live-search="true"
+                            class="browser-default custom-select form-control" data-live-search="true" style="padding-left: 45%;"
                             label="EventType"
                             id="eventType"
                             list="eventTypes" listKey="id"	listValue="%{description}"
@@ -60,7 +61,7 @@
                 <div class="md-form">
                     <div class="row">
                         <div class="col-md-12">
-                            <s:submit type="button" id="btnAddEvent" class="btn btn-primary btn-md btn-login-button"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
+                            <s:submit type="button" id="btnAddEvent" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-plus" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
                         </div>
                     </div>
                 </div>
@@ -73,11 +74,13 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
+<%@ include file = "../../common/footers/select2-footer.js.jsp" %>
 
 <script>
 	FormManager.validationForm({idForm: 'formEventAdd',idSubmit:'btnAddEvent'})
 	var lng='<s:property  value="%{#lang}" />';
 	DataPickerManager.enable({id: 'eventDate',lang:lng})
+	Select2Manager.autocomlete({lang:lng,idForm:'formEventAdd', type:'member', url:"autocompleteMember.do"});
 </script>
 </body>
 

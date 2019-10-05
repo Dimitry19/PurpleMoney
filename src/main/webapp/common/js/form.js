@@ -66,14 +66,9 @@ FormManager = function () {
     }
 
 
-    function validationForm(jsonObj) {
-        formValidation(jsonObj)
-    }
-
-
     return {
         validationForm:function(jsonObj){
-            validationForm(jsonObj);
+	        formValidation(jsonObj);
         },
         disableBtn:function (jsonObj) {
             disableButton(jsonObj)

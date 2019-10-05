@@ -1,8 +1,10 @@
 package cm.purplemoney.role.usr.action;
 
 import cm.purplemoney.common.usr.action.BaseAction;
+import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.role.ent.bo.RoleBO;
 import cm.purplemoney.role.ent.vo.RoleVO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,8 @@ public class RoleAction extends BaseAction{
 	RoleBO roleBO;
 
 	RoleVO role;
+	private List<RoleVO> roleNames;
+	private String userInput;
 
 	private List roles ;
 
@@ -49,18 +53,39 @@ public class RoleAction extends BaseAction{
 		return SUCCESS;
 	}
 	public String addRole() throws Exception{
-	
 		//article.setCreatedDate(new Date());
 		roleBO.addRole(role);
-		
 		return SUCCESS;
-	
+	}
+	public String autocompleteRole() throws Exception{
+
+		if(StringUtils.isNotBlank(userInput)){
+			roleNames=roleBO.autocompleteRole(userInput);
+		}
+
+		return SUCCESS;
+
 	}
 
 	public String loadAllRoles() throws Exception{
 		roles = roleBO.loadAllRoles();
 	
 		return SUCCESS;	
+	}
+
+	public List<RoleVO> getRoleNames() {
+		return roleNames;
+	}
+
+	public void setRoleNames(List<RoleVO> roleNames) {
+		this.roleNames = roleNames;
+	}
+	public String getUserInput() {
+		return userInput;
+	}
+
+	public void setUserInput(String userInput) {
+		this.userInput = userInput;
 	}
 
 	public RoleVO getRole() {

@@ -3,23 +3,56 @@ Select2Manager = function () {
 
     var debug = true;
 
+    function parameters(jsonObj){
+    	var params={
+    		select2lang:"",
+		    select2Form:"",
+		    select2Type:"",
+		    select2Url:"",
+		    select2Placeholder:""
+	    };
+
+	    params.select2Form=jsonObj.idForm;
+	    params.select2lang=jsonObj.lang;
+	    params.select2Type=jsonObj.type;
+	    params.select2Url=jsonObj.url;
+
+	    if(params.select2lang==="it"){
+
+	    	if(params.select2Type==="role"){
+			    params.select2Placeholder='Inserire un ruole';
+		    }else{
+			    params.select2Placeholder='Inserire un partecipante';
+		    }
+		    return params;
+	    }
+	    if(params.select2lang==="fr"){
+		    if(params.select2Type==="role"){
+			    params.select2Placeholder='Inserer un role';
+		    }else {
+			    params.select2Placeholder = 'Inserer un membre';
+		    }
+		    return params;
+	    }
+	    if(params.select2lang==="en"){
+		    if(params.select2Type==="role"){
+			    params.select2Placeholder='Input a role';
+		    }else {
+		        params.select2Placeholder='Input a member';
+		    }
+		    return params;
+	    }
+    }
+
 	function autocomplete(jsonObj) {
+    	var params=parameters(jsonObj);
 
-		var lang=jsonObj.lang;
-		var selectItem='Seach a name';
-		if(lang==="it"){
-			selectItem='Ricerca un nome';
-		}
-		if(lang==="fr"){
-			selectItem='Rechercer un nom';
-		}
-
-		$('.select-autocomplete-s2').select2({
-			placeholder: selectItem,
+    	$('.select-autocomplete-s2').select2({
+			placeholder: params.select2Placeholder,
 			minimumInputLength: 2,
-			language: lang,
+			language: params.select2lang,
 			ajax: {
-				url: 'autocompleteMember.do',
+				url: params.select2Url,
 				dataType: 'json',
 				data:  function (params){
 					var query= {
@@ -35,15 +68,38 @@ Select2Manager = function () {
 				processResults: function (data) { //Return Response
 
 					if(data.length>0){
-						enableButton({idButton:'btnSearchMember', idField:'membersNames'});
+						if(params.select2Form==="formSearchMember"){
+							enableButton({idButton:'btnSearchMember', idField:'membersNames'});
+						}
+
+						if(params.select2Form==="formRegister"){
+							enableButton({idButton:'btnRegister', idField:'role'});
+						}
+						if(params.select2Form==="formAddAmount"){
+							enableButton({idButton:'btnAddAmount', idField:'membersNames'});
+						}
+						if(params.select2Form==="formEventAdd"){
+							enableButton({idButton:'btnAddEvent', idField:'membersNames'});
+						}
 					}
 
-					var results = $.map(data, function (obj) {
-						return {
-							id: obj.id.name + " " + obj.surname,
-							text: obj.id.name + " " + obj.surname
-						};
-					});
+					var results;
+					if(params.select2Type==="member"){
+						 results = $.map(data, function (obj) {
+							return {
+								id: obj.id.name,
+								text: obj.id.name + " " + obj.surname
+							};
+						});
+					}
+					if(params.select2Type==="role"){
+						 results = $.map(data, function (obj) {
+							return {
+								id: obj.id.role,
+								text:obj.description
+							};
+						});
+					}
 					console.log(results);   //Printing Response
 					return {
 						results: results,

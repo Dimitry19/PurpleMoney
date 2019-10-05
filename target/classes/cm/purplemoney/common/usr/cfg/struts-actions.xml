@@ -57,4 +57,5 @@
 	<include file="cm/purplemoney/common/usr/cfg/struts-map.xml"></include>
 	<include file="cm/purplemoney/sanction/usr/cfg/struts-sanction.xml"></include>
 	<include file="cm/purplemoney/event/usr/cfg/struts-event.xml"></include>
+	<include file="cm/purplemoney/role/usr/cfg/struts-role.xml"></include>
 </struts>

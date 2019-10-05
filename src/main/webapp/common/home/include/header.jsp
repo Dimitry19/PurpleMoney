@@ -32,6 +32,7 @@
 
 	<link  rel="stylesheet"  href="<s:url value="/common/js/select2/dist-4.0.10/css/select2.min.css"/>">
 	<%--<link  rel="stylesheet"  href="<s:url value="/common/js/select2/dist-4.0.10/css/select2-bootstrap4.css"/>">--%>
+	<link  rel="stylesheet"  href="<s:url value="/common/css/select2-custom.css"/>">
 
 
 	<script src="<s:url value="/common/Player/js/jquery-1.7.2.min.js"/>"></script>

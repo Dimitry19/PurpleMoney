@@ -19,7 +19,7 @@
 	<div class="collapse show" id="membersCard">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table id="members"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
+				<table id="members"  width="100%" data-page-length="5" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
 					<thead>
 					<tr>
 						<th><s:property value="getText('member.column.gender')"/></th>
@@ -91,13 +91,13 @@
 </div>
 </div>
 </div>
-</div>
 <%@ include file = "../../../common/home/include/common-header-bottom.jsp"%>
 <%@ include file = "../../../common/home/include/datatable.js.jsp"%>
 <script>
 	var lng='<s:property  value="%{#lang}" />';
 	var title='<s:property  value="%{#title}" />';
 	DataTableManager.constructDatatable({idDataTable: 'members',title:title,lang:lng})
+
 </script>
 </body>
 

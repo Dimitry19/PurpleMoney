@@ -1,6 +1,8 @@
 package cm.purplemoney.role.ent.vo;
 
 
+import cm.purplemoney.members.ent.vo.MemberVO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,12 +11,13 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = RoleVO.QUERY_AVAILABE_ROLE,query = "select r from RoleVO r where r.used = false  and defaultMember=true order by id.role asc"),
         @NamedQuery(name = RoleVO.QUERY_UPDATE_ROLE,query = "update  from RoleVO r set r.used = true where id.role =:role"),
+        @NamedQuery(name = RoleVO.Q_AC_ITEM, query = "select r from RoleVO r where (upper(description) like :searchFilter ) and (r.used = false  and defaultMember=true) order by id.role"),
 })
 public class RoleVO implements Serializable {
 
     public static final String  QUERY_AVAILABE_ROLE="cm.purplemoney.role.ent.vo.RoleVO.RoleAvaible";
     public static final String  QUERY_UPDATE_ROLE="cm.purplemoney.role.ent.vo.RoleVO.UpdateRole";
-
+    public static final String Q_AC_ITEM = "cm.purplemoney.role.ent.vo.RoleVO.QAutocompleteItem";
 
     private RoleVOId id;
     private String description;

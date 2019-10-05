@@ -8,7 +8,7 @@
 		<action name="addEventType" class="eventTypeAction"  method="addEventType" >
 			<result name="success">/event/pages/addEvent.jsp</result>
 		</action>
-		<action name="fingEvent" class="eventAction" >
+		<action name="allEvents" class="eventAction" >
 			<result name="success">/articles/pages/includes/articles-list.jsp</result>
 		</action>
 	</package>

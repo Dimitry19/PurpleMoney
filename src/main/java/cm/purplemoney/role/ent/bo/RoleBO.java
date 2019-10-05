@@ -13,6 +13,7 @@ public interface RoleBO {//extends GenericBO<AmountVO,AmountIdVO,String>  {
     public void addRole(RoleVO role) throws BusinessException;
     public int  updateRoleByMember(String roleId) throws BusinessException;
     public RoleVO retrieveRoleFromMember(MemberVO member) throws BusinessException;
+    List<RoleVO> autocompleteRole(String search) throws BusinessException;
 
 }
 

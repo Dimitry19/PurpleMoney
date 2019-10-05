@@ -44,7 +44,7 @@
 							</div>
 							<div class="md-form">
 								<s:set var="url"><s:url action="allInfoMemberAction"/></s:set>
-								<s:submit type="button" id="btnSearchMember" disabled="true" class="btn btn-primary btn-md btn-login-button" onclick="AjaxManager.callAction({url:'%{#url}',idForm: 'formSearchMember',container:'container-result',obj:'userSearch'});return false;"><i class="fa fa-search" aria-hidden="true"></i>&nbsp; <s:text name="common.menu.search"/></s:submit>
+								<s:submit type="button" id="btnSearchMember" disabled="true" class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn" onclick="AjaxManager.callAction({url:'%{#url}',idForm: 'formSearchMember',container:'container-result',obj:'userSearch'});return false;"><i class="fa fa-search" aria-hidden="true"></i>&nbsp; <s:text name="common.menu.search"/></s:submit>
 							</div>
 						</s:form>
 					</div>
@@ -54,11 +54,12 @@
 			</div>
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
+<%@ include file = "../../common/footers/select2-footer.js.jsp" %>
 
 <script>
 	var lng='<s:property  value="%{#lang}" />';
 	FormManager.validationForm({idForm: 'formSearchMember',idSubmit:'btnSearchMember'})
-	Select2Manager.autocomlete({lang:lng});
+	Select2Manager.autocomlete({lang:lng,idForm:'formSearchMember', type:'member', url:"autocompleteMember.do"});
 </script>
 <!-- ds-framework JavaScript-->
 <script src="<s:url value="/ds-framework/js/AjaxManager.js"/>"></script>

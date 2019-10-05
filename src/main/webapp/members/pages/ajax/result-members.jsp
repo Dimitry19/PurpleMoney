@@ -4,7 +4,7 @@
 <s:set var="lang" value="%{currentLocale}"/>
 <s:set var="size" value="%{getSanctions().size()}"/>
 <div class="table-responsive">
-	<table id="members"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
+	<table id="members"  width="100%" data-page-length="5" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
 		<thead>
 		<tr>
 			<th><s:property value="getText('member.column.gender')"/></th>
@@ -54,7 +54,8 @@
 					</s:else>
 				</s:if>
 				<td>
-					<s:submit type="button" id="edit" class="btn btn-primary btn-md btn-login-button"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp; <s:text name="common.menu.members.edit"/></s:submit>
+					<%--<button type="button" id="edit-member"  data-toggle="modal" data-target="#myModal" data-placement="top" title="Details Info" class="btn blue-hoki btn-icon-only btn-primary tooltips"><i class="fa fa-edit" aria-hidden="true"></i></button>
+					<button id="delBtn" type="button" value="Rimuovi" title="Rimuovi" class="btn blue-hoki btn-icon-only btn-danger tooltips" onclick="CommonDataTableManager.editRow()" ><i class="fa fa-trash" ></i></button>--%>
 				</td>
 			</tr>
 		</s:iterator>
@@ -76,5 +77,6 @@
 	var lng='<s:property  value="%{#lang}" />';
 	var title='<s:property  value="%{#title}" />';
 	DataTableManager.constructDatatable({idDataTable: 'members',title:title,lang:lng})
+
 
 </script>

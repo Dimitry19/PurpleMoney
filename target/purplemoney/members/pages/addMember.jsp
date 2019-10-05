@@ -31,10 +31,9 @@
                 <div class="md-form">
                         <s:select
                                 tooltip="%{getText('member.add.role.tooltip')}"
-                                class="browser-default custom-select" data-live-search="true"
-                                label="Role"
+                                class="browser-default custom-select form-control select-autocomplete-s2"
                                 id="role"
-                                list="roles" listKey="id.role"	listValue="%{id.role + '-' + description}"
+                                list="%{{}}" listKey="id.role"	listValue="%{id.role + '-' + description}"
                                 name="userAdding.role"
                                 emptyOption="false"
                                 headerValue="%{getText('member.add.role.headerValue')}"
@@ -92,7 +91,7 @@
                     </div>
                 </div>
                 <div class="md-form">
-                    <s:submit type="button" id="btnRegister" class="btn btn-primary btn-md btn-login-button"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
+                    <s:submit type="button" id="btnRegister" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
                 </div>
             </s:form>
         </div>
@@ -101,7 +100,6 @@
                 <script>
                      var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="member.add.success.footer"/></p>';
                      NotificationManager.displayNotification({message:message, type:'success'})
-                     FormManager.disableAllFields({idForm:'formRegister'})
                      FormManager.disableBtn({idButton:'btnRegister'})
                 </script>
             </s:if>
@@ -118,8 +116,11 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/jquery/jquery-input-mask-phone-number.js"/>"></script>
+<%@ include file = "../../common/footers/select2-footer.js.jsp" %>
 <script>
+	var lng='<s:property  value="%{#lang}" />';
     FormManager.validationForm({idForm: 'formRegister',idSubmit:'btnRegister'})
+	Select2Manager.autocomlete({lang:lng,idForm:'formRegister', type:'role', url:"autocompleteRole.do"});
 </script>
 <script>
     $('#telephone').usPhoneFormat({

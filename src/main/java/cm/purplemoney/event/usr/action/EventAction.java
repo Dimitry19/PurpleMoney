@@ -33,8 +33,7 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 	private List eventTypes;
 	private List members;
 	private List events;
-	private String term;
-	private String[] membersNames;
+
 	private String eventJson;
 
 	@Resource(name = "eventBO")
@@ -128,21 +127,6 @@ public class EventAction extends BaseAction implements SessionAware,Preparable{
 		this.associationCurrent = associationCurrent;
 	}
 
-	public String getTerm() {
-		return term;
-	}
-
-	public void setTerm(String term) {
-		this.term = term;
-	}
-
-	public String[] getMembersNames() {
-		return membersNames;
-	}
-
-	public void setMembersNames(String[] membersNames) {
-		this.membersNames = membersNames;
-	}
 
 	public List getEventTypes() {
 		return eventTypes;

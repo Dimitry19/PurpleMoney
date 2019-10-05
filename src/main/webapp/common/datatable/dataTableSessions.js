@@ -1,5 +1,5 @@
-var DataTableManager;
-DataTableManager = function () {
+var DataTableSessionManager;
+DataTableSessionManager = function () {
     var idioma=
         {
             "sProcessing":     "Procesando...",

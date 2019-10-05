@@ -270,6 +270,9 @@ dropdown-menu show{
 select#membersNames{
   padding-left: 50%;
 }
+select#eventType{
+  padding-left: 50%;
+}
 .container-result{
   margin: 1%;
 }
