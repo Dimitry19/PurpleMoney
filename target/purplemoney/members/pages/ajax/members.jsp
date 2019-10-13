@@ -88,9 +88,7 @@
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-</div>
+
 <%@ include file = "../../../common/home/include/common-header-bottom.jsp"%>
 <%@ include file = "../../../common/home/include/datatable.js.jsp"%>
 <script>

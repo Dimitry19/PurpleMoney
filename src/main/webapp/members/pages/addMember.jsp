@@ -21,13 +21,10 @@
                     <div class="md-form">
                         <s:textfield id="userSearchAssociation"  type="text" value="%{associationCurrent.description}" class="form-control form-control-login" readonly="true" />
                         <label for="userSearchAssociation"><s:text name="member.label.association"/></label>
-                        <s:hidden name="userAdding.id.memberId" value="%{associationCurrent.id.id}"/>
-                        <s:hidden name="userAdding.association" value="%{associationCurrent.id.id}"/>
+                        <s:hidden name="userAdding.id.associationId" value="%{associationCurrent.id.id}"/>
                         <s:hidden name="userAdding.associationDesc" value="%{associationCurrent.description}"/>
                     </div>
-                <div class="md-form">
-
-                </div>
+                <div class="md-form"></div>
                 <div class="md-form">
                         <s:select
                                 tooltip="%{getText('member.add.role.tooltip')}"
@@ -62,7 +59,7 @@
                 <div class="md-form">
                     <s:textfield type="text" required="true" class="form-control" name="userAdding.address" id="address"  placeholder="%{getText('member.add.placeholder.address')}" />
 					 <label for="address"><s:text name="member.label.address"/></label>
-                        <div class="invalid-feedback"><s:text name="member.add.error.address"/></div>
+                    <div class="invalid-feedback"><s:text name="member.add.error.address"/></div>
                 </div>
                 <div class="row">
                     <div class="form-sm col-sm-4">
@@ -89,11 +86,11 @@
                     </div>
                             <%--<s:radio label="%{getText('member.label.gender')}" list="#{'F':'  Female','M':'  Male'}" name="userAdding.sex"  class="radio-inline" multiple="false"></s:radio>--%>
                     </div>
-                </div>
                 <div class="md-form">
                     <s:submit type="button" id="btnRegister" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
                 </div>
             </s:form>
+        </div>
         </div>
         <div>
             <s:if test="hasActionMessages()">

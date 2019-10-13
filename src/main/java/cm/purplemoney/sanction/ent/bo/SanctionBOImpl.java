@@ -51,7 +51,7 @@ public class SanctionBOImpl implements SanctionBO {
     public List<SanctionVO> allSanctions(String association) throws BusinessException {
         session=hibernateConfig.getSession();
         Query query=session.getNamedQuery(SanctionVO.ALL);
-        query.setParameter("ass", association);
+        //query.setParameter("ass", association);
 
         List<SanctionVO> sanctions=null;
         try {
@@ -68,7 +68,7 @@ public class SanctionBOImpl implements SanctionBO {
         session=hibernateConfig.getSession();
         Query query=session.getNamedQuery(SanctionVO.FINDBYMEMBER);
         query.setParameter("mname", member.getId().getName());
-        query.setParameter("ass", member.getId().getMemberId());
+        //query.setParameter("ass", member.getId().getAssociationId());
         return (SanctionVO) query.uniqueResult();
     }
 

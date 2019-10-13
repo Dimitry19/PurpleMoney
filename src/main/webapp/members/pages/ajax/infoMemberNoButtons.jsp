@@ -1,15 +1,15 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-<s:include value="../../common/home/include/header.jsp"/>
-<s:include value="../../common/home/include/notification-header.jsp"/>
+<s:include value="../../../common/home/include/header.jsp"/>
+<s:include value="../../../common/home/include/notification-header.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
 <s:set var="showNotification" value="%{showNotification}"/>
 <sj:head jqueryui="true"/>
 </head>
 <body class="bg-gradient-primary">
-<%@ include file = "../../common/home/include/common-header-top.jsp" %>
-<%@ include file="../../common/home/include/common-widgets-infos.jsp"%>
+<%@ include file = "../../../common/home/include/common-header-top.jsp" %>
+<%@ include file="../../../common/home/include/common-widgets-infos.jsp"%>
 <div class="card shadow mb-4">
 	<a href="#infoMemberCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
 		<div class="card-header"><h6 class="m-0 font-weight-bold text-primary"><s:text name="member.info.title"/></h6></div>
@@ -54,21 +54,7 @@
 					<s:textfield id="associationId"   name="userInfo.associationDesc" value="%{userInfo.associationDesc}" type="text" class="form-control form-control-login" readonly="true" />
 					<label for="associationId"><s:text name="member.label.association"/></label>
 					<s:hidden  id="hassociationId" name="userInfo.associationDesc" value="%{userInfo.associationDesc}" />
-
 				</div>
-				<s:if test="userInfo.admin==true || currentMember.admin=true">
-					<div class="btn btn-group-md">
-						<button type="button" class="btn  btn-sm  fa fa-ban  btn-outline-warning float-right"   onclick="MembersManager.disableFields({formId:'editMemberForm', editBtn:'cancelMenberBtn'})" id="cancelMenberBtn"><s:text name="common.button.cancel.label"/></button>
-					</div>
-					<div class="btn btn-group-md">
-						<button type="button" class="btn  btn-sm fa fa-edit btn-outline-primary float-right"  onclick="MembersManager.enableFields({formId:'editMemberForm', editBtn:'editMemberBtn'})" id="editMemberBtn"><s:text name="common.button.edit.label"/></button>
-					</div>
-					<div class="btn btn-group-md">
-						<s:submit type="button"   value="%{getText('common.button.save.label')}" class="btn  btn-sm fa fa-floppy-o btn-outline-success float-right"    id="saveMenberBtn"/>
-							<%--<s:label for = "attachment" value = "Attachment"/>
-							<s:file name = "attachment" accept = "text/html,text/plain" />--%>
-					</div>
-				</s:if>
 			</s:form>
 		</div>
 		<div class="card-footer bg-transparent border-success">Info Membre</div>
@@ -88,7 +74,7 @@
 			</s:if>
 		</div>
 	</div>
-	<%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
+	<%@ include file = "../../../common/home/include/common-header-bottom.jsp"%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/members/js/member.js"/>"></script>
 	<script src="<s:url value="/common/js/jquery/jquery-input-mask-phone-number.js"/>"></script>

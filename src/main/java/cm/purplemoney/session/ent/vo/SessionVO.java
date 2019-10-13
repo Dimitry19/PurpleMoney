@@ -1,6 +1,11 @@
 package cm.purplemoney.session.ent.vo;
 
+import cm.purplemoney.constants.FilterConstants;
 import cm.purplemoney.members.ent.vo.MemberVO;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.Filters;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,8 +15,11 @@ import java.math.BigInteger;
 @Entity
 @Table(name="SESSION" , schema="PUBLIC")
 @NamedQueries({
-        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s where id.associationId=:ass order by mmember.id.name"),
+        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s order by mmember.id.name"),
        // @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s where id.associationId=:ass order by id.member"),
+})
+@Filters({
+        @Filter(name = FilterConstants.ASSOCIATION)
 })
 public class SessionVO implements Serializable {
 
@@ -40,10 +48,11 @@ public class SessionVO implements Serializable {
         return amount;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @NotFound(action=NotFoundAction.IGNORE)
+    @ManyToOne
     @JoinColumns({
             @JoinColumn(name = "R_MEMBER", referencedColumnName ="MNAME" ,insertable=false, updatable=false),
-            @JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "ID",insertable=false, updatable=false)
+            @JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false)
     })
     public MemberVO getMmember() {
         return mmember;

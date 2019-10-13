@@ -7,6 +7,7 @@ NotificationManager=function () {
 
         var message=jsonObj.message;
         var type=jsonObj.type;
+        var toHide=''+jsonObj.toHide;
 
         console.log(message);
         var notification = new NotificationFx({
@@ -31,6 +32,8 @@ NotificationManager=function () {
         });
         //setBackgroundNotification(type);
         notification.show();
+	    hide(toHide);
+
 
     }
 
@@ -44,6 +47,10 @@ NotificationManager=function () {
         if(type==='warning'){
             $(".ns-box").css("background", "#B47F87")
         }
+
+    }
+    function hide(elt) {
+	    document.getElementById(elt).style.display = "none";
 
     }
 

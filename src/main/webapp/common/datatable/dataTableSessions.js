@@ -195,14 +195,14 @@ DataTableSessionManager = function () {
                         {
                             targets: [4],
                             visible: true
-                        },
+                        }/*,
                         {
                            // adding a more info button at the end
                               targets: -1,
                                data: null,
                                defaultContent: "<button type='button'  data-toggle='tooltip' data-placement='top' title='Details Info' class='btn  btn-md btn perso-eye buttons-collection showDetails buttons-page-length'>" +
                                "<i class='fa fa-eye' aria-hidden='true'></i>&nbsp;</button>"
-                             }],
+                             }*/],
                 buttons: {
                     dom: {
                         container:{

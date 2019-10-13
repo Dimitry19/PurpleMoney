@@ -98,13 +98,13 @@ DataTableManager = function () {
 			//scroller:       true,
 			//"sPaginationType": "four_button", //
 			columnDefs: [
-				{
+				/*{
 					// adding a more info button at the end
 					targets: -1,
 					data: null,
 					defaultContent: "<button type='button'  data-toggle='tooltip' data-placement='top' title='Details Info' onclick='DataTableManager.editRow(this)' class='btn blue-hoki btn-icon-only btn-primary tooltips edit-btn'>" +
 					"<i class='fa fa-edit' aria-hidden='true'></i>&nbsp;</button>"
-				}],
+				}*/],
 			buttons: [
 				{
 					extend:'copyHtml5',

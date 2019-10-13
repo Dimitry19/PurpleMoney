@@ -1,7 +1,10 @@
 package cm.purplemoney.role.ent.vo;
 
 
+import cm.purplemoney.constants.FilterConstants;
 import cm.purplemoney.members.ent.vo.MemberVO;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.Filters;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +15,9 @@ import java.io.Serializable;
         @NamedQuery(name = RoleVO.QUERY_AVAILABE_ROLE,query = "select r from RoleVO r where r.used = false  and defaultMember=true order by id.role asc"),
         @NamedQuery(name = RoleVO.QUERY_UPDATE_ROLE,query = "update  from RoleVO r set r.used = true where id.role =:role"),
         @NamedQuery(name = RoleVO.Q_AC_ITEM, query = "select r from RoleVO r where (upper(description) like :searchFilter ) and (r.used = false  and defaultMember=true) order by id.role"),
+})
+@Filters({
+        @Filter(name = FilterConstants.ASSOCIATION)
 })
 public class RoleVO implements Serializable {
 

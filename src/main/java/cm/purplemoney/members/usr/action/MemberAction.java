@@ -83,9 +83,9 @@ public class MemberAction extends BaseAction implements Preparable{
 				addFieldError("userSearch.id.name", getText("common.member.search.error.username"));
 			}
 
-			if (StringUtils.isEmpty(userSearch.getAssociation())) {
+			/*if (StringUtils.isEmpty(userSearch.getAssociation())) {
 				addFieldError("userSearch.association", getText("common.member.search.error.association"));
-			}
+			}*/
 		}
 		if (userAdding!=null){
 			if(!userAdding.isActive()){
@@ -124,8 +124,8 @@ public class MemberAction extends BaseAction implements Preparable{
 	}
 
 	public String allInfoMember()throws Exception {
-		String associa=userSearch.getAssociation()!=null?userSearch.getAssociation():getCurrentAssociation().toUpperCase();
-		members=memberBO.findMember(userSearch.getId().getName(), associa);
+		String associa=userSearch.getId().getAssociationId()!=null?userSearch.getId().getAssociationId():getCurrentAssociation().toUpperCase();
+		userInfo=memberBO.findMemberInfo(userSearch.getId().getName(), associa);
 
 		return SUCCESS;
 	}
@@ -153,6 +153,7 @@ public class MemberAction extends BaseAction implements Preparable{
 	    if(StringUtils.equals(userInfo.getId().getName(),getCurrentUser())){
 	    	authUserBO.saveEditUser(null, null,userInfo);
 		}
+
 		addActionMessage("Nouveau membre correctement ajouté!");
 		return SUCCESS;
 	}

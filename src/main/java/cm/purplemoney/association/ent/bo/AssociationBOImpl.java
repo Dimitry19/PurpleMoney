@@ -52,10 +52,10 @@ public class AssociationBOImpl implements AssociationBO {
 
 		StringBuilder sb=new StringBuilder("from AssociationVO where ");
 
-		if(member.getAssociation()!=null) {
+		if(member.getId().getAssociationId()!=null) {
 			sb.append("   id.id=:id");
 			query=session.createQuery(sb.toString());
-			query.setParameter("id",member.getAssociation());
+			query.setParameter("id",member.getId().getAssociationId());
 			AssociationVO association=(AssociationVO ) query.uniqueResult();
 
 			return association;

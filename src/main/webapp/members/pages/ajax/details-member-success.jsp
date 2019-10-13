@@ -13,8 +13,6 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-
-
             </div>
         </div>
     </div>

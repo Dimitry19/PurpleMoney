@@ -9,7 +9,7 @@
 		    <result name="success">/session/pages/addSession.jsp</result>
 			<result name="input">/session/pages/addSession.jsp</result>
 		</action>
-		<action name="sessionsAction" class="sessionAction" method="loadAllSessions" >
+		<action name="sessions" class="sessionAction" method="loadAllSessions" >
 		    <result name="success">/session/pages/ajax/sessions.jsp</result>
 		</action>
 

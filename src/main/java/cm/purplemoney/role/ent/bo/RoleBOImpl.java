@@ -68,7 +68,7 @@ public class RoleBOImpl implements RoleBO {
             sb.append("   id.role=:idRole ");
         }
         Query query=session.createQuery(sb.toString());
-        query.setParameter("id",member.getId().getMemberId());
+        query.setParameter("id",member.getId().getAssociationId());
         if(isDesc){
             query.setParameter("descp",member.getRoleDesc());
         }else{

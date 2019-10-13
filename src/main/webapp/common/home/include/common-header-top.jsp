@@ -137,7 +137,7 @@
                     <h6 class="collapse-header"><s:text name="common.menu.founds.open"/></h6>
                     <a class="collapse-item" href="<s:url action="sessionConsultAction"/>"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds.open"/></a>
                     <h6 class="collapse-header"><s:text name="common.menu.founds.all"/></h6>
-                    <a class="collapse-item" href="<s:url action="sessionsAction"/>"><i class="far fa-money-bill-alt"></i>&nbsp;<s:text name="common.menu.founds.all"/></a>
+                    <a class="collapse-item" href="<s:url action="sessions"/>"><i class="far fa-money-bill-alt"></i>&nbsp;<s:text name="common.menu.founds.all"/></a>
                 </div>
             </div>
         </li>

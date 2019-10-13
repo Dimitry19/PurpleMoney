@@ -12,20 +12,20 @@ import java.io.Serializable;
 public class MemberIdVO implements Serializable{
 
 	private String name;
-	private String memberId;
+	private String associationId;
 
 	public MemberIdVO() {
 
 	}
-	public MemberIdVO(String name,String memberId) {
-		this.memberId=memberId;
+	public MemberIdVO(String name,String associationId) {
+		this.associationId=associationId;
 		this.name = name;
 	}
 
 	@Basic(optional = false)
-	@Column(name="ID", nullable = false, length = FieldConstants.ID_STD_LEN)
-	public String getMemberId() {
-		return memberId;
+	@Column(name="R_ASSOCIATION", nullable = false, length = FieldConstants.ID_STD_LEN)
+	public String getAssociationId() {
+		return associationId;
 	}
 
 	@Basic(optional = false)
@@ -35,8 +35,8 @@ public class MemberIdVO implements Serializable{
 	}
 
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setAssociationId(String associationId) {
+		this.associationId = associationId;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -50,13 +50,13 @@ public class MemberIdVO implements Serializable{
 		MemberIdVO that = (MemberIdVO) o;
 
 		if (!name.equals(that.name)) return false;
-		return memberId.equals(that.memberId);
+		return associationId.equals(that.associationId);
 	}
 
 	@Override
 	public int hashCode() {
 		int result = name.hashCode();
-		result = 31 * result + memberId.hashCode();
+		result = 31 * result + associationId.hashCode();
 		return result;
 	}
 

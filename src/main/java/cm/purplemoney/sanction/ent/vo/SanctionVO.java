@@ -1,15 +1,26 @@
 package cm.purplemoney.sanction.ent.vo;
 
+import cm.purplemoney.constants.FilterConstants;
 import cm.purplemoney.members.ent.vo.MemberVO;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.Filters;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
+
+import static org.eclipse.jdt.core.JavaCore.IGNORE;
 
 @Entity
 @Table(name ="SANCTION", schema = "PUBLIC")
 @NamedQueries({
         @NamedQuery(name = SanctionVO.Q_AC_ITEM, query = "select s from SanctionVO s where (description like :searchFilter) or(upper(description) like :" +
-                "searchFilter )  and id.associationId=:ass order by description"),
-        @NamedQuery(name = SanctionVO.ALL, query = "select s from SanctionVO s  where id.associationId=:ass order by description"),
-        @NamedQuery(name = SanctionVO.FINDBYMEMBER, query = "select s from SanctionVO s where s.member.id.name =:mname and s.member.id.memberId =:ass order by description"),
+                "searchFilter )   order by description"),
+        @NamedQuery(name = SanctionVO.ALL, query = "select s from SanctionVO s  order by description"),
+        @NamedQuery(name = SanctionVO.FINDBYMEMBER, query = "select s from SanctionVO s where s.member.id.name =:mname  order by description"),
+})
+@Filters({
+        @Filter(name = FilterConstants.ASSOCIATION)
 })
 public class SanctionVO {
 
@@ -40,10 +51,11 @@ public class SanctionVO {
         this.description = description;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @NotFound(action=NotFoundAction.IGNORE)
+    @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "R_MEMBER", referencedColumnName ="MNAME" ,insertable=false, updatable=false),
-            @JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "ID",insertable=false, updatable=false)
+           @JoinColumn(name = "R_MEMBER", referencedColumnName ="MNAME" ,insertable=false, updatable=false),
+            @JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false)
     })
     public MemberVO getMember() {
         return member;

@@ -7,6 +7,7 @@ import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.session.ent.wrapper.SessionSearchWr;
 import cm.purplemoney.config.HibernateConfig;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,9 +31,21 @@ public class SessionBOImpl implements SessionBO {
 
     public List<SessionVO> loadAllSession() {
 
+        List<SessionVO> sessionList=null;
         session=hibernateConfig.getSession();
         Query query=session.createQuery("from SessionVO");
-        return query.list();
+        List<SessionVO> sessions=query.list();
+        /*if(CollectionUtils.isNotEmpty(sessions)){
+            sessionList=new ArrayList<SessionVO>();
+            for (SessionVO sess:sessions) {
+                if(sess.getMmember()!=null){
+                    sessionList.add(sess);
+
+                }
+            }
+        }*/
+
+        return sessions;
     }
 
 

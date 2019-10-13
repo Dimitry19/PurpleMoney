@@ -39,8 +39,8 @@
 										</s:if>
 
 									</td>
-									<td><s:property value="membre.id.name"/></td>
-									<td><s:property value="membre.surname"/></td>
+									<td><s:property value="mmember.id.name"/></td>
+									<td><s:property value="mmember.surname"/></td>
 									<td><s:property value="amount"/></td>
 									<td><s:date name="id.date" format="dd/MM/yyyy" /></td>
 								</tr>

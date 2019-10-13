@@ -19,6 +19,10 @@ MembersManager = function () {
     function disableAllField(json) {
         var idForm='#'+json.formId;
         console.log(idForm);
+        console.log($("#hsurname").val());
+	    $(idForm).find('input[id="surname"]').val($("#hsurname").val());
+	    $(idForm).find('input[id="email"]').val($("#hemail").val());
+	    $(idForm).find('input[id="phone"]').val($("#hphone").val());
         $(idForm).find('input').prop("readonly", true);
 
     }

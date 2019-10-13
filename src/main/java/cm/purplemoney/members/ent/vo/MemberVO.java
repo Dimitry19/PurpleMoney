@@ -4,23 +4,36 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import cm.purplemoney.constants.FieldConstants;
+import cm.purplemoney.constants.FilterConstants;
 import cm.purplemoney.event.ent.vo.EventVO;
 import cm.purplemoney.sanction.ent.vo.SanctionVO;
 import cm.purplemoney.session.ent.vo.SessionVO;
+import org.hibernate.annotations.*;
 
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
 
 
 @Entity
 @Table(name="MEMBER" , schema="PUBLIC")
 @NamedQueries({
 		@NamedQuery(name = MemberVO.Q_AC_ITEM, query = "select m from MemberVO m where (upper(id.name) like :searchFilter) or(upper(surname) like :" +
-				"searchFilter ) or(id.name like :searchFilter) or( surname like :searchFilter)  and association=:ass order by id.name"),
-		@NamedQuery(name = MemberVO.ALL, query = "select m from MemberVO m  where association=:ass  and active=:act order by id.name"),
-		@NamedQuery(name = MemberVO.FINDBYID, query = "select m from MemberVO m where id.name  =:uName and association=:ass and active=:act "),
-		@NamedQuery(name = MemberVO.LIKEID, query = "select m from MemberVO m where id.name  like :uName and association=:ass and active=:act "),
-		@NamedQuery(name = MemberVO.FINDBYSESSION, query = "select m from MemberVO m where id.name =:uName and association=:ass order by id.name"),
+				"searchFilter ) or(id.name like :searchFilter) or( surname like :searchFilter)  order by id.name"),
+		@NamedQuery(name = MemberVO.ALL, query = "select m from MemberVO m   order by id.name"),
+		@NamedQuery(name = MemberVO.FINDBYID, query = "select m from MemberVO m where id.name  =:uName"),
+		@NamedQuery(name = MemberVO.LIKEID, query = "select m from MemberVO m where id.name  like :uName "),
+		@NamedQuery(name = MemberVO.FINDBYSESSION, query = "select m from MemberVO m where id.name =:uName  order by id.name"),
+})
+
+@Filters({
+		@Filter(name = FilterConstants.ASSOCIATION),
+		@Filter(name=FilterConstants.ACTIVE_MBR)
 })
 public class MemberVO implements Serializable{
 
@@ -39,10 +52,10 @@ public class MemberVO implements Serializable{
 	private String address;
 	private String roleDesc;
 	private String sex;
-	private  String association;
-    private  String associationDesc;
+	private  String associationDesc;
 	private String sexDesc;
 	private boolean male;
+	private boolean saved;
 	private Set<SanctionVO> sanctions= new HashSet<SanctionVO>();
 	private Set<SessionVO> sessions= new HashSet<SessionVO>();
 	private EventVO event;
@@ -108,15 +121,10 @@ public class MemberVO implements Serializable{
 		return admin;
 	}
 
-	@Basic(optional=false)
-	@Column(name="R_ASSOCIATION")
-	public String getAssociation() {
-		return association;
-	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumns({
-			@JoinColumn(name = "ID", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false),
+			@JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false),
 			@JoinColumn(name = "MNAME", referencedColumnName ="R_MEMBER" ,insertable=false, updatable=false)
 	})
 	public EventVO getEvent() {
@@ -146,10 +154,6 @@ public class MemberVO implements Serializable{
 
 	public void setSessions(Set<SessionVO> sessions) {
 		this.sessions = sessions;
-	}
-
-	public void setAssociation(String association) {
-		this.association = association;
 	}
 
 	public void setAdmin(boolean admin) {

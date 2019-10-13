@@ -15,9 +15,16 @@ FormManager = function () {
         var idForm='#'+jsonObj.idForm;
         console.log(idForm);
         $(idForm).find('input').prop("readonly", true);
+        $(idForm).find('input').val("");
         $('select').attr('disabled', true);
 
     }
+
+	function hideButton(jsonObj) {
+		var idBtn='#'+jsonObj.idButton;
+		$(idBtn).attr('display', none);
+
+	}
 
 
     function formValidation(json) {
@@ -82,6 +89,9 @@ FormManager = function () {
         ,
         unfilledAllFields:function (jsonObj) {
             unfilled(jsonObj);
+        },
+	    hideButton:function (jsonObj) {
+		    hideButton(jsonObj);
         }
     }
 

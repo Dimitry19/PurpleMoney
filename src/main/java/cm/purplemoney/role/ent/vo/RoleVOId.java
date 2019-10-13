@@ -15,7 +15,7 @@ public class RoleVOId  implements Serializable {
     private String  role;
 
     @Basic(optional = false)
-    @Column(name="ID", nullable = false, length = FieldConstants.ID_STD_LEN)
+    @Column(name="R_ASSOCIATION", nullable = false, length = FieldConstants.ID_STD_LEN)
     public String getId(){return id;}
 
     public void setId(String id) {

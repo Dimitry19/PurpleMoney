@@ -51,4 +51,5 @@ public final class FieldConstants {
 	public static final int ADDRESS_LEN =255;
 	public static final int SEX_STD_LEN =1;
 
+
 }

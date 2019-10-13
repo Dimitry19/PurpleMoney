@@ -52,8 +52,8 @@ public class MemberBOImpl implements MemberBO {
 			query=session.getNamedQuery(MemberVO.LIKEID);
 			query.setParameter("uName",SQLUtils.forLike(usernameParts[0].toUpperCase(), true, true, true));
 
-			query.setParameter("ass", assId.toUpperCase());
-			query.setParameter("act", true);
+			//query.setParameter("ass", assId.toUpperCase());
+			//query.setParameter("act", true);
 			List<MemberVO> users=decoder(query.list());
 			if(users!=null && users.size()>0) {
 
@@ -93,8 +93,8 @@ public class MemberBOImpl implements MemberBO {
 	public List<MemberVO> loadAllMembers(String association) {
 		session=hibernateConfig.getSession();
 		Query query=session.getNamedQuery(MemberVO.ALL);
-		query.setParameter("ass", association);
-		query.setParameter("act", true);
+		//query.setParameter("ass", association);
+		//query.setParameter("act", true);
 
 		List<MemberVO> members= null;
 		try {
@@ -125,12 +125,16 @@ public class MemberBOImpl implements MemberBO {
 
 		if(member!=null){
 			try {
-				MemberVO memberTmp=encode(member);
-				session=hibernateConfig.getSession();
+				String usernameParts[] = member.getId().getName().split(CommonUtils.COMMA_REGEX, 2);
+				if(usernameParts.length==1){
+					MemberVO memberTmp=encode(member);
+					session=hibernateConfig.getSession();
 
-				Transaction tx=session.beginTransaction();
-				session.update(MemberVO.class.getName(),memberTmp);
-				tx.commit();
+					Transaction tx=session.beginTransaction();
+					session.update(MemberVO.class.getName(),memberTmp);
+					tx.commit();
+				}
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -146,7 +150,7 @@ public class MemberBOImpl implements MemberBO {
 
 		Query query =session.getNamedQuery(MemberVO.Q_AC_ITEM);
 				query.setParameter("searchFilter",SQLUtils.forLike(search, true, true, true));
-				query.setParameter("ass",association);
+		//		query.setParameter("ass",association);
 		List<MemberVO> memberList = query.list();
 
 		return memberList;
@@ -201,7 +205,6 @@ public class MemberBOImpl implements MemberBO {
 		RoleVO role=roleBO.retrieveRoleFromMember(member);
 		AssociationVO association=associationBO.associationInfoFromMember(member);
 		member.setRole(role.getId().getRole());
-		member.setAssociation(association.getId().getId());
 		member.setAssociationDesc(association.getDescription());
 
 		if(StringUtils.equals("Femme",member.getSexDesc())){

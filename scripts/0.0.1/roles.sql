@@ -1,5 +1,5 @@
 CREATE TABLE `ROLE` (
-  `ID` varchar(3) NOT NULL,
+  `R_ASSOCIATION` varchar(3) NOT NULL,
   `ROLE` varchar(3) NOT NULL,
   `DESCRIPTION` varchar(255) NOT NULL,
   `USED` BOOLEAN DEFAULT FALSE,

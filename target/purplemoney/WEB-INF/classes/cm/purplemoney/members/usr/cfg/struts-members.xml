@@ -13,7 +13,8 @@
 			<result name="success">/members/pages/infoMember.jsp</result>
 		</action>
 		<action name="allInfoMemberAction" class="memberAction"  method="allInfoMember">
-			<result name="success">members/pages/ajax/result-members.jsp</result>
+			<result name="input">members/pages/ajax/result-members.jsp</result>
+			<result name="success">/members/pages/includes/details-member.jsp</result>
 			<!--<result name="success">/members/pages/infoMember.jsp</result>-->
 		</action>
 		<action name="editMemberAction" class="memberAction">
@@ -28,7 +29,7 @@
 			<result name="input">/members/pages/addMember.jsp</result>
 		</action>
 		<action name="saveEditMemBerAction" class="memberAction" method="saveEditMember">
-			<result name="success">/members/pages/infoMember.jsp</result>
+			<result name="success">/members/pages/ajax/infoMemberNoButtons.jsp</result>
 		</action>
 		<action name="showDetails" class="memberAction" method="showDetailsMember">
 			<result name="success">/members/pages/ajax/details-member-success.jsp</result>
