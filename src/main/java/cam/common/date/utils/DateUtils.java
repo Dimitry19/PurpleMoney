@@ -39,6 +39,4 @@ public class DateUtils {
         // String dateString = format.format( new Date()   );
         return format.parse ( dateStr );
     }
-
-
 }

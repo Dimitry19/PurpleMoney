@@ -21,6 +21,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>cam.listeners.InitVersionContextListener</listener-class>
+    </listener>
     <!-- Handles both the preparation and execution phases of the Struts dispatching process. -->
     <filter>
         <filter-name>struts2</filter-name>

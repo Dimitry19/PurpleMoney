@@ -66,8 +66,12 @@
                 <div id="addOperation" class="collapse" aria-labelledby="addOperation" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"> <s:text name="common.menu.founds.add"/>:</h6>
-                        <a class="collapse-item" href="<s:url action="addingSessionAction"/>"><i class="fas fa-dollar-sign" aria-hidden="true"></i>&nbsp;
+                        <a class="collapse-item" href="<s:url action="addingSessionAction"/>"><i class="fas fa-money" aria-hidden="true"></i>&nbsp;
                             <s:text name="common.menu.founds.add"/>
+                        </a>
+                        <h6 class="collapse-header"><s:text name="common.menu.loan.add"/>:</h6>
+                        <a class="collapse-item" href="<s:url action="loanAddAction"/>"><i class="fa fa-landmark" aria-hidden="true"></i>&nbsp;
+                            <s:text name="common.menu.loan.add"/>
                         </a>
                         <h6 class="collapse-header"><s:text name="common.menu.members.add"/>:</h6>
                         <a class="collapse-item" href="<s:url action="menuAddMemberAction"/>"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;
@@ -117,6 +121,25 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"><s:text name="common.menu.members.all"/></h6>
                     <a class="collapse-item" href="<s:url action="allMembersAction"/>"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.members.all"/></a>
+                    <h6 class="collapse-header"><s:text name="common.menu.about.user"/></h6>
+                    <a class="collapse-item" href="<s:url action="infoMemberAction"/>"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.about.user"/></a>
+                </div>
+            </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading"><s:text name="common.menu.loans"/></div>
+        <!-- Nav Item - loans Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menuLoans" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fa fa-landmark"></i>
+                <span><s:text name="loan.title"/></span>
+            </a>
+            <div id="menuLoans" class="collapse" aria-labelledby="menuLoans" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header"><s:text name="common.menu.loans"/></h6>
+                    <a class="collapse-item" href="<s:url action="loansAction"/>"><i class="fa fa-hand-holding-usd" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.loans"/></a>
                     <h6 class="collapse-header"><s:text name="common.menu.about.user"/></h6>
                     <a class="collapse-item" href="<s:url action="infoMemberAction"/>"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.about.user"/></a>
                 </div>
@@ -296,18 +319,14 @@
                    </audio>
 
                    function handleFiles(event) {
-	var files = event.target.files;
-	$("#rlly").attr("src", URL.createObjectURL(files[0]));
-	document.getElementById("rllly").load();
-}
+                        var files = event.target.files;
+                        $("#rlly").attr("src", URL.createObjectURL(files[0]));
+                        document.getElementById("rllly").load();
+                    }
 
-document.getElementById("rll").addEventListener("change", handleFiles, false);
-
-
+                        document.getElementById("rll").addEventListener("change", handleFiles, false);
                    --%>
             </div>
-
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -469,6 +488,5 @@ document.getElementById("rll").addEventListener("change", handleFiles, false);
                 </ul>
             </nav>
             <!-- End of Topbar -->
-
             <!-- Begin Page Content -->
             <div class="container-fluid">

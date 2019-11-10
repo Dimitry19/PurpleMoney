@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<s:set var="lang" value="%{currentLocale}"/>
 
 </div>
 <!-- /.container-fluid -->
@@ -41,7 +41,9 @@
                 </div>
                 <!-- Grid column -->
             </div>
-            <span>Copyright &copy; Your Website 2019</span>
+            <div class="page-footer-inner">Versione: &nbsp;<s:property value="%{#application.applicationVersion}"/> :: 2017 &copy; Lion Dx- All rights reserved :.
+            </div>
+            <span>Copyright &copy; PurpleMoney 2019</span>
         </div>
     </div>
 
@@ -88,6 +90,34 @@
 <script src="<s:url value="/common/template/demo/chart-bar-demo.js"/>"></script>
 <script src="<s:url value="/common/template/demo/chart-pie-frequence-demo.js"/>"></script>
 <script src="<s:url value="/common/template/demo/chart-bar-pret-demo.js"/>"></script>
+<script src="<s:url value="/ds-framework/js/ds-chart.js"/>"></script>
+
+<script>
+
+	var widgetTotalFound='<s:property value="%{widget.getCommonFound()}"/>';
+	var widgetPersonalFound='<s:property value="%{widget.getPersonalFound()}"/>';
+	var widgetTotalSanction='<s:property value="%{widget.getSanctions()}"/>';
+	var widgetDataInfos='<s:property value="%{widget.toJSONArray()}"/>';
+	var widgetLoans='<s:property value="%{widget.getLoans()}"/>';
+	var widget = {
+		widgetTotalFound: widgetTotalFound,
+		widgetPersonalFound: widgetPersonalFound,
+		widgetTotalSanction: widgetTotalSanction,
+		widgetLoans:widgetLoans
+	};
+
+	var data = ["Banana", "Orange", "Apple", "Mango"];
+	var labels = ["Banana", "Orange", "Apple", "Mango"];
+	labels.fill("Kiwi");
+
+	var widgetDataInfo = {
+		month: widgetTotalFound,
+		amount: widgetPersonalFound
+	};
+	var lng='<s:property  value="%{#lang}" />';
+	ChartManager.loadWidgets({widgetInfo: widget});
+	DSCharManager.chartLoan({lang:lng,widgetDataInfo: widgetDataInfos});
+</script>
 
 
 

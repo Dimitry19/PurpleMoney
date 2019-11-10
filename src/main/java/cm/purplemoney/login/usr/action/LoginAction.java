@@ -57,6 +57,7 @@ public class LoginAction extends BaseAction implements Preparable{
 	public void prepare() throws Exception{
 		languages=languageBO.loadAllLanguages();//Arrays.asList(LanguageEnum.values());
 		associations= associationBO.loadAllAssociations();
+		//memberBO.loadAllMembers();
 	}
 	@Override
 	public String execute() throws Exception{

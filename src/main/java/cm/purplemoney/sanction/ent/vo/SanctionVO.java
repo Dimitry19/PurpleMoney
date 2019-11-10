@@ -14,10 +14,10 @@ import static org.eclipse.jdt.core.JavaCore.IGNORE;
 @Entity
 @Table(name ="SANCTION", schema = "PUBLIC")
 @NamedQueries({
-        @NamedQuery(name = SanctionVO.Q_AC_ITEM, query = "select s from SanctionVO s where (description like :searchFilter) or(upper(description) like :" +
-                "searchFilter )   order by description"),
-        @NamedQuery(name = SanctionVO.ALL, query = "select s from SanctionVO s  order by description"),
-        @NamedQuery(name = SanctionVO.FINDBYMEMBER, query = "select s from SanctionVO s where s.member.id.name =:mname  order by description"),
+        @NamedQuery(name = SanctionVO.Q_AC_ITEM, query = "select s from SanctionVO s where (decodeSanction.description like :searchFilter) or(upper(decodeSanction.description) like :" +
+                "searchFilter )   order by decodeSanction.description"),
+        @NamedQuery(name = SanctionVO.ALL, query = "select s from SanctionVO s  order by decodeSanction.description"),
+        @NamedQuery(name = SanctionVO.FINDBYMEMBER, query = "select s from SanctionVO s where s.member.id.name =:mname  order by decodeSanction.description"),
 })
 @Filters({
         @Filter(name = FilterConstants.ASSOCIATION)
@@ -25,7 +25,8 @@ import static org.eclipse.jdt.core.JavaCore.IGNORE;
 public class SanctionVO {
 
     private SanctionIdVO id;
-    private String description;
+    private DecodeSanctionVO decodeSanction;
+    private String codeSanction;
     private MemberVO member;
 
     public static final String Q_AC_ITEM = "cm.purplemoney.sanction.ent.vo.SanctionVO.QAutocompleteItem";
@@ -41,14 +42,27 @@ public class SanctionVO {
         this.id = id;
     }
 
-    @Basic(optional = false)
-    @Column(name="DESCRIPTION", nullable = false)
-    public String getDescription() {
-        return description;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_SANCTION",insertable=false, updatable=false)
+    /*@JoinColumns({
+            @JoinColumn(name = "ID_SANCTION", referencedColumnName ="ID_SANCTION" ,insertable=false, updatable=false)
+    })*/
+    public DecodeSanctionVO getDecodeSanction() {
+        return decodeSanction;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDecodeSanction(DecodeSanctionVO decodeSanction) {
+        this.decodeSanction = decodeSanction;
+    }
+
+    @Basic(optional = false)
+    @Column(name = "ID_SANCTION", nullable = false)
+    public String getCodeSanction() {
+        return codeSanction;
+    }
+
+    public void setCodeSanction(String codeSanction) {
+        this.codeSanction = codeSanction;
     }
 
     @NotFound(action=NotFoundAction.IGNORE)

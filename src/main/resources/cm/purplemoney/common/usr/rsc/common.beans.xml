@@ -81,6 +81,7 @@
 				<value>cm.purplemoney.role.ent.vo</value>
 				<value>cm.purplemoney.sanction.ent.vo</value>
 				<value>cm.purplemoney.event.ent.vo</value>
+				<value>cm.purplemoney.loan.ent.vo</value>
 			</list>
 		</property>
 		<property name="annotatedClasses">
@@ -102,6 +103,9 @@
 				<value>cm.purplemoney.role.ent.vo.RoleVOId</value>
 				<value>cm.purplemoney.sanction.ent.vo.SanctionIdVO</value>
 				<value>cm.purplemoney.sanction.ent.vo.SanctionVO</value>
+				<value>cm.purplemoney.sanction.ent.vo.DecodeSanctionVO</value>
+				<value>cm.purplemoney.loan.ent.vo.LoanVOId</value>
+				<value>cm.purplemoney.loan.ent.vo.LoanVO</value>
 				<value>cm.purplemoney.event.ent.vo.EventVO</value>
 				<value>cm.purplemoney.event.ent.vo.EventTypeVO</value>
 				<value>cm.purplemoney.event.ent.vo.Calendar</value>

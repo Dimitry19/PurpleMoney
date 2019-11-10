@@ -6,6 +6,7 @@ import java.util.Set;
 import cm.purplemoney.constants.FieldConstants;
 import cm.purplemoney.constants.FilterConstants;
 import cm.purplemoney.event.ent.vo.EventVO;
+import cm.purplemoney.loan.ent.vo.LoanVO;
 import cm.purplemoney.sanction.ent.vo.SanctionVO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import org.hibernate.annotations.*;
@@ -57,6 +58,7 @@ public class MemberVO implements Serializable{
 	private boolean male;
 	private boolean saved;
 	private Set<SanctionVO> sanctions= new HashSet<SanctionVO>();
+	private Set<LoanVO> loans= new HashSet<LoanVO>();
 	private Set<SessionVO> sessions= new HashSet<SessionVO>();
 	private EventVO event;
 
@@ -132,7 +134,7 @@ public class MemberVO implements Serializable{
 	}
 
 	@OneToMany(mappedBy = "member",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@OrderBy("description DESC")
+	@OrderBy("codeSanction DESC")
 	public Set<SanctionVO> getSanctions() {
 		return sanctions;
 	}
@@ -142,6 +144,16 @@ public class MemberVO implements Serializable{
 	@OrderBy("id.date  DESC")
 	public Set<SessionVO> getSessions() {
 		return sessions;
+	}
+
+	@OneToMany(mappedBy = "id.member",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("amount  DESC")
+	public Set<LoanVO> getLoans() {
+		return loans;
+	}
+
+	public void setLoans(Set<LoanVO> loans) {
+		this.loans = loans;
 	}
 
 	public void setEvent(EventVO event) {

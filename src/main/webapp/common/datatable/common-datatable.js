@@ -72,9 +72,9 @@ DataTableManager = function () {
 			},
 			"select": {
 				"rows": {
-					_: "| %d lignes séléctionnées",
-					0: "| Aucune ligne séléctionnée",
-					1: "| 1 ligne séléctionnée"
+					_: "| %d lignes sÃ©lÃ©ctionnÃ©es",
+					0: "| Aucune ligne sÃ©lÃ©ctionnÃ©e",
+					1: "| 1 ligne sÃ©lÃ©ctionnÃ©e"
 				}
 			}
 		}

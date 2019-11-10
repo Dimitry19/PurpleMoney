@@ -60,12 +60,12 @@
 
 							<s:if test ="%{getSanctions() != null}">
 								<s:if test="%{getSanctions().size()>1}">
-									<td><s:property value="%{getSanctions().iterator().next().getDescription()}"/>
+									<td><s:property value="%{getSanctions().iterator().next().getDecodeSanction().getDescription()}"/>
 										<s:text name="member.column.sanction.more"></s:text>
 									</td>
 								</s:if>
 								<s:else>
-									<td><s:property value="%{getSanctions().iterator().next().getDescription()}"/></td>
+									<td><s:property value="%{getSanctions().iterator().next().getDecodeSanction().getDescription()}"/></td>
 								</s:else>
 							</s:if>
 

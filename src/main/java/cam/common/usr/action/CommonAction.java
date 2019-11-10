@@ -1,6 +1,7 @@
 package cam.common.usr.action;
 
 
+import cm.purplemoney.common.ent.vo.WidgetVO;
 import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import com.opensymphony.xwork2.ActionSupport;
@@ -37,6 +38,7 @@ public class CommonAction extends ActionSupport implements SessionAware ,Servlet
     protected Boolean dataLoad;
     protected String currentUser;
     protected MemberVO currentMember;
+    protected WidgetVO widget;
     protected String currentLocale;
     protected String currentAssociation;
     public Locale currlocale;
@@ -266,12 +268,22 @@ public class CommonAction extends ActionSupport implements SessionAware ,Servlet
                 String currentUs =(String) ob;
                 Object o=this.session.get(CURRENT_ASS);
                 String currentAss =(String) o;
+                widget=memberBO.widgetInfo(currentUs,currentAss);
                 return memberBO.findMemberInfo(currentUs,currentAss);
         }catch (Exception b){
                 log.error("Error retrieve currentMember");
                 b.printStackTrace();
         }
         return null;
+    }
+
+    public WidgetVO getWidget() {
+
+        return widget;
+    }
+
+    public void setWidget(WidgetVO widget) {
+        this.widget = widget;
     }
 
     public String getCurrentAction() {

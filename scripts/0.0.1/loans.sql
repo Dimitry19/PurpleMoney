@@ -1,0 +1,21 @@
+-- ----------------------------
+--  Table structure for `LOANS`
+-- ----------------------------
+DROP TABLE IF EXISTS `LOANS`;
+CREATE TABLE `LOANS` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `ID_ASSOCIATION` varchar(3),
+  `R_MEMBER` varchar(25)  NOT NULL ,
+  `DATE_LOAN_START` DATE default current_date,
+  `DATE_LOAN_REMB` DATE NOT NULL,
+  `EXTENDED`    BOOLEAN,
+  `BALANCED`    BOOLEAN,
+  `AMOUNT` bigint(20) not  null ,
+  `TAX` bigint(20) not  null ,
+  `TIMESTAMP` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`ID`,`R_MEMBER`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO LOANS (ID_ASSOCIATION,R_MEMBER,DATE_LOAN_REMB,EXTENDED,BALANCED,AMOUNT,TAX) VALUES('P10','LION',current_date,0,0,250,3);
+

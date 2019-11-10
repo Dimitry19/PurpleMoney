@@ -50,6 +50,7 @@
         <mapping package="cm.purplemoney.sanction.ent.vo"/>
         <mapping package="cm.purplemoney.event.ent.vo"/>
 
+
         <!-- Mapping de toutes les classes VO -->
         <mapping class="cm.purplemoney.profile.ent.vo.AuthUserVO" />
         <mapping class="cm.purplemoney.association.ent.vo.AssociationVO" />
@@ -64,8 +65,11 @@
         <mapping class="cm.purplemoney.common.ent.vo.LanguageVO" />
         <mapping class="cm.purplemoney.sanction.ent.vo.SanctionIdVO"/>
         <mapping class="cm.purplemoney.sanction.ent.vo.SanctionVO"/>
-       <mapping class="cm.purplemoney.event.ent.vo.EventVO"/>
-       <mapping class="cm.purplemoney.event.ent.vo.EventTypeVO"/>
-       <mapping class="cm.purplemoney.event.ent.vo.Calendar"/>
+        <mapping class="cm.purplemoney.sanction.ent.vo.DecodeSanctionVO"/>
+        <mapping class="cm.purplemoney.event.ent.vo.EventVO"/>
+        <mapping class="cm.purplemoney.event.ent.vo.EventTypeVO"/>
+        <mapping class="cm.purplemoney.event.ent.vo.Calendar"/>
+        <mapping class="cm.purplemoney.loan.ent.vo.LoanVOId"/>
+        <mapping class="cm.purplemoney.loan.ent.vo.LoanVO"/>
     </session-factory>
 </hibernate-configuration>

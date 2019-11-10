@@ -6,6 +6,10 @@ import cam.libraries.component.ent.vo.BusinessException;
 import cam.sql.SQLUtils;
 import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.association.ent.vo.AssociationVO;
+import cm.purplemoney.common.ent.vo.WidgetDataInfoVO;
+import cm.purplemoney.common.ent.vo.WidgetVO;
+import cm.purplemoney.loan.ent.vo.LoanVO;
+import cm.purplemoney.sanction.ent.vo.SanctionVO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.members.ent.enums.SexEnum;
@@ -22,8 +26,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 
 
 @Component("memberBO")
@@ -64,7 +68,7 @@ public class MemberBOImpl implements MemberBO {
 
 	public  MemberVO  findMemberInfo(String username,String assId) {
 
-		List<MemberVO> users=findMember(  username,  assId);
+		List<MemberVO> users=findMember(username,  assId);
 		if(users!=null && users.size()>0) {
 			return users.get(0);
 		}
@@ -142,6 +146,74 @@ public class MemberBOImpl implements MemberBO {
 		}
 	}
 
+	@Override
+	public WidgetVO widgetInfo(String username, String association) throws BusinessException {
+		WidgetVO widget=new WidgetVO();
+
+		MemberVO mbr=findMemberInfo(username,  association);
+
+		widget.setCommonFound(BigDecimal.TEN);
+		widget.setPersonalFound(BigDecimal.TEN);
+		widget.setLoans(calcolateLoan(mbr));
+		widget.setSanctions(calcolateSanction(mbr));
+		widget.setWidgetDataInfos(retrieveWidgetDataInfo(mbr));
+
+		return widget;
+	}
+
+	private BigDecimal calcolateSanction(MemberVO mbr){
+
+		BigDecimal total=BigDecimal.ZERO;
+		if(mbr!=null){
+			Iterator iterator=mbr.getSanctions().iterator();
+			while (iterator.hasNext()){
+				SanctionVO sction=(SanctionVO)iterator.next();
+				total=total.add(sction.getDecodeSanction().getTax());
+			}
+		}
+		return total;
+	}
+
+	private List retrieveWidgetDataInfo(MemberVO mbr){
+
+		List widgetDataInfos=new ArrayList();
+		if(mbr!=null){
+			Iterator iterator=mbr.getLoans().iterator();
+			while (iterator.hasNext()){
+				LoanVO loan=(LoanVO)iterator.next();
+				WidgetDataInfoVO widgetDataInfo=new WidgetDataInfoVO();
+
+				Date date=loan.getLoanDate();
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(date);
+				widgetDataInfo.setYear(cal.get(Calendar.YEAR));
+				widgetDataInfo.setMonth(cal.get(Calendar.MONTH));
+				widgetDataInfo.setDate(date);
+				widgetDataInfo.setAmount(loan.getAmountToBack());
+				widgetDataInfos.add(widgetDataInfo);
+			}
+		}
+		return widgetDataInfos;
+	}
+
+	private BigDecimal calcolateLoan(MemberVO mbr){
+
+		BigDecimal total=BigDecimal.ZERO;
+		if(mbr!=null){
+			Iterator iterator=mbr.getLoans().iterator();
+			while (iterator.hasNext()){
+				LoanVO loan=(LoanVO)iterator.next();
+				Date date=loan.getLoanDate();
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(date);
+				int year = cal.get(Calendar.YEAR);
+				int month = cal.get(Calendar.MONTH);
+				int day = cal.get(Calendar.DAY_OF_MONTH);
+				total=total.add(loan.getAmountToBack());
+			}
+		}
+		return total;
+	}
 	@Override
 	public List<MemberVO> autocomplete(String search, String association) throws BusinessException {
 
