@@ -84,6 +84,7 @@
 <!-- Page level plugins -->
 <script src="<s:url value="/common/template/demo/chart.js/Chart.min.js"/>"></script>
 
+
 <!-- Page level custom scripts -->
 <script src="<s:url value="/common/template/demo/chart-area-demo.js"/>"></script>
 <script src="<s:url value="/common/template/demo/chart-pie-demo.js"/>"></script>
@@ -92,32 +93,9 @@
 <script src="<s:url value="/common/template/demo/chart-bar-pret-demo.js"/>"></script>
 <script src="<s:url value="/ds-framework/js/ds-chart.js"/>"></script>
 
-<script>
+<%@ include file = "./common-header-char-bottom.jsp" %>
 
-	var widgetTotalFound='<s:property value="%{widget.getCommonFound()}"/>';
-	var widgetPersonalFound='<s:property value="%{widget.getPersonalFound()}"/>';
-	var widgetTotalSanction='<s:property value="%{widget.getSanctions()}"/>';
-	var widgetDataInfos='<s:property value="%{widget.toJSONArray()}"/>';
-	var widgetLoans='<s:property value="%{widget.getLoans()}"/>';
-	var widget = {
-		widgetTotalFound: widgetTotalFound,
-		widgetPersonalFound: widgetPersonalFound,
-		widgetTotalSanction: widgetTotalSanction,
-		widgetLoans:widgetLoans
-	};
 
-	var data = ["Banana", "Orange", "Apple", "Mango"];
-	var labels = ["Banana", "Orange", "Apple", "Mango"];
-	labels.fill("Kiwi");
-
-	var widgetDataInfo = {
-		month: widgetTotalFound,
-		amount: widgetPersonalFound
-	};
-	var lng='<s:property  value="%{#lang}" />';
-	ChartManager.loadWidgets({widgetInfo: widget});
-	DSCharManager.chartLoan({lang:lng,widgetDataInfo: widgetDataInfos});
-</script>
 
 
 

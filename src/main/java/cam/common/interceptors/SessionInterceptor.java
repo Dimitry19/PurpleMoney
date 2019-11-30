@@ -28,12 +28,12 @@ public class SessionInterceptor implements  Interceptor {
         ActionContext context = actionInvocation.getInvocationContext();
 
         Map<String, Object> sessionMap = context.getSession();
+
         log.info(" retrived session..."+ sessionMap);
         if(sessionMap == null || sessionMap.isEmpty() || sessionMap.get(TO_SESSION)==null) {
             log.info(" session expired...");
             return EXPIRED_SESSION;
         }
-        String actionResult = actionInvocation.invoke();
-        return actionResult;
+        return  actionInvocation.invoke();
     }
 }

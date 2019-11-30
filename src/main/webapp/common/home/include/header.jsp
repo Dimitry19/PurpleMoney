@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0 shrink-to-fit=no" />
 	<%--<meta http-equiv="refresh" content="<%=session.getMaxInactiveInterval()%>;url=<%=request.getContextPath()%>/common/home/index.jsp" />--%>
-	<META HTTP-EQUIV="Refresh" CONTENT="<%=session.getMaxInactiveInterval()%>;URL=login.do">
+	<meta http-equiv="refresh" content="<%=session.getMaxInactiveInterval()%>; url=<%=request.getContextPath()%>/login.do">
 	<meta name="description" content="">
 	<meta name="author" content="Dimitri S.">
 	<link rel="icon" type="image/png" href="<s:url value="/theme/img/logo-draft.png" />">
@@ -31,10 +31,7 @@
 	<link rel="stylesheet" href="<s:url value="/common/template/datatables/dataTables.bootstrap4.min.css"/>" >
 
 	<link  rel="stylesheet"  href="<s:url value="/common/js/select2/dist-4.0.10/css/select2.min.css"/>">
-	<%--<link  rel="stylesheet"  href="<s:url value="/common/js/select2/dist-4.0.10/css/select2-bootstrap4.css"/>">--%>
 	<link  rel="stylesheet"  href="<s:url value="/common/css/select2-custom.css"/>">
-
-
 	<script src="<s:url value="/common/Player/js/jquery-1.7.2.min.js"/>"></script>
 	<script src="<s:url value="/common/Player/js/jquery-ui-1.8.21.custom.min.js"/>"></script>
 	<script src="<s:url value="/common/Player/js/controls.js"/>"></script>

@@ -6,7 +6,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4 custum-info">
     <h1 class="h3 mb-0 text-gray-800">Infos</h1>
 </div>
-<div class="row widget-info">
+<div  class="row widget-info">
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -59,6 +59,11 @@
                     <div class="col-auto">
                         <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
                         <%-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>--%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="totalLoanMsg" class="mt-6 text-center small">
+
                     </div>
                 </div>
             </div>

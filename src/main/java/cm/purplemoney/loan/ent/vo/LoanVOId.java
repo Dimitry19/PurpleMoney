@@ -1,6 +1,6 @@
 package cm.purplemoney.loan.ent.vo;
 
-import cm.purplemoney.constants.FieldConstants;
+
 import cm.purplemoney.members.ent.vo.MemberVO;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +11,7 @@ public class LoanVOId implements Serializable {
 
 	private BigInteger id;
 	//private String association;
-	private MemberVO member;
+	private MemberVO mmember;
 
 	public LoanVOId() {
 	}
@@ -40,11 +40,11 @@ public class LoanVOId implements Serializable {
 		@JoinColumn(name = "R_MEMBER",       referencedColumnName ="MNAME" ,        insertable=false, updatable=false),
 		@JoinColumn(name = "ID_ASSOCIATION", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false)
 	})
-	public MemberVO getMember() {
-		return member;
+	public MemberVO getMmember() {
+		return mmember;
 	}
 
-	public void setMember(MemberVO member) {
-		this.member = member;
+	public void setMmember(MemberVO member) {
+		this.mmember = member;
 	}
 }

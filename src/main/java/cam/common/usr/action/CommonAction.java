@@ -6,6 +6,7 @@ import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import com.opensymphony.xwork2.ActionSupport;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.apache.struts2.ServletActionContext;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import static cm.purplemoney.constants.PortalConstants.CURRENT_ASS;
 import static cm.purplemoney.constants.PortalConstants.CURRENT_USER;
+import static cm.purplemoney.constants.PortalConstants.CURRENT_USER_WIDGET;
 
 
 public class CommonAction extends ActionSupport implements SessionAware ,ServletRequestAware {
@@ -46,6 +48,7 @@ public class CommonAction extends ActionSupport implements SessionAware ,Servlet
     private static final long serialVersionUID = 1L;
     protected String currentAction;
     public HttpServletRequest request;
+    protected int tax;
 
 
 
@@ -268,7 +271,14 @@ public class CommonAction extends ActionSupport implements SessionAware ,Servlet
                 String currentUs =(String) ob;
                 Object o=this.session.get(CURRENT_ASS);
                 String currentAss =(String) o;
-                widget=memberBO.widgetInfo(currentUs,currentAss);
+
+                 Object wob=this.session.get(CURRENT_USER_WIDGET);
+                 widget=(WidgetVO)wob;
+                 if(widget==null){
+                     widget=memberBO.widgetInfo(currentUs,currentAss);
+                     this.session.put(CURRENT_USER_WIDGET,widget);
+                 }
+
                 return memberBO.findMemberInfo(currentUs,currentAss);
         }catch (Exception b){
                 log.error("Error retrieve currentMember");
@@ -294,6 +304,13 @@ public class CommonAction extends ActionSupport implements SessionAware ,Servlet
         this.currentAction = ServletActionContext.getRequest().getHeader("Referer");
     }
 
+    public int getTax() {
+        return tax;
+    }
+
+    public void setTax(int tax) {
+        this.tax = tax;
+    }
 
     @Override
     public void setServletRequest(HttpServletRequest request) {

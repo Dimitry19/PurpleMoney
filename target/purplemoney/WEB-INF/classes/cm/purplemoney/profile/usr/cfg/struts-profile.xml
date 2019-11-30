@@ -4,13 +4,7 @@
  
 <struts>
 	<package name="profile" namespace="/" extends="common">		
-		<action name="loginAction" class="loginHomeAction" method="login">
-			<result name="success">/common/home/home.jsp</result>
-			<result name="input">/common/home/index.jsp</result>
-		</action>
-		<action name="locale" class="loginHomeAction" method="changelocale">
-			<result name="input" type="redirect">${url}</result>
-			<result name="success">/common/home/home.jsp</result>
-		</action>
+
+
 	</package>
 </struts>

@@ -39,7 +39,7 @@
         <mapping package="cm.purplemoney.session.ent.vo"/>
         <mapping package="cm.purplemoney.association.ent.vo"/>
         <mapping package="cm.purplemoney.common.ent.vo"/>
-        <mapping package="cm.purplemoney.found.ent.vo"/>
+        <mapping package="cm.purplemoney.fund.ent.vo"/>
         <mapping package="cm.purplemoney.group.ent.vo"/>
         <mapping package="cm.purplemoney.loan.ent.vo"/>
         <mapping package="cm.purplemoney.members.ent.vo"/>
@@ -71,5 +71,7 @@
         <mapping class="cm.purplemoney.event.ent.vo.Calendar"/>
         <mapping class="cm.purplemoney.loan.ent.vo.LoanVOId"/>
         <mapping class="cm.purplemoney.loan.ent.vo.LoanVO"/>
+        <mapping class="cm.purplemoney.fund.ent.vo.FundVO"/>
+        <mapping class="cm.purplemoney.fund.ent.vo.FundVOId"/>
     </session-factory>
 </hibernate-configuration>

@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "LOANS", schema = "PUBLIC")
 @NamedQueries({
-		@NamedQuery(name = LoanVO.ALL, query = "select l from LoanVO l   order by id.member.id.name"),
+		@NamedQuery(name = LoanVO.ALL, query = "select l from LoanVO l   order by id.mmember.id.name"),
 })
 @Filters({
 		@Filter(name = FilterConstants.ASSOCIATION),
@@ -29,6 +29,20 @@ public class LoanVO implements Serializable {
 	private BigDecimal amount;
 	private BigDecimal amountToBack;
 	private BigDecimal tax;
+
+
+
+	/*private String associationId;
+	@Basic(optional = false)
+	@Column(name="ID_ASSOCIATION", insertable=false, updatable=false)
+	public String getAssociationId() {
+		return associationId;
+	}
+
+	public void setAssociationId(String associationId) {
+		this.associationId = associationId;
+	}*/
+
 
 
 	private BigDecimal totalAmount;
@@ -110,6 +124,8 @@ public class LoanVO implements Serializable {
 	public void setTax(BigDecimal tax) {
 		this.tax = tax;
 	}
+
+
 
 	@Transient
 	public BigDecimal getTotalAmount() {

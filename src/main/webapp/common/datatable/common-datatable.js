@@ -93,6 +93,7 @@ DataTableManager = function () {
 			select: true,
 			responsive: true,
 			colReorder: true,
+
 			//scrollY:        400,
 			//deferRender:    true,
 			//scroller:       true,
@@ -104,7 +105,17 @@ DataTableManager = function () {
 					data: null,
 					defaultContent: "<button type='button'  data-toggle='tooltip' data-placement='top' title='Details Info' onclick='DataTableManager.editRow(this)' class='btn blue-hoki btn-icon-only btn-primary tooltips edit-btn'>" +
 					"<i class='fa fa-edit' aria-hidden='true'></i>&nbsp;</button>"
-				}*/],
+				},
+					{
+						targets: 4,
+						createdCell:  function (td, cellData, rowData, row, col) {
+
+							var datestamp = new Date(cellData);
+							console.log(datestamp);
+							$(td).html( (datestamp.getUTCMonth()+1) +'/'+datestamp.getUTCDate()+'/' + datestamp.getFullYear());
+						}
+					}*/
+		],
 			buttons: [
 				{
 					extend:'copyHtml5',

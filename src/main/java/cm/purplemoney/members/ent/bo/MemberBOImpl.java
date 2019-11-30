@@ -8,7 +8,10 @@ import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.association.ent.vo.AssociationVO;
 import cm.purplemoney.common.ent.vo.WidgetDataInfoVO;
 import cm.purplemoney.common.ent.vo.WidgetVO;
+import cm.purplemoney.fund.ent.bo.FundBO;
+import cm.purplemoney.fund.ent.vo.FundVO;
 import cm.purplemoney.loan.ent.vo.LoanVO;
+import cm.purplemoney.loan.wrapper.Loan;
 import cm.purplemoney.sanction.ent.vo.SanctionVO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.config.HibernateConfig;
@@ -41,6 +44,9 @@ public class MemberBOImpl implements MemberBO {
 	RoleBO roleBO;
 	@Resource(name = "associationBO")
 	AssociationBO associationBO;
+
+	@Resource(name = "fundBO")
+	FundBO fundBO;
 
 	Session session;
 
@@ -152,11 +158,19 @@ public class MemberBOImpl implements MemberBO {
 
 		MemberVO mbr=findMemberInfo(username,  association);
 
-		widget.setCommonFound(BigDecimal.TEN);
-		widget.setPersonalFound(BigDecimal.TEN);
-		widget.setLoans(calcolateLoan(mbr));
+		FundVO fund=fundBO.findByMember(mbr.getId());
+		if(fund!=null){
+			widget.setCommonFound(fund.getGlobalTotal()==null?BigDecimal.ZERO:fund.getGlobalTotal());
+			widget.setPersonalFound(fund.getTotalByMember()==null?BigDecimal.ZERO:fund.getTotalByMember());
+		}else{
+			widget.setCommonFound(BigDecimal.ZERO );
+			widget.setPersonalFound(BigDecimal.ZERO);
+		}
+
+		widget.setLoan(retriveLoan(mbr));
 		widget.setSanctions(calcolateSanction(mbr));
 		widget.setWidgetDataInfos(retrieveWidgetDataInfo(mbr));
+
 
 		return widget;
 	}
@@ -186,9 +200,9 @@ public class MemberBOImpl implements MemberBO {
 				Date date=loan.getLoanDate();
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
-				widgetDataInfo.setYear(cal.get(Calendar.YEAR));
-				widgetDataInfo.setMonth(cal.get(Calendar.MONTH));
-				widgetDataInfo.setDate(date);
+				//widgetDataInfo.setYear(cal.get(Calendar.YEAR));
+				widgetDataInfo.setMonth(1+cal.get(Calendar.MONTH));
+				//widgetDataInfo.setDate(date);
 				widgetDataInfo.setAmount(loan.getAmountToBack());
 				widgetDataInfos.add(widgetDataInfo);
 			}
@@ -196,23 +210,26 @@ public class MemberBOImpl implements MemberBO {
 		return widgetDataInfos;
 	}
 
-	private BigDecimal calcolateLoan(MemberVO mbr){
+	private Loan retriveLoan(MemberVO mbr){
 
+		Loan l=new Loan();
 		BigDecimal total=BigDecimal.ZERO;
+		Date date=null;
 		if(mbr!=null){
 			Iterator iterator=mbr.getLoans().iterator();
 			while (iterator.hasNext()){
 				LoanVO loan=(LoanVO)iterator.next();
-				Date date=loan.getLoanDate();
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(date);
-				int year = cal.get(Calendar.YEAR);
-				int month = cal.get(Calendar.MONTH);
-				int day = cal.get(Calendar.DAY_OF_MONTH);
+				if(date==null){
+					date=loan.getLoanDate();
+				}else if(date.compareTo(loan.getLoanDateRemb())>0){
+						date=loan.getLoanDate();
+				}
 				total=total.add(loan.getAmountToBack());
 			}
 		}
-		return total;
+		l.setLoanDateBack(date);
+		l.setAmount(total);
+		return l;
 	}
 	@Override
 	public List<MemberVO> autocomplete(String search, String association) throws BusinessException {

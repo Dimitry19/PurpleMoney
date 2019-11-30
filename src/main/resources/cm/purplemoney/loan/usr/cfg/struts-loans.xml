@@ -9,15 +9,14 @@
 			<result name="success">/loan/pages/ajax/loans.jsp</result>
 			<result name="error">/common/home/tables.jsp</result>
 		</action>
-		<action name="loanAddAction" class="loanAction" method="add">
-			<result name="success">/loan/pages/ajax/loans.jsp</result>
+		<action name="loanAddAction" class="loanAction">
+			<result name="success">/loan/pages/addLoan.jsp</result>
 			<result name="error">/common/home/tables.jsp</result>
 		</action>
-
-		<action name="autocompleteMember" class="memberAction" method="autocompleteMember">
-			<result type="json" name="success">
-				<param name="root">membersNames</param>
-			</result>
+		<action name="addLoanAction" class="loanAction" method="add">
+			<result name="success">/loan/pages/addLoan.jsp</result>
+			<result name="input">/loan/pages/addLoan.jsp</result>
+			<result name="error">/common/home/tables.jsp</result>
 		</action>
 	</package>
 </struts>

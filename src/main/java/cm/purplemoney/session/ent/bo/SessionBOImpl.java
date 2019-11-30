@@ -57,12 +57,9 @@ public class SessionBOImpl implements SessionBO {
 
         try{
 
-            if(amountSession!=null) {
+            if(amountSession!=null && StringUtils.isNotEmpty(amountSession.getMmember().getId().getName())) {
                 session = hibernateConfig.getSession();
                  tx = session.beginTransaction();
-
-                //String usernameParts[] = amountSession.getId().getMember().split(CommonUtils.SPACE_REGEX, 2);
-                //
 
                 String usernameParts[] = amountSession.getMmember().getId().getName().split(CommonUtils.COMMA_REGEX, 2);
                 amountSession.getMmember().getId().setName(usernameParts[0]);

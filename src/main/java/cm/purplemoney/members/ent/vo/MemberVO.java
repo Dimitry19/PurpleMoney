@@ -6,6 +6,7 @@ import java.util.Set;
 import cm.purplemoney.constants.FieldConstants;
 import cm.purplemoney.constants.FilterConstants;
 import cm.purplemoney.event.ent.vo.EventVO;
+import cm.purplemoney.fund.ent.vo.FundVO;
 import cm.purplemoney.loan.ent.vo.LoanVO;
 import cm.purplemoney.sanction.ent.vo.SanctionVO;
 import cm.purplemoney.session.ent.vo.SessionVO;
@@ -61,6 +62,7 @@ public class MemberVO implements Serializable{
 	private Set<LoanVO> loans= new HashSet<LoanVO>();
 	private Set<SessionVO> sessions= new HashSet<SessionVO>();
 	private EventVO event;
+	//private FundVO fund;
 
 	public static final String Q_AC_ITEM = "cm.purplemoney.members.ent.vo.MemberVO.QAutocompleteItem";
 	public static final String ALL = "cm.purplemoney.members.ent.vo.MemberVO.All";
@@ -90,8 +92,8 @@ public class MemberVO implements Serializable{
 		return email;
 	}
 
-	@Basic(optional = true)
-	@Column(name="ADDRESS",nullable=true ,length = FieldConstants.ADDRESS_LEN)
+	@Basic(optional = false)
+	@Column(name="ADDRESS",nullable=false ,length = FieldConstants.ADDRESS_LEN)
 	public String getAddress() {
 		return address;
 	}
@@ -146,12 +148,25 @@ public class MemberVO implements Serializable{
 		return sessions;
 	}
 
-	@OneToMany(mappedBy = "id.member",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "id.mmember",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("amount  DESC")
 	public Set<LoanVO> getLoans() {
 		return loans;
 	}
+/*
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumns({
+			@JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "ID_ASSOCIATION"),
+			@JoinColumn(name = "MNAME", referencedColumnName ="R_MEMBER")
+	})
+	public FundVO getFund() {
+		return fund;
+	}
 
+	public void setFund(FundVO fund) {
+		this.fund = fund;
+	}
+*/
 	public void setLoans(Set<LoanVO> loans) {
 		this.loans = loans;
 	}

@@ -11,7 +11,7 @@ import cm.purplemoney.members.ent.vo.MemberVO;
 
 
 @Embeddable
-public class SessionIdVO implements Serializable{//extends CommonIdVO {
+public class SessionIdVO implements Serializable{
 
 
     private String associationId;

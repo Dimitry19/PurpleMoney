@@ -43,6 +43,7 @@
 									<td><s:property value="mmember.surname"/></td>
 									<td><s:property value="amount"/></td>
 									<td><s:date name="id.date" format="dd/MM/yyyy" /></td>
+									<%--<td><s:property value="id.date"/></td>--%>
 								</tr>
 							</s:iterator>
 							</tbody>

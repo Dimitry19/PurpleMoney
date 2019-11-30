@@ -73,13 +73,16 @@ Select2Manager = function () {
 						}
 
 						if(params.select2Form==="formRegister"){
-							enableButton({idButton:'btnRegister', idField:'role'});
+							enableButton({idButton:params.button, idField:'role'});
 						}
 						if(params.select2Form==="formAddAmount"){
-							enableButton({idButton:'btnAddAmount', idField:'membersNames'});
+							enableButton({idButton:params.button, idField:'membersNames'});
+						}
+						if(params.select2Form==="formRegisterLoan"){
+							enableButton({idButton:params.button, idField:'membersNames'});
 						}
 						if(params.select2Form==="formEventAdd"){
-							enableButton({idButton:'btnAddEvent', idField:'membersNames'});
+							enableButton({idButton:params.button, idField:'membersNames'});
 						}
 					}
 

@@ -162,17 +162,20 @@ DSCharManager = function () {
 
 		options.data.labels=m;
 		var loanChart = new Chart(ctx, options);
-		var data=1520;
+		var data=[1520,1000,400];
 		addData(loanChart,m,data);
 		//loanChart.update();
 
 	}
 	function addData(chart, label, data) {
 		chart.data.labels.push(label);
-		chart.data.datasets.forEach((dataset) => {
-			dataset.data.push(data);
-		});
-		chart.update();
+		for(var i in data){
+			chart.data.datasets.forEach((dataset) => {
+				dataset.data.push(data[i]);
+			});
+			chart.update();
+		}
+
 	}
 
 	function removeData(chart) {

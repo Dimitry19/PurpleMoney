@@ -76,7 +76,7 @@
 				<value>cm.purplemoney.customers.ent.vo</value>
 				<value>cm.purplemoney.session.ent.vo</value>
 				<value>cm.purplemoney.group.ent.vo</value>
-				<value>cm.purplemoney.found.ent.vo</value>
+				<value>cm.purplemoney.fund.ent.vo</value>
 				<value>cm.purplemoney.profile.ent.vo</value>
 				<value>cm.purplemoney.role.ent.vo</value>
 				<value>cm.purplemoney.sanction.ent.vo</value>
@@ -109,6 +109,8 @@
 				<value>cm.purplemoney.event.ent.vo.EventVO</value>
 				<value>cm.purplemoney.event.ent.vo.EventTypeVO</value>
 				<value>cm.purplemoney.event.ent.vo.Calendar</value>
+				<value>cm.purplemoney.fund.ent.vo.FundVOId</value>
+				<value>cm.purplemoney.fund.ent.vo.FundVO</value>
 			</list>
 		</property>
 	</bean>
@@ -133,8 +135,8 @@
 
 	<import resource="classpath:cm/purplemoney/config/rsc/hibernateConfig.bean.xml"/>
 	<import resource="classpath:cm/purplemoney/common/usr/rsc/portal.bean.xml"/>
-	<import resource="classpath:cm/purplemoney/common/usr/rsc/loginHome.bean.xml"/>
+	<!--<import resource="classpath:cm/purplemoney/common/usr/rsc/loginHome.bean.xml"/>
 	<import resource="classpath:cm/purplemoney/members/usr/rsc/members.bean.xml"/>
-	<import resource="classpath:cm/purplemoney/common/usr/rsc/search.bean.xml"/>
+	<import resource="classpath:cm/purplemoney/common/usr/rsc/search.bean.xml"/>-->
 
 </beans>

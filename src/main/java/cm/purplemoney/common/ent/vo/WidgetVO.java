@@ -1,5 +1,7 @@
 package cm.purplemoney.common.ent.vo;
 
+import cm.purplemoney.loan.ent.vo.LoanVO;
+import cm.purplemoney.loan.wrapper.Loan;
 import org.json.JSONArray;
 
 import java.io.Serializable;
@@ -10,7 +12,7 @@ public class WidgetVO implements Serializable {
 
 	private BigDecimal commonFound;
 	private BigDecimal personalFound;
-	private BigDecimal loans;
+	private Loan loan;
 	private BigDecimal sanctions;
 	private List<WidgetDataInfoVO> widgetDataInfos;
 
@@ -30,12 +32,12 @@ public class WidgetVO implements Serializable {
 		this.personalFound = personalFound;
 	}
 
-	public BigDecimal getLoans() {
-		return loans;
+	public Loan getLoan() {
+		return loan;
 	}
 
-	public void setLoans(BigDecimal loans) {
-		this.loans = loans;
+	public void setLoan(Loan loan) {
+		this.loan = loan;
 	}
 
 	public BigDecimal getSanctions() {

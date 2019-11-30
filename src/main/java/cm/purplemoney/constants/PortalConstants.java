@@ -27,6 +27,7 @@ public class PortalConstants {
 	public static final String ACCOUNT_GEONAME_WS="dimitridevelopper";
 	public static final String LOGIN_REDIRECT="loginAction";
 	public static final String CURRENT_USER="CURRENT_USER";
+	public static final String CURRENT_USER_WIDGET="CURRENT_USER_WIDGET";
 	public static final String CURRENT_ASS="CURRENT_ASS";
 	public static final String  LOCALE="LOCALE";
 	public static final String ADMINISTRATOR="admin";

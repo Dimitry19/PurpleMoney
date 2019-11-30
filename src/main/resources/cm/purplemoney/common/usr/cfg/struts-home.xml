@@ -4,17 +4,29 @@
  
 <struts>
  	
-	<package name="home" namespace="/" extends="common">		
-		<action name="homeAction" class="loginHomeAction" method="home">
+	<package name="home" namespace="/" extends="common">
+		<action name="loginAction" class="loginAction" method="login">
+			<result name="success">/common/home/home.jsp</result>
+			<result name="input">/common/home/index.jsp</result>
+		</action>
+		<action name="homeAction" class="loginAction" method="home">
 			<interceptor-ref name="sessionInterceptor" />
 			<result name="success">/common/home/home.jsp</result>
 			<result name="sessionexpired" >/common/home/session-error.jsp</result>
 		</action>
-		<action name="logoutAction" class="loginHomeAction" method="logout">
+		<action name="home" class="loginAction" method="home">
+			<result name="success">/common/home/home.jsp</result>
+		</action>
+		<action name="logoutAction" class="loginAction" method="logout">
 			<result name="success">/common/home/index.jsp</result>
 		</action>
-		<action name="timeout" class="loginHomeAction">
+		<action name="timeout" class="loginAction">
 			<result name="success">/common/home/session-error.jsp</result>
 		</action>
+		<action name="locale" class="loginAction" method="changelocale">
+			<result name="input" type="redirect">${url}</result>
+			<result name="success">/common/home/home.jsp</result>
+		</action>
+
 	</package>
 </struts>

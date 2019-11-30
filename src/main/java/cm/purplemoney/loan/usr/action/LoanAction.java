@@ -2,12 +2,16 @@ package cm.purplemoney.loan.usr.action;
 
 import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.association.ent.bo.AssociationBO;
+import cm.purplemoney.association.ent.vo.AssociationVO;
 import cm.purplemoney.common.usr.action.BaseAction;
 import cm.purplemoney.loan.ent.bo.LoanBO;
+import cm.purplemoney.loan.ent.vo.LoanWrapper;
 import cm.purplemoney.members.ent.bo.MemberBO;
+import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
 import cm.purplemoney.role.ent.bo.RoleBO;
 import com.opensymphony.xwork2.Preparable;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -39,12 +43,18 @@ public class LoanAction extends BaseAction implements Preparable {
 	@Resource(name="loanBO")
 	private LoanBO loanBO;
 
+	private LoanWrapper loanWr;
+	private AssociationVO associationCurrent;
+	private List<MemberVO> membersNames;
+
 
 
 	@Override
 	public void prepare() throws Exception {
 
 		loans=loanBO.loans();
+		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
+		tax=3;
 	}
 
 	public String execute() {
@@ -66,6 +76,20 @@ public class LoanAction extends BaseAction implements Preparable {
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
+		if(loanBO.addLoan(loanWr)){
+			addActionMessage(getText("loan.add.success"));
+		}else{
+			addActionError(getText("loan.add.error"));
+		}
+
+		return SUCCESS;
+	}
+
+	public String autocompleteMember() throws Exception{
+
+		/*if(StringUtils.isNotBlank(userInput)){
+			membersNames = memberBO.autocomplete(userInput,getCurrentAssociation().toUpperCase());
+		}*/
 		return SUCCESS;
 	}
 
@@ -75,5 +99,21 @@ public class LoanAction extends BaseAction implements Preparable {
 
 	public void setLoans(List loans) {
 		this.loans = loans;
+	}
+
+	public LoanWrapper getLoanWr() {
+		return loanWr;
+	}
+
+	public void setLoanWr(LoanWrapper loanWr) {
+		this.loanWr = loanWr;
+	}
+
+	public AssociationVO getAssociationCurrent() {
+		return associationCurrent;
+	}
+
+	public void setAssociationCurrent(AssociationVO associationCurrent) {
+		this.associationCurrent = associationCurrent;
 	}
 }

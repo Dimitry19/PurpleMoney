@@ -37,8 +37,8 @@
 					<tbody class="<s:property value="#notrasform"/>">
 					<s:iterator value="loans" status="userStatus">
 						<tr>
-							<td><s:property value="id.member.id.name"/></td>
-							<td><s:property value="id.member.surname"/></td>
+							<td><s:property value="id.mmember.id.name"/></td>
+							<td><s:property value="id.mmember.surname"/></td>
 							<td><s:property value="loanDate"/></td>
 							<td><s:property value="loanDateRemb"/></td>
 							<td><s:property value="amount"/>€</td>

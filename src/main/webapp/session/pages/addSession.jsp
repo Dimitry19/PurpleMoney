@@ -31,8 +31,8 @@
                                                 id="membersNames"
                                                 list="%{{}}" listKey="id.name"	listValue="%{id.name}"
                                                 name="amountSession.mmember.id.name"
-                                                emptyOption="true"
                                                 headerValue="%{getText('common.login.group.tooltip')}"
+
                                         />
                                         <s:hidden  name="amountSession.mmember.id.name" />
                                     </div>
@@ -42,7 +42,7 @@
                                         <div class="invalid-feedback"><s:text name="session.money.error"/></div>
                                     </div>
                                     <div class="md-form">
-                                        <s:textfield id="dateSession" name="amountSession.id.date"   required="true"   class="form-control"/>
+                                        <s:textfield id="dateSession" name="amountSession.id.date"   required="true"   onchange=" FormManager.enableBtn({idButton:'btnAddSession',idField:'membersNames'})" class="form-control"/>
                                         <label for="dateSession"><s:text name="common.label.date"/>&nbsp;<i class="fas fa-calendar"></i></label>
                                         <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                                     </div>
@@ -52,9 +52,11 @@
                                             <label class="form-check-label custom-control-label" for="status"><s:text name="session.benef"/></label>
                                         </div>
                                     </div>
-                                    <s:submit type="button" id="btnAddAmount" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; <s:text name="session.add.adding"/></s:submit>
+                                    <s:submit type="button" id="btnAddSession" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; <s:text name="session.add.adding"/></s:submit>
 
                                 </s:form>
+                            </div>
+                            <div id="dialog" title="Basic dialog">
                             </div>
                             <div>
                                 <s:if test="%{#lang}==true">
@@ -62,7 +64,7 @@
                                         <script>
                                             var message='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="session.add.success"/></p>';
                                             NotificationManager.displayNotification({message:message, type:'success'})
-                                            FormManager.disableBtn({idButton:'formAddAmount'})
+                                            FormManager.disableBtn({idButton:'btnAddSession'})
                                         </script>
                                     </s:if>
                                     <s:if test="hasActionErrors()">
@@ -78,16 +80,18 @@
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<%--<script src="<s:url value="/common/js/jquery-ui1.12.1.js"/>"></script>
+<script src="<s:url value="/common/js/jquery-1.12.4.js"/>"></script>--%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
 <%@ include file = "../../common/footers/select2-footer.js.jsp" %>
 
 
 <script>
-	FormManager.validationForm({idForm: 'formAddAmount',idSubmit:'btnAddAmount'})
 	var lng='<s:property  value="%{#lang}" />';
-	DataPickerManager.enable({id: 'dateSession',lang:lng});
-	Select2Manager.autocomlete({lang:lng,idForm:'formAddAmount', type:'member', url:"autocompleteMember.do"});
+	FormManager.validationForm({idForm: 'formAddAmount',idSubmit:'btnAddSession'})
+	DataPickerManager.enable({id: 'dateSession',lang:lng,alternate:'d'});
+	Select2Manager.autocomlete({lang:lng,idForm:'formAddSession', button:'btnAddSession',type:'member', url:"autocompleteMember.do"});
 </script>
 </body>
 

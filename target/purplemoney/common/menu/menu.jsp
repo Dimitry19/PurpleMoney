@@ -45,11 +45,29 @@
 					<a class="nav-link" href="<s:url action="sessionConsultAction"/>"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;
 						<s:text name="common.menu.founds.open"/>
 					</a>
-					<a class="nav-link" href="<s:url action="sessionsAction"/>"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;
+					<a class="nav-link" href="<s:url action="addingSessionAction"/>"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;
 						<s:text name="common.menu.founds.all"/>
 					</a>
 				</div>
 			</li>
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFundLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-money" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds"/></a>
+                <!-- bloc menu déroulant -->
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownFundLink">
+                        <s:if test="currentMember.isAdmin()== true">
+                                <a class="nav-link" href="<s:url action="addingSessionAction"/>"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;
+                                <s:text name="common.menu.founds.add"/>
+                                </a>
+                        </s:if>
+                        <a class="nav-link" href="<s:url action="sessionConsultAction"/>"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;
+                        <s:text name="common.menu.founds.open"/>
+                        </a>
+                        <a class="nav-link" href="<s:url action="addingSessionAction"/>"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;
+                        <s:text name="common.menu.founds.all"/>
+                        </a>
+                </div>
+        </li>
 			<li class="nav-item">
 				<a class="nav-link" href="#"><i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.sanctions"/>			</a>
 			</li>

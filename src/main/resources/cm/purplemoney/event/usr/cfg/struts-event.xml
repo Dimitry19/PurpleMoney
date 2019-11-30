@@ -19,7 +19,7 @@
 			<result name="success">/event/pages/addEvent.jsp</result>
 			<result name="input">/event/pages/addEvent.jsp</result>
 		</action>
-		<action name="fingEvent" class="eventAction" >
+		<action name="findEvent" class="eventAction" >
 			<result name="success">/articles/pages/includes/articles-list.jsp</result>
 		</action>
 	</package>

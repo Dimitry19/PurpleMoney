@@ -4,21 +4,14 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class WidgetDataInfoVO {
-	private Date date;
+
 	private BigDecimal amount;
 	private int month;
-	private int year;
+	//private int year;
 
-	public Date getDate() {
-		return date;
-	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
 
 	public BigDecimal getAmount() {
 		return amount;
@@ -36,13 +29,13 @@ public class WidgetDataInfoVO {
 		this.month = month;
 	}
 
-	public int getYear() {
+/*	public int getYear() {
 		return year;
 	}
 
 	public void setYear(int year) {
 		this.year = year;
-	}
+	}*/
 
 	public String toJson(){
 
@@ -61,10 +54,9 @@ public class WidgetDataInfoVO {
 	@Override
 	public String toString()
 	{
-		return "date:"
-				+   date
-				+ ", year:"
-				+   year
+		return
+				 "amount:"
+				+   amount
 				+ ", month:"
 				+   month;
 	}

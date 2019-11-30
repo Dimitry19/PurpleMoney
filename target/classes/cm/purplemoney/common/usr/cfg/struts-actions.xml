@@ -42,7 +42,7 @@
 			<result name="loginAction" type="redirect">login.do</result>
 		</global-results>
 
-		<action name="login" class="loginHomeAction">
+		<action name="login" class="loginAction">
 			<result name="success">/common/home/index.jsp</result>
 		</action>
 
@@ -50,7 +50,6 @@
 
 	<include file="cm/purplemoney/common/usr/cfg/struts-home.xml"></include>
 	<include file="cm/purplemoney/group/usr/cfg/struts-group.xml"></include>
-	<include file="cm/purplemoney/profile/usr/cfg/struts-profile.xml"/>
 	<include file="cm/purplemoney/members/usr/cfg/struts-members.xml"></include>
 	<include file="cm/purplemoney/mail/usr/cfg/struts-mail.xml"></include>
 	<include file="cm/purplemoney/session/usr/cfg/struts-session.xml"></include>
@@ -59,4 +58,5 @@
 	<include file="cm/purplemoney/event/usr/cfg/struts-event.xml"></include>
 	<include file="cm/purplemoney/role/usr/cfg/struts-role.xml"></include>
 	<include file="cm/purplemoney/loan/usr/cfg/struts-loans.xml"></include>
+	<include file="cm/purplemoney/fund/usr/cfg/struts-funds.xml"></include>
 </struts>
