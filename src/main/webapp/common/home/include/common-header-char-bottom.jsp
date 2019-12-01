@@ -10,7 +10,7 @@
 	var widgetDataInfos='<s:property value="%{widget.toJSONArray()}"/>';
 	var widgetLoanAmount='<s:property value="%{widget.getLoan().getAmount()}"/>';
 	var widgetLoanDate ='<s:text name="loan.column.date.remb"/>:<span class="mr-2 text-danger"><s:property value="%{widget.getLoan().getLoanDateBack()}"/></span>';
-	<%--var widgetLoanDate='<s:property value="%{widget.getLoan().getLoanDateBack()}"/>';--%>
+
 	var widget = {
 		widgetTotalFound: widgetTotalFound,
 		widgetPersonalFound: widgetPersonalFound,
