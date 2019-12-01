@@ -37,7 +37,7 @@
 
     <!-- constant to define global resource bundle -->
     <constant name="struts.custom.i18n.resources" value="package"></constant>
-  <constant name="struts.enable.SlashesInActionNames" value="true"/>
+    <constant name="struts.enable.SlashesInActionNames" value="true"/>
     <include file="cm/purplemoney/common/usr/cfg/struts-actions.xml"></include>
 
 

@@ -70,7 +70,7 @@
 <script>
 	var lng='<s:property  value="%{#lang}" />';
 	var title='<s:property  value="%{#title}" />';
-	DataTableManager.constructDatatable({idDataTable: 'sessions',title:title,lang:lng})
+	DataTableManager.constructDatatable({idDataTable: 'sessions',title:title,lang:lng, positionDate:4})
 
 </script>
 </body>

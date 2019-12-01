@@ -20,8 +20,8 @@
 		<action name="logoutAction" class="loginAction" method="logout">
 			<result name="success">/common/home/index.jsp</result>
 		</action>
-		<action name="timeout" class="loginAction">
-			<result name="success">/common/home/session-error.jsp</result>
+		<action name="timeout" class="loginAction" method="flushSession">
+			<result name="success">/common/home/expired.jsp</result>
 		</action>
 		<action name="locale" class="loginAction" method="changelocale">
 			<result name="input" type="redirect">${url}</result>

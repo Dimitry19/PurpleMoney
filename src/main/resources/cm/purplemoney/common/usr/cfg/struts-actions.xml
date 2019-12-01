@@ -42,8 +42,9 @@
 			<result name="loginAction" type="redirect">login.do</result>
 		</global-results>
 
-		<action name="login" class="loginAction">
+		<action name="login" class="loginAction" method="checkSession">
 			<result name="success">/common/home/index.jsp</result>
+			<result name="home">/common/home/home.jsp</result>
 		</action>
 
 	</package>

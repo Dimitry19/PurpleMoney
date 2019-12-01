@@ -2,6 +2,7 @@ package cm.purplemoney.login.usr.action;
 
 import java.util.*;
 
+import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.common.ent.bo.LanguageBO;
 import cm.purplemoney.common.ent.vo.LanguageVO;
@@ -82,12 +83,24 @@ public class LoginAction extends BaseAction implements Preparable{
 		}
 
 	}*/
-	
+
+	public String checkSession() throws BusinessException{
+
+		AuthUserVO auth=(AuthUserVO) this.session.get(ADMIN_SESSION);
+		String cUsr=(String) this.session.get(CURRENT_USER);
+		String uUsr=(String) this.session.get(USR_SESSION);
+
+		MemberVO mbr=(MemberVO) this.session.get(MEMBER_SESSION);
+		if(auth!=null || mbr!=null || StringUtils.isNotEmpty(cUsr) || StringUtils.isNotEmpty(uUsr)  ){
+			return "home";
+		}
+		return SUCCESS;
+	}
 	public String login() throws Exception{
 
 		String contextPath = request.getContextPath();
-		System.out.println("Context Path " + contextPath);
-        logger.debug("into login method");
+		//System.out.println("Context Path " + contextPath);
+        //logger.debug("into login method");
         // TODO Voir comment arranger le code du login
 		saveToSession(LOCALE,changelocaleMenu());
 		if(StringUtils.equals("ADMIN", user.getUsername())){
@@ -181,6 +194,13 @@ public class LoginAction extends BaseAction implements Preparable{
 		
 		return SUCCESS;
 	}
+	public String flushSession() throws Exception{
+
+		//logout();
+		return SUCCESS;
+	}
+
+
 
 	public String logout() throws Exception{
 

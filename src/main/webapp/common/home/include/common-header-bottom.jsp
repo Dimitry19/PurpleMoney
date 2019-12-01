@@ -13,37 +13,36 @@
             <div class="row py-4 d-flex align-items-center">
                 <!-- Grid column -->
                 <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-                    <h6 class="mb-0"><s:text name="footer.contact.social"></s:text></h6>
                 </div>
                 <!-- Grid column -->
                 <!-- Grid column -->
-                <div class="col-md-6 col-lg-7 text-center text-md-right">
+               <%-- <div class="col-md-6 col-lg-7 text-center text-md-right">
+                    <h6 class="mb-0"><s:text name="footer.contact.social"></s:text></h6>
                     <!-- Facebook -->
-                    <a href="https://www.facebook.com/XlionD" class="fb-ic">
+                    <a href="https://www.facebook.com/XlionD" target="_blank" class="fb-ic">
                         <i class="fa fa-facebook-square white-text mr-4"> </i>
                     </a>
                     <!-- Twitter -->
-                    <a class="tw-ic" href="https://twitter.com/DXlionaire">
+                    <a class="tw-ic" href="https://twitter.com/DXlionaire" target="_blank">
                         <i class="fa fa-twitter white-text mr-4"> </i>
                     </a>
                     <!-- Google +-->
-                    <a class="gplus-ic" href="https://plus.google.com/u/0/104372700159542371601">
+                    <a class="gplus-ic" href="https://plus.google.com/u/0/104372700159542371601" target="_blank">
                         <i class="fa fa-google white-text mr-4"> </i>
                     </a>
                     <!--Linkedin -->
-                    <a class="li-ic" href="https://www.linkedin.com/in/dimitri-sime-ndjouomo-74804337/">
+                    <a class="li-ic" href="https://www.linkedin.com/in/dimitri-sime-ndjouomo-74804337/" target="_blank">
                         <i class="fa fa-linkedin white-text mr-4"> </i>
                     </a>
                     <!--Instagram-->
-                    <a class="ins-ic" href="https://www.instagram.com/lion_dx">
+                    <a class="ins-ic" href="https://www.instagram.com/lion_dx" target="_blank">
                         <i class="fa fa-instagram white-text"> </i>
                     </a>
-                </div>
+                </div>--%>
                 <!-- Grid column -->
             </div>
-            <div class="page-footer-inner">Versione: &nbsp;<s:property value="%{#application.applicationVersion}"/> :: 2017 &copy; Lion Dx- All rights reserved :.
-            </div>
-            <span>Copyright &copy; PurpleMoney 2019</span>
+            <s:include value="/common/home/include/socials.jsp"/>
+            <s:include value="/common/home/include/version-application.jsp"/>
         </div>
     </div>
 

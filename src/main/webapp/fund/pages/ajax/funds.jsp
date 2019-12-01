@@ -22,21 +22,21 @@
 				<table id="funds"  width="100%" data-page-length="5" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
 					<thead>
 					<tr>
+						<th></th>
 						<th><s:property value="getText('fund.column.name')"/></th>
 						<th><s:property value="getText('fund.column.surname')"/></th>
-						<th><s:property value="getText('fund.column.date.add')"/></th>
 						<th><s:property value="getText('fund.column.amount')"/></th>
-						<th></th>
+						<th><s:property value="getText('fund.column.date.add')"/></th>
 					</tr>
 					</thead>
 					<tbody class="<s:property value="#notrasform"/>">
 					<s:iterator value="funds" status="userStatus">
 						<tr>
+							<td></td>
 							<td><s:property value="id.mmember.id.name"/></td>
 							<td><s:property value="id.mmember.surname"/></td>
-							<td><s:property value="date"/></td>
 							<td><s:property value="amount"/>€</td>
-							<td></td>
+							<td><s:date name="date" format="dd/MM/yyyy" /></td>
 						</tr>
 					</s:iterator>
 					</tbody>
@@ -60,7 +60,7 @@
 <script>
 	var lng='<s:property  value="%{#lang}" />';
 	var title='<s:property  value="%{#title}" />';
-	DataTableManager.constructDatatable({idDataTable: 'funds',title:title,lang:lng})
+	DataTableManager.constructDatatable({idDataTable: 'funds',title:title,lang:lng,positionDate:4})
 
 </script>
 </body>

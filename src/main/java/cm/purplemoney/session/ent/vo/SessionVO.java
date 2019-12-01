@@ -15,7 +15,7 @@ import java.math.BigInteger;
 @Entity
 @Table(name="SESSION" , schema="PUBLIC")
 @NamedQueries({
-        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s order by mmember.id.name"),
+        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s order by id.date asc"),
        // @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s where id.associationId=:ass order by id.member"),
 })
 @Filters({

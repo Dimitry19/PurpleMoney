@@ -1,5 +1,12 @@
 package cam.listeners;
 
+import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.bridge.SLF4JBridgeHandler;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -7,8 +14,14 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import javax.servlet.http.HttpSessionBindingEvent;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
+import static java.lang.ClassLoader.*;
 
 public class InitVersionContextListener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
+	private Logger log = LoggerFactory.getLogger(InitVersionContextListener.class);
 	private final static String VERSION="0.0.1-SNAPSHOT";
 
 	// Public constructor is required by servlet spec
@@ -18,16 +31,18 @@ public class InitVersionContextListener implements ServletContextListener, HttpS
 	// -------------------------------------------------------
 	// ServletContextListener implementation
 	// -------------------------------------------------------
-	public void contextInitialized(ServletContextEvent ctx) {
+	public void contextInitialized(ServletContextEvent ctx){
 		ServletContext context = ctx.getServletContext();
+
+		if(log.isDebugEnabled()){
+			SLF4JBridgeHandler.install();
+		}
 		context.setAttribute("applicationVersion", VERSION);
 
-//		Logger log = LoggerFactory.getLogger(InitVersionContextListener.class);
-//
-//		if(log.isDebugEnabled()){
-//			SLF4JBridgeHandler.install();
-//		}
-
+			/*final Properties properties = new Properties();
+			properties.load( InitVersionContextListener.class.getResourceAsStream("application.properties"));
+			System.out.println(properties.getProperty("version"));
+*/
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {

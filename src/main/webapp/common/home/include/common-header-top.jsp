@@ -3,6 +3,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <link rel="stylesheet" href="<s:url value="/common/Player/css/styles.css"/>">
 
+
 <body id="page-top">
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -125,9 +126,9 @@
                 <div id="mail" class="collapse" aria-labelledby="mail" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"><s:text name="common.menu.mail"/>:</h6>
-                        <a class="collapse-item" href="<s:url action="addingMailAction"/>"><i class="fa fa-envelope"
-                                                                                              aria-hidden="true"></i>&nbsp;<s:text
-                                name="common.menu.mails.send"/></a>
+                        <a class="collapse-item" href="<s:url action="addingMailAction"/>">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;
+                            <s:text name="common.menu.mails.send"/></a>
                     </div>
                 </div>
             </li>
@@ -147,13 +148,13 @@
             <div id="menuMembers" class="collapse" aria-labelledby="menuMembers" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"><s:text name="common.menu.members.all"/></h6>
-                    <a class="collapse-item" href="<s:url action="allMembersAction"/>"><i class="fa fa-users"
-                                                                                          aria-hidden="true"></i>&nbsp;<s:text
-                            name="common.menu.members.all"/></a>
+                    <a class="collapse-item" href="<s:url action="allMembersAction"/>">
+                        <i class="fa fa-users" aria-hidden="true"></i>&nbsp;
+                        <s:text name="common.menu.members.all"/></a>
                     <h6 class="collapse-header"><s:text name="common.menu.about.user"/></h6>
-                    <a class="collapse-item" href="<s:url action="infoMemberAction"/>"><i class="fa fa-id-card"
-                                                                                          aria-hidden="true"></i>&nbsp;<s:text
-                            name="common.menu.about.user"/></a>
+                    <a class="collapse-item" href="<s:url action="infoMemberAction"/>">
+                        <i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;
+                        <s:text  name="common.menu.about.user"/></a>
                 </div>
             </div>
         </li>

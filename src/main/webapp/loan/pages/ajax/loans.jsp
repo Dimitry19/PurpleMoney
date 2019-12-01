@@ -22,25 +22,24 @@
 				<table id="loans"  width="100%" data-page-length="5" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
 					<thead>
 					<tr>
+						<th></th>
 						<th><s:property value="getText('loan.column.name')"/></th>
 						<th><s:property value="getText('loan.column.surname')"/></th>
-						<th><s:property value="getText('loan.column.date.start')"/></th>
-						<th><s:property value="getText('loan.column.date.remb')"/></th>
 						<th><s:property value="getText('loan.column.amount')"/></th>
 						<th><s:property value="getText('loan.column.extended')"/></th>
 						<th><s:property value="getText('loan.column.tax')"/></th>
 						<th><s:property value="getText('loan.column.amount.to.back')"/></th>
 						<th><s:property value="getText('loan.column.balance')"/></th>
-						<th></th>
+						<th><s:property value="getText('loan.column.date.start')"/></th>
+						<th><s:property value="getText('loan.column.date.remb')"/></th>
 					</tr>
 					</thead>
 					<tbody class="<s:property value="#notrasform"/>">
 					<s:iterator value="loans" status="userStatus">
 						<tr>
+							<td></td>
 							<td><s:property value="id.mmember.id.name"/></td>
 							<td><s:property value="id.mmember.surname"/></td>
-							<td><s:property value="loanDate"/></td>
-							<td><s:property value="loanDateRemb"/></td>
 							<td><s:property value="amount"/>€</td>
 							<s:if test="extended==true">
 								<td><s:property value="getText('member.column.active.YES')"/></td>
@@ -56,8 +55,8 @@
 							<s:if test="balanced==false">
 								<td><s:property value="getText('member.column.active.NO')"/></td>
 							</s:if>
-
-							<td></td>
+							<td><s:date name="loanDate" format="dd/MM/yyyy" /></td>
+							<td><s:date name="loanDateRemb" format="dd/MM/yyyy" /></td>
 						</tr>
 					</s:iterator>
 					</tbody>
@@ -81,7 +80,7 @@
 <script>
 	var lng='<s:property  value="%{#lang}" />';
 	var title='<s:property  value="%{#title}" />';
-	DataTableManager.constructDatatable({idDataTable: 'loans',title:title,lang:lng})
+	DataTableManager.constructDatatable({idDataTable: 'loans',title:title,lang:lng,positionDate:9})
 
 </script>
 </body>

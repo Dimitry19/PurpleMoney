@@ -257,6 +257,13 @@
             <version>2.9.7</version>
         </dependency>
 
+        <!-- pour recupere la version de l'application-->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-model</artifactId>
+            <version>3.3.9</version>
+        </dependency>
+
 
         <dependency>
             <groupId>log4j</groupId>
@@ -440,5 +447,11 @@
                 </configuration>
             </plugin>
         </plugins>
+     <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 </project>

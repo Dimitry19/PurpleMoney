@@ -8,14 +8,14 @@
         <div>
             <h1 class="h3 mb-3 font-weight-normal"><p><s:text name="authentication.text.session-terminated"/></p></h1>
             <a href="<s:url action="login"/>">
-                <s:submit  type="button"   id="btnLogin" cssClass="btn btn-sm btn-primary btn-login"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<s:text name="footer.link.login"/></s:submit>
+                <s:submit  type="button"   id="btnLogin" cssClass="btn btn-sm btn-primary btn-login"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Go to Login</s:submit>
             </a>
         </div>
         <div class="bd-placeholder-img"></div>
 </div>
 </body>
 <div class="custom-padding col">
-    <%@ include file = "../../common/footers/footer.js.jsp" %>
+    <%@ include file = "../../common/footers/footer.jsp" %>
 </div>
 
 </html>

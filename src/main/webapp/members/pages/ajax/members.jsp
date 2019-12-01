@@ -30,7 +30,6 @@
 						<th><s:property value="getText('member.column.role')"/></th>
 						<th><s:property value="getText('member.column.active')"/></th>
 						<th><s:property value="getText('member.column.sanction')"/></th>
-						<th></th>
 					</tr>
 					</thead>
 					<tbody class="<s:property value="#notrasform"/>">
@@ -68,9 +67,6 @@
 									<td><s:property value="%{getSanctions().iterator().next().getDecodeSanction().getDescription()}"/></td>
 								</s:else>
 							</s:if>
-
-							<td>
-							</td>
 						</tr>
 					</s:iterator>
 					</tbody>
@@ -94,10 +90,10 @@
 <script>
 	var lng='<s:property  value="%{#lang}" />';
 	var title='<s:property  value="%{#title}" />';
-	DataTableManager.constructDatatable({idDataTable: 'members',title:title,lang:lng})
+	DataTableManager.constructDatatable({idDataTable: 'members',title:title,lang:lng,positionDate:0})
 
 </script>
-</body>
+
 
 
 </html>

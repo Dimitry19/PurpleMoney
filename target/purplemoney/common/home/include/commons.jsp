@@ -6,7 +6,7 @@
 <head>
 	<meta name="robots" content="noindex">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	<meta http-equiv="refresh" content="<%=session.getMaxInactiveInterval()%>;url=<%=request.getContextPath()%>/common/home/index.jsp" />
+	<meta http-equiv="refresh" content="<%=session.getMaxInactiveInterval()%>; url=<%=request.getContextPath()%>/timeout.do">
 	<meta charset="UTF-8">
 	<link rel="icon" type="image/png" href="<s:url value="/theme/img/logo-draft.png" />">
 

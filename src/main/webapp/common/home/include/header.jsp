@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0 shrink-to-fit=no" />
 	<%--<meta http-equiv="refresh" content="<%=session.getMaxInactiveInterval()%>;url=<%=request.getContextPath()%>/common/home/index.jsp" />--%>
-	<meta http-equiv="refresh" content="<%=session.getMaxInactiveInterval()%>; url=<%=request.getContextPath()%>/login.do">
+	<meta http-equiv="refresh" content="<%=session.getMaxInactiveInterval()%>; url=<%=request.getContextPath()%>/timeout.do">
 	<meta name="description" content="">
 	<meta name="author" content="Dimitri S.">
 	<link rel="icon" type="image/png" href="<s:url value="/theme/img/logo-draft.png" />">
@@ -18,6 +18,7 @@
 	<link  rel="stylesheet"   href="<s:url value="/common/css/flag-icon/css/flag-icon.css"/>">
 	<link  rel="stylesheet"  href="<s:url value="/utils/google/css/map.css"/>">
 	<link  rel="stylesheet"  href="<s:url value="/common/css/modal/modal.css"/>">
+	<link  rel="stylesheet"  type="text/css" media="all" href="<s:url value="/common/css/version-application-style.css"/>">
 
 	<link rel="stylesheet" type="text/css" href="<s:url value="/common/css/datatable/customdatable.css"/>">
 	<title class="bg-success"><s:text name="common.page.title"/></title>
@@ -35,6 +36,7 @@
 	<script src="<s:url value="/common/Player/js/jquery-1.7.2.min.js"/>"></script>
 	<script src="<s:url value="/common/Player/js/jquery-ui-1.8.21.custom.min.js"/>"></script>
 	<script src="<s:url value="/common/Player/js/controls.js"/>"></script>
+	<link  rel="stylesheet"  href="<s:url value="/common/home/expired/css/font-awesome.min.css"/>">
 
 
 

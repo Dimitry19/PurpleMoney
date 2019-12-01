@@ -81,11 +81,15 @@ DataTableManager = function () {
 	};
 
 
+
 	function buildDatatable(json) {
-		console.log("CommonDataTableManager");
+
 		var idDataTable='#'+json.idDataTable;
 		var titlePage=json.title;
 		var lang=json.lang;
+		var positionDate=json.positionDate;
+
+
 
 		var options={
 
@@ -98,8 +102,11 @@ DataTableManager = function () {
 			//deferRender:    true,
 			//scroller:       true,
 			//"sPaginationType": "four_button", //
+			//aoColumns:orderDateColumn,
+
+/*
 			columnDefs: [
-				/*{
+				{
 					// adding a more info button at the end
 					targets: -1,
 					data: null,
@@ -114,8 +121,8 @@ DataTableManager = function () {
 							console.log(datestamp);
 							$(td).html( (datestamp.getUTCMonth()+1) +'/'+datestamp.getUTCDate()+'/' + datestamp.getFullYear());
 						}
-					}*/
-		],
+					}
+		],*/
 			buttons: [
 				{
 					extend:'copyHtml5',
@@ -164,7 +171,7 @@ DataTableManager = function () {
 				{
 					extend: 'pdfHtml5',
 					text:      '<i class="fas fa-file-pdf"></i>',
-					messageBottom: null,
+					messageBottom: 'PDF',
 					title:titlePage,
 					className: 'btn btn-app perso-pdf export pdf',
 				},
@@ -183,9 +190,9 @@ DataTableManager = function () {
 							return 'You have printed this document '+printCounter+' times';
 						}
 					},
-					messageBottom: null
+					messageBottom: 'Print'
 				},
-				'colvis'
+				//'colvis' // pour la visibité des colonnes
 			]/*,
 		columnDefs: [ {
 		targets: 4,
@@ -205,8 +212,20 @@ DataTableManager = function () {
 			if(lang == 'fr'){
 				options.language=languages.french;
 			}
+			var orderDateColumn;
+			if(positionDate===9){
+				orderDateColumn=[null,null,null,null,null,null,null,null,{ "sType": "eu_date" },{ "sType": "eu_date" }];
+			}
+			if(positionDate===4){
+				orderDateColumn=[null,null,null,null,{ "sType": "eu_date" }];
+			}
+			if(positionDate===0){
+				var table=$(idDataTable).DataTable( options);
+			}else{
+				options.aoColumns=orderDateColumn;
+				var table=$(idDataTable).DataTable( options);
+			}
 
-			var table=$(idDataTable).DataTable( options);
 			buildDataToModal(idDataTable,table);
 		});
 
