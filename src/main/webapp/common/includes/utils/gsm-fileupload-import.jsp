@@ -1,6 +1,0 @@
-<%@ include file="/common/includes/utils/taglibs_nocache.jspf" %>
-<%@ include file="/common/includes/utils/struts-default.jsp" %>
-<%@ taglib prefix="jpw" uri="/jpweb-tags" %>
-<compress:html enabled="true" compressJavaScript="true" compressCss="true">
-	<script src="<s:url value="/theme/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget"/>,/theme/assets/global/plugins/jquery-file-upload/js/vendor/tmpl.min,/theme/assets/global/plugins/jquery-file-upload/js/vendor/load-image.min,/theme/assets/global/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min,/theme/assets/global/plugins/jquery-file-upload/js/jquery.iframe-transport,/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload,/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-process,/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-image,/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-audio,/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-video,/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-validate,/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-ui,fileupload.js" type="text/javascript"></script>
-</compress:html>
