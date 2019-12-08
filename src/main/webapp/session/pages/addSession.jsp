@@ -15,13 +15,12 @@
                         <a href="#addSessionCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                             <div class="card-header"><h6 class="m-0 font-weight-bold text-primary"><s:text name="common.menu.founds.add"/></h6></div>
                         </a>
-
                         <div class="collapse show" id="addSessionCard">
                             <div class="card-body">
                                 <s:form class="form-login form-horizontal user"  action="saveSessionAction" id="formAddSession">
                                     <div class="md-form">
-                                        <s:textfield id="userSearchAssociation"  type="text" value="%{associationCurrent.description}" class="form-control" readonly="true" />
-                                        <label for="userSearchAssociation"><s:text name="member.label.association"/></label>
+                                        <s:textfield id="userSessionAssociation"  type="text" value="%{associationCurrent.description}" class="form-control" readonly="true" />
+                                        <label for="userSessionAssociation"><s:text name="member.label.association"/></label>
                                         <s:hidden name="amountSession.id.associationId" value="%{associationCurrent.id.id}"/>
                                     </div>
                                     <div class="md-form">
@@ -32,7 +31,6 @@
                                                 list="%{{}}" listKey="id.name"	listValue="%{id.name}"
                                                 name="amountSession.mmember.id.name"
                                                 headerValue="%{getText('common.login.group.tooltip')}"
-
                                         />
                                         <s:hidden  name="amountSession.mmember.id.name" />
                                     </div>
@@ -66,9 +64,7 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <s:submit type="button" id="btnAddSession" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; <s:text name="session.add.adding"/></s:submit>
-
+                                    <s:submit type="button" id="btnAddSession" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; <s:text name="common.label.add"/></s:submit>
                                 </s:form>
                             </div>
                             <div id="dialog" title="Basic dialog">

@@ -9,6 +9,7 @@ Select2Manager = function () {
 		    select2Form:"",
 		    select2Type:"",
 		    select2Url:"",
+		    select2Button:"",
 		    select2Placeholder:""
 	    };
 
@@ -16,6 +17,7 @@ Select2Manager = function () {
 	    params.select2lang=jsonObj.lang;
 	    params.select2Type=jsonObj.type;
 	    params.select2Url=jsonObj.url;
+	    params.select2Button=jsonObj.button;
 
 	    if(params.select2lang==="it"){
 
@@ -69,20 +71,20 @@ Select2Manager = function () {
 
 					if(data.length>0){
 						if(params.select2Form==="formSearchMember"){
-							enableButton({idButton:'btnSearchMember', idField:'membersNames'});
+							enableButton({idButton:params.select2Button, idField:'membersNames'});
 						}
 
 						if(params.select2Form==="formRegister"){
-							enableButton({idButton:params.button, idField:'role'});
+							enableButton({idButton:params.select2Button, idField:'role'});
 						}
 						if(params.select2Form==="formAddAmount"){
-							enableButton({idButton:params.button, idField:'membersNames'});
+							enableButton({idButton:params.select2Button, idField:'membersNames'});
 						}
 						if(params.select2Form==="formRegisterLoan"){
-							enableButton({idButton:params.button, idField:'membersNames'});
+							enableButton({idButton:params.select2Button, idField:'membersNames'});
 						}
 						if(params.select2Form==="formEventAdd"){
-							enableButton({idButton:params.button, idField:'membersNames'});
+							enableButton({idButton:params.select2Button, idField:'membersNames'});
 						}
 					}
 

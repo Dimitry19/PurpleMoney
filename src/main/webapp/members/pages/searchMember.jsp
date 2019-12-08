@@ -54,7 +54,7 @@
 <script>
 	var lng='<s:property  value="%{#lang}" />';
 	FormManager.validationForm({idForm: 'formSearchMember',idSubmit:'btnSearchMember'})
-	Select2Manager.autocomlete({lang:lng,idForm:'formSearchMember', type:'member', url:"autocompleteMember.do"});
+	Select2Manager.autocomlete({lang: lng, idForm: 'formSearchMember', button:'btnSearchMember',type: 'member', url: "autocompleteMember.do"});
 </script>
 <!-- ds-framework JavaScript-->
 <script src="<s:url value="/ds-framework/js/AjaxManager.js"/>"></script>

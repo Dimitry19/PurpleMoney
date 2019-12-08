@@ -4,6 +4,7 @@ import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.association.ent.vo.AssociationVO;
 import cm.purplemoney.common.usr.action.BaseAction;
+import cm.purplemoney.constants.PortalConstants;
 import cm.purplemoney.loan.ent.bo.LoanBO;
 import cm.purplemoney.loan.ent.vo.LoanWrapper;
 import cm.purplemoney.members.ent.bo.MemberBO;
@@ -45,7 +46,7 @@ public class LoanAction extends BaseAction implements Preparable {
 
 	private LoanWrapper loanWr;
 	private AssociationVO associationCurrent;
-	private List<MemberVO> membersNames;
+
 
 
 
@@ -54,7 +55,7 @@ public class LoanAction extends BaseAction implements Preparable {
 
 		loans=loanBO.loans();
 		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
-		tax=3;
+		tax=PortalConstants.DEFAULT_TAX_NUMBER;
 	}
 
 	public String execute() {
@@ -72,7 +73,7 @@ public class LoanAction extends BaseAction implements Preparable {
 		return SUCCESS;
 	}
 
-	public String add() throws BusinessException {
+	public String addLoan() throws BusinessException {
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
@@ -86,13 +87,6 @@ public class LoanAction extends BaseAction implements Preparable {
 		return SUCCESS;
 	}
 
-	public String autocompleteMember() throws Exception{
-
-		/*if(StringUtils.isNotBlank(userInput)){
-			membersNames = memberBO.autocomplete(userInput,getCurrentAssociation().toUpperCase());
-		}*/
-		return SUCCESS;
-	}
 
 	public List getLoans() {
 		return loans;

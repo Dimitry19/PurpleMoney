@@ -1,9 +1,8 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
-<%@ taglib prefix="sx" uri="/struts-json-tags" %>
 <s:include value="../../common/home/include/header.jsp"/>
-<s:include value="../../common/home/include/notification-header.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
 <s:set var="showNotification" value="%{showNotification}"/>
 <sj:head jqueryui="true"/>
@@ -21,9 +20,8 @@
         <div class="card-body">
             <s:form class="form-login form-horizontal user" action="addLoanAction" id="formRegisterLoan">
                 <div class="md-form">
-                    <s:textfield id="userSearchAssociation" type="text" value="%{associationCurrent.description}"
-                                 class="form-control form-control-login" readonly="true"/>
-                    <label for="userSearchAssociation"><s:text name="member.label.association"/></label>
+                    <s:textfield id="userLoanAssociation" type="text" value="%{associationCurrent.description}" class="form-control form-control-login" readonly="true"/>
+                    <label for="userLoanAssociation"><s:text name="member.label.association"/></label>
                     <s:hidden name="loanWr.association.id.id" value="%{associationCurrent.id.id}"/>
                     <s:hidden name="loanWr.association.id.name" value="%{associationCurrent.description}"/>
                     <s:hidden name="loanWr.association.description" value="%{associationCurrent.description}"/>
@@ -44,18 +42,14 @@
                     <s:hidden name="loanWr.loan.id.mmember"/>
                 </div>
                 <div class="md-form">
-                    <s:textfield id="amountLoan" name="loanWr.loan.amount" value="%{associationCurrent.amount}"
-                                 required="true" type="number"
-                                 onchange="LoanManager.calcolateAmountToBack(this,{taxLoan:'taxLoan', totalLoan:'totalLoan'})"
-                                 pattern="^\d+(\.\d{1,2})?$" class="form-control"/>
+                    <s:textfield id="amountLoan" name="loanWr.loan.amount" value="%{associationCurrent.amount}" required="true" type="number" onchange="LoanManager.calcolateAmountToBack(this,{taxLoanId:'taxLoan', totalLoanName:'loanWr.loan.amountToBack'})" pattern="^\d+(\.\d{1,2})?$" class="form-control"/>
                     <label for="amountLoan"><s:text name="session.label.amount"/>&nbsp;<i class="fas fa-euro-sign"></i></label>
                     <div class="invalid-feedback"><s:text name="session.money.error"/></div>
                 </div>
                 <div class="row">
                     <div class="md-form form-sm col-sm-6">
                         <s:textfield id="dateLoan" name="loanWr.loan.loanDate" required="true" class="form-control"/>
-                        <label for="dateLoan"><s:text name="loan.column.date.start"/>&nbsp;<i
-                                class="fas fa-calendar"></i></label>
+                        <label for="dateLoan"><s:text name="loan.column.date.start"/>&nbsp;<i class="fas fa-calendar"></i></label>
                         <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                     </div>
                     <div class="md-form form-sm col-sm-6">
@@ -64,8 +58,7 @@
                 </div>
                 <div class="row">
                     <div class="md-form form-sm col-sm-6">
-                        <s:textfield id="dateLoanRemb" name="loanWr.loan.loanDateRemb" required="true"
-                                     class="form-control"/>
+                        <s:textfield id="dateLoanRemb" name="loanWr.loan.loanDateRemb" required="true" class="form-control"/>
                         <label for="dateLoanRemb"><s:text name="loan.column.date.remb"/>&nbsp;<i class="fas fa-calendar"></i></label>
                         <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                     </div>
@@ -74,11 +67,11 @@
                     </div>
                 </div>
                 <div class="md-form">
-                    <s:textfield id="taxLoan" name="loanWr.loan.tax" value="%{tax}" required="true" type="number" pattern="^\d+(\.\d{1,2})?$" readonly="true" class="form-control"/>
+                    <s:textfield id="taxLoan" name="loanWr.loan.tax" value="%{@cm.purplemoney.constants.PortalConstants@DEFAULT_TAX_NUMBER}" required="true" type="number" pattern="^\d+(\.\d{1,2})?$" readonly="true" class="form-control"/>
                     <label for="taxLoan"><s:text name="loan.column.tax"/>&nbsp;<i class="fa fa-percent"></i></label>
                 </div>
                 <div class="md-form">
-                    <s:textfield id="totalLoan" name="loanWr.loan.amountToBack" type="text" class="form-control"/>
+                    <s:textfield id="totalLoan" name="loanWr.loan.amountToBack"  value="%{@cm.purplemoney.constants.PortalConstants@DEFAULT_AMOUNT_LOAN_TO_BACK}" disabled="true" type="text" class="form-control"/>
                     <label for="totalLoan"><s:text name="loan.column.amount.to.back"/>&nbsp;<i class="fas fa-euro-sign"></i></label>
                 </div>
                 <div class="row">
@@ -95,9 +88,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="md-form">
-                    <s:submit type="button" id="btnRegisterLoan" disabled="false" class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
-                </div>
+                <%--<div class="md-form"></div>--%>
+                <s:submit type="button" id="btnRegisterLoan" disabled="true" class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-plus-square" aria-disabled="true"></i>&nbsp; <s:text name="common.label.add"/></s:submit>
             </s:form>
         </div>
         <div id="dialog" title="Basic dialog">
@@ -108,7 +100,7 @@
         <s:if test="%{#lang}==true">
             <s:if test="hasActionMessages()">
                 <script>
-					var message = '<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="loan.add.success"/></p>';
+					var message ='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="loan.add.success"/></p>';
 					NotificationManager.displayNotification({message: message, type: 'success'})
 					FormManager.disableBtn({idButton: 'btnRegisterLoan'})
                 </script>

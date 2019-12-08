@@ -1,11 +1,15 @@
 package cm.purplemoney.constants;
 
+import java.math.BigDecimal;
+
 public class PortalConstants {
 
 	public static final String MEMBER_LABEL_KEY="MBR";
 
 
 	public static final Integer DEFAULT_SESSION_NUMBER=12;
+	public static final Integer DEFAULT_TAX_NUMBER=3;
+	public static final Integer DEFAULT_AMOUNT_LOAN_TO_BACK=134;
 	public static final String DEFAULT_GROUP="P10";
 	public static final String ACCOUNT_GEONAME_WS="dimitridevelopper";
 	public static final String LOGIN_REDIRECT="loginAction";

@@ -21,9 +21,9 @@
         <div class="card-body">
             <s:form class="form-login form-horizontal user" action="addFundAction" id="formRegisterFund">
                 <div class="md-form">
-                    <s:textfield id="userSearchAssociation" type="text" value="%{associationCurrent.description}"
+                    <s:textfield id="userFundAssociation" type="text" value="%{associationCurrent.description}"
                                  class="form-control form-control-login" readonly="true"/>
-                    <label for="userSearchAssociation"><s:text name="member.label.association"/></label>
+                    <label for="userFundAssociation"><s:text name="member.label.association"/></label>
                     <s:hidden name="fund.id.mmember.id.associationId" value="%{associationCurrent.id.id}"/>
 
                 </div>
@@ -63,8 +63,8 @@
                 <div class="md-form">
                     <s:submit type="button" id="btnRegisterFund" disabled="false"
                               class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i
-                            class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text
-                            name="member.add.register"/></s:submit>
+                            class="fa fa-cart-plus" aria-disabled="true"></i>&nbsp; <s:text
+                            name="common.label.add"/></s:submit>
                 </div>
             </s:form>
         </div>
@@ -97,14 +97,13 @@
 <script src="<s:url value="/common/js/jquery-1.12.4.js"/>"></script>--%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
-<script src="<s:url value="/loan/js/LoanManager.js"/>"></script>
+<script src="<s:url value="/fund/js/FundManager.js"/>"></script>
 <%@ include file="../../common/footers/select2-footer.js.jsp" %>
 <script>
 	var lng = '<s:property  value="%{#lang}" />';
-	FormManager.validationForm({idForm: 'formRegisterLoan', idSubmit: 'btnRegisterLoan'})
-	DataPickerManager.enable({id: 'dateLoan', lang: lng, alternate: 'alternate-dateLoan'});
-	DataPickerManager.enable({id: 'dateLoanRemb', lang: lng, alternate: 'alternate-dateLoanRemb'});
-	Select2Manager.autocomlete({lang: lng, idForm: 'formRegisterLoan', button:'btnRegisterLoan',type: 'member', url: "autocompleteMember.do"});
+	FormManager.validationForm({idForm: 'formRegisterFund', idSubmit: 'btnRegisterFund'})
+	DataPickerManager.enable({id: 'dateFund', lang: lng, alternate: 'alternate-dateFund'});
+	Select2Manager.autocomlete({lang: lng, idForm: 'formRegisterFund', button:'btnRegisterFund',type: 'member', url: "autocompleteMember.do"});
 
 </script>
 </body>

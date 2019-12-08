@@ -89,7 +89,7 @@
                             <%--<s:radio label="%{getText('member.label.gender')}" list="#{'F':'  Female','M':'  Male'}" name="userAdding.sex"  class="radio-inline" multiple="false"></s:radio>--%>
                     </div>
                 <div class="md-form">
-                    <s:submit type="button" id="btnRegister" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
+                    <s:submit type="button" id="btnRegister" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-user-plus" aria-disabled="true"></i>&nbsp; <s:text name="common.label.add"/></s:submit>
                 </div>
             </s:form>
         </div>
