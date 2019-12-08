@@ -36,6 +36,7 @@
 	<script src="<s:url value="/common/Player/js/jquery-1.7.2.min.js"/>"></script>
 	<script src="<s:url value="/common/Player/js/jquery-ui-1.8.21.custom.min.js"/>"></script>
 	<script src="<s:url value="/common/Player/js/controls.js"/>"></script>
+	<script src="<s:url value="/common/js/refresh-page.js"/>"></script>
 	<link  rel="stylesheet"  href="<s:url value="/common/home/expired/css/font-awesome.min.css"/>">
 
 

@@ -62,23 +62,25 @@
                     <div class="invalid-feedback"><s:text name="member.add.error.address"/></div>
                 </div>
                 <div class="row">
-                    <div class="form-sm col-sm-4">
+                    <div class="form-sm col-sm-1">
                         <div class="custom-control custom-checkbox small">
                             <s:radio list="#{'M':''}"  label="%{getText('member.label.gender')}"   id="male" class="form-check-input" type="radio"  name="userAdding.sex" value="M" multiple="false"></s:radio>
                             <label for="male"><s:text name="member.label.gender.male"/></label>
                         </div>
+                    </div>
+                    <div class="form-sm col-sm-1">
                         <div class="custom-control custom-checkbox small">
                             <s:radio label="%{getText('member.label.gender')}" list="#{'F':''}" name="userAdding.sex"  id="female" class="form-check-input" type="radio"  multiple="false"></s:radio>
                             <label  for="female"><s:text name="member.label.gender.female"/></label>
                         </div>
                     </div>
-                    <div class="form-sm col-sm-4">
+                    <div class="form-sm col-sm-2">
                         <div class="custom-control custom-checkbox small">
                             <s:checkbox id="isActive"  class="custom-control-input"  tooltip="%{getText('member.add.active.tooltip')}" name="userAdding.active" />
                             <label class="form-check-label custom-control-label" for="isActive"><s:text name="member.add.error.active"/></label>
                         </div>
                     </div>
-                    <div class="form-sm col-sm-4">
+                    <div class="form-sm col-sm-2">
                         <div class="custom-control custom-checkbox small">
                             <s:checkbox id="isAdmin"  class="custom-control-input" tooltip="%{getText('member.add.admin.tooltip')}" name="userAdding.admin"/>
                             <label class="form-check-label custom-control-label" for="isAdmin"><s:text name="member.add.error.admin"/></label>

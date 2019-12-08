@@ -46,12 +46,27 @@
                                         <label for="dateSession"><s:text name="common.label.date"/>&nbsp;<i class="fas fa-calendar"></i></label>
                                         <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                                     </div>
-                                    <div class="form-sm col-sm-4">
-                                        <div class="custom-control custom-checkbox small">
-                                            <s:checkbox id="status"  class="custom-control-input"   name="amountSession.status"/>
-                                            <label class="form-check-label custom-control-label" for="status"><s:text name="session.benef"/></label>
+                                    <div class="row">
+                                        <div class="form-sm col-sm-1">
+                                            <div class="custom-control custom-checkbox small">
+                                                <s:radio   list="#{'P':''}"  label="%{getText('session.add.presence')}"   id="presence" class="form-check-input" type="radio"  name="amountSession.frequence" value="P" multiple="false"></s:radio>
+                                                <label for="presence"><s:text name="session.add.presence"/></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-sm col-sm-1">
+                                            <div class="custom-control custom-checkbox small">
+                                                <s:radio  list="#{'A':''}"  label="%{getText('session.add.presence')}"   id="absence" class="form-check-input" type="radio"  name="amountSession.frequence" value="P" multiple="false"></s:radio>
+                                                <label for="absence"><s:text name="session.add.absence"/></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-sm col-sm-4">
+                                            <div class="custom-control custom-checkbox small">
+                                                <s:checkbox id="status"  class="custom-control-input"   name="amountSession.status"/>
+                                                <label class="form-check-label custom-control-label" for="status"><s:text name="session.benef"/></label>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <s:submit type="button" id="btnAddSession" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; <s:text name="session.add.adding"/></s:submit>
 
                                 </s:form>

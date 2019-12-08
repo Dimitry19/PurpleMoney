@@ -101,6 +101,9 @@ public class LoginAction extends BaseAction implements Preparable{
 		String contextPath = request.getContextPath();
 		//System.out.println("Context Path " + contextPath);
         //logger.debug("into login method");
+		if(user==null){
+			return INPUT;
+		}
         // TODO Voir comment arranger le code du login
 		saveToSession(LOCALE,changelocaleMenu());
 		if(StringUtils.equals("ADMIN", user.getUsername())){
@@ -205,6 +208,7 @@ public class LoginAction extends BaseAction implements Preparable{
 	public String logout() throws Exception{
 
 	    AuthUserVO userLocal=new AuthUserVO();
+	    if(this.session.isEmpty()){
 		Object adminSessionUser=this.session.get(ADMIN_SESSION);
 		Locale locale =(Locale)this.session.get(LOCALE);
 		userLocal.setLanguage(locale.getLanguage());
@@ -231,6 +235,8 @@ public class LoginAction extends BaseAction implements Preparable{
         addActionMessage(getText("common.logout.success"));
 
 		return SUCCESS;
+	    }
+	    return INPUT;
 	}
 
 
@@ -289,15 +295,14 @@ public class LoginAction extends BaseAction implements Preparable{
 	}
 
 	private Locale changeLanguages(boolean fromLogin) throws Exception{
-		Map<String, Object> sessionAttributes =getSession();
+
 		Locale cLocale=Locale.getDefault();
 
 		if(fromLogin){
-			if(StringUtils.isNotEmpty(user.getLanguage())){
-
-				LanguageVO language =languageBO.retrieveLanguage(user.getLanguage());
-				cLocale= new Locale(language.getId(),language.getCountry());
-			}
+				if(StringUtils.isNotEmpty(user.getLanguage())){
+					LanguageVO language =languageBO.retrieveLanguage(user.getLanguage());
+					cLocale= new Locale(language.getId(),language.getCountry());
+				}
 		}else{
 				LanguageVO language =languageBO.retrieveLanguage(getRlocale());
 				cLocale= new Locale(language.getId(),language.getCountry());
@@ -305,7 +310,7 @@ public class LoginAction extends BaseAction implements Preparable{
 
 		currlocale=cLocale;
 		ActionContext.getContext().setLocale(cLocale);
-		sessionAttributes.put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, cLocale);
+		this.session.put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, cLocale);
 		return cLocale;
 	}
 	public void setRlocale(String rlocale) {

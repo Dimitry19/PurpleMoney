@@ -4,18 +4,22 @@ package cm.purplemoney.session.ent.bo;
 import cam.common.CommonUtils;
 import cam.common.date.utils.DateUtils;
 import cam.libraries.component.ent.vo.BusinessException;
+import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.session.ent.wrapper.SessionSearchWr;
 import cm.purplemoney.config.HibernateConfig;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,21 +34,9 @@ public class SessionBOImpl implements SessionBO {
     Session session;
 
     public List<SessionVO> loadAllSession() {
-
-        List<SessionVO> sessionList=null;
         session=hibernateConfig.getSession();
         Query query=session.createQuery("from SessionVO");
         List<SessionVO> sessions=query.list();
-        /*if(CollectionUtils.isNotEmpty(sessions)){
-            sessionList=new ArrayList<SessionVO>();
-            for (SessionVO sess:sessions) {
-                if(sess.getMmember()!=null){
-                    sessionList.add(sess);
-
-                }
-            }
-        }*/
-
         return sessions;
     }
 
@@ -167,5 +159,45 @@ public class SessionBOImpl implements SessionBO {
         }
     }
 
+    @Override
+        public SessionVO frequenceByMember(MemberVO member)  {
+            try{
+                session= hibernateConfig.getSession();
+                if(member!=null){
+                    SessionVO sess=null;
+                    sess=query(  member,  sess,  'P');
+                    sess=query(  member,  sess,  'A');
+                    sess.setMmember(member);
+                    return sess;
+                }
+            }catch (Exception e){
+                log.error("Error frequenceByMember" +e.getMessage());
+                e.printStackTrace();
+            }
+            return null;
+        }
 
+        private SessionVO query(MemberVO member,SessionVO sess,char freq){
+
+            SQLQuery query=session.createSQLQuery("SELECT COUNT(FREQUENCE) AS PRS from SESSION WHERE R_ASSOCIATION=:ass    AND  R_MEMBER=:mbr AND  FREQUENCE=:freq GROUP BY R_MEMBER,R_ASSOCIATION");
+            query.setParameter("ass", member.getId().getAssociationId());
+            query.setParameter("mbr", member.getId().getName());
+            query.setParameter("freq", freq);
+            List<BigInteger> rows = query.list();
+            for(BigInteger row : rows){
+
+                if(sess==null){
+                    sess=new SessionVO();
+                }
+                switch (freq){
+                    case 'P':
+                        sess.setFrequencePresence(Integer.valueOf(row.toString()));
+                        break;
+                    case 'A':
+                        sess.setFrequenceAbsence(Integer.valueOf(row.toString()));
+                        break;
+                }
+            }
+            return sess;
+        }
 }

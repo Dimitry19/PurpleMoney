@@ -5,9 +5,11 @@
 <script>
 
 	var widgetTotalFound='<s:property value="%{widget.getCommonFound()}"/>';
+
 	var widgetPersonalFound='<s:property value="%{widget.getPersonalFound()}"/>';
 	var widgetTotalSanction='<s:property value="%{widget.getSanctions()}"/>';
-	var widgetDataInfos='<s:property value="%{widget.toJSONArray()}"/>';
+	<s:set var="widgetLoanInfoChart" value="%{widget.retrieveWidgetLoanInfosChart()}"/>
+	<s:set var="widgetFrequenceInfoChart" value="%{widget.retrieveWidgetFrequenceInfosChart()}"/>
 	var widgetLoanAmount='<s:property value="%{widget.getLoan().getAmount()}"/>';
 	var widgetLoanDate ='<s:text name="loan.column.date.remb"/>:<span class="mr-2 text-danger"><s:property value="%{widget.getLoan().getLoanDateBack()}"/></span>';
 
@@ -19,17 +21,20 @@
 		widgetLoanDate:widgetLoanDate
 	};
 
-	var data = ["Banana", "Orange", "Apple", "Mango"];
-	var labels = ["Banana", "Orange", "Apple", "Mango"];
-	labels.fill("Kiwi");
 
-	var widgetDataInfo = {
-		month: widgetTotalFound,
-		amount: widgetPersonalFound
-	};
 	var lng='<s:property  value="%{#lang}" />';
-	ChartManager.loadWidgets({widgetInfo: widget});
-	DSCharManager.chartLoan({lang:lng,widgetDataInfo: widgetDataInfos});
+	var wlic='<s:property  value="%{#widgetLoanInfoChart}" />';
+	var wfic='<s:property  value="%{#widgetFrequenceInfoChart}" />';
+
+
+	var widgetLoanInfosChart = new Array();
+	var widgetFrequenceInfosChart = new Array();
+	widgetLoanInfosChart = wlic.split(',','12');
+	widgetFrequenceInfosChart = wfic.split(',','3');
+
+	DSCharManager.loadWidgets({widgetInfo: widget});
+	DSCharManager.chartFrequence({lang: lng});
+	DSCharManager.chartLoan({lang:lng});
 </script>
 
 

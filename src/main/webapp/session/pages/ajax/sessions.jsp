@@ -19,6 +19,9 @@
 			<div class="collapse show" id="amountsCard">
 				<div class="card-body">
 					<div class="table-responsive">
+						<s:if test="currentMember.isAdmin()== true">
+							<button type="button" onclick="DataTableManager.addElement(this);" class="btn btn-primary btn-sm add-dt-btn"><s:text name="common.label.add"/></button>
+						</s:if>
 						<table id="sessions"  width="100%" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
 							<thead>
 								<tr>
@@ -27,6 +30,7 @@
 									<th><s:property value="getText('member.column.surname')"/></th>
 									<th><s:property value="getText('session.label.amount')"/></th>
 									<th><s:property value="getText('common.label.date')"/></th>
+									<%--<th><s:property value="getText('session.add.presence')"/></th>--%>
 								</tr>
 							</thead>
 							<tbody>
@@ -37,13 +41,12 @@
 											<s:set var="priorityLightStyle">bg-red-thunderbird bg-font-red-thunderbird bg-gradient-success</s:set>
 											<span class="badge traffic-light <s:property value="%{#priorityLightStyle}"/>">&nbsp;&nbsp;</span>
 										</s:if>
-
 									</td>
 									<td><s:property value="mmember.id.name"/></td>
 									<td><s:property value="mmember.surname"/></td>
 									<td><s:property value="amount"/></td>
 									<td><s:date name="id.date" format="dd/MM/yyyy" /></td>
-									<%--<td><s:property value="id.date"/></td>--%>
+									<%--<td><s:property value="id.presence"/></td>--%>
 								</tr>
 							</s:iterator>
 							</tbody>
@@ -71,7 +74,6 @@
 	var lng='<s:property  value="%{#lang}" />';
 	var title='<s:property  value="%{#title}" />';
 	DataTableManager.constructDatatable({idDataTable: 'sessions',title:title,lang:lng, positionDate:4})
-
 </script>
 </body>
 

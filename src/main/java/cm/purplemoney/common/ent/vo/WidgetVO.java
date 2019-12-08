@@ -1,8 +1,10 @@
 package cm.purplemoney.common.ent.vo;
 
-import cm.purplemoney.loan.ent.vo.LoanVO;
+import be.ceau.chart.BarChart;
+import be.ceau.chart.color.Color;
+import be.ceau.chart.data.BarData;
+import be.ceau.chart.dataset.BarDataset;
 import cm.purplemoney.loan.wrapper.Loan;
-import org.json.JSONArray;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,7 +16,9 @@ public class WidgetVO implements Serializable {
 	private BigDecimal personalFound;
 	private Loan loan;
 	private BigDecimal sanctions;
-	private List<WidgetDataInfoVO> widgetDataInfos;
+	private List<WidgetLoanInfoChartVO> widgetLoanInfosChart;
+
+	private WidgetFrequenceInfoChartVO widgetFrequenceInfosChart;
 
 	public BigDecimal getCommonFound() {
 		return commonFound;
@@ -48,21 +52,49 @@ public class WidgetVO implements Serializable {
 		this.sanctions = sanctions;
 	}
 
-	public List<WidgetDataInfoVO> getWidgetDataInfos() {
-		return widgetDataInfos;
+	public List<WidgetLoanInfoChartVO> getWidgetLoanInfosChart() {
+		return widgetLoanInfosChart;
 	}
 
-	public void setWidgetDataInfos(List<WidgetDataInfoVO> widgetDataInfos) {
-		this.widgetDataInfos = widgetDataInfos;
+	public void setWidgetLoanInfosChart(List<WidgetLoanInfoChartVO> widgetLoanInfosChart) {
+		this.widgetLoanInfosChart = widgetLoanInfosChart;
 	}
 
-	public JSONArray toJSONArray(){
+	public WidgetFrequenceInfoChartVO getWidgetFrequenceInfosChart() {
+		return widgetFrequenceInfosChart;
+	}
 
-		JSONArray jsArray = new JSONArray();
-		for (WidgetDataInfoVO widgetDataInfo:  widgetDataInfos) {
-			jsArray.put(widgetDataInfo);
+	public void setWidgetFrequenceInfosChart(WidgetFrequenceInfoChartVO widgetFrequenceInfosChart) {
+		this.widgetFrequenceInfosChart = widgetFrequenceInfosChart;
+	}
+
+	public String retrieveWidgetLoanInfosChart(){
+		String[] jArray= new String[12];
+		for (int i=0;i<jArray.length;i++){
+			jArray[i]="0";
+			for (WidgetLoanInfoChartVO widgetDataInfo:  widgetLoanInfosChart) {
+				if(i==widgetDataInfo.getMonth()-1){
+					jArray[i]=widgetDataInfo.getAmount().toString();
+				}
+			}
 		}
-		return jsArray;
+
+		return convertToString(jArray);
 	}
 
+	public String retrieveWidgetFrequenceInfosChart(){
+		String[] jArray= new String[3];
+		jArray[0]=getWidgetFrequenceInfosChart().getAbsence().toString();
+		jArray[1]=getWidgetFrequenceInfosChart().getPresence().toString();
+		jArray[2]=getWidgetFrequenceInfosChart().getRest().toString();
+
+		return convertToString(jArray);
+	}
+	private String convertToString(String[] jArray){
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<jArray.length;i++){
+			sb.append(jArray[i]+",");
+		}
+		return sb.toString();
+	}
 }

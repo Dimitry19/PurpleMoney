@@ -69,6 +69,7 @@ public class FundAction extends BaseAction implements Preparable {
 		}
 		if(fundBO.addFund(fund)){
 			addActionMessage(getText("loan.add.success"));
+			loadWidgetInfo(true);
 		}else{
 			addActionError(getText("loan.add.error"));
 		}

@@ -73,6 +73,7 @@ public class SanctionAction extends BaseAction implements SessionAware,Preparabl
             debugMessageCall();
         }
         sanctionBO.addSanction(sanctionAdd);
+        loadWidgetInfo(true);
         return SUCCESS;
     }
     public String allSanctions()  throws Exception{

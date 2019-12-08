@@ -35,12 +35,9 @@
                 <div class="chart-pie pt-4">
                     <canvas id="frequence"></canvas>
                 </div><div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-danger"></i> <s:text name="chart.member.frequence.absence"></s:text>
-                    </span>
-                <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> <s:text name="chart.member.frequence.presence"></s:text>
-                    </span>
+                    <span class="mr-2"><i class="fas fa-circle text-danger"></i> <s:text name="chart.member.frequence.absence"></s:text></span>
+                    <span class="mr-2"><i class="fas fa-circle text-success"></i> <s:text name="chart.member.frequence.presence"></s:text></span>
+                    <span class="mr-2"><i class="fas fa-circle text-primary"></i> <s:text name="chart.member.frequence.rest"></s:text></span>
             </div>
                 <hr>
                 <%--Styling for the donut chart can be found in the <code>/js/demo/chart-pie-custom-demo.js</code> file.--%>

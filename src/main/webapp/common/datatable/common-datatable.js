@@ -208,10 +208,10 @@ DataTableManager = function () {
 			if(lang == 'it'){
 				options.language=languages.italian;
 			}
-
 			if(lang == 'fr'){
 				options.language=languages.french;
 			}
+
 			var orderDateColumn;
 			if(positionDate===9){
 				orderDateColumn=[null,null,null,null,null,null,null,null,{ "sType": "eu_date" },{ "sType": "eu_date" }];
@@ -303,6 +303,9 @@ DataTableManager = function () {
 
 	}
 
+	function addElement(elt){
+		alert("Cliked");
+	}
 	function editRow(el) {
 		var value=$(el).val();
 		alert("MODAL"+value);
@@ -318,6 +321,9 @@ DataTableManager = function () {
 		},
 		reloadDatatable:function (jsonObj) {
 			//reloadDatatable(jsonObj)
+		},
+		addElement:function(elt){
+			addElement(elt);
 		},
 		editRow:function (el) {
 			editRow(el);

@@ -1,5 +1,5 @@
-var DSCharManager;
-DSCharManager = function () {
+var DSCharManagerDemo;
+DSCharManagerDemo = function () {
 // Set new default font family and font color to mimic Bootstrap's default styling
 	Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#858796';
@@ -124,7 +124,7 @@ DSCharManager = function () {
 				titleFontSize: 14,
 				backgroundColor: "rgb(255,255,255)",
 				bodyFontColor: "#858796",
-				borderColor: '#dddfeb',
+				borderColor:   '#dddfeb',
 				borderWidth: 1,
 				xPadding: 15,
 				yPadding: 15,
@@ -146,8 +146,6 @@ DSCharManager = function () {
 	function loadChart(jsonObj){
 
 		var lang=jsonObj.lang;
-		var widgetInfo=jsonObj.widgetInfo;
-		console.log(JSON.stringify(widgetDataInfos));
 		var m;
 
 		if(lang == 'it'){
@@ -162,7 +160,13 @@ DSCharManager = function () {
 
 		options.data.labels=m;
 		var loanChart = new Chart(ctx, options);
-		var data=[1520,1000,400];
+
+
+		var data = widgetDataInfos.map(function (x) {
+			return parseInt(x, 10);
+		});
+
+		//var data=[1236.00, 0, 0, 0, 0, 0, 0, 0, 0, 257.50, 0, 463.50];//[0,0,0,0,0,0,0,0,0,0,257.5,257.5];
 		addData(loanChart,m,data);
 		//loanChart.update();
 
@@ -171,7 +175,7 @@ DSCharManager = function () {
 		chart.data.labels.push(label);
 		for(var i in data){
 			chart.data.datasets.forEach((dataset) => {
-				dataset.data.push(data[i]);
+					dataset.data.push(data[i]);
 			});
 			chart.update();
 		}
@@ -186,6 +190,20 @@ DSCharManager = function () {
 		chart.update();
 	}
 
+	function pushData(widgetDataInfos) {
+		var data = Array();
+		for(var i = 0; i < widgetDataInfos.length; i++)
+		{
+			var t=widgetDataInfos[i];
+			console.log(t);
+			if(t!='""' || t!='"["' || t!='","' || t!='"]"'){
+				data.push(t);
+			}
+
+		}
+		return data;
+
+	}
 	return {
 		chartLoan:function(jsonObj){
 			loadChart(jsonObj);

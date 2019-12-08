@@ -19,6 +19,9 @@
 	<div class="collapse show" id="membersCard">
 		<div class="card-body">
 			<div class="table-responsive">
+				<s:if test="currentMember.isAdmin()== true">
+					<button type="button" onclick='DataTableManager.addElement(this);' class="btn btn-primary btn-sm add-dt-btn"><s:text name="common.label.add"/></button>
+				</s:if>
 				<table id="members"  width="100%" data-page-length="5" data-order="[[ 1, &quot;asc&quot; ]]" cellspacing="0"  class="table-striped table-bordered table table-bordered">
 					<thead>
 					<tr>

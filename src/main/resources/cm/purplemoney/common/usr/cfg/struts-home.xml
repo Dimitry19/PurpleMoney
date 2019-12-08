@@ -19,6 +19,7 @@
 		</action>
 		<action name="logoutAction" class="loginAction" method="logout">
 			<result name="success">/common/home/index.jsp</result>
+			<result name="input">/common/home/index.jsp</result>
 		</action>
 		<action name="timeout" class="loginAction" method="flushSession">
 			<result name="success">/common/home/expired.jsp</result>

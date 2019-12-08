@@ -15,8 +15,7 @@ import java.math.BigInteger;
 @Entity
 @Table(name="SESSION" , schema="PUBLIC")
 @NamedQueries({
-        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s order by id.date asc"),
-       // @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s where id.associationId=:ass order by id.member"),
+        @NamedQuery(name = SessionVO.ALL, query = "select s from SessionVO s order by s.id.date asc"),
 })
 @Filters({
         @Filter(name = FilterConstants.ASSOCIATION)
@@ -26,10 +25,14 @@ public class SessionVO implements Serializable {
     private SessionIdVO id;
     private BigInteger amount;
     private boolean status;
+    private String frequence;
     private String surnameMember;
     private MemberVO mmember;
+    private Integer frequencePresence;
+    private Integer frequenceAbsence;
 
     public static final String ALL = "cm.purplemoney.session.ent.vo.SessionVO.All";
+
 
     @EmbeddedId
     public SessionIdVO getId() {
@@ -62,10 +65,37 @@ public class SessionVO implements Serializable {
         this.mmember = mmember;
     }
 
+    @Basic(optional = false)
+    @Column(name = "FREQUENCE")
+    public String getFrequence() {
+        return frequence;
+    }
+
+    public void setFrequence(String frequence) {
+        this.frequence = frequence;
+    }
 
     @Transient
     public String getSurnameMember() {
         return surnameMember;
+    }
+
+    @Transient
+    public Integer getFrequencePresence() {
+        return frequencePresence;
+    }
+
+    public void setFrequencePresence(Integer frequencePresence) {
+        this.frequencePresence = frequencePresence;
+    }
+
+    @Transient
+    public Integer getFrequenceAbsence() {
+        return frequenceAbsence;
+    }
+
+    public void setFrequenceAbsence(Integer frequenceAbsence) {
+        this.frequenceAbsence = frequenceAbsence;
     }
 
     public void setSurnameMember(String surnameMember) {
@@ -84,4 +114,6 @@ public class SessionVO implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+
 }

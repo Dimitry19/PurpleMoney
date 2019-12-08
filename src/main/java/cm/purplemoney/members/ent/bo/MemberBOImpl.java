@@ -6,16 +6,18 @@ import cam.libraries.component.ent.vo.BusinessException;
 import cam.sql.SQLUtils;
 import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.association.ent.vo.AssociationVO;
-import cm.purplemoney.common.ent.vo.WidgetDataInfoVO;
+import cm.purplemoney.common.ent.vo.WidgetFrequenceInfoChartVO;
+import cm.purplemoney.common.ent.vo.WidgetLoanInfoChartVO;
 import cm.purplemoney.common.ent.vo.WidgetVO;
+import cm.purplemoney.constants.PortalConstants;
 import cm.purplemoney.fund.ent.bo.FundBO;
 import cm.purplemoney.fund.ent.vo.FundVO;
 import cm.purplemoney.loan.ent.vo.LoanVO;
 import cm.purplemoney.loan.wrapper.Loan;
 import cm.purplemoney.sanction.ent.vo.SanctionVO;
+import cm.purplemoney.session.ent.bo.SessionBO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.config.HibernateConfig;
-import cm.purplemoney.members.ent.enums.SexEnum;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.role.ent.bo.RoleBO;
 import cm.purplemoney.role.ent.vo.RoleVO;
@@ -27,7 +29,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
-import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -47,6 +48,9 @@ public class MemberBOImpl implements MemberBO {
 
 	@Resource(name = "fundBO")
 	FundBO fundBO;
+
+	@Resource(name = "sessionBO")
+	SessionBO sessionBO;
 
 	Session session;
 
@@ -157,6 +161,7 @@ public class MemberBOImpl implements MemberBO {
 		WidgetVO widget=new WidgetVO();
 
 		MemberVO mbr=findMemberInfo(username,  association);
+		SessionVO sess=sessionBO.frequenceByMember(mbr);
 
 		FundVO fund=fundBO.findByMember(mbr.getId());
 		if(fund!=null){
@@ -169,7 +174,8 @@ public class MemberBOImpl implements MemberBO {
 
 		widget.setLoan(retriveLoan(mbr));
 		widget.setSanctions(calcolateSanction(mbr));
-		widget.setWidgetDataInfos(retrieveWidgetDataInfo(mbr));
+		widget.setWidgetLoanInfosChart(retrieveWidgetDataInfo(mbr));
+		widget.setWidgetFrequenceInfosChart(retrieveWidgetFrequenceInfo(sess));
 
 
 		return widget;
@@ -188,6 +194,23 @@ public class MemberBOImpl implements MemberBO {
 		return total;
 	}
 
+	private WidgetFrequenceInfoChartVO retrieveWidgetFrequenceInfo(SessionVO sess){
+
+		WidgetFrequenceInfoChartVO wfic=null;
+		if(sess!=null){
+			  wfic=new WidgetFrequenceInfoChartVO();
+			Integer pres=sess.getFrequencePresence()*100/PortalConstants.DEFAULT_SESSION_NUMBER;
+			Integer abs=sess.getFrequenceAbsence()*100/PortalConstants.DEFAULT_SESSION_NUMBER;
+			Integer rest=100-(pres+abs);
+			wfic.setRest(rest);
+			wfic.setPresence(pres);
+			wfic.setAbsence(abs);
+
+		}
+		return wfic;
+
+
+	}
 	private List retrieveWidgetDataInfo(MemberVO mbr){
 
 		List widgetDataInfos=new ArrayList();
@@ -195,7 +218,7 @@ public class MemberBOImpl implements MemberBO {
 			Iterator iterator=mbr.getLoans().iterator();
 			while (iterator.hasNext()){
 				LoanVO loan=(LoanVO)iterator.next();
-				WidgetDataInfoVO widgetDataInfo=new WidgetDataInfoVO();
+				WidgetLoanInfoChartVO widgetDataInfo=new WidgetLoanInfoChartVO();
 
 				Date date=loan.getLoanDate();
 				Calendar cal = Calendar.getInstance();
@@ -233,24 +256,13 @@ public class MemberBOImpl implements MemberBO {
 	}
 	@Override
 	public List<MemberVO> autocomplete(String search, String association) throws BusinessException {
-
-		//List<String> memberList = new ArrayList<String>();
 		session=hibernateConfig.getSession();
-
 		Query query =session.getNamedQuery(MemberVO.Q_AC_ITEM);
 				query.setParameter("searchFilter",SQLUtils.forLike(search, true, true, true));
 		//		query.setParameter("ass",association);
 		List<MemberVO> memberList = query.list();
 
 		return memberList;
-		//for(MemberVO member: results){
-		//	memberList.add(member.getId().getName().concat(" ").concat(member.getSurname()) );
-		//}
-
-		//return memberList;
-
-		//return  (String[]) memberList.toArray(new String[memberList.size()]);
-
 	}
 
 	private List<MemberVO>  decoder(List<MemberVO> mbrs) {
@@ -297,12 +309,10 @@ public class MemberBOImpl implements MemberBO {
 		member.setAssociationDesc(association.getDescription());
 
 		if(StringUtils.equals("Femme",member.getSexDesc())){
-			member.setSex("F");
+			member.setSex(PortalConstants.SEX_F);
 		}else{
-			member.setSex("M");
+			member.setSex(PortalConstants.SEX_M);
 		}
 		return member;
 	}
-
-
 }

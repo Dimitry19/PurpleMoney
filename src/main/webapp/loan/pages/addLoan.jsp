@@ -46,7 +46,7 @@
                 <div class="md-form">
                     <s:textfield id="amountLoan" name="loanWr.loan.amount" value="%{associationCurrent.amount}"
                                  required="true" type="number"
-                                 onchange="FundManager.calcolateAmountToBack(this,{taxLoan:'taxLoan', totalLoan:'totalLoan'})"
+                                 onchange="LoanManager.calcolateAmountToBack(this,{taxLoan:'taxLoan', totalLoan:'totalLoan'})"
                                  pattern="^\d+(\.\d{1,2})?$" class="form-control"/>
                     <label for="amountLoan"><s:text name="session.label.amount"/>&nbsp;<i class="fas fa-euro-sign"></i></label>
                     <div class="invalid-feedback"><s:text name="session.money.error"/></div>
@@ -66,8 +66,7 @@
                     <div class="md-form form-sm col-sm-6">
                         <s:textfield id="dateLoanRemb" name="loanWr.loan.loanDateRemb" required="true"
                                      class="form-control"/>
-                        <label for="dateLoanRemb"><s:text name="loan.column.date.remb"/>&nbsp;<i
-                                class="fas fa-calendar"></i></label>
+                        <label for="dateLoanRemb"><s:text name="loan.column.date.remb"/>&nbsp;<i class="fas fa-calendar"></i></label>
                         <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                     </div>
                     <div class="md-form form-sm col-sm-6">
@@ -75,38 +74,29 @@
                     </div>
                 </div>
                 <div class="md-form">
-                    <s:textfield id="taxLoan" name="loanWr.loan.tax" value="%{tax}" required="true" type="number"
-                                 pattern="^\d+(\.\d{1,2})?$" readonly="true" class="form-control"/>
+                    <s:textfield id="taxLoan" name="loanWr.loan.tax" value="%{tax}" required="true" type="number" pattern="^\d+(\.\d{1,2})?$" readonly="true" class="form-control"/>
                     <label for="taxLoan"><s:text name="loan.column.tax"/>&nbsp;<i class="fa fa-percent"></i></label>
                 </div>
                 <div class="md-form">
                     <s:textfield id="totalLoan" name="loanWr.loan.amountToBack" type="text" class="form-control"/>
-                    <label for="totalLoan"><s:text name="loan.column.amount.to.back"/>&nbsp;<i
-                            class="fas fa-euro-sign"></i></label>
+                    <label for="totalLoan"><s:text name="loan.column.amount.to.back"/>&nbsp;<i class="fas fa-euro-sign"></i></label>
                 </div>
                 <div class="row">
-                    <div class="form-sm col-sm-4">
+                    <div class="form-sm col-sm-2">
                         <div class="custom-control custom-checkbox small">
-                            <s:checkbox id="isExtended" class="custom-control-input"
-                                        tooltip="%{getText('member.add.active.tooltip')}" name="loanWr.loan.extended"/>
-                            <label class="form-check-label custom-control-label" for="isExtended"><s:text
-                                    name="loan.column.extended"/></label>
+                            <s:checkbox id="isExtended" class="custom-control-input" onclick="FormManager.checkboxClick(this,{id:'isBalanced'});" tooltip="%{getText('member.add.active.tooltip')}" name="loanWr.loan.extended"/>
+                            <label class="form-check-label custom-control-label" for="isExtended"><s:text name="loan.column.extended"/></label>
                         </div>
                     </div>
-                    <div class="form-sm col-sm-4">
+                    <div class="form-sm col-sm-2">
                         <div class="custom-control custom-checkbox small">
-                            <s:checkbox id="isBalanced" class="custom-control-input"
-                                        tooltip="%{getText('member.add.admin.tooltip')}" name="loanWr.loan.balanced"/>
-                            <label class="form-check-label custom-control-label" for="isBalanced"><s:text
-                                    name="loan.column.balance"/></label>
+                            <s:checkbox id="isBalanced" class="custom-control-input"  onclick="FormManager.checkboxClick(this,{id:'isExtended'});" tooltip="%{getText('member.add.admin.tooltip')}" name="loanWr.loan.balanced"/>
+                            <label class="form-check-label custom-control-label" for="isBalanced"><s:text name="loan.column.balance"/></label>
                         </div>
                     </div>
                 </div>
                 <div class="md-form">
-                    <s:submit type="button" id="btnRegisterLoan" disabled="false"
-                              class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i
-                            class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text
-                            name="member.add.register"/></s:submit>
+                    <s:submit type="button" id="btnRegisterLoan" disabled="false" class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-save" aria-disabled="true"></i>&nbsp; <s:text name="member.add.register"/></s:submit>
                 </div>
             </s:form>
         </div>
@@ -144,6 +134,7 @@
 <script>
 	var lng = '<s:property  value="%{#lang}" />';
 	FormManager.validationForm({idForm: 'formRegisterLoan', idSubmit: 'btnRegisterLoan'})
+	FormManager.onChecked({id: 'isBalanced'})
 	DataPickerManager.enable({id: 'dateLoan', lang: lng, alternate: 'alternate-dateLoan'});
 	DataPickerManager.enable({id: 'dateLoanRemb', lang: lng, alternate: 'alternate-dateLoanRemb'});
 	Select2Manager.autocomlete({lang: lng, idForm: 'formRegisterLoan', button:'btnRegisterLoan',type: 'member', url: "autocompleteMember.do"});

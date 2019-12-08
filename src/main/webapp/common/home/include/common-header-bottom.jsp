@@ -14,32 +14,6 @@
                 <!-- Grid column -->
                 <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
                 </div>
-                <!-- Grid column -->
-                <!-- Grid column -->
-               <%-- <div class="col-md-6 col-lg-7 text-center text-md-right">
-                    <h6 class="mb-0"><s:text name="footer.contact.social"></s:text></h6>
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/XlionD" target="_blank" class="fb-ic">
-                        <i class="fa fa-facebook-square white-text mr-4"> </i>
-                    </a>
-                    <!-- Twitter -->
-                    <a class="tw-ic" href="https://twitter.com/DXlionaire" target="_blank">
-                        <i class="fa fa-twitter white-text mr-4"> </i>
-                    </a>
-                    <!-- Google +-->
-                    <a class="gplus-ic" href="https://plus.google.com/u/0/104372700159542371601" target="_blank">
-                        <i class="fa fa-google white-text mr-4"> </i>
-                    </a>
-                    <!--Linkedin -->
-                    <a class="li-ic" href="https://www.linkedin.com/in/dimitri-sime-ndjouomo-74804337/" target="_blank">
-                        <i class="fa fa-linkedin white-text mr-4"> </i>
-                    </a>
-                    <!--Instagram-->
-                    <a class="ins-ic" href="https://www.instagram.com/lion_dx" target="_blank">
-                        <i class="fa fa-instagram white-text"> </i>
-                    </a>
-                </div>--%>
-                <!-- Grid column -->
             </div>
             <s:include value="/common/home/include/socials.jsp"/>
             <s:include value="/common/home/include/version-application.jsp"/>
@@ -83,19 +57,7 @@
 <!-- Page level plugins -->
 <script src="<s:url value="/common/template/demo/chart.js/Chart.min.js"/>"></script>
 
-
 <!-- Page level custom scripts -->
-<script src="<s:url value="/common/template/demo/chart-area-demo.js"/>"></script>
-<script src="<s:url value="/common/template/demo/chart-pie-demo.js"/>"></script>
-<script src="<s:url value="/common/template/demo/chart-bar-demo.js"/>"></script>
-<script src="<s:url value="/common/template/demo/chart-pie-frequence-demo.js"/>"></script>
-<script src="<s:url value="/common/template/demo/chart-bar-pret-demo.js"/>"></script>
 <script src="<s:url value="/ds-framework/js/ds-chart.js"/>"></script>
 
 <%@ include file = "./common-header-char-bottom.jsp" %>
-
-
-
-
-
-

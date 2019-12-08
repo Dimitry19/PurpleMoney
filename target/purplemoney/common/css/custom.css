@@ -277,5 +277,14 @@ select#eventType{
   margin: 1%;
 }
 
+.totalLoanMsg{
+  margin-left: 71px;
+  margin-bottom: -28px;
+}
+
+.add-dt-btn{
+  float: right;
+}
+
 
 

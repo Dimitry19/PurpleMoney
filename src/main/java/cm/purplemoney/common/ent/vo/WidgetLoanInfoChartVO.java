@@ -5,7 +5,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-public class WidgetDataInfoVO {
+public class WidgetLoanInfoChartVO {
 
 	private BigDecimal amount;
 	private int month;
@@ -29,28 +29,6 @@ public class WidgetDataInfoVO {
 		this.month = month;
 	}
 
-/*	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}*/
-
-	public String toJson(){
-
-		String jsonStr = null;
-		ObjectMapper Obj = new ObjectMapper();
-		try {
-			jsonStr = Obj.writeValueAsString(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// Displaying JSON String
-		System.out.println(jsonStr);
-		return jsonStr;
-	}
 	@Override
 	public String toString()
 	{

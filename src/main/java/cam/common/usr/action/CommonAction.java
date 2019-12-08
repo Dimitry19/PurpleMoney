@@ -1,6 +1,7 @@
 package cam.common.usr.action;
 
 
+import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.common.ent.vo.WidgetVO;
 import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
@@ -267,17 +268,11 @@ public class CommonAction extends ActionSupport implements SessionAware ,Servlet
     private MemberVO retrieveCurrentMember(){
 
         try {
-                Object ob=this.session.get(CURRENT_USER);
-                String currentUs =(String) ob;
-                Object o=this.session.get(CURRENT_ASS);
-                String currentAss =(String) o;
-
-                 Object wob=this.session.get(CURRENT_USER_WIDGET);
-                 widget=(WidgetVO)wob;
-                 if(widget==null){
-                     widget=memberBO.widgetInfo(currentUs,currentAss);
-                     this.session.put(CURRENT_USER_WIDGET,widget);
-                 }
+                    Object ob=this.session.get(CURRENT_USER);
+                    String currentUs =(String) ob;
+                    Object o=this.session.get(CURRENT_ASS);
+                    String currentAss =(String) o;
+                    loadWidgetInfo(false);
 
                 return memberBO.findMemberInfo(currentUs,currentAss);
         }catch (Exception b){
@@ -317,5 +312,25 @@ public class CommonAction extends ActionSupport implements SessionAware ,Servlet
         this.request = request;
     }
 
+    public void loadWidgetInfo(boolean delete) throws BusinessException {
+        Object ob=this.session.get(CURRENT_USER);
+        String currentUs =(String) ob;
+        Object o=this.session.get(CURRENT_ASS);
+        String currentAss =(String) o;
+
+        if(!delete){
+            Object wob=this.session.get(CURRENT_USER_WIDGET);
+            widget=(WidgetVO)wob;
+            if(widget==null){
+                widget=memberBO.widgetInfo(currentUs,currentAss);
+                this.session.put(CURRENT_USER_WIDGET,widget);
+            }
+        }else {
+            this.session.remove(CURRENT_USER_WIDGET);
+            widget=memberBO.widgetInfo(currentUs,currentAss);
+            this.session.put(CURRENT_USER_WIDGET,widget);
+        }
+
+    }
 
 }

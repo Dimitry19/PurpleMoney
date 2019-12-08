@@ -2,10 +2,6 @@ var FundManager;
 FundManager = function () {
 
     var debug = true;
-
-
-
-
     function calcolate(elt,jsonObj) {
         console.log("calcolate");
         var importo=$(elt).val();
@@ -32,7 +28,7 @@ FundManager = function () {
 
 
     return {
-        calcolateAmountToBack:function(elt,jsonObj){
+        addSanction:function(elt,jsonObj){
 	        calcolate(elt,jsonObj);
         }
     }

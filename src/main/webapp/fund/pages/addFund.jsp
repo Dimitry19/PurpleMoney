@@ -24,7 +24,7 @@
                     <s:textfield id="userSearchAssociation" type="text" value="%{associationCurrent.description}"
                                  class="form-control form-control-login" readonly="true"/>
                     <label for="userSearchAssociation"><s:text name="member.label.association"/></label>
-                    <s:hidden name="fund.associationId" value="%{associationCurrent.id.id}"/>
+                    <s:hidden name="fund.id.mmember.id.associationId" value="%{associationCurrent.id.id}"/>
 
                 </div>
                 <div class="md-form"></div>

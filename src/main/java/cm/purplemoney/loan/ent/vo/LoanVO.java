@@ -49,6 +49,7 @@ public class LoanVO implements Serializable {
 
 
 	public static final String ALL = "cm.purplemoney.loan.ent.vo.LoanVO.All";
+	public static final String SUM_MONTH = "cm.purplemoney.loan.ent.vo.LoanVO.sum";
 
 	@EmbeddedId
 	public LoanVOId getId() {

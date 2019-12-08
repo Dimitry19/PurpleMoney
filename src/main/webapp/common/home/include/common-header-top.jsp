@@ -28,11 +28,7 @@
         <div class="sidebar-heading"><s:text name="common.menu.language"/></div>
         <!-- Nav Item - Sessions Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menuLanguages"
-               aria-expanded="true" aria-controls="collapseLanguage">
-                <i class="fa fa-language"></i>
-                <span><s:text name="common.menu.language"/></span>
-            </a>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menuLanguages" aria-expanded="true" aria-controls="collapseLanguage"><i class="fa fa-language"></i><span><s:text name="common.menu.language"/></span></a>
             <div id="menuLanguages" class="collapse" aria-labelledby="menuLanguages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <s:url var="indexEN" action="locale">
@@ -45,17 +41,11 @@
                         <s:param name="rlocale">it</s:param>
                     </s:url>
                     <h6 class="collapse-header"><s:text name="common.menu.language.english"/></h6>
-                    <a class="collapse-item" href="<s:property value="#indexEN" />"><span
-                            class="flag-icon flag-icon-us flag-icon-squared"></span>&nbsp;<s:text
-                            name="common.menu.language.english"/></a>
+                    <a class="collapse-item" href="<s:property value="#indexEN" />"><span class="flag-icon flag-icon-us flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.english"/></a>
                     <h6 class="collapse-header"><s:text name="common.menu.language.french"/></h6>
-                    <a class="collapse-item" href="<s:property value="#indexFR" />"><span
-                            class="flag-icon flag-icon-fr flag-icon-squared"></span>&nbsp;<s:text
-                            name="common.menu.language.french"/></a>
+                    <a class="collapse-item" href="<s:property value="#indexFR" />"><span class="flag-icon flag-icon-fr flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.french"/></a>
                     <h6 class="collapse-header"><s:text name="common.menu.language.italian"/></h6>
-                    <a class="collapse-item" href="<s:property value="#indexIT" />"><span
-                            class="flag-icon flag-icon-it flag-icon-squared"></span>&nbsp;<s:text
-                            name="common.menu.language.italian"/></a>
+                    <a class="collapse-item" href="<s:property value="#indexIT" />"><span class="flag-icon flag-icon-it flag-icon-squared"></span>&nbsp;<s:text name="common.menu.language.italian"/></a>
                 </div>
             </div>
         </li>
@@ -67,53 +57,31 @@
             <!-- Nav Item - Admin Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#addOperation"
-                   aria-expanded="true" aria-controls="collapseAddOperation">
-                        <%--<i class="fas fa-fw fa-cog"></i>--%>
-                    <i class="fa fa-plus"></i>
-                    <span><s:text name="common.admin.add.operations"/></span>
-                </a>
+                   aria-expanded="true" aria-controls="collapseAddOperation"><%--<i class="fas fa-fw fa-cog"></i>--%><i class="fa fa-plus"></i><span><s:text name="common.admin.add.operations"/></span></a>
                 <div id="addOperation" class="collapse" aria-labelledby="addOperation" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"><s:text name="common.menu.founds.add"/>:</h6>
-                        <a class="collapse-item" href="<s:url action="addingSessionAction"/>"><i class="fas fa-money"
-                                                                                                 aria-hidden="true"></i>&nbsp;
-                            <s:text name="common.menu.founds.add"/>
-                        </a>
+                        <a class="collapse-item" href="<s:url action="addingSessionAction"/>"><i class="fas fa-money" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds.add"/></a>
                         <h6 class="collapse-header"><s:text name="common.menu.loan.add"/>:</h6>
-                        <a class="collapse-item" href="<s:url action="loanAddAction"/>"><i class="fa fa-landmark"
-                                                                                           aria-hidden="true"></i>&nbsp;
-                            <s:text name="common.menu.loan.add"/>
-                        </a>
+                        <a class="collapse-item" href="<s:url action="loanAddAction"/>"><i class="fa fa-landmark" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.loan.add"/></a>
                         <h6 class="collapse-header"><s:text name="common.menu.members.add"/>:</h6>
-                        <a class="collapse-item" href="<s:url action="menuAddMemberAction"/>">
-                            <i class="fa fa-user-plus"  aria-hidden="true"></i>&nbsp;
-                            <s:text name="common.menu.members.add"/>
-                        </a>
+                        <a class="collapse-item" href="<s:url action="menuAddMemberAction"/>"><i class="fa fa-user-plus"  aria-hidden="true"></i>&nbsp;<s:text name="common.menu.members.add"/></a>
                         <h6 class="collapse-header"><s:text name="event.add.title"></s:text>:</h6>
-                        <a class="collapse-item" href="<s:url action="addingEvent"/>">
-                            <i class="far fa-calendar-plus" aria-hidden="true"></i>&nbsp;<s:text
-                                name="event.add.title"></s:text>
-                        </a>
+                        <a class="collapse-item" href="<s:url action="addingEvent"/>"><i class="far fa-calendar-plus" aria-hidden="true"></i>&nbsp;<s:text name="event.add.title"></s:text></a>
                         <h6 class="collapse-header"><s:text name="fund.add.title"></s:text>:</h6>
-                        <a class="collapse-item" href="<s:url action="addFundAction"/>">
-                            <i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;
-                            <s:text name="fund.add.title"></s:text>
-                        </a>
+                        <a class="collapse-item" href="<s:url action="addFundAction"/>"><i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;<s:text name="fund.add.title"></s:text></a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#editOperation"
-                   aria-expanded="true" aria-controls="collapseEditOperation">
-                    <i class="fa fa-edit"></i><span><s:text name="common.admin.edit.operations"/></span>
+                   aria-expanded="true" aria-controls="collapseEditOperation"><i class="fa fa-edit"></i><span><s:text name="common.admin.edit.operations"/></span>
                 </a>
                 <div id="editOperation" class="collapse" aria-labelledby="editOperation"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"><s:text name="common.menu.members.edit"/>:</h6>
-                        <a class="collapse-item" href="<s:url action="editMemberAction"/>"><i class="fa fa-edit"
-                                                                                              aria-hidden="true"></i>&nbsp;<s:text
-                                name="common.menu.members.edit"/></a>
+                        <a class="collapse-item" href="<s:url action="editMemberAction"/>"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.members.edit"/></a>
                             <%--<a class="collapse-item" href="cards.html">Cards</a>--%>
                     </div>
                 </div>
@@ -126,9 +94,7 @@
                 <div id="mail" class="collapse" aria-labelledby="mail" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"><s:text name="common.menu.mail"/>:</h6>
-                        <a class="collapse-item" href="<s:url action="addingMailAction"/>">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;
-                            <s:text name="common.menu.mails.send"/></a>
+                        <a class="collapse-item" href="<s:url action="addingMailAction"/>"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.mails.send"/></a>
                     </div>
                 </div>
             </li>
@@ -141,20 +107,14 @@
         <!-- Nav Item - Members Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menuMembers"
-               aria-expanded="true" aria-controls="collapsePages">
-                <i class="fa fa-users"></i>
-                <span><s:text name="common.menu.members.all"/></span>
+               aria-expanded="true" aria-controls="collapsePages"><i class="fa fa-users"></i><span><s:text name="common.menu.members.all"/></span>
             </a>
             <div id="menuMembers" class="collapse" aria-labelledby="menuMembers" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"><s:text name="common.menu.members.all"/></h6>
-                    <a class="collapse-item" href="<s:url action="allMembersAction"/>">
-                        <i class="fa fa-users" aria-hidden="true"></i>&nbsp;
-                        <s:text name="common.menu.members.all"/></a>
+                    <a class="collapse-item" href="<s:url action="allMembersAction"/>"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.members.all"/></a>
                     <h6 class="collapse-header"><s:text name="common.menu.about.user"/></h6>
-                    <a class="collapse-item" href="<s:url action="infoMemberAction"/>">
-                        <i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;
-                        <s:text  name="common.menu.about.user"/></a>
+                    <a class="collapse-item" href="<s:url action="infoMemberAction"/>"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;<s:text  name="common.menu.about.user"/></a>
                 </div>
             </div>
         </li>
@@ -172,13 +132,9 @@
             <div id="menuLoans" class="collapse" aria-labelledby="menuLoans" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"><s:text name="common.menu.loans"/></h6>
-                    <a class="collapse-item" href="<s:url action="loansAction"/>"><i class="fa fa-hand-holding-usd"
-                                                                                     aria-hidden="true"></i>&nbsp;<s:text
-                            name="common.menu.loans"/></a>
+                    <a class="collapse-item" href="<s:url action="loansAction"/>"><i class="fa fa-hand-holding-usd" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.loans"/></a>
                     <h6 class="collapse-header"><s:text name="common.menu.about.user"/></h6>
-                    <a class="collapse-item" href="<s:url action="infoMemberAction"/>"><i class="fa fa-id-card"
-                                                                                          aria-hidden="true"></i>&nbsp;<s:text
-                            name="common.menu.about.user"/></a>
+                    <a class="collapse-item" href="<s:url action="infoMemberAction"/>"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.about.user"/></a>
                 </div>
             </div>
         </li>
@@ -196,12 +152,9 @@
             <div id="menuSessions" class="collapse" aria-labelledby="menuSessions" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"><s:text name="common.menu.founds.open"/></h6>
-                    <a class="collapse-item" href="<s:url action="sessionConsultAction"/>"><i class="fa fa-eye"
-                                                                                              aria-hidden="true"></i>&nbsp;<s:text
-                            name="common.menu.founds.open"/></a>
+                    <a class="collapse-item" href="<s:url action="sessionConsultAction"/>"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<s:text name="common.menu.founds.open"/></a>
                     <h6 class="collapse-header"><s:text name="common.menu.founds.all"/></h6>
-                    <a class="collapse-item" href="<s:url action="sessions"/>"><i class="far fa-money-bill-alt"></i>&nbsp;<s:text
-                            name="common.menu.founds.all"/></a>
+                    <a class="collapse-item" href="<s:url action="sessions"/>"><i class="far fa-money-bill-alt"></i>&nbsp;<s:text name="common.menu.founds.all"/></a>
                 </div>
             </div>
         </li>
@@ -223,14 +176,11 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link" href="<s:url action="allEvents"/>"><i class="fa fa-book"
-                                                                      aria-hidden="true"></i>&nbsp;<s:text
-                    name="event.all.title"/></a>
+            <a class="nav-link" href="<s:url action="allEvents"/>"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<s:text name="event.all.title"/></a>
         </li>
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link" href="<s:url action="gmapAction"/>"><i class="fas fa-map-marked-alt"></i>&nbsp;<s:text
-                    name="footer.link.map"></s:text></a>
+            <a class="nav-link" href="<s:url action="gmapAction"/>"><i class="fas fa-map-marked-alt"></i>&nbsp;<s:text name="footer.link.map"></s:text></a>
         </li>
         <hr class="sidebar-divider">
         <!-- Nav Item - Charts -->
@@ -239,8 +189,7 @@
         </li>
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link" href="#!"><i class="fas fa-hands-helping"></i>&nbsp;<s:text
-                    name="footer.link.help"></s:text></a>
+            <a class="nav-link" href="#!"><i class="fas fa-hands-helping"></i>&nbsp;<s:text name="footer.link.help"></s:text></a>
         </li>
         <hr class="sidebar-divider">
         <!-- Nav Item - Tables -->

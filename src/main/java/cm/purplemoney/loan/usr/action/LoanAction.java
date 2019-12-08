@@ -78,6 +78,7 @@ public class LoanAction extends BaseAction implements Preparable {
 		}
 		if(loanBO.addLoan(loanWr)){
 			addActionMessage(getText("loan.add.success"));
+			loadWidgetInfo(true);
 		}else{
 			addActionError(getText("loan.add.error"));
 		}

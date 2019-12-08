@@ -69,6 +69,25 @@ FormManager = function () {
 		}
 	}
 
+	function onChecked(jsonObj) {
+		var id = '#' + jsonObj.id;
+		$(id).prop("checked", true );
+	}
+	function check(elt,jsonObj) {
+		var id = '#' + jsonObj.id;
+
+		if($(elt).is(":checked")){
+			if($(id).is(":checked")){
+				$(id).prop("checked", false );
+			}
+		}
+	/*	else if($(elt).is(":not(:checked)")){
+			if($(id).is(":not(:checked)")){
+				$(elt).prop("checked", true);
+			}
+		}*/
+
+	}
 	function phone(jsonObj) {
 		var value = '#' + jsonObj.idPhone;
 		$(value).usPhoneFormat({
@@ -91,6 +110,12 @@ FormManager = function () {
 			disableAllField(jsonObj);
 		}
 		,
+		checkboxClick: function (elt,jsonObj) {
+			check(elt,jsonObj);
+		},
+		onChecked: function (jsonObj) {
+			onChecked(jsonObj);
+		},
 		unfilledAllFields: function (jsonObj) {
 			unfilled(jsonObj);
 		},
