@@ -5,7 +5,7 @@
       <configuration>
         <datasource-map>
           <unit-entry name="java:hibernate/SessionFactory" />
-          <unit-entry name="sessionFactory" value="7d92534c-b874-49d7-8e1c-d131c998b570" />
+          <unit-entry name="sessionFactory" value="bad33d31-96d7-4949-a752-63dc3077b663" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
@@ -14,21 +14,21 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/search.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/loginHome.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/members/usr/rsc/members.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/common.beans.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/sanction/usr/rsc/article.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/config/rsc/hibernateConfig.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/jsonplugin.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/group/usr/rsc/group.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/association/rsc/article.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/portal.bean.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/event/usr/rsc/article.bean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/profile/usr/rsc/profile.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/search.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/jsonplugin.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/members/usr/rsc/members.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/association/rsc/article.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/config/rsc/hibernateConfig.bean.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/role/usr/rsc/role.bean.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/session/usr/rsc/session.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/portal.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/common.beans.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/sanction/usr/rsc/article.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/profile/usr/rsc/profile.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/group/usr/rsc/group.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/loginHome.bean.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -44,11 +44,6 @@
       <facet type="Struts2" name="Struts 2">
         <configuration>
           <fileset id="s2fileset" name="My Fileset " removed="false">
-            <file>jar://$MAVEN_REPOSITORY$/com/jgeppert/struts2/bootstrap/struts2-bootstrap-plugin/2.5.2/struts2-bootstrap-plugin-2.5.2.jar!/struts-plugin.xml</file>
-            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.3.32/struts2-core-2.3.32.jar!/struts-default.xml</file>
-            <file>jar://$MAVEN_REPOSITORY$/com/jgeppert/struts2/jquery/struts2-jquery-plugin/3.7.1/struts2-jquery-plugin-3.7.1.jar!/struts-plugin.xml</file>
-            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-json-plugin/2.3.15/struts2-json-plugin-2.3.15.jar!/struts-plugin.xml</file>
-            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.3.32/struts2-spring-plugin-2.3.32.jar!/struts-plugin.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-actions.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/association/cfg/struts-article.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/event/usr/cfg/struts-event-type.xml</file>
@@ -66,6 +61,11 @@
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-search.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/session/usr/cfg/struts-session.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/com/jgeppert/struts2/bootstrap/struts2-bootstrap-plugin/2.5.2/struts2-bootstrap-plugin-2.5.2.jar!/struts-plugin.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.3.32/struts2-core-2.3.32.jar!/struts-default.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/com/jgeppert/struts2/jquery/struts2-jquery-plugin/3.7.1/struts2-jquery-plugin-3.7.1.jar!/struts-plugin.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-json-plugin/2.3.15/struts2-json-plugin-2.3.15.jar!/struts-plugin.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.3.32/struts2-spring-plugin-2.3.32.jar!/struts-plugin.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
