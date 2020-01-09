@@ -17,9 +17,9 @@
 						<s:label value="%{getText('member.label.name')}" id="idname" for="idname"  labelposition="left"></s:label>
 						<s:textfield  value="%{userInfo.id.name}"  name="userInfo.id.name" readonly="true" id="nameId" cssClass="form-control"/>
 						<span class = "input-group-addon"></span>
-						<s:hidden name="userInfo.id.memberId" value="%{userInfo.id.memberId}"/>
+						<s:hidden name="userInfo.id.name" value="%{userInfo.id.memberId}"/>
 						<s:hidden name="userInfo.admin" value="%{userInfo.admin}"/>
-						<s:hidden  name="userInfo.association" value="%{userInfo.id.memberId}" />
+						<s:hidden  name="userInfo.id.associationId" value="%{userInfo.id.memberId}" />
 						<s:hidden  name="userInfo.active" value="%{userInfo.active}" />
 					</div>
 					<div class="form-group">

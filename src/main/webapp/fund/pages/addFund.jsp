@@ -19,13 +19,11 @@
     </a>
     <div class="collapse show" id="addFundCard">
         <div class="card-body">
-            <s:form class="form-login form-horizontal user" action="addFundAction" id="formRegisterFund">
+            <s:form class="form-login form-horizontal user" action="saveFundAction" id="formAddFund">
                 <div class="md-form">
-                    <s:textfield id="userFundAssociation" type="text" value="%{associationCurrent.description}"
-                                 class="form-control form-control-login" readonly="true"/>
+                    <s:textfield id="userFundAssociation" type="text" value="%{associationCurrent.description}"  class="form-control form-control-login" readonly="true"/>
                     <label for="userFundAssociation"><s:text name="member.label.association"/></label>
                     <s:hidden name="fund.id.mmember.id.associationId" value="%{associationCurrent.id.id}"/>
-
                 </div>
                 <div class="md-form"></div>
                 <div class="md-form">
@@ -40,6 +38,7 @@
                             headerValue="%{getText('common.login.group.tooltip')}"
                     />
                     <s:hidden name="fund.id.mmember"/>
+                    <s:hidden name="fund.id.id" value="4"/>
                 </div>
                 <div class="md-form">
                     <s:textfield id="amountFund" name="fund.amount" value="%{associationCurrent.amount}"
@@ -68,9 +67,9 @@
                 </div>
             </s:form>
         </div>
-        <div id="dialog" title="Basic dialog">
+       <%-- <div id="dialog" title="Basic dialog">
             <p><s:text name="session.add.member.error"/></p>
-        </div>
+        </div>--%>
     </div>
     <div>
         <s:if test="%{#lang}==true">
@@ -97,7 +96,6 @@
 <script src="<s:url value="/common/js/jquery-1.12.4.js"/>"></script>--%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
-<script src="<s:url value="/fund/js/FundManager.js"/>"></script>
 <%@ include file="../../common/footers/select2-footer.js.jsp" %>
 <script>
 	var lng = '<s:property  value="%{#lang}" />';

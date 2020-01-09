@@ -243,9 +243,9 @@ public class MemberBOImpl implements MemberBO {
 			while (iterator.hasNext()){
 				LoanVO loan=(LoanVO)iterator.next();
 				if(date==null){
-					date=loan.getLoanDate();
+					date=loan.getLoanDateRemb();
 				}else if(date.compareTo(loan.getLoanDateRemb())>0){
-						date=loan.getLoanDate();
+						date=loan.getLoanDateRemb();
 				}
 				total=total.add(loan.getAmountToBack());
 			}

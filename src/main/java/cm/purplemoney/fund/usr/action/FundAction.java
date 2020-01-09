@@ -11,12 +11,14 @@ import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.profile.ent.bo.AuthUserBO;
 import cm.purplemoney.role.ent.bo.RoleBO;
 import com.opensymphony.xwork2.Preparable;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
 import java.util.List;
 
 @Component("fundAction")
@@ -26,7 +28,8 @@ public class FundAction extends BaseAction implements Preparable {
 
 	private static final Logger log = LoggerFactory.getLogger(FundAction.class);
 	private List funds;
-
+	private FundVO fund;
+	private AssociationVO associationCurrent;
 
 	@Resource(name = "associationBO")
 	private AssociationBO associationBO;
@@ -34,27 +37,45 @@ public class FundAction extends BaseAction implements Preparable {
 	@Resource(name="fundBO")
 	private FundBO fundBO;
 
-	private FundVO fund;
-	private AssociationVO associationCurrent;
+
 
 
 
 
 	@Override
 	public void prepare() throws Exception {
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
 
-		funds= fundBO.funds();
 		associationCurrent=associationBO.associationInfoFromMember(getCurrentMember());
 
 	}
 
-	public String execute() {
+	public String execute() throws BusinessException {
 
 		if (log.isDebugEnabled()){
 			debugMessageCall();
-		}return SUCCESS;
+
+		}
+		loadWidgetInfo(true);
+		return SUCCESS;
 	}
 
+	public void validate(){
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
+		if(fund!=null) {
+			showNotification=false;
+			if (StringUtils.isEmpty(fund.getId().getMmember().getId().getName())) {
+				addActionError(getText("session.add.member.error"));
+			}
+			if (fund.getDate()==null){
+				addActionError(getText("session.add.data.error"));
+			}
+		}
+	}
 	public String funds() throws BusinessException {
 		if (log.isDebugEnabled()){
 			debugMessageCall();
@@ -63,13 +84,12 @@ public class FundAction extends BaseAction implements Preparable {
 		return SUCCESS;
 	}
 
-	public String add() throws BusinessException {
-		if (log.isDebugEnabled()){
-			debugMessageCall();
-		}
+	public String addFund() throws BusinessException {
+
+		// TODO Controller pourquoi ca ne passe par ici
 		if(fundBO.addFund(fund)){
 			addActionMessage(getText("loan.add.success"));
-			loadWidgetInfo(true);
+
 		}else{
 			addActionError(getText("loan.add.error"));
 		}
@@ -87,10 +107,12 @@ public class FundAction extends BaseAction implements Preparable {
 	}
 
 	public FundVO getFund() {
+
 		return fund;
 	}
 
 	public void setFund(FundVO fund) {
+
 		this.fund = fund;
 	}
 

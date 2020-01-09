@@ -13,10 +13,8 @@
 			<result name="success">/fund/pages/addFund.jsp</result>
 			<result name="error">/common/home/tables.jsp</result>
 		</action>
-		<action name="addFundAction" class="fundAction" method="add">
+		<action name="saveFundAction" class="fundAction" method="addFund">
 			<result name="success">/fund/pages/addFund.jsp</result>
-			<result name="input">/loan/pages/addLoan.jsp</result>
-			<result name="error">/common/home/tables.jsp</result>
 		</action>
 	</package>
 </struts>

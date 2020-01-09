@@ -1,12 +1,8 @@
 package cm.purplemoney.fund.ent.vo;
 
-import cm.purplemoney.constants.FieldConstants;
 import cm.purplemoney.constants.FilterConstants;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.Filters;
-import org.hibernate.annotations.Formula;
-import org.hibernate.jpa.criteria.expression.function.AggregationFunction;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;

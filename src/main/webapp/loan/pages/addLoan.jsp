@@ -92,9 +92,9 @@
                 <s:submit type="button" id="btnRegisterLoan" disabled="true" class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-plus-square" aria-disabled="true"></i>&nbsp; <s:text name="common.label.add"/></s:submit>
             </s:form>
         </div>
-        <div id="dialog" title="Basic dialog">
+       <%-- <div id="dialog" title="Basic dialog">
             <p><s:text name="session.add.member.error"/></p>
-        </div>
+        </div>--%>
     </div>
     <div>
         <s:if test="%{#lang}==true">

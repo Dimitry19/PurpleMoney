@@ -50,6 +50,7 @@
 	</package>
 
 	<include file="cm/purplemoney/common/usr/cfg/struts-home.xml"></include>
+	<include file="cm/purplemoney/common/usr/cfg/struts-search.xml"></include>
 	<include file="cm/purplemoney/group/usr/cfg/struts-group.xml"></include>
 	<include file="cm/purplemoney/members/usr/cfg/struts-members.xml"></include>
 	<include file="cm/purplemoney/mail/usr/cfg/struts-mail.xml"></include>

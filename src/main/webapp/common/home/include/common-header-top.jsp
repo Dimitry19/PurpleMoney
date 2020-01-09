@@ -69,7 +69,7 @@
                         <h6 class="collapse-header"><s:text name="event.add.title"></s:text>:</h6>
                         <a class="collapse-item" href="<s:url action="addingEvent"/>"><i class="far fa-calendar-plus" aria-hidden="true"></i>&nbsp;<s:text name="event.add.title"></s:text></a>
                         <h6 class="collapse-header"><s:text name="fund.add.title"></s:text>:</h6>
-                        <a class="collapse-item" href="<s:url action="addFundAction"/>"><i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;<s:text name="fund.add.title"></s:text></a>
+                        <a class="collapse-item" href="<s:url action="fundAddAction"/>"><i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;<s:text name="fund.add.title"></s:text></a>
                     </div>
                 </div>
             </li>
