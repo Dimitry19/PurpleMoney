@@ -95,6 +95,12 @@ FormManager = function () {
 		});
 	}
 
+	function blockResend() {
+		if ( window.history.replaceState ) {
+			window.history.replaceState( null, null, window.location.href );
+		}
+
+	}
 
 	return {
 		validationForm: function (jsonObj) {
@@ -121,6 +127,9 @@ FormManager = function () {
 		},
 		hideButton: function (jsonObj) {
 			hideButton(jsonObj);
+		},
+		blockResendForm:function () {
+			blockResend();
 		}
 	}
 

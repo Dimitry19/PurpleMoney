@@ -3,6 +3,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <s:include value="../../common/home/include/header.jsp"/>
+<s:include value="../../common/home/include/notification-header.jsp"/>
 <s:set var="lang" value="%{currentLocale}"/>
 <s:set var="showNotification" value="%{showNotification}"/>
 <sj:head jqueryui="true"/>
@@ -60,7 +61,7 @@
                 </div>
                 <div class="row">
                     <div class="md-form form-sm col-sm-6">
-                        <s:textfield id="dateLoanRemb" name="loan.loanDateRemb" required="true" class="form-control"/>
+                        <s:textfield id="dateLoanRemb" name="loan.loanDateRemb" required="true" class="form-control" onchange="LoanManager.checkDate(this,{dateId:'dateLoan',idForm:'formRegisterLoan'})"/>
                         <label for="dateLoanRemb"><s:text name="loan.column.date.remb"/>&nbsp;<i class="fas fa-calendar"></i></label>
                         <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                     </div>
@@ -99,20 +100,18 @@
         </div>--%>
     </div>
     <div>
-        <s:if test="%{#lang}==true">
-            <s:if test="hasActionMessages()">
-                <script>
-					var message ='<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="loan.add.success"/></p>';
-					NotificationManager.displayNotification({message: message, type: 'success'})
-					FormManager.disableBtn({idButton: 'btnRegisterLoan'})
-                </script>
-            </s:if>
-            <s:if test="hasActionErrors()">
-                <script>
-					var message = '<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="loan.add.error"/></p>';
-					NotificationManager.displayNotification({message: message, type: 'error'})
-                </script>
-            </s:if>
+        <s:if test="hasActionMessages()">
+            <script>
+                var message ='<p><s:text name="loan.add.success"/></p><span class="icon icon-check"><i class="fa fa-bell" aria-hidden="true"></i></span>';
+                NotificationManager.displayNotification({message: message, type: 'success'})
+                FormManager.disableBtn({idButton: 'btnRegisterLoan'})
+            </script>
+        </s:if>
+        <s:if test="hasActionErrors()">
+            <script>
+                var message = '<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="loan.add.error"/></p>';
+                NotificationManager.displayNotification({message: message, type: 'error'})
+            </script>
         </s:if>
     </div>
 </div>

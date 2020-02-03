@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <s:include value="include/commons.jsp"/>
 
+
 </head>
 <body>
 <div class="container text-center">

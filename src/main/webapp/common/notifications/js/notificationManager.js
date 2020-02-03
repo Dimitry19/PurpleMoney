@@ -12,27 +12,27 @@ NotificationManager=function () {
         console.log(message);
         var notification = new NotificationFx({
             message : message,//'<span class="icon icon-megaphone"></span><p>'+message+'</p>',
-            layout : 'bar',// layout type: growl|attached|bar|other
-            effect : 'slidetop',
+            layout : 'growl',// layout type: growl|attached|bar|other	layout : 'other',
+            effect : 'jelly',//layout : 'jelly','slidetop',boxspinner,
             type : type, // notice,success,warning or error
             wrapper : document.body,
-            ttl : 6000,
+            ttl : 160000,
             onClose : function() { return false; },
             onOpen : function() {
                if(type==='error'){
-                   $(".ns-box").css("background", "#dc3545")
+                   $(".ns-box").css("background", "#ff6666")
                }
                 if(type==='success'){
-                    $(".ns-box").css("background", "#00c851")
+                    $(".ns-box").css("background", "#80ffa8")
                 }
                 if(type==='warning'){
-                    $(".ns-box").css("background", "#B47F87")
+                    $(".ns-box").css("background", "#ffff33")
                 }
             }
         });
         //setBackgroundNotification(type);
         notification.show();
-	    hide(toHide);
+	    //hide(toHide);
 
 
     }

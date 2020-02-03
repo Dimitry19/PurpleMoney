@@ -214,7 +214,7 @@ public class MemberBOImpl extends CommonBOImpl implements MemberBO {
 
 		List widgetDataInfos=new ArrayList();
 		Map widgetDataInfoMap=new HashMap();
-		Integer monthTmp=null;
+
 		if(mbr!=null){
 			Iterator iterator=mbr.getLoans().iterator();
 			while (iterator.hasNext()){
@@ -227,21 +227,26 @@ public class MemberBOImpl extends CommonBOImpl implements MemberBO {
 				Integer month=1+cal.get(Calendar.MONTH);
 				WidgetLoanInfoChartVO widgetDataInfo=null;
 
-				if(monthTmp==null || monthTmp!=month){
-					monthTmp=month;
+
+				if(widgetDataInfoMap.containsKey(month)){
+					widgetDataInfo=(WidgetLoanInfoChartVO)widgetDataInfoMap.get(month);
+					widgetDataInfoMap.remove(month);
+					widgetDataInfo.setAmount(widgetDataInfo.getAmount().add(loan.getAmountToBack()));
+				}else{
 					widgetDataInfo=new WidgetLoanInfoChartVO();
 					widgetDataInfo.setAmount(loan.getAmountToBack());
 					widgetDataInfo.setMonth(month);
-					widgetDataInfos.add(widgetDataInfo);
-					widgetDataInfoMap.put(month,widgetDataInfos);
 				}
-				if(monthTmp==month){
-					widgetDataInfos=(List)widgetDataInfoMap.get(month);
-					widgetDataInfoMap.remove(month);
+				widgetDataInfoMap.put(month,widgetDataInfo);
+			}
+			if(!widgetDataInfoMap.isEmpty()){
 
-					widgetDataInfo.setAmount(widgetDataInfo.getAmount().add(loan.getAmountToBack()));
-					widgetDataInfoMap.put(month,widgetDataInfos);
-					//TODO Gerer les chart info
+				Iterator iter = widgetDataInfoMap.entrySet().iterator();
+				while (iter.hasNext()) {
+					Map.Entry entry = (Map.Entry) iter.next();
+					System.out.println("[Key] : " + entry.getKey() + " [Value] : " + entry.getValue());
+					widgetDataInfos.add(entry.getValue());
+
 				}
 			}
 		}

@@ -70,7 +70,6 @@
         </div>--%>
     </div>
     <div>
-        <s:if test="%{#lang}==true">
             <s:if test="hasActionMessages()">
                 <script>
 					var message = '<span class="icon icon-megaphone"><i class="fa fa-bell" aria-hidden="true"></i></span><p><s:text name="loan.add.success"/></p>';
@@ -84,7 +83,6 @@
 					NotificationManager.displayNotification({message: message, type: 'error'})
                 </script>
             </s:if>
-        </s:if>
     </div>
 </div>
 <%@ include file="../../common/home/include/common-header-bottom.jsp" %>

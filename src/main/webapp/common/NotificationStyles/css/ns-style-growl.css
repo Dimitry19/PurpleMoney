@@ -1,8 +1,9 @@
 /* Growl-style notifications */
 .ns-growl {
 	top: 30px;
-	left: 30px;
-	max-width: 300px;
+	right: 30px;
+	max-width:500px;
+	width: 200px!important;
 	border-radius: 5px;
 }
 

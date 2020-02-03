@@ -120,7 +120,7 @@ public class LoanBOImpl extends CommonBOImpl implements LoanBO  {
 				}
 
 
-			}
+			}else{saved=false;}
 		}catch(Exception e){
 			log.error("Error save loan " +e.getMessage());
 			e.printStackTrace();

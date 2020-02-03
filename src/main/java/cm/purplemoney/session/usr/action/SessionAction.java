@@ -100,6 +100,7 @@ public class SessionAction extends BaseAction implements SessionAware,Preparable
 
 		if(sessionBO.addSession(amountSession)){
 			addActionMessage(getText("session.add.success"));
+			loadWidgetInfo(true);
 		}else{
 			addActionError(getText("session.add.error"));
 		}

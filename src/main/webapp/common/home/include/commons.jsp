@@ -83,5 +83,6 @@
 	<link  rel="stylesheet"  href="<s:url value="/common/css/datatable/customdatable.css"/>">
 
 	<title class="bg-success"><s:text name="common.page.title"/> </title>
+	<link href="http://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css">
 	<s:head /><!-- pour la validation-->
 

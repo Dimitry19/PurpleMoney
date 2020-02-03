@@ -20,6 +20,31 @@ LoanManager = function () {
 
     }
 
+	function checkDate(elt,jsonObj) {
+		console.log("checkDate");
+
+		var dateId = '#' + jsonObj.dateId;
+
+		var idForm = '#' + jsonObj.idForm;
+		var form = $(idForm)
+		var currentDate   = new Date($(elt).val());
+		var date2 = new Date($(dateId).val());
+		console.log(currentDate);
+		console.log(date2);
+		if (form[0].checkValidity() === false) {
+			event.preventDefault()
+			event.stopPropagation()
+		}
+
+		form.addClass('was-validated');
+/*
+* date1 > date2;  //false
+date1 < date2;  //true
+date1 >= date2; //false
+date1 <= date2; //true*/
+	}
+
+
 
 
 	function roundNumber(number, decimals) {
@@ -31,7 +56,10 @@ LoanManager = function () {
     return {
         calcolateAmountToBack:function(elt,jsonObj){
 	        calcolate(elt,jsonObj);
-        }
+        },
+	    checkDate:function (elt,jsonObj) {
+		    checkDate(elt,jsonObj);
+	    }
     }
 
 }();
