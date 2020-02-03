@@ -2,6 +2,7 @@ package cm.purplemoney.loan.ent.vo;
 
 import cm.purplemoney.constants.FieldConstants;
 import cm.purplemoney.constants.FilterConstants;
+import cm.purplemoney.members.ent.vo.MemberVO;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.Filters;
 import org.hibernate.annotations.Formula;
@@ -13,13 +14,15 @@ import java.util.Date;
 @Entity
 @Table(name = "LOANS", schema = "PUBLIC")
 @NamedQueries({
-		@NamedQuery(name = LoanVO.ALL, query = "select l from LoanVO l   order by id.mmember.id.name"),
+		@NamedQuery(name = LoanVO.ALL, query = "select l from LoanVO l   order by mmember.id.name"),
 })
 @Filters({
 		@Filter(name = FilterConstants.ASSOCIATION),
 		@Filter(name=FilterConstants.ACTIVE_MBR)
 })
 public class LoanVO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private LoanVOId id;
 	private Date loanDate;
@@ -29,23 +32,8 @@ public class LoanVO implements Serializable {
 	private BigDecimal amount;
 	private BigDecimal amountToBack;
 	private BigDecimal tax;
-
-
-
-	/*private String associationId;
-	@Basic(optional = false)
-	@Column(name="ID_ASSOCIATION", insertable=false, updatable=false)
-	public String getAssociationId() {
-		return associationId;
-	}
-
-	public void setAssociationId(String associationId) {
-		this.associationId = associationId;
-	}*/
-
-
-
 	private BigDecimal totalAmount;
+	private MemberVO mmember;
 
 
 	public static final String ALL = "cm.purplemoney.loan.ent.vo.LoanVO.All";
@@ -101,6 +89,18 @@ public class LoanVO implements Serializable {
 
 	}
 
+	@ManyToOne
+	@JoinColumns({
+			@JoinColumn(name = "R_MEMBER", referencedColumnName ="MNAME" ,insertable=false, updatable=false),
+			@JoinColumn(name = "ID_ASSOCIATION", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false)
+	})
+	public MemberVO getMmember() {
+		return mmember;
+	}
+
+	public void setMmember(MemberVO mmember) {
+		this.mmember = mmember;
+	}
 
 	public void setBalanced(boolean balanced) {
 		this.balanced = balanced;
@@ -148,4 +148,5 @@ public class LoanVO implements Serializable {
 	public void setAmountToBack(BigDecimal amountToBack) {
 		this.amountToBack = amountToBack;
 	}
+
 }

@@ -3,9 +3,12 @@ package cm.purplemoney.fund.ent.bo;
 import cam.common.CommonUtils;
 import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.association.ent.bo.AssociationBO;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.fund.ent.vo.FundVO;
+import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberIdVO;
+import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.role.ent.bo.RoleBO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import org.apache.commons.collections.CollectionUtils;
@@ -19,16 +22,18 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Component("fundBO")
-public class FundBOImpl implements FundBO {
+public class FundBOImpl extends CommonBOImpl implements FundBO {
 	private static final Logger log = LoggerFactory.getLogger(FundBOImpl.class);
 
-	@Resource(name = "hibernateConfig")
-	HibernateConfig hibernateConfig;
+	@Resource(name = "memberBO")
+	private MemberBO memberBO;
 
-	Session session;
+
 
 	@Override
 	public List funds() throws BusinessException {
@@ -36,9 +41,23 @@ public class FundBOImpl implements FundBO {
 		session=hibernateConfig.getSession();
 		Query query=session.getNamedQuery(FundVO.ALL);
 
-		List<FundVO> funds= null;
+		List<FundVO> funds= new ArrayList();
+		List<FundVO> fundsTmp= null;
 		try {
-			funds = query.list();
+			fundsTmp = query.list();
+			if(CollectionUtils.isNotEmpty(fundsTmp)){
+				Iterator iteratorFund=fundsTmp.iterator();
+
+				while(iteratorFund.hasNext()){
+					FundVO fundTmp=(FundVO)iteratorFund.next();
+					MemberVO member=memberBO.findMemberInfo(fundTmp.getId().getMmember(),fundTmp.getId().getAssociationId());
+					if(member!=null){
+						fundTmp.setMmember(member);
+						funds.add(fundTmp);
+					}
+
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,11 +79,11 @@ public class FundBOImpl implements FundBO {
 				session = hibernateConfig.getSession();
 				tx = session.beginTransaction();
 
-				if(fund!=null && StringUtils.isNotEmpty(fund.getId().getMmember().getId().getName())){
-					String usernameParts[] = fund.getId().getMmember().getId().getName().split(CommonUtils.COMMA_REGEX, 2);
-					fund.getId().getMmember().getId().setName(usernameParts[0]);
+				if(fund!=null && StringUtils.isNotEmpty(fund.getId().getMmember())){
+					String usernameParts[] = fund.getId().getMmember().split(CommonUtils.COMMA_REGEX, 2);
+					fund.getId().setMmember(usernameParts[0]);
 
-					session.saveOrUpdate(SessionVO.class.getName(), fund);
+					session.saveOrUpdate(FundVO.class.getName(), fund);
 					tx.commit();
 				}
 

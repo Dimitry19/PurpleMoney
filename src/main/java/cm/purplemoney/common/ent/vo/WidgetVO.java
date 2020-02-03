@@ -4,6 +4,7 @@ import be.ceau.chart.BarChart;
 import be.ceau.chart.color.Color;
 import be.ceau.chart.data.BarData;
 import be.ceau.chart.dataset.BarDataset;
+import cm.purplemoney.loan.ent.vo.LoanVO;
 import cm.purplemoney.loan.wrapper.Loan;
 
 import java.io.Serializable;

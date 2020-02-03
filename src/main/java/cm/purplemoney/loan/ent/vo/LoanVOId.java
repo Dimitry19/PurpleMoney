@@ -1,7 +1,5 @@
 package cm.purplemoney.loan.ent.vo;
 
-
-import cm.purplemoney.members.ent.vo.MemberVO;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -10,8 +8,9 @@ import java.math.BigInteger;
 public class LoanVOId implements Serializable {
 
 	private BigInteger id;
-	//private String association;
-	private MemberVO mmember;
+	private String associationId;
+	private String mmember;
+
 
 	public LoanVOId() {
 	}
@@ -24,27 +23,25 @@ public class LoanVOId implements Serializable {
 	public void setId(BigInteger id) {
 		this.id = id;
 	}
-/*
+
 	@Basic(optional = false)
-	@Column(name="ID_ASSOCIATION", nullable = false,length = FieldConstants.ID_STD_LEN)
-	public String getAssociation() {
-		return association;
+	@Column(name = "ID_ASSOCIATION")
+	public String getAssociationId() {
+		return associationId;
 	}
 
-	public void setAssociation(String association) {
-		this.association = association;
+	public void setAssociationId(String associationId) {
+		this.associationId = associationId;
 	}
-*/
-	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name = "R_MEMBER",       referencedColumnName ="MNAME" ,        insertable=false, updatable=false),
-		@JoinColumn(name = "ID_ASSOCIATION", referencedColumnName = "R_ASSOCIATION",insertable=false, updatable=false)
-	})
-	public MemberVO getMmember() {
+	@Basic(optional = false)
+	@Column(name = "R_MEMBER")
+	public String getMmember() {
 		return mmember;
 	}
 
-	public void setMmember(MemberVO member) {
-		this.mmember = member;
+	public void setMmember(String mmember) {
+		this.mmember = mmember;
 	}
+
+
 }

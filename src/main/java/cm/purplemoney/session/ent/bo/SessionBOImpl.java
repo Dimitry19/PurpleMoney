@@ -4,6 +4,7 @@ package cm.purplemoney.session.ent.bo;
 import cam.common.CommonUtils;
 import cam.common.date.utils.DateUtils;
 import cam.libraries.component.ent.vo.BusinessException;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.session.ent.vo.SessionVO;
 import cm.purplemoney.session.ent.wrapper.SessionSearchWr;
@@ -25,7 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component("sessionBO")
-public class SessionBOImpl implements SessionBO {
+public class SessionBOImpl extends CommonBOImpl implements SessionBO {
 
     private static final Logger log = LoggerFactory.getLogger(SessionBOImpl.class);
 

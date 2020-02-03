@@ -6,6 +6,7 @@ import cam.libraries.component.ent.vo.BusinessException;
 import cam.sql.SQLUtils;
 import cm.purplemoney.association.ent.bo.AssociationBO;
 import cm.purplemoney.association.ent.vo.AssociationVO;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.common.ent.vo.WidgetFrequenceInfoChartVO;
 import cm.purplemoney.common.ent.vo.WidgetLoanInfoChartVO;
 import cm.purplemoney.common.ent.vo.WidgetVO;
@@ -35,11 +36,9 @@ import java.util.*;
 
 
 @Component("memberBO")
-public class MemberBOImpl implements MemberBO {
+public class MemberBOImpl extends CommonBOImpl implements MemberBO {
 	private static final Logger log = LoggerFactory.getLogger(MemberBOImpl.class);
 
-	@Resource(name = "hibernateConfig")
-	HibernateConfig hibernateConfig;
 
 	@Resource(name = "roleBO")
 	RoleBO roleBO;
@@ -52,7 +51,7 @@ public class MemberBOImpl implements MemberBO {
 	@Resource(name = "sessionBO")
 	SessionBO sessionBO;
 
-	Session session;
+
 
 
 
@@ -199,8 +198,8 @@ public class MemberBOImpl implements MemberBO {
 		WidgetFrequenceInfoChartVO wfic=null;
 		if(sess!=null){
 			  wfic=new WidgetFrequenceInfoChartVO();
-			Integer pres=sess.getFrequencePresence()*100/PortalConstants.DEFAULT_SESSION_NUMBER;
-			Integer abs=sess.getFrequenceAbsence()*100/PortalConstants.DEFAULT_SESSION_NUMBER;
+			Integer pres=sess.getFrequencePresence()!=null?sess.getFrequencePresence()*100/PortalConstants.DEFAULT_SESSION_NUMBER:0;
+			Integer abs=sess.getFrequenceAbsence()!=null?sess.getFrequenceAbsence()*100/PortalConstants.DEFAULT_SESSION_NUMBER:0;
 			Integer rest=100-(pres+abs);
 			wfic.setRest(rest);
 			wfic.setPresence(pres);
@@ -214,20 +213,36 @@ public class MemberBOImpl implements MemberBO {
 	private List retrieveWidgetDataInfo(MemberVO mbr){
 
 		List widgetDataInfos=new ArrayList();
+		Map widgetDataInfoMap=new HashMap();
+		Integer monthTmp=null;
 		if(mbr!=null){
 			Iterator iterator=mbr.getLoans().iterator();
 			while (iterator.hasNext()){
 				LoanVO loan=(LoanVO)iterator.next();
-				WidgetLoanInfoChartVO widgetDataInfo=new WidgetLoanInfoChartVO();
+
 
 				Date date=loan.getLoanDate();
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
-				//widgetDataInfo.setYear(cal.get(Calendar.YEAR));
-				widgetDataInfo.setMonth(1+cal.get(Calendar.MONTH));
-				//widgetDataInfo.setDate(date);
-				widgetDataInfo.setAmount(loan.getAmountToBack());
-				widgetDataInfos.add(widgetDataInfo);
+				Integer month=1+cal.get(Calendar.MONTH);
+				WidgetLoanInfoChartVO widgetDataInfo=null;
+
+				if(monthTmp==null || monthTmp!=month){
+					monthTmp=month;
+					widgetDataInfo=new WidgetLoanInfoChartVO();
+					widgetDataInfo.setAmount(loan.getAmountToBack());
+					widgetDataInfo.setMonth(month);
+					widgetDataInfos.add(widgetDataInfo);
+					widgetDataInfoMap.put(month,widgetDataInfos);
+				}
+				if(monthTmp==month){
+					widgetDataInfos=(List)widgetDataInfoMap.get(month);
+					widgetDataInfoMap.remove(month);
+
+					widgetDataInfo.setAmount(widgetDataInfo.getAmount().add(loan.getAmountToBack()));
+					widgetDataInfoMap.put(month,widgetDataInfos);
+					//TODO Gerer les chart info
+				}
 			}
 		}
 		return widgetDataInfos;

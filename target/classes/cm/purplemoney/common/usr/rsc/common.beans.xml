@@ -97,7 +97,6 @@
 				<value>cm.purplemoney.session.ent.vo.SessionIdVO</value>
 				<value>cm.purplemoney.session.ent.vo.SessionVO</value>
 				<value>cm.purplemoney.group.ent.vo.GroupVO</value>
-				<value>cm.purplemoney.found.ent.vo.FoundVO</value>
 				<value>cm.purplemoney.profile.ent.vo.AuthUserVO</value>
 				<value>cm.purplemoney.role.ent.vo.RoleVO</value>
 				<value>cm.purplemoney.role.ent.vo.RoleVOId</value>

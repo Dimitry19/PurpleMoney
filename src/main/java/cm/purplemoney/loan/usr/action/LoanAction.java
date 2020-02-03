@@ -6,6 +6,7 @@ import cm.purplemoney.association.ent.vo.AssociationVO;
 import cm.purplemoney.common.usr.action.BaseAction;
 import cm.purplemoney.constants.PortalConstants;
 import cm.purplemoney.loan.ent.bo.LoanBO;
+import cm.purplemoney.loan.ent.vo.LoanVO;
 import cm.purplemoney.loan.ent.vo.LoanWrapper;
 import cm.purplemoney.members.ent.bo.MemberBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
@@ -44,7 +45,7 @@ public class LoanAction extends BaseAction implements Preparable {
 	@Resource(name="loanBO")
 	private LoanBO loanBO;
 
-	private LoanWrapper loanWr;
+	private LoanVO loan;
 	private AssociationVO associationCurrent;
 
 
@@ -58,6 +59,21 @@ public class LoanAction extends BaseAction implements Preparable {
 		tax=PortalConstants.DEFAULT_TAX_NUMBER;
 	}
 
+	public void validate(){
+		if (log.isDebugEnabled()){
+			debugMessageCall();
+		}
+		if(loan!=null){
+			if (StringUtils.isEmpty(loan.getId().getMmember())) {
+				addFieldError("userSearch.id.name", getText("common.member.search.error.username"));
+			}
+
+			if (StringUtils.isEmpty(loan.getId().getAssociationId())) {
+				addFieldError("userSearch.association", getText("common.member.search.error.association"));
+			}
+		}
+
+	}
 	public String execute() {
 
 		if (log.isDebugEnabled()){
@@ -69,7 +85,7 @@ public class LoanAction extends BaseAction implements Preparable {
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
-		loanBO.loans();
+		loans=loanBO.loans();
 		return SUCCESS;
 	}
 
@@ -77,7 +93,8 @@ public class LoanAction extends BaseAction implements Preparable {
 		if (log.isDebugEnabled()){
 			debugMessageCall();
 		}
-		if(loanBO.addLoan(loanWr)){
+
+		if(loanBO.addLoan(loan,getCurrentLocale())){
 			addActionMessage(getText("loan.add.success"));
 			loadWidgetInfo(true);
 		}else{
@@ -96,12 +113,12 @@ public class LoanAction extends BaseAction implements Preparable {
 		this.loans = loans;
 	}
 
-	public LoanWrapper getLoanWr() {
-		return loanWr;
+	public LoanVO getLoan() {
+		return loan;
 	}
 
-	public void setLoanWr(LoanWrapper loanWr) {
-		this.loanWr = loanWr;
+	public void setLoan(LoanVO loan) {
+		this.loan = loan;
 	}
 
 	public AssociationVO getAssociationCurrent() {

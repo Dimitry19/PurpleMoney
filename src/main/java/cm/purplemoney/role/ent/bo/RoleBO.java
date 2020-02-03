@@ -1,12 +1,13 @@
 package cm.purplemoney.role.ent.bo;
 
 import cam.libraries.component.ent.vo.BusinessException;
+import cm.purplemoney.common.ent.bo.CommonBO;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.role.ent.vo.RoleVO;
 
 import java.util.List;
 
-public interface RoleBO {//extends GenericBO<AmountVO,AmountIdVO,String>  {
+public interface RoleBO extends CommonBO {//extends GenericBO<AmountVO,AmountIdVO,String>  {
 
 
     public List<RoleVO> loadAllRoles() throws BusinessException;

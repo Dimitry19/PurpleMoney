@@ -15,6 +15,7 @@
 		</action>
 		<action name="saveFundAction" class="fundAction" method="addFund">
 			<result name="success">/fund/pages/addFund.jsp</result>
+			<result name="input">/common/home/tables.jsp</result>
 		</action>
 	</package>
 </struts>

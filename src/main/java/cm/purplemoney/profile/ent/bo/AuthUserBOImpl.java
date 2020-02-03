@@ -2,6 +2,7 @@ package cm.purplemoney.profile.ent.bo;
 
 import cam.libraries.component.ent.vo.BusinessException;
 import cam.security.password.PasswordUtils;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.profile.ent.vo.AuthUserVO;
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Component("authUserBO")
-public class AuthUserBOImpl implements AuthUserBO{
+public class AuthUserBOImpl extends CommonBOImpl implements AuthUserBO{
 
 	@Resource(name = "hibernateConfig")
 	HibernateConfig hibernateConfig;
@@ -24,6 +25,7 @@ public class AuthUserBOImpl implements AuthUserBO{
 
 
 		String cryptedPassword=PasswordUtils.getInstance().passwordHashed(password);
+		System.out.println(cryptedPassword);
 		session= hibernateConfig.getSession();
 		Query query=session.createQuery("from AuthUserVO where username =:uName and password=:pwd");
 

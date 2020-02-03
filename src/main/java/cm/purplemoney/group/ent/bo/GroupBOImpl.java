@@ -1,5 +1,6 @@
 package cm.purplemoney.group.ent.bo;
 
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.group.ent.vo.GroupVO;
 import org.hibernate.Query;
@@ -11,15 +12,13 @@ import java.util.List;
 
 
 @Component("groupBO")
-public class GroupBOImpl  implements GroupBO {
+public class GroupBOImpl  extends CommonBOImpl implements GroupBO {
 
-    @Resource(name ="hibernateConfig")
-    HibernateConfig hibernateConfig;
-    Session session;
+
 
     public List<GroupVO> loadAllGroups() {
 
-          session=hibernateConfig.getSession();
+        session=hibernateConfig.getSession();
         Query query=session.createQuery("from GroupVO");
         return query.list();
     }

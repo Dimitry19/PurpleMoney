@@ -23,7 +23,7 @@
                 <div class="md-form">
                     <s:textfield id="userFundAssociation" type="text" value="%{associationCurrent.description}"  class="form-control form-control-login" readonly="true"/>
                     <label for="userFundAssociation"><s:text name="member.label.association"/></label>
-                    <s:hidden name="fund.id.mmember.id.associationId" value="%{associationCurrent.id.id}"/>
+                    <s:hidden name="fund.id.associationId" value="%{associationCurrent.id.id}"/>
                 </div>
                 <div class="md-form"></div>
                 <div class="md-form">
@@ -38,12 +38,10 @@
                             headerValue="%{getText('common.login.group.tooltip')}"
                     />
                     <s:hidden name="fund.id.mmember"/>
-                    <s:hidden name="fund.id.id" value="4"/>
                 </div>
                 <div class="md-form">
                     <s:textfield id="amountFund" name="fund.amount" value="%{associationCurrent.amount}"
                                  required="true" type="number"
-                                 onchange="FundManager.calcolateAmountToBack(this,{taxLoan:'taxLoan', totalLoan:'totalLoan'})"
                                  pattern="^\d+(\.\d{1,2})?$" class="form-control"/>
                     <label for="amountFund"><s:text name="session.label.amount"/>&nbsp;<i class="fas fa-euro-sign"></i></label>
                     <div class="invalid-feedback"><s:text name="session.money.error"/></div>
@@ -100,6 +98,7 @@
 <script>
 	var lng = '<s:property  value="%{#lang}" />';
 	FormManager.validationForm({idForm: 'formRegisterFund', idSubmit: 'btnRegisterFund'})
+	FormManager.blockResendForm()
 	DataPickerManager.enable({id: 'dateFund', lang: lng, alternate: 'alternate-dateFund'});
 	Select2Manager.autocomlete({lang: lng, idForm: 'formRegisterFund', button:'btnRegisterFund',type: 'member', url: "autocompleteMember.do"});
 

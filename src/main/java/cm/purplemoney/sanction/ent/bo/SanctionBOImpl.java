@@ -2,6 +2,7 @@ package cm.purplemoney.sanction.ent.bo;
 
 import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.association.ent.bo.AssociationBO;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.members.ent.vo.MemberVO;
 import cm.purplemoney.role.ent.bo.RoleBO;
@@ -18,7 +19,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Component("sanctionBO")
-public class SanctionBOImpl implements SanctionBO {
+public class SanctionBOImpl extends CommonBOImpl implements SanctionBO {
     private static final Logger log = LoggerFactory.getLogger(SanctionBOImpl.class);
 
     @Resource(name = "hibernateConfig")

@@ -68,7 +68,7 @@ public class FundAction extends BaseAction implements Preparable {
 		}
 		if(fund!=null) {
 			showNotification=false;
-			if (StringUtils.isEmpty(fund.getId().getMmember().getId().getName())) {
+			if (StringUtils.isEmpty(fund.getId().getMmember())) {
 				addActionError(getText("session.add.member.error"));
 			}
 			if (fund.getDate()==null){
@@ -88,6 +88,7 @@ public class FundAction extends BaseAction implements Preparable {
 
 		// TODO Controller pourquoi ca ne passe par ici
 		if(fundBO.addFund(fund)){
+			loadWidgetInfo(true);
 			addActionMessage(getText("loan.add.success"));
 
 		}else{

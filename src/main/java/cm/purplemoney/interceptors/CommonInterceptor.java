@@ -44,9 +44,10 @@ public class CommonInterceptor implements Interceptor {
 		}
 
 
-		if ((sessionAttributes==null && sessionAttributes.get(CURRENT_USER)==null)){
+		if (sessionAttributes==null ){
 			 return LOGIN_REDIRECT;
 		}
+
 
 		return actionInvocation.invoke();
 	}

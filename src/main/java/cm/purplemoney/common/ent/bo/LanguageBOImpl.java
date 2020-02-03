@@ -11,10 +11,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Component("languageBO")
-public class LanguageBOImpl implements LanguageBO{
-    @Resource(name ="hibernateConfig")
-    HibernateConfig hibernateConfig;
-    Session session;
+public class LanguageBOImpl extends CommonBOImpl implements LanguageBO{
+
 
     @Override
     public List loadAllLanguages() throws BusinessException {

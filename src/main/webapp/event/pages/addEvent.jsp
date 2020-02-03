@@ -80,6 +80,7 @@
 	FormManager.validationForm({idForm: 'formEventAdd',idSubmit:'btnAddEvent'})
 	var lng='<s:property  value="%{#lang}" />';
 	DataPickerManager.enable({id: 'eventDate',lang:lng})
+	FormManager.blockResendForm()
 	Select2Manager.autocomlete({lang:lng,idForm:'formEventAdd', button:'btnAddEvent',type:'member', url:"autocompleteMember.do"});
 </script>
 </body>

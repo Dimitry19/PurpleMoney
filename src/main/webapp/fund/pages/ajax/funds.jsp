@@ -33,8 +33,8 @@
 					<s:iterator value="funds" status="userStatus">
 						<tr>
 							<td></td>
-							<td><s:property value="id.mmember.id.name"/></td>
-							<td><s:property value="id.mmember.surname"/></td>
+							<td><s:property value="mmember.id.name"/></td>
+							<td><s:property value="mmember.surname"/></td>
 							<td><s:property value="amount"/>€</td>
 							<td><s:date name="date" format="dd/MM/yyyy" /></td>
 						</tr>

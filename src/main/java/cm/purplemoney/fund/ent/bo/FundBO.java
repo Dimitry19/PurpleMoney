@@ -1,6 +1,7 @@
 package cm.purplemoney.fund.ent.bo;
 
 import cam.libraries.component.ent.vo.BusinessException;
+import cm.purplemoney.common.ent.bo.CommonBO;
 import cm.purplemoney.fund.ent.vo.FundVO;
 import cm.purplemoney.loan.ent.vo.LoanVO;
 import cm.purplemoney.loan.ent.vo.LoanWrapper;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 
-public interface FundBO {
+public interface FundBO extends CommonBO {
 
 	List funds() throws BusinessException;
 	boolean addFund(FundVO fund) throws BusinessException;

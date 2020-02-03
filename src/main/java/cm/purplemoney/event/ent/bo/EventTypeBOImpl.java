@@ -1,6 +1,7 @@
 package cm.purplemoney.event.ent.bo;
 
 import cam.libraries.component.ent.vo.BusinessException;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.event.ent.vo.EventTypeVO;
 import org.hibernate.Query;
@@ -15,7 +16,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Component("eventTypeBO")
-public class EventTypeBOImpl implements EventTypeBO {
+public class EventTypeBOImpl extends CommonBOImpl implements EventTypeBO {
 
     private static final Logger log = LoggerFactory.getLogger(EventTypeBOImpl.class);
 

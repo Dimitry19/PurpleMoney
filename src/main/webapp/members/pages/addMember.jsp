@@ -89,7 +89,7 @@
                             <%--<s:radio label="%{getText('member.label.gender')}" list="#{'F':'  Female','M':'  Male'}" name="userAdding.sex"  class="radio-inline" multiple="false"></s:radio>--%>
                     </div>
                 <div class="md-form">
-                    <s:submit type="button" id="btnRegister" disabled="true"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-user-plus" aria-disabled="true"></i>&nbsp; <s:text name="common.label.add"/></s:submit>
+                    <s:submit type="button" id="btnRegister" disabled="false"  class="btn  btn-md btn-login-button btn-outline-primary waves-effect save-btn"><i class="fa fa-user-plus" aria-disabled="true"></i>&nbsp; <s:text name="common.label.add"/></s:submit>
                 </div>
             </s:form>
         </div>
@@ -119,6 +119,7 @@
 <script>
 	var lng='<s:property  value="%{#lang}" />';
     FormManager.validationForm({idForm: 'formRegister',idSubmit:'btnRegister'})
+	FormManager.blockResendForm()
 	Select2Manager.autocomlete({lang:lng,idForm:'formRegister', type:'role', url:"autocompleteRole.do"});
 </script>
 <script>

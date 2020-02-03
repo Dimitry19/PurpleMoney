@@ -16,7 +16,7 @@ LoanManager = function () {
 
 	    var totalLoan= +roundNumber(importo,12)+roundNumber(tax,12);
 
-	   $('input[name="loanWr.loan.amountToBack"]').val(totalLoan);
+	   $('input[name="loan.amountToBack"]').val(totalLoan);
 
     }
 

@@ -12,8 +12,8 @@ import java.math.BigInteger;
 public class FundVOId implements Serializable {
 
 	private BigInteger id;
-
-	private MemberVO mmember;
+	private String mmember;
+	private String associationId;
 
 	public FundVOId() {
 	}
@@ -28,7 +28,7 @@ public class FundVOId implements Serializable {
 	}
 
 
-	@OneToOne(fetch = FetchType.EAGER)
+/*	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumns({
 			@JoinColumn(name = "ID_ASSOCIATION", referencedColumnName = "R_ASSOCIATION", insertable = false,updatable = false),
 			@JoinColumn(name = "R_MEMBER", referencedColumnName ="MNAME",insertable = false,updatable = false)
@@ -39,5 +39,25 @@ public class FundVOId implements Serializable {
 
 	public void setMmember(MemberVO mmember) {
 		this.mmember = mmember;
+	}*/
+
+	@Basic(optional = false)
+	@Column(name = "R_MEMBER")
+	public String getMmember() {
+		return mmember;
+	}
+
+	public void setMmember(String mmember) {
+		this.mmember = mmember;
+	}
+
+	@Basic(optional = false)
+	@Column(name = "ID_ASSOCIATION")
+	public String getAssociationId() {
+		return associationId;
+	}
+
+	public void setAssociationId(String associationId) {
+		this.associationId = associationId;
 	}
 }

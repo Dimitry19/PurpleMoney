@@ -41,8 +41,8 @@
 					<s:iterator value="loans" status="userStatus">
 						<tr>
 							<td></td>
-							<td><s:property value="id.mmember.id.name"/></td>
-							<td><s:property value="id.mmember.surname"/></td>
+							<td><s:property value="mmember.id.name"/></td>
+							<td><s:property value="mmember.surname"/></td>
 							<td><s:property value="amount"/>€</td>
 							<s:if test="extended==true">
 								<td><s:property value="getText('member.column.active.YES')"/></td>

@@ -2,6 +2,7 @@ package cm.purplemoney.event.ent.bo;
 
 import cam.common.CommonUtils;
 import cam.libraries.component.ent.vo.BusinessException;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.event.ent.vo.EventVO;
 import org.hibernate.Query;
@@ -19,14 +20,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 @Component("eventBO")
-public class EventBOImpl implements EventBO {
+public class EventBOImpl extends CommonBOImpl implements EventBO {
 
 
     private static final Logger log = LoggerFactory.getLogger(EventTypeBOImpl.class);
 
-    @Resource(name = "hibernateConfig")
-    HibernateConfig hibernateConfig;
-    Session session;
 
 
     @Override

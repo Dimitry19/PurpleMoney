@@ -3,7 +3,12 @@ package cm.purplemoney.loan.ent.bo;
 import cam.common.CommonUtils;
 import cam.libraries.component.ent.vo.BusinessException;
 import cm.purplemoney.association.ent.bo.AssociationBO;
+import cm.purplemoney.common.ent.bo.CommonBO;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.config.HibernateConfig;
+import cm.purplemoney.event.ent.bo.EventBO;
+import cm.purplemoney.event.ent.vo.EventTypeVO;
+import cm.purplemoney.event.ent.vo.EventVO;
 import cm.purplemoney.loan.ent.vo.LoanVO;
 import cm.purplemoney.loan.ent.vo.LoanWrapper;
 import cm.purplemoney.members.ent.vo.MemberVO;
@@ -22,19 +27,17 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Component("loanBO")
-public class LoanBOImpl implements LoanBO {
+public class LoanBOImpl extends CommonBOImpl implements LoanBO  {
 	private static final Logger log = LoggerFactory.getLogger(LoanBOImpl.class);
 
-	@Resource(name = "hibernateConfig")
-	HibernateConfig hibernateConfig;
 
 	@Resource(name = "roleBO")
 	RoleBO roleBO;
 
-	@Resource(name = "associationBO")
-	AssociationBO associationBO;
+	@Resource(name = "eventBO")
+	EventBO eventBO;
 
-	Session session;
+
 
 	@Override
 	public List loans() throws BusinessException {
@@ -57,7 +60,7 @@ public class LoanBOImpl implements LoanBO {
 	public boolean addLoan(LoanWrapper loanWrapper) throws BusinessException {
 
 		Transaction tx =null;
-		boolean saved=true;
+
 
 		try{
 
@@ -65,13 +68,21 @@ public class LoanBOImpl implements LoanBO {
 				session = hibernateConfig.getSession();
 				tx = session.beginTransaction();
 				LoanVO loan=loanWrapper.getLoan();
-				if(loan!=null && StringUtils.isNotEmpty(loan.getId().getMmember().getId().getName())){
-					String usernameParts[] = loan.getId().getMmember().getId().getName().split(CommonUtils.COMMA_REGEX, 2);
-					loan.getId().getMmember().getId().setName(usernameParts[0]);
+				if(loan!=null && StringUtils.isNotEmpty(loan.getMmember().getId().getName())){
+					String usernameParts[] = loan.getMmember().getId().getName().split(CommonUtils.COMMA_REGEX, 2);
+					loan.getMmember().getId().setName(usernameParts[0]);
 					BigDecimal importo=loan.getAmount().multiply(loan.getTax()).divide(new BigDecimal(100));
 					loan.setAmountToBack(importo);
 					session.saveOrUpdate(SessionVO.class.getName(), loan);
+
+					EventVO event=new EventVO();
+					event.setEventType("RBM/fr");
+					event.setMember(loan.getId().getMmember());
+					event.setAssociationId(loan.getId().getAssociationId());
+					event.setData(loan.getLoanDateRemb());
+					eventBO.addEvent(event);
 					tx.commit();
+					  saved=true;
 				}
 
 
@@ -80,10 +91,63 @@ public class LoanBOImpl implements LoanBO {
 			log.error("Error save loan " +e.getMessage());
 			e.printStackTrace();
 			tx.rollback();
-			saved=false;
+		}
 
+		return saved;
+
+	}
+	@Override
+	public boolean addLoan(LoanVO loan, String language) throws BusinessException {
+
+		Transaction tx =null;
+
+
+		try{
+
+			if(loan!=null) {
+				session = hibernateConfig.getSession();
+				tx = session.beginTransaction();
+
+				if(loan!=null && StringUtils.isNotEmpty(loan.getId().getMmember())){
+					String usernameParts[] = loan.getId().getMmember().split(CommonUtils.COMMA_REGEX, 2);
+					loan.getMmember().getId().setName(usernameParts[0]);
+					BigDecimal importo=loan.getAmount().multiply(loan.getTax()).divide(new BigDecimal(100));
+					loan.setAmountToBack(importo);
+					session.saveOrUpdate(LoanVO.class.getName(), loan);
+					addEvent(loan,language);
+					tx.commit();
+					saved=true;
+				}
+
+
+			}
+		}catch(Exception e){
+			log.error("Error save loan " +e.getMessage());
+			e.printStackTrace();
+			tx.rollback();
 		}
 		return saved;
 
+	}
+
+	private void addEvent(LoanVO loan, String language) throws BusinessException {
+		EventVO event=new EventVO();
+		switch (language.charAt(0)){
+			case 'e':
+				event.setEventType("RBM/en");
+				break;
+			case 'i':
+				event.setEventType("RBM/it");
+				break;
+			case 'f':
+				event.setEventType("RBM/fr");
+				break;
+
+		}
+		event.setMember(loan.getId().getMmember());
+		event.setAssociationId(loan.getId().getAssociationId());
+		event.setData(loan.getLoanDateRemb());
+
+		eventBO.addEvent(event);
 	}
 }

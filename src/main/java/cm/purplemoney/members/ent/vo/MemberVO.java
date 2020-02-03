@@ -62,7 +62,8 @@ public class MemberVO implements Serializable{
 	private Set<LoanVO> loans= new HashSet<LoanVO>();
 	private Set<SessionVO> sessions= new HashSet<SessionVO>();
 	private EventVO event;
-	//private FundVO fund;
+	private Set<FundVO> funds=new HashSet<FundVO>();
+
 
 	public static final String Q_AC_ITEM = "cm.purplemoney.members.ent.vo.MemberVO.QAutocompleteItem";
 	public static final String ALL = "cm.purplemoney.members.ent.vo.MemberVO.All";
@@ -148,7 +149,7 @@ public class MemberVO implements Serializable{
 		return sessions;
 	}
 
-	@OneToMany(mappedBy = "id.mmember",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "mmember",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("amount  DESC")
 	public Set<LoanVO> getLoans() {
 		return loans;
@@ -167,6 +168,16 @@ public class MemberVO implements Serializable{
 		this.fund = fund;
 	}
 */
+	@OneToMany(mappedBy = "mmember",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("date  DESC")
+	public Set<FundVO> getFunds() {
+		return funds;
+	}
+
+	public void setFunds(Set<FundVO> funds) {
+		this.funds = funds;
+	}
+
 	public void setLoans(Set<LoanVO> loans) {
 		this.loans = loans;
 	}

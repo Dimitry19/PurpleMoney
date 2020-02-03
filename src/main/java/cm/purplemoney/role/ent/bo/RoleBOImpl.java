@@ -2,6 +2,7 @@ package cm.purplemoney.role.ent.bo;
 
 import cam.libraries.component.ent.vo.BusinessException;
 import cam.sql.SQLUtils;
+import cm.purplemoney.common.ent.bo.CommonBOImpl;
 import cm.purplemoney.config.HibernateConfig;
 import cm.purplemoney.constants.PortalConstants;
 import cm.purplemoney.members.ent.enums.SexEnum;
@@ -17,7 +18,7 @@ import java.util.List;
 
 
 @Component("roleBO")
-public class RoleBOImpl implements RoleBO {
+public class RoleBOImpl extends CommonBOImpl implements RoleBO {
 
     @Resource(name ="hibernateConfig")
     HibernateConfig hibernateConfig;

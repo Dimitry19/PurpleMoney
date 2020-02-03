@@ -1,4 +1,6 @@
 package cm.purplemoney.mail.ent.bo;
 
-public interface MailBO  {
+import cm.purplemoney.common.ent.bo.CommonBO;
+
+public interface MailBO  extends CommonBO {
 }
