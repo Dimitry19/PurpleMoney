@@ -40,10 +40,15 @@
                                         <label for="amountSession"><s:text name="session.label.amount"/>&nbsp;<i class="fas fa-euro-sign"></i></label>
                                         <div class="invalid-feedback"><s:text name="session.money.error"/></div>
                                     </div>
-                                    <div class="md-form">
-                                        <s:textfield id="dateSession" name="amountSession.id.date"   required="true"   onchange=" FormManager.enableBtn({idButton:'btnAddSession',idField:'membersNames'})" class="form-control"/>
-                                        <label for="dateSession"><s:text name="common.label.date"/>&nbsp;<i class="fas fa-calendar"></i></label>
-                                        <div class="invalid-feedback"><s:text name="session.date.error"/></div>
+                                    <div class="row">
+                                        <div class="md-form form-sm col-sm-6">
+                                            <s:textfield id="dateSession" name="amountSession.id.date" required="true"   onchange=" FormManager.enableBtn({idButton:'btnAddSession',idField:'membersNames'})" class="form-control"/>
+                                            <label for="dateSession"><s:text name="common.label.date"/>&nbsp;<i class="fas fa-calendar"></i></label>
+                                            <div class="invalid-feedback"><s:text name="session.date.error"/></div>
+                                        </div>
+                                        <div class="md-form form-sm col-sm-6">
+                                            <s:textfield id="alternate-dateSession" size="30" readonly="true" class="form-control"/>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-sm col-sm-1">
@@ -90,8 +95,7 @@
                         </div>
                     </div>
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<%@ include file="../../common/home/include/common-jquery-ui-widget.jsp" %>
 <%--<script src="<s:url value="/common/js/jquery-ui1.12.1.js"/>"></script>
 <script src="<s:url value="/common/js/jquery-1.12.4.js"/>"></script>--%>
 <script src="<s:url value="/common/js/form.js"/>"></script>
@@ -102,7 +106,7 @@
 <script>
 	var lng='<s:property  value="%{#lang}" />';
 	FormManager.validationForm({idForm: 'formAddAmount',idSubmit:'btnAddSession'})
-	DataPickerManager.enable({id: 'dateSession',lang:lng,alternate:'d'});
+	DataPickerManager.init({idFrom: 'dateSession',alternateFrom: 'alternate-dateSession', lang: lng})
 	Select2Manager.autocomlete({lang:lng,idForm:'formAddSession', button:'btnAddSession',type:'member', url:"autocompleteMember.do"});
 </script>
 </body>

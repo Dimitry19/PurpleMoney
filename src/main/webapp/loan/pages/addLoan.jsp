@@ -61,7 +61,7 @@
                 </div>
                 <div class="row">
                     <div class="md-form form-sm col-sm-6">
-                        <s:textfield id="dateLoanRemb" name="loan.loanDateRemb" required="true" class="form-control" onchange="LoanManager.checkDate(this,{dateId:'dateLoan',idForm:'formRegisterLoan'})"/>
+                        <s:textfield id="dateLoanRemb" name="loan.loanDateRemb" required="true" class="form-control"/>
                         <label for="dateLoanRemb"><s:text name="loan.column.date.remb"/>&nbsp;<i class="fas fa-calendar"></i></label>
                         <div class="invalid-feedback"><s:text name="session.date.error"/></div>
                     </div>
@@ -116,10 +116,7 @@
     </div>
 </div>
 <%@ include file="../../common/home/include/common-header-bottom.jsp" %>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<%--<script src="<s:url value="/common/js/jquery-ui1.12.1.js"/>"></script>
-<script src="<s:url value="/common/js/jquery-1.12.4.js"/>"></script>--%>
+<%@ include file="../../common/home/include/common-jquery-ui-widget.jsp" %>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
 <script src="<s:url value="/loan/js/LoanManager.js"/>"></script>
@@ -129,8 +126,7 @@
 	FormManager.validationForm({idForm: 'formRegisterLoan', idSubmit: 'btnRegisterLoan'})
 	FormManager.onChecked({id: 'isBalanced'})
 	FormManager.blockResendForm()
-	DataPickerManager.enable({id: 'dateLoan', lang: lng, alternate: 'alternate-dateLoan'});
-	DataPickerManager.enable({id: 'dateLoanRemb', lang: lng, alternate: 'alternate-dateLoanRemb'});
+	DataPickerManager.init({idFrom: 'dateLoan',idTo: 'dateLoanRemb', lang: lng, alternateFrom: 'alternate-dateLoan',alternateTo: 'alternate-dateLoanRemb'})
 	Select2Manager.autocomlete({lang: lng, idForm: 'formRegisterLoan', button:'btnRegisterLoan',type: 'member', url: "autocompleteMember.do"});
 
 </script>

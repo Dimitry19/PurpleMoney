@@ -39,11 +39,16 @@
                         />
                     <s:hidden  name="event.member" />
                 </div>
-                 <div class="md-form">
-                    <s:textfield id="eventDate" name="event.data"   required="true"   class="form-control"/>
-                    <label for="eventDate"><s:text name="common.label.date"/>&nbsp;<i class="fas fa-calendar"></i></label>
-                    <div class="invalid-feedback"><s:text name="event.date.error"/></div>
-                 </div>
+                <div class="row">
+                    <div class="md-form form-sm col-sm-6">
+                        <s:textfield id="eventDate" name="event.data" required="true" class="form-control"/>
+                        <label for="eventDate"><s:text name="common.label.date"/>&nbsp;<i class="fas fa-calendar"></i></label>
+                        <div class="invalid-feedback"><s:text name="event.date.error"/></div>
+                    </div>
+                    <div class="md-form form-sm col-sm-6">
+                        <s:textfield id="alternate-eventDate" size="30" readonly="true" class="form-control"/>
+                    </div>
+                </div>
                 <label for="eventType"> <s:text name="common.event.type"/></label>
                 <div class="md-form">
                     <s:select
@@ -70,8 +75,7 @@
     </div>
 </div>
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<%@ include file="../../common/home/include/common-jquery-ui-widget.jsp" %>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
 <%@ include file = "../../common/footers/select2-footer.js.jsp" %>
@@ -79,7 +83,7 @@
 <script>
 	FormManager.validationForm({idForm: 'formEventAdd',idSubmit:'btnAddEvent'})
 	var lng='<s:property  value="%{#lang}" />';
-	DataPickerManager.enable({id: 'eventDate',lang:lng})
+	DataPickerManager.init({idFrom: 'eventDate',lang: lng, alternateFrom: 'alternate-eventDate'})
 	FormManager.blockResendForm()
 	Select2Manager.autocomlete({lang:lng,idForm:'formEventAdd', button:'btnAddEvent',type:'member', url:"autocompleteMember.do"});
 </script>

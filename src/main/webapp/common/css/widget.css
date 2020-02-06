@@ -1,0 +1,21 @@
+.custom-colorize {
+  font-size: 20px;
+  position: relative;
+  width: auto;
+  height: auto;
+}
+.custom-colorize-changer {
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.widget-btn{
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: rgba(9, 218, 155, 0.27);
+  /*border-color: #000000;*/
+}

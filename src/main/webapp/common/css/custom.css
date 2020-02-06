@@ -267,6 +267,11 @@ dropdown-menu show{
   background-color: #DF162D;
 }
 
+.widget-info-small {
+  font-size: 50%;
+  font-weight: 300;
+}
+
 select#membersNames{
   padding-left: 50%;
 }
@@ -284,6 +289,9 @@ select#eventType{
 
 .add-dt-btn{
   float: right;
+}
+.md-form label{
+  left: -1 !important;
 }
 
 

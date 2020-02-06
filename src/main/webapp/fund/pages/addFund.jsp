@@ -86,10 +86,7 @@
     </div>
 </div>
 <%@ include file="../../common/home/include/common-header-bottom.jsp" %>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<%--<script src="<s:url value="/common/js/jquery-ui1.12.1.js"/>"></script>
-<script src="<s:url value="/common/js/jquery-1.12.4.js"/>"></script>--%>
+<%@ include file="../../common/home/include/common-jquery-ui-widget.jsp" %>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/dataPickerManager.js"/>"></script>
 <%@ include file="../../common/footers/select2-footer.js.jsp" %>
@@ -97,7 +94,7 @@
 	var lng = '<s:property  value="%{#lang}" />';
 	FormManager.validationForm({idForm: 'formRegisterFund', idSubmit: 'btnRegisterFund'})
 	FormManager.blockResendForm()
-	DataPickerManager.enable({id: 'dateFund', lang: lng, alternate: 'alternate-dateFund'});
+	DataPickerManager.init({idFrom: 'dateFund', lang: lng, alternateFrom: 'alternate-dateFund'})
 	Select2Manager.autocomlete({lang: lng, idForm: 'formRegisterFund', button:'btnRegisterFund',type: 'member', url: "autocompleteMember.do"});
 
 </script>

@@ -16,3 +16,4 @@
 <!-- ds-framework JavaScript-->
 <script src="<s:url value="/ds-framework/js/AjaxManager.js"/>"></script>
 <script src="<s:url value="/common/js/modal/ModalManager.js"/>"></script>
+

@@ -60,9 +60,9 @@ FormManager = function () {
 		var idField = '#' + jsonObj.idField;
 		var val = $(idField).val();
 		if (val===null ) {
-			$("#dialog").dialog();
+			//$("#dialog").dialog();
 			//ModalManager.showModal();
-			$(id).prop("disabled", true);
+			//$(id).prop("disabled", true);
 		} else {
 
 			$(id).prop("disabled", false);

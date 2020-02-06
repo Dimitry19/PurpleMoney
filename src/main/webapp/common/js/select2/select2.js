@@ -132,7 +132,7 @@ Select2Manager = function () {
 	}
 
     return {
-        autocomlete:function (jsonObj) {
+	    autocomlete:function (jsonObj) {
             autocomplete(jsonObj);
         }
     }
