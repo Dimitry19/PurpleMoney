@@ -82,9 +82,7 @@
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/detectCap.js"/>"></script>
 <script src="<s:url value="/common/js/bootstrap-show-password.min.js"/>"></script>
-<script>
-	FormManager.validationForm({idForm:'formLogin',idSubmit:'btnLogin'})
-</script>
+<script>FormManager.validationForm({idForm:'formLogin',idSubmit:'btnLogin'})</script>
 
 </body>
 

@@ -59,10 +59,10 @@ AjaxManager = function () {
 
 
 
-		function retrieveParameters(idForm) {
+		function retrieveParameters(elt) {
 
 		var params='';
-			if(idForm==='#formSearchMember'){
+			if(elt==='#formSearchMember'){
 				var userSearchName=$('#membersNames').val();
 				var userSearchAssociation=$('#userSearchAssociation').val();
 
@@ -70,13 +70,13 @@ AjaxManager = function () {
 				console.log(params);
 			}
 
+
 			return 	params;
 		}
 
 
 		function reloadListProjet(json) {
 			// URL de l'action AJAX
-			var action=json.action;
 			var url=json.url;
 			var container='#'+json.container;
 			var idForm='#'+json.idForm;
@@ -94,83 +94,40 @@ AjaxManager = function () {
 		}
 
 
-		function sendRequest(json) {
-			var action=json.action;
+	function saveImage(json) {
+		// URL de l'action AJAX
+		var id = '#' + json.id;
+		json['data']=$(id).attr('src');
+		var entity=json.entity;
+		var url=json.url;
+		var user=json.user;
+		var ass=json.ass;
+		var params='';
 
-			var container='#'+json.container;
-			var idForm='#'+json.idForm;
-
-			var dataToSend = $(idForm).serialize();
-
-
-
-
-			var url = QSManager.appendParameters(jsonObj.url+'&printerInfo.printerName='+printerName);
-			if(debug){
-				console.log('Url invocato: ' + url);
-			}
-
-			gs.executeAction({url:url,
-				manageResult:function(data){
-					eval('var response='+data );
-					NotificationManager.showMessage('success', response.result);
-
-				}});
+		if(entity==='member'){
+			var url="saveImage.do";
+			 params=url+"?userInfo.attachement="+json.data+"&userInfo.id.name="+user+"&userInfo.id.associationId="+ass+"";
+			console.log(params);
 		}
-	function call(json) {
-		console.log("Ajax call");
+		// Action AJAX en POST
+		jQuery.post(
+			url+params,
+			function (data) {
+				console.log(data);
+				//NotificationManager.showMessage('success', response.result);
+				//$(container).html(data);
+			})
+			.fail(function () {
+				alert("Une erreur s'est produite.");
+			});
 
-				var action=json.action;
-
-				var container='#'+json.container;
-				var idForm='#'+json.idForm;
-
-				var dataToSend = $(idForm).serialize();
-
-				var url=json.url+'/'+action+'?'+JSON.stringify(dataToSend);
-
-				console.log(url);
-
-				$.ajax({
-					url:action,
-					type: "POST",
-					data:  dataToSend,
-					dataType: 'json',
-					//contentType:"application/json;charset=utf-8",
-					async: true,
-					success:function(result){
-						alert(result);
-						$(container).html(result);
-					},error: function(data) {
-						alert('woops!');
-					}
-				});
-
-
-
-		function buildUrl(context,action) {
-
-
-			$("#save").on({click:function () {
-					if (!($("#subcategory").val().length == 0)) {
-						$.ajax({
-							url:"savecategory",
-							data:$("#savecategoryform").serialize(),
-							type:"post",
-							dataType:"json",
-							success:function (data) {
-								alert("Successfully Saved");
-							}});
-					}
-				}});
 		}
-
-
-
-	}
 	return {
 		callAction:function(jsonObj){
 			reloadListProjet(jsonObj);
+		},
+		saveImage:function(jsonObj){
+			saveImage(jsonObj);
 		}
 	}
 

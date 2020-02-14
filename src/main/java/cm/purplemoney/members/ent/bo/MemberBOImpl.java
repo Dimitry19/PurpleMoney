@@ -250,7 +250,7 @@ public class MemberBOImpl extends CommonBOImpl implements MemberBO {
 				}
 			}
 		}
-		return widgetDataInfos;
+ 		return widgetDataInfos;
 	}
 
 	private Loan retriveLoan(MemberVO mbr){

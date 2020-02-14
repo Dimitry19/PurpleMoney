@@ -1,6 +1,7 @@
 package cm.purplemoney.members.ent.vo;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 import cm.purplemoney.constants.FieldConstants;
@@ -58,6 +59,7 @@ public class MemberVO implements Serializable{
 	private String sexDesc;
 	private boolean male;
 	private boolean saved;
+	private byte[]  filePicture;
 	private Set<SanctionVO> sanctions= new HashSet<SanctionVO>();
 	private Set<LoanVO> loans= new HashSet<LoanVO>();
 	private Set<SessionVO> sessions= new HashSet<SessionVO>();
@@ -154,20 +156,30 @@ public class MemberVO implements Serializable{
 	public Set<LoanVO> getLoans() {
 		return loans;
 	}
-/*
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumns({
-			@JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "ID_ASSOCIATION"),
-			@JoinColumn(name = "MNAME", referencedColumnName ="R_MEMBER")
-	})
-	public FundVO getFund() {
-		return fund;
+
+	@Column( name = "FILEPICTURE" )
+	public byte[] getFilePicture() {
+		return filePicture;
 	}
 
-	public void setFund(FundVO fund) {
-		this.fund = fund;
+	public void setFilePicture(byte[]  filePicture) {
+		this.filePicture = filePicture;
 	}
-*/
+
+	/*
+		@OneToOne(fetch = FetchType.EAGER)
+		@JoinColumns({
+				@JoinColumn(name = "R_ASSOCIATION", referencedColumnName = "ID_ASSOCIATION"),
+				@JoinColumn(name = "MNAME", referencedColumnName ="R_MEMBER")
+		})
+		public FundVO getFund() {
+			return fund;
+		}
+
+		public void setFund(FundVO fund) {
+			this.fund = fund;
+		}
+	*/
 	@OneToMany(mappedBy = "mmember",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("date  DESC")
 	public Set<FundVO> getFunds() {
