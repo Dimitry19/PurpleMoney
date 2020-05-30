@@ -150,7 +150,6 @@ FormManager = function () {
 		},
 		loadAndSaveImage: function (elt,json) {
 			loadImage(elt,json);
-			AjaxManager.saveImage(json);
 		}
 	}
 

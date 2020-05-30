@@ -295,7 +295,7 @@ select#eventType{
 }
 
 /******** PROFIL PICTURE*******/
-#img-profile{
+#img-profile {
   width: 150px;
   height: 150px;
   margin-left: 20px;
@@ -305,6 +305,11 @@ select#eventType{
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
+}
+.bg-login-image-profile {
+  background-color: white;
+  background-position: center;
+  background-size: cover;
 }
 
 

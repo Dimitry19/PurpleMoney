@@ -161,6 +161,13 @@ public class MemberAction extends BaseAction implements Preparable{
 		return SUCCESS;
 	}
 
+	public String  saveImage() throws Exception {
+
+    	memberBO.saveImage(userInfo);
+		return SUCCESS;
+	}
+
+
 
 	public String addMember() throws Exception {
 		log.debug("addMethod");

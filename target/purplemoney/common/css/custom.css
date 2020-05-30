@@ -267,6 +267,11 @@ dropdown-menu show{
   background-color: #DF162D;
 }
 
+.widget-info-small {
+  font-size: 50%;
+  font-weight: 300;
+}
+
 select#membersNames{
   padding-left: 50%;
 }
@@ -284,6 +289,27 @@ select#eventType{
 
 .add-dt-btn{
   float: right;
+}
+.md-form label{
+  left: -1 !important;
+}
+
+/******** PROFIL PICTURE*******/
+#img-profile {
+  width: 150px;
+  height: 150px;
+  margin-left: 20px;
+  overflow: hidden;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}
+.bg-login-image-profile {
+  background-color: white;
+  background-position: center;
+  background-size: cover;
 }
 
 

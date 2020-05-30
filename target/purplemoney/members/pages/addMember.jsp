@@ -111,8 +111,7 @@
         </div>
     </div>
 <%@ include file = "../../common/home/include/common-header-bottom.jsp"%>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<%@ include file="../../common/home/include/common-jquery-ui-widget.jsp" %>
 <script src="<s:url value="/common/js/form.js"/>"></script>
 <script src="<s:url value="/common/js/jquery/jquery-input-mask-phone-number.js"/>"></script>
 <%@ include file = "../../common/footers/select2-footer.js.jsp" %>
@@ -120,7 +119,7 @@
 	var lng='<s:property  value="%{#lang}" />';
     FormManager.validationForm({idForm: 'formRegister',idSubmit:'btnRegister'})
 	FormManager.blockResendForm()
-	Select2Manager.autocomlete({lang:lng,idForm:'formRegister', type:'role', url:"autocompleteRole.do"});
+	Select2Manager.autocomplete({lang:lng,idForm:'formRegister', type:'role', url:"autocompleteRole.do"});
 </script>
 <script>
     $('#telephone').usPhoneFormat({

@@ -10,6 +10,9 @@ var DataPickerManager = function () {
 	var giorni = ['Domenica', 'Lunedi', 'Martedi', 'Mercoledi', 'Giovedi', 'Venerdi', 'Sabato']
 	var giorniMin = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab']
 
+	var altDateFormat="DD d MM yy"
+	var dateFormat = "dd/mm/yy";
+
 	var animation = {
 		slideDown: 'slideDown',
 		fadeIn: 'fadeIn',
@@ -20,14 +23,34 @@ var DataPickerManager = function () {
 		fold: 'fold',
 		slide: 'slide'
 	}
+	var globalOptions;
+	var options = {
+		dateFormat:dateFormat,
+		language: null,
+		minDate: 0,
+		/*monthNames: null,
+		dayNames: null,
+		dayNamesMin: null,
+		// buttonText: "Choose",
+		// changeMonth: true,
+		altField: null,*/
+		altFormat: altDateFormat,
+		showAnim: animation.fadeIn,
+		changeMonth: true,
+		numberOfMonths: 2
+	}
 
-	function enablejQueryDatePicker(json) {
 
-		var id = '#' + json.id;
-		var alternate = '#' + json.alternate;
+	function init(json) {
+
+		var idFrom = '#' + json.idFrom;
+		var alternateFrom = '#' + json.alternateFrom;
+		var idTo = '#' + json.idTo;
+		var alternateTo = '#' + json.alternateTo;
+		
 		var lang = json.lang;
 		var m, dn, dnm;
-		var dateFormat = "dd/mm/yy";
+
 
 		if (lang == 'it') {
 			m = mesi;
@@ -43,32 +66,54 @@ var DataPickerManager = function () {
 			dnm = jourMin;
 		}
 
-		var options = {
-			dateFormat: dateFormat,
-			language: lang,
-			minDate: 0,
-			monthNames: m,
-			dayNames: dn,
-			dayNamesMin: dnm,
-			// buttonText: "Choose",
-			// changeMonth: true,
-			altField: alternate,
-			altFormat: "DD d MM yy",
-			showAnim: animation.fadeIn
+		options.language=lang;
+		options.minDate=0;
+		options.monthNames=m;
+		options.dayNames=dn;
+		options.dayNamesMin=dnm;
+		if(alternateFrom!=null && alternateFrom!='#undefined'){
+			options.altField=alternateFrom;
 		}
-		//$(id).datepicker({ dateFormat:dateFormat,language: lang,  minDate:0 });
-		$(id).datepicker(options);
-		//$(id).datepicker($.datepicker.regional[ lang ]);
 
+
+		
+		if (idTo!=null && idTo!='#undefined') {
+			if(alternateTo!=null && alternateTo!='#undefined'){
+				options.altField=alternateTo;
+			}
+
+			var from = $(idFrom)
+					.datepicker(options)
+					.on( "change", function() {
+						to.datepicker( "option", "minDate", getDate( this ) );
+					}),
+				to = $(idTo).datepicker(options)
+					.on("change", function() {
+						from.datepicker( "option", "maxDate", getDate( this ) );
+					});
+		}else{
+			$(idFrom).datepicker(options);
+		}
 	}
+
+	function getDate( element ) {
+		var date;
+		try {
+			console.log(element.value);
+			date = $.datepicker.parseDate( dateFormat, element.value );
+		} catch( error ) {
+			date = null;
+		}
+
+		return date;
+	}
+
 
 	return {
 
-		enable: function (json) {
-
-			enablejQueryDatePicker(json);
+		init: function (json) {
+			init(json);
 		}
-
 	}
 
 }();

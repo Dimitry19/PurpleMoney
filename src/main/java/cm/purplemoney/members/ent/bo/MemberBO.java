@@ -13,10 +13,12 @@ public interface MemberBO extends CommonBO {
 	 List<MemberVO>  findMember(String username, String assId) throws BusinessException;
 	 MemberVO  findMemberInfo(String username, String assId) throws BusinessException;
 	 MemberVO findMemberFromSession(SessionVO session) throws BusinessException;
+	 void saveImage(MemberVO member) throws BusinessException;
 	 void addMember(MemberVO member) throws BusinessException;
 	 List<MemberVO> loadAllMembers(String association) throws BusinessException;
 	 void saveEditMember(MemberVO member) throws BusinessException;
 	 WidgetVO widgetInfo(String username, String association) throws BusinessException;
 	 List<MemberVO> autocomplete(String search,String association) throws BusinessException;
+
 
 }

@@ -39,5 +39,8 @@
 				<param name="root">membersNames</param>
 			</result>
 		</action>
+        <action name="saveImage" class="memberAction" method="saveImage">
+            <result name="success">/members/pages/ajax/details-member-success.jsp</result>
+        </action>
 	</package>
 </struts>

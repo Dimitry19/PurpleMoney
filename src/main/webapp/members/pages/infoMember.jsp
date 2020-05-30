@@ -17,11 +17,12 @@
 		<div class="collapse show" id="infoMemberCard">
 			<div class="card-body">
 				<div class="row">
-					<div class="col-md-3 d-none d-lg-block bg-login-image">
+					<div class="col-md-3 d-none d-lg-block bg-login-image-profile">
 						<s:set var="userId" value="%{userInfo.id.name}"/>
 						<s:set var="assId" value="%{userInfo.id.associationId}"/>
-						<img height="100" width="100" id="img-profile" src="" onclick="document.getElementById('file-image').click();" />
-						<s:file id="file-image" name ="userInfo.attachment" onChange="FormManager.loadAndSaveImage(this,{id:'img-profile',user:'%{#userId}', ass:'%{#assId}', entity:'member'});" style="display: none;"  accept="image/jpeg"/>
+						<img height="100" width="100" id="img-profile" src=""   onclick="document.getElementById('file-image').click();" />
+						<s:file id="file-image" name ="userInfo.attachment" onChange="FormManager.loadAndSaveImage(this,{id:'img-profile'});" style="display: none;"  accept="image/jpeg"/>
+                        <button type="button" class="btn  btn-sm fa fa-floppy-o btn-outline-success float-right"   onclick="AjaxManager.saveImage({id:'img-profile',user:'%{#userId}', ass:'%{#assId}', entity:'member'})" id="cancelMenberBtn"><s:text name="common.button.save.label"/></button>
 					</div>
 					<div class="col-md-9">
 						<s:form class="form-login form-horizontal user"  action="saveEditMemBerAction" id="editMemberForm">

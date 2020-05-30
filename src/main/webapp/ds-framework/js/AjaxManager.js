@@ -97,29 +97,34 @@ AjaxManager = function () {
 	function saveImage(json) {
 		// URL de l'action AJAX
 		var id = '#' + json.id;
-		json['data']=$(id).attr('src');
+
+		var data=$(id).attr('src');
 		var entity=json.entity;
 		var url=json.url;
 		var user=json.user;
 		var ass=json.ass;
 		var params='';
+		console.log(data);
+
+
 
 		if(entity==='member'){
 			var url="saveImage.do";
-			 params=url+"?userInfo.attachement="+json.data+"&userInfo.id.name="+user+"&userInfo.id.associationId="+ass+"";
+			 params=url+"?userInfo.filePictureStr="+data+"&userInfo.id.name="+user+"&userInfo.id.associationId="+ass+"";
 			console.log(params);
+			// Action AJAX en POST
+			jQuery.post(
+				params,
+				function (data) {
+					console.log(data);
+					//NotificationManager.showMessage('success', response.result);
+					//$(container).html(data);
+				})
+				.fail(function () {
+					alert("Une erreur s'est produite.");
+				});
 		}
-		// Action AJAX en POST
-		jQuery.post(
-			url+params,
-			function (data) {
-				console.log(data);
-				//NotificationManager.showMessage('success', response.result);
-				//$(container).html(data);
-			})
-			.fail(function () {
-				alert("Une erreur s'est produite.");
-			});
+
 
 		}
 	return {

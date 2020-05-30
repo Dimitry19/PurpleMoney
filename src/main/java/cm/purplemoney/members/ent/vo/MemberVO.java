@@ -57,6 +57,7 @@ public class MemberVO implements Serializable{
 	private String sex;
 	private  String associationDesc;
 	private String sexDesc;
+	private String filePictureStr;
 	private boolean male;
 	private boolean saved;
 	private byte[]  filePicture;
@@ -278,13 +279,13 @@ public class MemberVO implements Serializable{
 		this.male = male;
 	}
 
-    /*
-	public String getConfirmedPassword() {
-		return confirmedPassword;
+	@Transient
+	public String getFilePictureStr() {
+		return filePictureStr;
 	}
 
-	@Transient
-	public void setConfirmedPassword(String confirmedPassword) {
-		this.confirmedPassword = confirmedPassword;
-	}*/
+
+	public void setFilePictureStr(String filePictureStr) {
+		this.filePictureStr = filePictureStr;
+	}
 }

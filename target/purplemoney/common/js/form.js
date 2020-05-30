@@ -60,9 +60,9 @@ FormManager = function () {
 		var idField = '#' + jsonObj.idField;
 		var val = $(idField).val();
 		if (val===null ) {
-			$("#dialog").dialog();
+			//$("#dialog").dialog();
 			//ModalManager.showModal();
-			$(id).prop("disabled", true);
+			//$(id).prop("disabled", true);
 		} else {
 
 			$(id).prop("disabled", false);
@@ -101,6 +101,24 @@ FormManager = function () {
 		}
 
 	}
+	function loadImage(elt, json) {
+
+		var id = '#' + json.id;
+
+		var eltId = '#'+$(elt).attr("id");
+		if (elt.files && elt.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$(id).attr('src', e.target.result);
+			}
+			console.log(elt.files[0]);
+			reader.read(elt.files[0]);
+			//reader.readAsDataURL(elt.files[0]);
+			$(eltId).css("display", "none");
+		}
+	}
+
 
 	return {
 		validationForm: function (jsonObj) {
@@ -130,6 +148,9 @@ FormManager = function () {
 		},
 		blockResendForm:function () {
 			blockResend();
+		},
+		loadAndSaveImage: function (elt,json) {
+			loadImage(elt,json);
 		}
 	}
 

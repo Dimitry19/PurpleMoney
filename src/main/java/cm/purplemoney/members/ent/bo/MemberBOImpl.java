@@ -30,8 +30,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
-import java.io.Serializable;
+import java.io.*;
 import java.math.BigDecimal;
+import java.sql.PreparedStatement;
 import java.util.*;
 
 
@@ -117,6 +118,18 @@ public class MemberBOImpl extends CommonBOImpl implements MemberBO {
 		}
 
 		return members;
+	}
+
+	@Override
+	public void saveImage(MemberVO member) throws BusinessException{
+		if(member!=null){
+			session=hibernateConfig.getSession();
+
+			Transaction tx=session.beginTransaction();
+			byte[] testBytes  = member.getFilePicture();
+			Serializable serializable=session.save(MemberVO.class.getName(),member);
+			tx.commit();
+		}
 	}
 
 	@Override
