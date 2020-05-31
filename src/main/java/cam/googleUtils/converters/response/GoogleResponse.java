@@ -5,13 +5,13 @@ import cam.googleUtils.converters.results.Result;
 public class GoogleResponse {
 
 
-    private Result[] results ;
+    private Result[] result ;
     private String status ;
     public Result[] getResults() {
-        return results;
+        return result;
     }
-    public void setResults(Result[] results) {
-        this.results = results;
+    public void setResults(Result[] result) {
+        this.result= result;
     }
     public String getStatus() {
         return status;

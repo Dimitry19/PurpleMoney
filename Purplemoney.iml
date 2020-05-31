@@ -3,7 +3,10 @@
   <component name="FacetManager">
     <facet type="hibernate" name="Hibernate">
       <configuration>
-        <datasource-map />
+        <datasource-map>
+          <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="sessionFactory" value="d6042e17-d605-4e97-86d7-4d1529736e13" />
+        </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
       </configuration>
@@ -26,6 +29,10 @@
           <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/event/usr/rsc/article.bean.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/loginHome.bean.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/rsc/jsonplugin.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/cm/purplemoney/common/usr/rsc/jsonplugin.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/cm/purplemoney/common/usr/rsc/loginHome.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/cm/purplemoney/common/usr/rsc/portal.bean.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/cm/purplemoney/common/usr/rsc/search.bean.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -38,6 +45,35 @@
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
       </configuration>
+      <facet type="Struts2" name="Struts 2">
+        <configuration>
+          <fileset id="s2fileset" name="My Fileset " removed="false">
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-actions.xml</file>
+            <file>file://$MODULE_DIR$/src/main/java/cm/purplemoney/common/usr/cfg/struts-actions.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/association/cfg/struts-article.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/sanction/usr/cfg/struts-article.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/event/usr/cfg/struts-event-type.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/event/usr/cfg/struts-event.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/fund/usr/cfg/struts-funds.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/group/usr/cfg/struts-group.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-home.xml</file>
+            <file>file://$MODULE_DIR$/src/main/java/cm/purplemoney/common/usr/cfg/struts-home.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/loan/usr/cfg/struts-loans.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/mail/usr/cfg/struts-mail.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-map.xml</file>
+            <file>file://$MODULE_DIR$/src/main/java/cm/purplemoney/common/usr/cfg/struts-map.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/members/usr/cfg/struts-members.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/profile/usr/cfg/struts-profile.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/role/usr/cfg/struts-role.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/sanction/usr/cfg/struts-sanction.xml</file>
+            <file>file://$MODULE_DIR$/src/main/java/cm/purplemoney/common/usr/cfg/struts-search.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/common/usr/cfg/struts-search.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/cm/purplemoney/session/usr/cfg/struts-session.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/struts.xml</file>
+          </fileset>
+          <propertiesKeys disabled="false" />
+        </configuration>
+      </facet>
     </facet>
   </component>
 </module>

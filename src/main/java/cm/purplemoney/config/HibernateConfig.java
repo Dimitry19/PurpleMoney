@@ -14,9 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Component("hibernateConfig")
 public class HibernateConfig {
 
-	private SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory2;
 
-	private static SessionFactory sessionFactory2 = buildSessionFactory();
+	private static SessionFactory sessionFactory = buildSessionFactory();
 	private static SessionFactory buildSessionFactory() {
 		/*try {
 			// Create the SessionFactory from hibernate.cfg.xml
@@ -34,9 +34,9 @@ public class HibernateConfig {
 		try{
 			StandardServiceRegistry standardRegistry =new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 			Metadata metaData =	new MetadataSources(standardRegistry).getMetadataBuilder().build();
-			sessionFactory2 = metaData.getSessionFactoryBuilder().build();
+			sessionFactory= metaData.getSessionFactoryBuilder().build();
 
-			return sessionFactory2;
+			return sessionFactory;
 		}
 		catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
@@ -47,7 +47,7 @@ public class HibernateConfig {
 
 	public   Session getSession() {
 
-		Session session ;
+		Session session =null;
 		//this.sessionFactory=(SessionFactory) context.getBean("sessionFactory");
 		try {
 			session = sessionFactory.getCurrentSession();
