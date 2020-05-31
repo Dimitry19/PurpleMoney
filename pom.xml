@@ -21,7 +21,7 @@
     </repositories>
     <properties>
         <org.springframework.version>4.2.3.RELEASE</org.springframework.version>
-        <struts2.version>2.3.32</struts2.version>
+        <struts2.version>2.5.20</struts2.version>
         <struts2.struts.version>2.3.24</struts2.struts.version>
         <struts2.autocomplete.version>2.2.1</struts2.autocomplete.version>
         <jersey.version>2.23.2</jersey.version>
